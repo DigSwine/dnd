@@ -1,0 +1,99 @@
+body{
+    background-color: black;
+
+}
+
+main {
+    height: 100%;
+    background-color: grey;
+    align-items: center;    
+    text-align: center;
+}
+
+select {
+    width : 80%;
+    text-align: center;
+}
+
+textarea {
+    width: 80%;
+    text-align: center;
+    align-items: center;
+    height: 100px;
+}
+
+.header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: yellow;
+}
+
+.left-content {
+    float: left;
+    width: 48%;
+    margin: 1%;
+    padding-bottom: 1%;
+    background-color: red;
+}
+
+.right-content {
+    float: right;
+    width: 48%;
+    margin: 1%;
+    padding-bottom: 1%;
+    background-color: red;
+}
+
+.examLeft{
+    background-color: deeppink;
+    margin: 5px;
+    position: relative;
+    float: left;
+    height:103%;
+    width:32.5%;
+    margin-right:0.7%;
+}
+
+.examCenter {
+    background-color: blue;
+    margin: 5px;
+    float:inherit;
+    height: 103%;
+    width: 32.5%;
+}
+
+.examRight {
+    background-color: saddlebrown;
+    margin: 5px;
+    position: relative;
+    float: right;
+    height: 103%;
+    width: 32.5%;
+}
+
+
+.report-card {
+    align-content: center;
+    float: left;
+    width: 98%;
+    height: 27%;
+    margin: 1%;
+    margin-top: 0%;
+    padding-bottom: 1%;
+    background-color: red;
+}
+
+.peopleInfo {
+    width: 95%;
+    text-align: left;
+}
+
+.innerLabel{
+    font-size: 12px;
+}
+
+.housePeople {
+    width: 80%;
+    text-align: center;
+    align-items: center;
+}
