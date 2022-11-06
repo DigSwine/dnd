@@ -7,45 +7,25 @@
     <main>
         <div class="header">
             <h1>Under Development</h1>
+            <p>if there are no students reload (its a small bug)</p>
         </div>
 
         <div class="left-content">
-            <h2>Houses</h2>
+            <h2>Colleges</h2>
 
-            <label for="houseSelection">House Name</label>
+            <label for="collegeSelection">College Name</label>
             <br />
-            <select id="houseSelection">
+            <select id="collegeSelection">
                 <option value="default"> --- Please Select --- </option>
             </select>
 
             <br /><br />
 
-            <label for="houseSelection">Who belongs to the house</label>
+                  <label for="collegeStudents">College Students</label>
             <br />
-            <input class="housePeople" type="text" value="Teachers" disabled />
-            <select id="houseTeachers" disabled>
+            <select id="collegeStudents" disabled>
                 <option value="default"> --- Please Select --- </option>
             </select>
-
-            <br /><br />
-
-            <input class="housePeople" type="text" value="NPC Students" disabled />
-            <select id="houseStudentNPCs" disabled>
-                <option value="default"> --- Please Select --- </option>
-            </select>
-
-            <br /><br />
-
-            <input class="housePeople" type="text" value="Player Students" disabled />
-            <select id="houseStudentPlayers" disabled>
-                <option value="default"> --- Please Select --- </option>
-            </select>
-
-            <br /><br />
-
-            <label for="housePoints">House Points</label>
-            <br />
-            <input id="housePoints" class="housePeople" type="text" disabled />
         </div>
         <div class="right-content">
             <h2>People</h2>
@@ -142,7 +122,7 @@
 
             </div>
             <div id="examExtenuating" class="examRight">
-                <button onclick="saveAll()">temp save</button>
+
             </div>
 
         </div>
@@ -156,29 +136,13 @@
 
 <script src="javascript/vars.js"></script>
 <script>
-    // examSelection
-
-    // House Info Enable/Disable
-    function unlockHouse(turn) {
-        var names = ['houseTeachers', 'houseStudentNPCs', 'houseStudentPlayers', 'housePoints'];
+    // College Info Enable/Disable
+    function unlockCollege(turn) {
+        var names = ['collegeStudents'];
         for (var x = 0; x < names.length; x++) {
             if (turn == "unlock") {
                 document.getElementById(names[x]).removeAttribute("disabled");
             } else {
-                $("#housePoints").val('');
-                document.getElementById(names[x]).setAttribute('disabled', true);
-            }
-        }
-    }
-
-    // Exam Info Enable/Disable
-    function unlockExam(turn) {
-        var names = [];
-        for (var x = 0; x < names.length; x++) {
-            if (turn == "unlock") {
-                document.getElementById(names[x]).removeAttribute("disabled");
-            } else {
-                $("#housePoints").val('');
                 document.getElementById(names[x]).setAttribute('disabled', true);
             }
         }
@@ -186,41 +150,32 @@
 </script>
 <script>
     $(document).ready(function () {
-        //Houses
-        for (var x = 0; x < TeacherName.length; x++) {
-            $("#houseSelection").append('<option value="' + HouseName[x] + ' - ' + x + '">' + HouseName[x] + '</option>');
-        }
+        getAll();
+
+        //wait
+        setTimeout(function(){
+            //Houses
+            for (var x = 0; x < CollegeName.length; x++) {
+                $("#collegeSelection").append('<option value="' + CollegeName[x] + ' - ' + x + '">' + CollegeName[x] + '</option>');
+            }
+        }, 1000);
     });
 
-    // House Name Change
-    $("#houseSelection").change(function () {
-        var selectedval = $("#houseSelection option:selected").val();
+    // College Selection Change
+    $("#collegeSelection").change(function () {
+        var selectedval = $("#collegeSelection option:selected").val();        
         if (selectedval != "default") {
             changeSelectors(selectedval);
-            unlockHouse("unlock");
+            unlockCollege("unlock");
         } else {
             changeSelectors('null')
-            unlockHouse("lock");
-        }
-    });
-
-    // Teacher Change
-    $("#houseTeachers").change(function () {
-
-    });
-
-    // Student NPC Change
-    $("#houseStudentNPCs").change(function () {
-        var selectedval = $("#houseStudentNPCs option:selected").val();
-        if (selectedval != "default") {
-            getStudentData(selectedval);
-            getReportCard(selectedval);
+            unlockCollege("lock");
         }
     });
 
     // Student Player Change
-    $("#houseStudentPlayers").change(function () {
-        var selectedval = $("#houseStudentPlayers option:selected").val();
+    $("#collegeStudents").change(function () {
+        var selectedval = $("#collegeStudents option:selected").val();
         if (selectedval != "default") {
             getStudentData(selectedval);
             getReportCard(selectedval);
@@ -234,46 +189,27 @@
 
         removeAllSelectors();
 
-        // Teacher
-        for (var x = 0; x < TeacherName.length; x++) {
-            if (TeacherHouse[x] == house) {
-                $("#houseTeachers").append('<option value="' + TeacherName[x] + ' - ' + x + '">' + TeacherName[x] + '</option>');
-            }
-        }
-
         // Students
         for (var x = 0; x < StudentName.length; x++) {
+            console.log(house + " <Selected | StudentCollege> " + StudentHouse[x]);
             if (StudentHouse[x] == house) {
-                if (StudentPlayer[x] == "No") {
-                    $("#houseStudentNPCs").append('<option value="' + StudentName[x] + ' - ' + x + '">' + StudentName[x] + '</option>');
-                } else if (StudentPlayer[x] == "Yes") {
-                    $("#houseStudentPlayers").append('<option value="' + StudentName[x] + ' - ' + x + '">' + StudentName[x] + '</option>');
-                }
-            }
-        }
-
-        // Points
-        for (var x = 0; x < StudentName.length; x++) {
-            if (HouseName[x] == house) {
-                $("#housePoints").val(HousePoints[x]);
+                $("#collegeStudents").append('<option value="' + StudentName[x] + ' - ' + x + '">' + StudentName[x] + '</option>');
             }
         }
     }
 
     function removeAllSelectors() {
-        $("#houseTeachers").find('option').remove().end().append('<option> --- Please Select --- </option>').val('default');
-        $("#houseStudentNPCs").find('option').remove().end().append('<option> --- Please Select --- </option>').val('default');
-        $("#houseStudentPlayers").find('option').remove().end().append('<option> --- Please Select --- </option>').val('default');
-
-
-        $("#houseTeachers").find('option:first').attr("selected", "selected");
-        $("#houseStudentNPCs").find('option:first').attr("selected", "selected");
-        $("#houseStudentPlayers").find('option:first').attr("selected", "selected");
+        // College Students
+        $("#collegeStudents").find('option').remove().end().append('<option> --- Please Select --- </option>').val('default');
+        $("#collegeStudents").find('option:first').attr("selected", "selected");
     }
 
     function getStudentData(data) {
+
         var split = data.split(" - ");
         var student = split[0];
+
+        console.log(student);
 
         for (var x = 0; x < StudentName.length; x++) {
             //loop through the students - check if the name is a match {if so then loop through txtboxs and fill in the the details}
@@ -317,47 +253,70 @@
 
 </script>
 
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
-    function saveAll() {
-        /*
-        var data1 = "sample1";
-        var data2 = "sample2";
-        //converting form data to json
-        var formdata = JSON.stringify({
-            "Data_1": data1,
-            "Data_2": data2
-        });
-        formdata = "values=" + formdata;
-        console.log(formdata);
-        $.ajax({
-            type: "GET",
-            url: "saveData.php",
-            data: formdata,
-            error: function (xhr, textStatus, error) {
-                console.log(xhr.statusText);
-            },
-            success: function (text, status) {
-                console.log(text);
+    //Database Scripts
+    function getAll() {
+        const { createClient } = supabase;
+
+        var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
+        var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
+        const _supabase = createClient(url, anon);
+
+        // College Data
+        _supabase.from('view_allcolleges').select('*').then(response => {
+            extractdata('colleges', response.data);
+        })
+
+        // Student Data
+        _supabase.from('view_allstudents').select('*').then(response => {
+            extractdata('students', response.data);
+        })
+
+        // Link Students to Colleges
+        _supabase.from('view_student_college').select('*').then(response => {
+            extractdata('collegemembers', response.data);
+        })
+
+        // Exam Data
+    }
+
+    function extractdata(datatype, array) {
+        for (var x = 0; x < array.length; x++) {
+            var data = array[x];
+
+            // colleges
+            if (datatype == 'colleges') {
+                CollegeName.push(data['college_name']);
+                // console.log(CollegeName);
+                //console.log(data);
             }
-        });
-        */
 
-        var selectedHouse = $("#houseSelection option:selected").val().split(" - ");
+            // Students
+            if (datatype == 'students') {
+                StudentName.push(data['character_name']);
+                StudentRace.push(data['character_race']);
+                StudentAge.push(data['character_age']);
+                StudentGender.push(data['character_gender']);
+                StudentPlayer.push(data['character_player']);
 
-        // Save points
-        for (var x = 0; x < HouseName.length; x++) {
-            if (HouseName[x] == selectedHouse[0]) {
-                console.log("Old Points = " + HousePoints[x]);
-                HousePoints[x] = $("#housePoints").val();
-                console.log("New Points = " + HousePoints[x]);
+                /*
+                StudentHouse.push();
+                StudentDetail4.push();
+                StudentDetail5.push();
+                StudentDetail6.push();
+                */
+            }
+
+            // College Members
+            if (datatype == 'collegemembers') {
+                var college_id = data['college_id'] - 1;
+                var student_id = data['student_id'] - 1;
+
+                StudentHouse[student_id] = CollegeName[college_id];
             }
         }
-
-        console.log(selectedHouse);
-
-
-
-
-
     }
+
+
 </script>
