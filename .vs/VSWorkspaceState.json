@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\API"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

@@ -142,7 +142,7 @@
 
             </div>
             <div id="examExtenuating" class="examRight">
-                
+                <button onclick="saveAll()">temp save</button>
             </div>
 
         </div>
@@ -341,5 +341,23 @@
             }
         });
         */
+
+        var selectedHouse = $("#houseSelection option:selected").val().split(" - ");
+
+        // Save points
+        for (var x = 0; x < HouseName.length; x++) {
+            if (HouseName[x] == selectedHouse[0]) {
+                console.log("Old Points = " + HousePoints[x]);
+                HousePoints[x] = $("#housePoints").val();
+                console.log("New Points = " + HousePoints[x]);
+            }
+        }
+
+        console.log(selectedHouse);
+
+
+
+
+
     }
 </script>
