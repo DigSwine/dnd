@@ -1,0 +1,33 @@
+body {
+    overflow-y: hidden;
+    /* overflow-x: hidden; */
+    background-image: url(../assets/MtG_background.jpg);
+    background-size: cover;
+    background-color: gray;
+    padding: 2vh;
+}
+
+.menu {
+    float: left;
+    width: 100px;
+    margin-top: 2vh;
+    margin-left: 5vh;
+}
+    .menu button {
+        margin-top: 1vh;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        border-width: 0;
+    }
+
+main {
+    position: absolute;
+    top: 7%;
+    margin-top: 1vh;
+    margin-left: 25vh;
+    height: 89vh;
+    width: 85%;
+}
+
+

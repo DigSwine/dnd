@@ -1,0 +1,83 @@
+<!Document>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../style/teacherView.css">
+</head>
+<html>
+<body>
+    <main>
+        <div class="header">
+            <h1>Under Development</h1>
+            <p>if there are no students reload (its a small bug)</p>
+        </div>
+
+        <div class="left-content" style="background-color: yellow">
+            <h2>Colleges</h2>
+
+            <label for="collegeSelection">College Name</label>
+            <br />
+            <select id="collegeSelection">
+                <option value="default"> --- Please Select --- </option>
+            </select>
+
+            <br /><br />
+
+            <label for="collegeStudents">College Students</label>
+            <br />
+            <select id="collegeStudents" disabled>
+                <option value="default"> --- Please Select --- </option>
+            </select>
+            <br />
+            <br />
+            <button onclick="editPeople('unlock', null)" id="btnEditSelected" disabled>Edit Selected Data</button>
+            <button onclick="editPeople('lock', selectedstudentid)" id="btnSaveSelected" disabled>Save Selected Data</button>
+        </div>
+
+        <div class="right-content">
+            <h2>People</h2>
+            <div style="float:left; background-color:green; width:49%; padding-bottom:5px;">
+                <label for="personalDetails" class="innerLabel">Personal Details</label>
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Name" id="personName" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Race" id="personRace" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Gender" id="personGender" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Age" id="personAge" disabled />
+            </div>
+            <div style="float:right; background-color:green; width:49%; padding-bottom:5px">
+                <label for="personName" class="innerLabel">Relationships</label>
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Morgan" id="relMorgan" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Sami" id="relSami" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Timo" id="relTimo" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Martin" id="relMartin" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Will" id="relWill" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Lover(s)" id="relLover" disabled />
+                <br />
+                <br />
+                <input type="text" class="peopleInfo" placeholder="Rival(s)" id="relRival" disabled />
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="../../javascript/vars.js"></script>
+<script src="../../javascript/teacherview.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="../../API/api.js"></script>

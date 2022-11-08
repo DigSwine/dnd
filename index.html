@@ -1,322 +1,89 @@
 <!Document>
 <head>
-    <link rel="stylesheet" type="text/css" href="/style/styles.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/style/index.css">
 </head>
 <html>
 <body>
-    <main>
-        <div class="header">
-            <h1>Under Development</h1>
-            <p>if there are no students reload (its a small bug)</p>
-        </div>
+    <div id="loginlayout" style="float: right; margin:1vh">
+        <input style="height: 3vh" type="text" placeholder="Username" />
+        <input style="height: 3vh" type="password" placeholder="Password" />
+        <button style="height: 3vh; width:auto" type="submit">Login</button>
+    </div>
+    <div class="logo">
+        <a href="index.html"><img src="../assets/strix_logo.png" /></a>
+    </div>
 
-        <div class="left-content">
-            <h2>Colleges</h2>
+    <nav class="menu">
+        <button onclick="maps()">Campus Maps</button>
+        <button onclick="admin()">Admin</button>
+        <button onclick="extra()">Extracurriculars</button>
+        <button onclick="straxstar()">Strixhaven Star</button>
+    </nav>  
 
-            <label for="collegeSelection">College Name</label>
-            <br />
-            <select id="collegeSelection">
-                <option value="default"> --- Please Select --- </option>
-            </select>
-
-            <br /><br />
-
-                  <label for="collegeStudents">College Students</label>
-            <br />
-            <select id="collegeStudents" disabled>
-                <option value="default"> --- Please Select --- </option>
-            </select>
-        </div>
-        <div class="right-content">
-            <h2>People</h2>
-            <div style="float:left; background-color:green; width:49%; padding-bottom:5px;">
-                <label for="personalDetails" class="innerLabel">Personal Details</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Name" id="personalDetails" hidden />
-                <br />
-                <br />
-                <label for="personName" class="innerLabel">Name</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Name" id="personName" disabled />
-                <br />
-                <br />
-                <label for="personRace" class="innerLabel">Race</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Race" id="personRace" disabled />
-                <br />
-                <br />
-                <label for="personGender" class="innerLabel">Gender</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Gender" id="personGender" disabled />
-                <br />
-                <br />
-                <label for="personAge" class="innerLabel">Age</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Age" id="personAge" disabled />
-                <br />
-                <br />
-                <label for="personD4" class="innerLabel">Detail 4</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Detail 4" id="personD4" disabled />
-                <br />
-                <br />
-                <label for="personD5" class="innerLabel">Detail 5</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Detail 5" id="personD5" disabled />
-                <br />
-                <br />
-                <label for="personD6" class="innerLabel">Detail 6</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Detail 6" id="personD6" disabled />
-            </div>
-            <div style="float:right; background-color:green; width:49%; padding-bottom:5px">
-                <label for="personName" class="innerLabel">Relationships</label>
-                <br />
-                <input hidden />
-                <br />
-                <br />
-                <label for="personName" class="innerLabel">Morgan</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Morgan" id="relMorgan" disabled />
-                <br />
-                <br />
-                <label for="personName" class="innerLabel">Sami</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Sami" id="relSami" disabled />
-                <br />
-                <br />
-                <label for="personName" class="innerLabel">Timo</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Timo" id="relTimo" disabled />
-                <br />
-                <br />
-                <label for="personName" class="innerLabel">Martin</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Martin" id="relMartin" disabled />
-                <br />
-                <br />
-                <label for="personName" class="innerLabel">Will</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Will" id="relWill" disabled />
-                <br />
-                <br />
-                <label for="personName" class="innerLabel">Lover</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Lover" id="relLover" disabled />
-                <br />
-                <br />
-                <label for="personName" class="innerLabel">Rival</label>
-                <br />
-                <input type="text" class="peopleInfo" placeholder="Rival" id="relRival" disabled />
-            </div>
-        </div>
-        <div class="report-card">
-            <div id="examDetails" class="examLeft">
-                <label for="examSelection">Exam Number</label>
-                <br />
-                <select id="examSelection" disabled>
-                    <option value="default"> --- Please Select --- </option>
-                </select>
-            </div>
-            <div id="examResults" class="examCenter">
-
-            </div>
-            <div id="examExtenuating" class="examRight">
-
-            </div>
-
-        </div>
-
+    <main id="main" style="background-color: transparent;">
 
     </main>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-
-<script src="javascript/vars.js"></script>
-<script>
-    // College Info Enable/Disable
-    function unlockCollege(turn) {
-        var names = ['collegeStudents'];
-        for (var x = 0; x < names.length; x++) {
-            if (turn == "unlock") {
-                document.getElementById(names[x]).removeAttribute("disabled");
-            } else {
-                document.getElementById(names[x]).setAttribute('disabled', true);
-            }
-        }
-    }
-</script>
 <script>
     $(document).ready(function () {
-        getAll();
-
-        //wait
-        setTimeout(function(){
-            //Houses
-            for (var x = 0; x < CollegeName.length; x++) {
-                $("#collegeSelection").append('<option value="' + CollegeName[x] + ' - ' + x + '">' + CollegeName[x] + '</option>');
-            }
-        }, 1000);
+        home();
     });
 
-    // College Selection Change
-    $("#collegeSelection").change(function () {
-        var selectedval = $("#collegeSelection option:selected").val();        
-        if (selectedval != "default") {
-            changeSelectors(selectedval);
-            unlockCollege("unlock");
-        } else {
-            changeSelectors('null')
-            unlockCollege("lock");
-        }
-    });
-
-    // Student Player Change
-    $("#collegeStudents").change(function () {
-        var selectedval = $("#collegeStudents option:selected").val();
-        if (selectedval != "default") {
-            getStudentData(selectedval);
-            getReportCard(selectedval);
-        }
-    });
-
-
-    function changeSelectors(house) {
-        var split = house.split(" - ");
-        var house = split[0];
-
-        removeAllSelectors();
-
-        // Students
-        for (var x = 0; x < StudentName.length; x++) {
-            console.log(house + " <Selected | StudentCollege> " + StudentHouse[x]);
-            if (StudentHouse[x] == house) {
-                $("#collegeStudents").append('<option value="' + StudentName[x] + ' - ' + x + '">' + StudentName[x] + '</option>');
-            }
-        }
+    function home() {
+        //home
+        $.ajax({
+            method: 'GET',
+            url: 'views/landing_options/_strix.html',
+        }).done(function (data) {
+           $('#main').html(data);
+        })
     }
 
-    function removeAllSelectors() {
-        // College Students
-        $("#collegeStudents").find('option').remove().end().append('<option> --- Please Select --- </option>').val('default');
-        $("#collegeStudents").find('option:first').attr("selected", "selected");
+    function maps() {
+        //map
+        $.ajax({
+            method: 'GET',
+            url: 'views/landing_options/_maps.html',
+        }).done(function (data) {
+            $('#main').html(data);
+        })
     }
 
-    function getStudentData(data) {
-
-        var split = data.split(" - ");
-        var student = split[0];
-
-        console.log(student);
-
-        for (var x = 0; x < StudentName.length; x++) {
-            //loop through the students - check if the name is a match {if so then loop through txtboxs and fill in the the details}
-            if (StudentName[x] == student) {
-                // Personal Details
-                $("#personName").val(StudentName[x]);
-                $("#personRace").val(StudentRace[x]);
-                $("#personGender").val(StudentGender[x]);
-                $("#personAge").val(StudentAge[x]);
-                $("#personD4").val(StudentDetail4[x]);
-                $("#personD5").val(StudentDetail5[x]);
-                $("#personD6").val(StudentDetail6[x]);
-
-                // Relationships
-                $("#relMorgan").val(RelMorgan[x]);
-                $("#relSami").val(RelSami[x]);
-                $("#relTimo").val(RelTimo[x]);
-                $("#relMartin").val(RelMart[x]);
-                $("#relWill").val(RelWill[x]);
-                $("#relLover").val(RelLover[x]);
-                $("#relRival").val(RelRival[x]);
-            }
-        }
+    function admin() {
+        //admin
+        $.ajax({
+            method: 'GET',
+            url: 'views/landing_options/_admin.html',
+        }).done(function (data) {
+            $('#main').html(data);
+        })
     }
 
-    function getReportCard(data) {
-        var split = data.split(" - ");
-        var student = split[0];
+    function extra() {
+        //extracurr
+        $.ajax({
+            method: 'GET',
+            url: 'views/landing_options/_extracurr.html',
+        }).done(function (data) {
+            $('#main').html(data);
+        })
+    }
 
-        document.getElementById('examSelection').removeAttribute("disabled");
-
-        // Exam Number
-        for (var x = 0; x < ExamNumber.length; x++) {
-            $("#examSelection").append('<option value="' + ExamNumber[x] + ' - ' + x + '">' + ExamNumber[x] + '</option>');
-        }
-
-        for (var x = 0; x < ExamPerson.length; x++) {
-
-        }
+    function straxstar() {
+        //strixstar
+        $.ajax({
+            method: 'GET',
+            url: 'views/landing_options/_strixstar.html',
+        }).done(function (data) {
+            $('#main').html(data);
+        })
     }
 
 </script>
 
-<script src="https://unpkg.com/@supabase/supabase-js"></script>
-<script>
-    //Database Scripts
-    function getAll() {
-        const { createClient } = supabase;
+        
 
-        var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
-        var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
-        const _supabase = createClient(url, anon);
-
-        // College Data
-        _supabase.from('view_allcolleges').select('*').then(response => {
-            extractdata('colleges', response.data);
-        })
-
-        // Student Data
-        _supabase.from('view_allstudents').select('*').then(response => {
-            extractdata('students', response.data);
-        })
-
-        // Link Students to Colleges
-        _supabase.from('view_student_college').select('*').then(response => {
-            extractdata('collegemembers', response.data);
-        })
-
-        // Exam Data
-    }
-
-    function extractdata(datatype, array) {
-        for (var x = 0; x < array.length; x++) {
-            var data = array[x];
-
-            // colleges
-            if (datatype == 'colleges') {
-                CollegeName.push(data['college_name']);
-                // console.log(CollegeName);
-                //console.log(data);
-            }
-
-            // Students
-            if (datatype == 'students') {
-                StudentName.push(data['character_name']);
-                StudentRace.push(data['character_race']);
-                StudentAge.push(data['character_age']);
-                StudentGender.push(data['character_gender']);
-                StudentPlayer.push(data['character_player']);
-
-                /*
-                StudentHouse.push();
-                StudentDetail4.push();
-                StudentDetail5.push();
-                StudentDetail6.push();
-                */
-            }
-
-            // College Members
-            if (datatype == 'collegemembers') {
-                var college_id = data['college_id'] - 1;
-                var student_id = data['student_id'] - 1;
-
-                StudentHouse[student_id] = CollegeName[college_id];
-            }
-        }
-    }
-
-
-</script>

@@ -8,6 +8,8 @@ var TeacherName = [];
 var TeacherRank = [];
 
 // Studnets Table
+var selectedstudentid = null ;
+var StudentID = [];
 var StudentHouse = [];
 var StudentName = [];
 var StudentPlayer = [];
