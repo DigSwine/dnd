@@ -46,15 +46,6 @@ main {
     z-index: 0;
 }
 
-.content {
-    margin-top: 10vh;
-    text-align: center;
-    color: black;
-    padding-left: 13.25%;
-    padding-right: 27.25%;
-}
-
-
 .pagetitle {
     font-size: 26px;
     font-family: "Sofia", sans-serif;
@@ -62,6 +53,7 @@ main {
 
 .image-background-text {
     text-align: center;
+    margin-top: 100px;
     padding-left: 13.25%;
     padding-right: 27.25%;
 }
@@ -71,6 +63,7 @@ main {
     backdrop-filter: blur(10px);
     text-align: center;
     background: transparent;
+    font-size: 1.75vh;
 }
 
 .quote {
