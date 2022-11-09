@@ -48,25 +48,36 @@ main {
 
 .pagetitle {
     font-size: 26px;
-    font-family: "Sofia", sans-serif;
+    font-family: 'Luminari', sans-serif;
 }
 
 .image-background-text {
-    text-align: center;
+    
     margin-top: 100px;
     padding-left: 13.25%;
     padding-right: 27.25%;
 }
 
 .text-overlay {
+    text-align: center;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    text-align: center;
     background: transparent;
     font-size: 1.75vh;
+}
+figcaption {
+    text-align: right;
 }
 
 .quote {
     font-family: 'Goudy Old Style', sans-serif;
     font-size: 16px;
+}
+
+.pagetitle h1 {
+    background-image: url(https://media0.giphy.com/media/YqhIK6Gbor6CLeloBq/giphy.gif?cid=790b7611d1c5a31fa7f5f0c456cdabfea53597097945555c&rid=giphy.gif&ct=g);
+    background-size: cover;
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
 }

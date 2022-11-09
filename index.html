@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
-    <link href="https://fonts.cdnfonts.com/css/goudy-old-style" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/luminari" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/style/index.css">
 </head>
@@ -10,9 +10,9 @@
 <body>
     
         <div class="loginlayout">
-            <input style="height: 3vh" type="text" placeholder="Username" />
-            <input style="height: 3vh" type="password" placeholder="Password" />
-            <button style="height: 3vh; width:auto" type="submit">Login</button>
+            <input style="height: 3vh" type="text" placeholder="Username" id="User" />
+            <input style="height: 3vh" type="password" placeholder="Password" id="Pass"/>
+            <button style="height: 3vh; width:auto" type="submit" id="logsub">Login</button>
         </div>
 
         <div style="width: 10%">
@@ -33,11 +33,25 @@
 </body>
 </html>
 
+
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script>
     $(document).ready(function () {
         home();
     });
+
+    var us, ps = '';
+    $('#User').change(function () {
+        us = $('#User').val();
+    });
+
+    $('#Pass').change(function () {
+        ps = $('#Pass').val();
+    });
+
+    $('#logsub').click(function () {
+        login(us, ps);
+    })
 
     function home() {
         //home
@@ -91,6 +105,7 @@
     }
 
 </script>
-
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="../../API/login.js"></script>
         
 
