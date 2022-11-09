@@ -58,12 +58,15 @@ main {
     padding-right: 27.25%;
 }
 
+
+@import url('https://fonts.cdnfonts.com/css/verdana-pro-cond');
 .text-overlay {
     text-align: center;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background: transparent;
     font-size: 1.75vh;
+    font-family: 'Verdana Pro Cond Light', sans-serif;
 }
 figcaption {
     text-align: right;
@@ -71,7 +74,8 @@ figcaption {
 
 .quote {
     font-family: 'Goudy Old Style', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
+    font-style: italic;
 }
 
 .pagetitle h1 {
