@@ -19,7 +19,7 @@ function extractdata(array) {
             window.open('views/studentView/studentview.html', '_self');
         }
         if (per == 'Tch') {
-
+            window.open('views/teacherView/teacherview.html', '_self');
         }
     }
 }
