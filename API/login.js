@@ -16,7 +16,7 @@ function extractdata(array) {
 
         if (per == 'Stu') {
             sessionStorage.setItem("Data", JSON.stringify(data));
-            window.open('views/studentView/studentview.html');
+            window.open('views/studentView/studentview.html', '_self');
         }
         if (per == 'Tch') {
 
