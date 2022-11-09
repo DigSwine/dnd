@@ -59,8 +59,6 @@ main {
     padding-right: 27.25%;
 }
 
-
-
 .text-overlay {
     text-align: center;
     -webkit-backdrop-filter: blur(10px);
@@ -76,6 +74,11 @@ main {
     font-style: italic;
 }
 
+.endquote {
+    text-align: right;
+    font-family: 'Ramus', sans-serif;
+}
+
 .pagetitle h1 {
     background-image: url(https://media0.giphy.com/media/YqhIK6Gbor6CLeloBq/giphy.gif?cid=790b7611d1c5a31fa7f5f0c456cdabfea53597097945555c&rid=giphy.gif&ct=g);
     background-size: cover;
@@ -83,3 +86,4 @@ main {
     -moz-background-clip: text;
     -webkit-background-clip: text;
 }
+
