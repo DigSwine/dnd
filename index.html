@@ -1,20 +1,24 @@
 <!Document>
 <head>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
+    <link href="https://fonts.cdnfonts.com/css/lucida-handwriting-std" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="/style/index.css">
 </head>
 <html>
 <body>
-    <div id="loginlayout" style="float: right; margin:1vh">
+    <div class="loginlayout">
         <input style="height: 3vh" type="text" placeholder="Username" />
         <input style="height: 3vh" type="password" placeholder="Password" />
         <button style="height: 3vh; width:auto" type="submit">Login</button>
     </div>
-    <div class="logo">
-        <a href="index.html"><img src="../assets/strix_logo.png" /></a>
+
+    <div style="width: 10%">
+        <a href="index.html"><img class="logo" src="../assets/strix_logo.png"/></a>
     </div>
 
-    <nav class="menu">
+    <nav id="navigation" class="menu">
         <button onclick="maps()">Campus Maps</button>
         <button onclick="admin()">Admin</button>
         <button onclick="extra()">Extracurriculars</button>
@@ -41,6 +45,7 @@
         }).done(function (data) {
            $('#main').html(data);
         })
+
     }
 
     function maps() {

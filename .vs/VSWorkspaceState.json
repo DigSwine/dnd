@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\style"
+    "\\views",
+    "\\views\\landing_options"
   ],
+  "SelectedNode": "\\views\\landing_options\\_strixstar.html",
   "PreviewInSolutionExplorer": false
 }

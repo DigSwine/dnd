@@ -1,33 +1,64 @@
 body {
-    overflow-y: hidden;
-    /* overflow-x: hidden; */
+    /* overflow-y: hidden;
+    overflow-x: hidden; */
     background-image: url(../assets/MtG_background.jpg);
     background-size: cover;
     background-color: gray;
     padding: 2vh;
 }
 
+.logo{
+    height: 20%;
+    width: 100%;
+}
+
 .menu {
-    float: left;
-    width: 100px;
-    margin-top: 2vh;
-    margin-left: 5vh;
+    overflow: hidden;
+    width: 10%;
+    max-height: 80%;
+    height:100%;
+    align-content: center;
+    align-items: center;
+    text-align:center;
 }
     .menu button {
-        margin-top: 1vh;
-        height: 100px;
-        width: 100px;
+        margin-top: 10%;
+        height: 20%;
+        width: 80%;
         border-radius: 50%;
         border-width: 0;
     }
 
+.loginlayout {
+    padding: 1%;
+    float: right;
+    margin: 1vh;
+}
+
 main {
     position: absolute;
-    top: 7%;
-    margin-top: 1vh;
-    margin-left: 25vh;
-    height: 89vh;
+    top: 3vh;
+    right: 3vh;
+    height: 80%;
     width: 85%;
 }
 
+.content {
+    margin-top: 10vh;
+    text-align: center;
+    padding-left: 13.25%;
+    padding-right: 27.25%;
+}
 
+.pagetitle {
+    font-size: 26px;
+    font-family: "Sofia", sans-serif;
+}
+
+.quote {
+    font-family: 'Lucida Handwriting Std', sans-serif;
+    font-size: 13px;
+}
+.endquote {
+    text-align: right;
+}
