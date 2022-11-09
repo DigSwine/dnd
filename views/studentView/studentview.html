@@ -1,14 +1,51 @@
 <!Document>
 <head>
     <link rel="stylesheet" type="text/css" href="../../style/teacherView.css">
+
+    <style>
+        main{
+            background-color: grey;
+            padding: 1vh;
+        }
+
+       .display {
+           background-color: cadetblue;
+           height: 88%;
+           width: 100%;
+       }
+       
+    </style>
 </head>
 <html>
 <body>
     <main>
         <div class="header">
-            <h1>Students</h1>
+            <h1 id="welcome"></h1>
+        </div>
+        <div class="display">
             
         </div>
     </main>
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="../../API/api.js"></script>
+<script>
+    $(document).ready(function () {
+        var data = JSON.parse(sessionStorage.getItem("Data"));
+        if (data) {
+            getstudent(data['student_id']);
+        }
+    })
+
+    function setdataabout(data) {
+        var user = data[0];
+        $('#welcome').text("Welcome " + user['character_name']);
+
+        
+
+
+    }
+</script>

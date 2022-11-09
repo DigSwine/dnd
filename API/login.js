@@ -15,7 +15,8 @@ function extractdata(array) {
         var per = data['log_per'];
 
         if (per == 'Stu') {
-            window.open('views/studentView/studentview.html', '_blank');
+            sessionStorage.setItem("Data", JSON.stringify(data));
+            window.open('views/studentView/studentview.html');
         }
         if (per == 'Tch') {
 
