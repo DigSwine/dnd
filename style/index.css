@@ -47,8 +47,9 @@ main {
 }
 
 .pagetitle {
-    font-size: 26px;
-    font-family: 'Luminari', sans-serif;
+    margin-left : -20px;
+    font-size: 34px;
+    font-family: 'Sacred Bridge Demo', sans-serif;
 }
 
 .image-background-text {
@@ -59,17 +60,14 @@ main {
 }
 
 
-@import url('https://fonts.cdnfonts.com/css/verdana-pro-cond');
+
 .text-overlay {
     text-align: center;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background: transparent;
     font-size: 1.75vh;
-    font-family: 'Verdana Pro Cond Light', sans-serif;
-}
-figcaption {
-    text-align: right;
+    font-family: 'Ramus', sans-serif;
 }
 
 .quote {
