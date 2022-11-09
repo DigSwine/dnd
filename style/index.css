@@ -66,6 +66,8 @@ main {
     background: transparent;
     font-size: 1.75vh;
     font-family: 'Ramus', sans-serif;
+    padding-left: 1vh;
+    padding-right: 1vh;
 }
 
 .quote {
