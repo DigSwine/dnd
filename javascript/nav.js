@@ -7,15 +7,11 @@ function swapnav() {
         document.getElementById("navcontroller").classList = 'fa fa-bars';
         document.getElementById("navigation").style.width = "36px";
 
-        document.getElementById("campmap").classList = 'fa fa-pie-chart';
-        document.getElementById("admin").classList = 'fa fa-users';
-        document.getElementById("extcurr").classList = 'fa fa-futbol-o';
-        document.getElementById("news").classList = 'fa fa-newspaper-o'
-
-        document.getElementById("campmap").innerText = '';
-        document.getElementById("admin").innerText = '';
-        document.getElementById("extcurr").innerText = '';
-        document.getElementById("news").innerText = '';
+        document.getElementById("homebtn").style.display = 'none';
+        document.getElementById("campmap").style.display = 'none';
+        document.getElementById("admin").style.display = 'none';
+        document.getElementById("extcurr").style.display = 'none';
+        document.getElementById("news").style.display = 'none';
     } else {
         //open
         if (current == 'fa-bars') {
@@ -23,15 +19,11 @@ function swapnav() {
             document.getElementById("navcontroller").classList = 'fa fa-times';
             document.getElementById("navigation").style.width = "250px";
 
-            document.getElementById("campmap").classList = '';
-            document.getElementById("admin").classList = '';
-            document.getElementById("extcurr").classList = '';
-            document.getElementById("news").classList = ''
-
-            document.getElementById("campmap").innerText = 'Campus Maps';
-            document.getElementById("admin").innerText = 'Admin';
-            document.getElementById("extcurr").innerText = 'Extracurriculars';
-            document.getElementById("news").innerText = 'Strixhaven Star';
+            document.getElementById("homebtn").style.display = 'block';
+            document.getElementById("campmap").style.display = 'block';
+            document.getElementById("admin").style.display = 'block';
+            document.getElementById("extcurr").style.display = 'block';
+            document.getElementById("news").style.display = 'block';
         }
     }
 }
