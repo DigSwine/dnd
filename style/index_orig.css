@@ -1,16 +1,45 @@
 body {
+    overflow-y: hidden;
+    overflow-x: hidden;
     background-image: url(../assets/MtG_background.jpg);
     background-size: cover;
     background-color: gray;
+    padding: 2vh;
+}
+
+.logo {
+    height: 20%;
+    width: 100%;
+}
+
+.loginlayout {
+    position: relative;
+    padding: 1%;
+    float: right;
+    margin: 1vh;
+    z-index: 1000;
+}
+
+main {
+    position: absolute;
+    top: 3vh;
+    right: 3vh;
+    height: 80%;
+    width: 85%;
+    z-index: 0;
+}
+
+.pagetitle {
+    margin-left : -20px;
+    font-size: 34px;
+    font-family: 'Sacred Bridge Demo', sans-serif;
 }
 
 .image-background-text {
+    
+    margin-top: 100px;
     padding-left: 13.25%;
     padding-right: 27.25%;
-    margin-top: 5px;
-    margin-left: 10px;
-    margin-bottom: 5px;
-    margin-right: 10px;
 }
 
 .text-overlay {
@@ -41,3 +70,4 @@ body {
     -moz-background-clip: text;
     -webkit-background-clip: text;
 }
+

@@ -1,0 +1,53 @@
+.sidebar {
+    height: 98%;
+    width: 250px;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    z-index: 1;
+    overflow-x: hidden;
+    font-family: 'Ramus', sans-serif;
+}
+    .sidebar a:nth-child(n) {
+        padding: 0% 1% 2% 1%;
+        text-align: left;
+        margin: 2%;
+        font-size: 36px;
+        text-decoration: none;
+        color: black;
+        display: block;
+        transition: 0.3s;
+    }
+    .sidebar a:nth-child(n+2) {
+        margin: 1%;
+        padding: 0% 1% 25% 1%;
+        text-decoration: none;
+        font-size: 25px;
+        color: black;
+        display: block;
+        transition: 0.3s;
+        text-align: center;
+        vertical-align: middle;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+    .sidebar a:hover {
+        background-image: url(https://media0.giphy.com/media/YqhIK6Gbor6CLeloBq/giphy.gif?cid=790b7611d1c5a31fa7f5f0c456cdabfea53597097945555c&rid=giphy.gif&ct=g);
+        background-size: cover;
+        color: transparent;
+        -moz-background-clip: text;
+        -webkit-background-clip: text;
+    }
+
+/* On screens, where height is less than 450px */
+@media screen and (max-height: 450px) {
+    .sidebar {
+        width: 18px;
+        padding-top: 15px;
+    }
+
+        .sidebar a {
+            font-size: 18px;
+        }
+}

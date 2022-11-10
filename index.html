@@ -5,110 +5,57 @@
     <link href="https://fonts.cdnfonts.com/css/ramus" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/adulatory" rel="stylesheet">
 
-
-
+    <link rel="stylesheet" type="text/css" href="/style/layout.css">
     <link rel="stylesheet" type="text/css" href="/style/index.css">
+    <link rel="stylesheet" type="text/css" href="/style/nav.css">
 </head>
 <html>
 <body>
-    
+    <div id="header" class="header">
+        <div class="logo">
+            <a href="index.html"><img src="../assets/strix_logo.png" /></a>
+        </div>
+        <div class="pagetitle">
+            <h1 id="pagename"></h1>
+        </div>
         <div class="loginlayout">
             <input style="height: 3vh" type="text" placeholder="Username" id="User" />
-            <input style="height: 3vh" type="password" placeholder="Password" id="Pass"/>
+            <input style="height: 3vh" type="password" placeholder="Password" id="Pass" />
             <button style="height: 3vh; width:auto" type="submit" id="logsub">Login</button>
         </div>
+    </div>
 
-        <div style="width: 10%">
-            <a href="index.html"><img class="logo" src="../assets/strix_logo.png" /></a>
-        </div>
-
-        <nav id="navigation" class="menu">
-            <button onclick="maps()">Campus Maps</button>
-            <button onclick="admin()">Admin</button>
-            <button onclick="extra()">Extracurriculars</button>
-            <button onclick="straxstar()">Strixhaven Star</button>
+    <div id="mainpage" class="wrapper">
+        <nav id="navigation" class="sidebar">
+            <a href="javascript:void(0)" id="navcontroller" class="fa fa-times" aria-hidden="true" onclick="swapnav()"></a>
+            <a onclick="maps()" id="campmap">Campus Maps</a>
+            <a onclick="admin()" id="admin">Admin</a>
+            <a onclick="extra()" id="extcurr">Extracurriculars</a>
+            <a onclick="straxstar()" id="news">Strixhaven Star</a>
         </nav>
 
-        <main id="main" style="background-color: none;">
-
+        <main id="main">
+            some content
         </main>
-    
+    </div>
+    <footer>
+        <div class="leftspacer"></div>
+        <div class="middlespacer">
+            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
+        </div>
+        <div class="cover">
+            <div class="top"></div>
+            <div class="bot"></div>
+            Junk
+        </div>
+    </footer>
 </body>
 </html>
 
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script>
-    $(document).ready(function () {
-        sessionStorage.clear();
-        home();
-    });
-
-    var us, ps = '';
-    $('#User').change(function () {
-        us = $('#User').val();
-    });
-
-    $('#Pass').change(function () {
-        ps = $('#Pass').val();
-    });
-
-    $('#logsub').click(function () {
-        login(us, ps);
-    })
-
-    function home() {
-        //home
-        $.ajax({
-            method: 'GET',
-            url: 'views/landing_options/_strix.html',
-        }).done(function (data) {
-           $('#main').html(data);
-        })
-
-    }
-
-    function maps() {
-        //map
-        $.ajax({
-            method: 'GET',
-            url: 'views/landing_options/_maps.html',
-        }).done(function (data) {
-            $('#main').html(data);
-        })
-    }
-
-    function admin() {
-        //admin
-        $.ajax({
-            method: 'GET',
-            url: 'views/landing_options/_admin.html',
-        }).done(function (data) {
-            $('#main').html(data);
-        })
-    }
-
-    function extra() {
-        //extracurr
-        $.ajax({
-            method: 'GET',
-            url: 'views/landing_options/_extracurr.html',
-        }).done(function (data) {
-            $('#main').html(data);
-        })
-    }
-
-    function straxstar() {
-        //strixstar
-        $.ajax({
-            method: 'GET',
-            url: 'views/landing_options/_strixstar.html',
-        }).done(function (data) {
-            $('#main').html(data);
-        })
-    }
-
-</script>
+<script src="/javascript/nav.js"></script>
+<script src="/javascript/index.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="../../API/login.js"></script>
         

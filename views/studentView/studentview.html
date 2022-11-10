@@ -1,18 +1,10 @@
 <!Document>
 <head>
-    <link rel="stylesheet" type="text/css" href="../../style/teacherView.css">
+    <link rel="stylesheet" type="text/css" href="../../style/studentView.css">
 
     <style>
-        main{
-            background-color: grey;
-            padding: 1vh;
-        }
 
-       .display {
-           background-color: cadetblue;
-           height: 88%;
-           width: 100%;
-       }
+
        
     </style>
 </head>
@@ -20,10 +12,20 @@
 <body>
     <main>
         <div class="header">
-            <h1 id="welcome"></h1>
+            <img id="collegelogo" class="logo"/>
+            <h1 id="welcome" class="welcome"></h1>
         </div>
         <div class="display">
-            
+            <div class="personal">
+                <input id="age" disabled />
+                <input id="gender" disabled />
+                <input id="race" disabled />
+            </div>
+            <div id="reportcard">
+                <select>
+                    <option> --- Please Select Report --- </option>
+                </select>
+            </div>
         </div>
     </main>
 </body>
@@ -37,15 +39,23 @@
         var data = JSON.parse(sessionStorage.getItem("Data"));
         if (data) {
             getstudent(data['student_id']);
+            getschool(data['student_id']);
         }
     })
 
-    function setdataabout(data) {
+    function setdataabout(from, data) {
         var user = data[0];
-        $('#welcome').text("Welcome " + user['character_name']);
 
-        
-
-
+        if (from == "student") {
+            $('#welcome').text('Welcome ' + user['character_name']);
+            $('#age').val(user['character_age']);
+            $('#gender').val(user['character_gender']);
+            $('#race').val(user['character_race']);
+        }
+        if (from == "college") {
+            if (user['college_id']['college_name'] == 'First Years') {
+                $('#collegelogo').attr('src', '../../assets/strix_logo.png');
+            }
+        }     
     }
 </script>

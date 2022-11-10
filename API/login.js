@@ -5,9 +5,13 @@ function login(us, ps) {
     var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
     const _supabase = createClient(url, anon);
 
-    _supabase.from('_tblLogin').select('*').match({log_use: us, log_pas: ps}).then(response => {
-        extractdata(response.data);
-    })
+    if (ps != "newps") {
+        _supabase.from('_tblLogin').select('*').match({ log_use: us, log_pas: ps }).then(response => {
+            extractdata(response.data);
+        })
+    } else {
+        alert(requestNewPassword());
+    }
 }
 function extractdata(array) {
     for (var x = 0; x < array.length; x++) {
@@ -22,4 +26,14 @@ function extractdata(array) {
             window.open('views/teacherView/teacherview.html', '_self');
         }
     }
+}
+
+function requestNewPassword() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,/;#[]<>?:@~{}_+-=!£$%^&*()",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
 }
