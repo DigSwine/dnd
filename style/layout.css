@@ -46,21 +46,24 @@ div, footer, nav {
         margin-top: 5px;
         margin-left: 10px;
         margin-bottom: 5px;
-        font-size: 30px;
+        font-size: 35px;
         font-weight: bold;
         font-family: 'Mathovia Script', sans-serif;
         letter-spacing: .2rem;
     }
 
-    .header .loginlayout {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        flex: 1;
-        text-align: right;
-        
-    }
+        .header .pagetitle {
+            initial-letter: 1.5;
+        }
+
+        .header .loginlayout {
+            margin-top: 5px;
+            margin-left: 10px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            flex: 1;
+            text-align: right;
+        }
 
 footer {
     margin-top: 10px;
