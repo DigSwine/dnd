@@ -43,6 +43,7 @@ div, footer, nav {
         text-align: left;
         display: inline-block;
         vertical-align: middle;
+        padding-left: 5px;
         margin-top: 5px;
         margin-left: 10px;
         margin-bottom: 5px;
