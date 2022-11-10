@@ -13,7 +13,11 @@ $('#Pass').change(function () {
 });
 
 $('#logsub').click(function () {
-    login(us, ps);
+    login('btn', us, ps);
+})
+
+$('#bmlogo').click(function () {
+    login('bm', us, ps);
 })
 
 function home() {

@@ -113,6 +113,16 @@ footer {
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: none;
     }
-    footer .cover:hover {
-        background-color: transparent;
+    footer .bmlogo {
+        height: 100%;
+        transition: 2s ease-in-out;
+        opacity: 0;
+        filter: blur(20px);
     }
+        footer .bmlogo:hover {
+            cursor: default;
+            transition: 2s ease-in-out;
+            opacity: 1;
+            filter:none;
+        }
+
