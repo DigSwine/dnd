@@ -39,8 +39,6 @@
         transition: 0.3s;
         text-align: left;
         vertical-align: middle;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
     }
     .sidebar a:hover {
         cursor: pointer;
