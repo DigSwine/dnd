@@ -27,20 +27,19 @@
         padding-top: 0%;
         padding-left: 1%;
         padding-right: 3%;
-        padding-bottom: 25%;
+        padding-bottom: 5%;
         text-decoration: none;
-        font-size: 25px;
+        font-size: 20px;
         color: black;
         display: none;
         transition: 0.3s;
-        text-align: center;
+        text-align: left;
         vertical-align: middle;
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
     }
     .sidebar a:hover {
-        background-image: url(https://media0.giphy.com/media/YqhIK6Gbor6CLeloBq/giphy.gif?cid=790b7611d1c5a31fa7f5f0c456cdabfea53597097945555c&rid=giphy.gif&ct=g);
-        background-size: cover;
+        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
         color: transparent;
         -moz-background-clip: text;
         -webkit-background-clip: text;
