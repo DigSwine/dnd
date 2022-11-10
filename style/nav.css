@@ -9,7 +9,7 @@
     overflow-x: hidden;
     font-family: 'Ramus', sans-serif;
 }
-    .sidebar a:nth-child(n) {
+    .sidebar a:nth-child(1) {
         padding-top: 0%;
         padding-left: 1%;
         padding-right: 2%;
@@ -20,6 +20,10 @@
         text-decoration: none;
         color: black;
         display: block;
+        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+        color: transparent;
+        -moz-background-clip: text;
+        -webkit-background-clip: text;
         transition: 0.3s;
     }
     .sidebar a:nth-child(n+2) {
