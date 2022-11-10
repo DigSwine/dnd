@@ -5,7 +5,7 @@ body {
 
 /* Debug layout */
 div, footer, nav {
-    /* border: 1px solid #000000;  */
+    /* border: 1px solid #000000; */
 }
 
 .wrapper {
@@ -40,21 +40,24 @@ div, footer, nav {
     }
     .header .pagetitle {
         flex: 2;
-        text-align: center;
+        text-align: left;
         display: inline-block;
         vertical-align: middle;
         margin-top: 5px;
         margin-left: 10px;
         margin-bottom: 5px;
-        font-size: 20px;
-        font-family: 'Sacred Bridge Demo', sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: 'Mathovia Script', sans-serif;
+        letter-spacing: .2rem;
     }
+
     .header .loginlayout {
         margin-top: 5px;
         margin-left: 10px;
         margin-bottom: 5px;
         margin-right: 10px;
-        flex: 5;
+        flex: 1;
         text-align: right;
         
     }
