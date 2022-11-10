@@ -27,7 +27,8 @@
 
     <div id="mainpage" class="wrapper">
         <nav id="navigation" class="sidebar">
-            <a href="javascript:void(0)" id="navcontroller" class="fa fa-times" aria-hidden="true" onclick="swapnav()"></a>
+            <a id="navcontroller" class="fa fa-times" onclick="swapnav()" style="display: none"></a>
+            <a onclick="home()" id="homebtn">Home</a>
             <a onclick="maps()" id="campmap">Campus Maps</a>
             <a onclick="admin()" id="admin">Admin</a>
             <a onclick="extra()" id="extcurr">Extracurriculars</a>
@@ -39,14 +40,14 @@
         </main>
     </div>
     <footer>
-        <div class="leftspacer"></div>
-        <div class="middlespacer">
-            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
-        </div>
-        <div class="cover">
+        <div class="leftspacer cover">
             <div class="top"></div>
             <div class="bot"></div>
-            Junk
+        </div>
+        <div class="middlespacer">
+        </div>
+        <div class="rightspacer">
+            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
         </div>
     </footer>
 </body>

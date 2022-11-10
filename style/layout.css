@@ -79,15 +79,23 @@ footer {
         margin-bottom: 5px;
         margin-right: 10px;
         height: 70%;
+        width: 50%;
+    }
+    footer .rightspacer {
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        height: 70%;
         width: 100%;
+        text-align: right;
+        color: gray;
+        text-decoration: none;
     }
-    footer .middlespacer p {
-        
+    footer .rightspacer a {
+        text-align: right;
+        color: gray;
     }
-
-        footer .middlespacer p a {
-        
-        }
 
     footer .cover {
         margin-top: 5px;
@@ -101,37 +109,4 @@ footer {
     }
     footer .cover:hover {
         background-color: transparent;
-    }
-
-    .header .logo {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-    }
-
-        .header .logo img {
-            flex: 1;
-            height: 100%;
-        }
-
-    .header .pagetitle {
-        flex: 2;
-        text-align: center;
-        display: inline-block;
-        vertical-align: middle;
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        font-size: 20px;
-        font-family: 'Sacred Bridge Demo', sans-serif;
-    }
-
-    .header .loginlayout {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        flex: 5;
-        text-align: right;
     }
