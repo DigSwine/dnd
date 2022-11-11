@@ -1,19 +1,3 @@
-$(document).ready(function () {
-    var pagename = document.getElementById('pagename').innerText;
-
-    if (pagename == 'Strixhaven University') {
-        window.history.pushState("", "", '/Home_page');
-    } else if (pagename == 'University Map') {
-        window.history.pushState("", "", '/University_Maps');
-    } else if (pagename == 'Strixhaven Star') {
-        window.history.pushState("", "", '/Strixhaven_Star');
-    } else if (pagename == 'Extracurricular') {
-        window.history.pushState("", "", '/Extracurricular');
-    } else if (pagename == 'Administration') {
-        window.history.pushState("", "", '/Administration');
-    }
-});
-
 var us, ps = '';
 $('#User').change(function () {
     us = $('#User').val();
