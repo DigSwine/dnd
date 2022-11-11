@@ -39,6 +39,7 @@
         transition: 0.3s;
         text-align: left;
         vertical-align: middle;
+        font-weight: bold;
     }
     .sidebar a:hover {
         cursor: pointer;
