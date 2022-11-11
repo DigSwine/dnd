@@ -1,3 +1,11 @@
+$(document).ready(function () {
+    var pagename = document.getElementById('pagename').innerText;
+
+    if (pagename == 'Strixhaven University') {
+        window.history.pushState("", "", '/Home_page');
+    }
+});
+
 var us, ps = '';
 $('#User').change(function () {
     us = $('#User').val();
@@ -64,7 +72,5 @@ function gopage(goto) {
         url = 'administration.html';
     }
 
-    window.location = url;
-
-    
+        window.location = url;
 }
