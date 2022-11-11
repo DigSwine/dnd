@@ -34,7 +34,7 @@ function extractdata(type, array) {
         }
         if (type == 'bm') {
             sessionStorage.setItem("Data", JSON.stringify(data));
-            window.open('views/bmView/blackmarketview.html', '_self');
+            window.open('blackmarket.html', '_self');
         }
     }
 }

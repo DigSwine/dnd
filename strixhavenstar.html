@@ -1,0 +1,62 @@
+<!Document>
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="https://fonts.cdnfonts.com/css/sacred-bridge-demo" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/ramus" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/adulatory" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/mathovia-script" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/views/layout.css">
+    <link rel="stylesheet" type="text/css" href="/views/nav.css">
+
+    <link rel="stylesheet" type="text/css" href="/views/news/style.css">
+
+    <title>Strixhaven - Strixhaven Star</title>
+    <link rel="icon" href="/assets/strix_logo.png">
+</head>
+<html>
+<body>
+    <div id="header" class="header">
+        <div class="logo">
+            <a href="index.html"><img src="../assets/strix_logo.png" /></a>
+        </div>
+        <div class="pagetitle">
+            <h1 id="pagename">Strixhaven Star</h1>
+        </div>
+        <div class="loginlayout">
+            <input style="height: 3vh" type="text" placeholder="Username" id="User" />
+            <input style="height: 3vh" type="password" placeholder="Password" id="Pass" />
+            <button style="height: 3vh; width:auto" type="submit" id="logsub">Login</button>
+        </div>
+    </div>
+
+    <div id="mainpage" class="wrapper">
+        <nav id="navigation" class="sidebar">
+            <a id="navcontroller" class="fa fa-bars" onclick="swapnav()"></a>
+            <a onclick="gopage('home')" id="homebtn">Home Page</a>
+            <a onclick="gopage('maps')" id="campmap">University Information</a>
+            <a onclick="gopage('news')" id="news">Strixhaven Star</a>
+            <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
+            <a onclick="gopage('admin')" id="admin">Admininstration</a>
+        </nav>
+        <main id="main">
+
+        </main>
+    </div>
+    <footer>
+        <div class="leftspacer cover">
+            <img class="bmlogo" id="bmlogo" src="assets/blackmarket.png" />
+        </div>
+        <div class="middlespacer">
+        </div>
+        <div class="rightspacer">
+            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
+        </div>
+    </footer>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="/javascript/nav.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="../../API/login.js"></script>

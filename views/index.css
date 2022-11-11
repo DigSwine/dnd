@@ -11,6 +11,7 @@ body {
     margin-left: 10px;
     margin-bottom: 5px;
     margin-right: 10px;
+    height: 68.5%;
 }
 
 .text-overlay {
@@ -20,8 +21,6 @@ body {
     background: transparent;
     font-size: 1.75vh;
     font-family: 'Ramus', sans-serif;
-    padding-left: 1vh;
-    padding-right: 1vh;
 }
 
 .quote {

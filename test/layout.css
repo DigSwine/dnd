@@ -9,7 +9,7 @@
         width: 250px;
         z-index: 1;
         background-color: #111;
-        overflow-x: hidden;
+        /* overflow-x: hidden; */
     }
     .wrapper main {
         margin-left: 1%;
