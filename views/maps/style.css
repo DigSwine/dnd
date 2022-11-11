@@ -1,5 +1,6 @@
 body {
-    background-image: url(../assets/maps_strix1.png);
-    background-size: cover;
+    background-image: url(../../assets/strix_map.png);
     background-color: gray;
+    background-repeat: no-repeat;
+    background-size: 100% 135%;
 }

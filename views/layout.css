@@ -75,16 +75,8 @@ div, footer, nav {
 }
 
 .bm .pagetitle {
-    font-family: 'Vabioxe Graffiti', sans-serif;
-    transition: 2s;
-    color: black;
+    font-family: 'Lady Gems', sans-serif;
 }
-    .bm .pagetitle:hover {
-        transition: 2s;
-        color:red;
-        transform:
-        font-family:'Times New Roman', Times, serif;
-    }
 
 footer {
     margin-top: 10px;
