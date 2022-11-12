@@ -40,8 +40,34 @@
             <a onclick="gopage('admin')" id="admin">Admininstration</a>
         </nav>
         <main id="main">
-
+            <div class="locname">
+                <button class="silverquill" onclick="collegedetails('sq'); openclosecollege('open')">Silverquill</button>
+                <button class="prismari" onclick="collegedetails('pm'); openclosecollege('open')">Prismari</button>
+                <button class="lorehold" onclick="collegedetails('lh'); openclosecollege('open')">Lorehold</button>
+                <button class="qundrix" onclick="collegedetails('qd'); openclosecollege('open')">Quandrix</button>
+                <button class="witherbloom" onclick="collegedetails('wb'); openclosecollege('open')">Witherbloom</button>
+                <button class="main_campus" onclick="collegedetails('bp'); openclosecollege('open')">Bibloplex</button>
+            </div>
         </main>
+        <div class="card" id="card" style="display:none">
+            <div class="header">
+                <div class="logo">
+                    <img id="thecollegelogo" src="assets/strix_logo.png" />
+                </div>
+                <div class="pagetitle" id="collegetitle">College Loading</div>
+                <div class="loginlayout">
+                    <button class="closebutton" onclick="openclosecollege('close')">X</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="map">
+                    <img id="collegemap" />
+                </div>
+                <div class="text" id="collegedescription">
+                    
+                </div>
+            </div>
+        </div>
     </div>
     <footer>
         <div class="leftspacer cover">
@@ -58,6 +84,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="/javascript/nav.js"></script>
-<script src="/javascript/mouse.js"></script>
+<script src="/javascript/maps.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="../../API/login.js"></script>
