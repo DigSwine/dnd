@@ -2,9 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\assets",
+    "\\assets\\maps",
     "\\javascript",
-    "\\views"
+    "\\views",
+    "\\views\\maps"
   ],
-  "SelectedNode": "\\javascript\\nav.js",
+  "SelectedNode": "\\assets\\maps\\witherbloom_map.png",
   "PreviewInSolutionExplorer": false
 }
