@@ -12,11 +12,7 @@ function preload(page) {
             "MtG_background.jpg",
             "strix_logo.png",
             "strix_map.png",
-            "collegebackground.jpg"
-        ];
-    }
-    if (page == 'maps') {
-        images = [
+            "collegebackground.jpg",
             "maps/central_map.png",
             "maps/lorehold_map.png",
             "maps/prismari_map.png",
