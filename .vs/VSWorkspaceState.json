@@ -1,12 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\assets\\maps",
     "\\javascript",
     "\\views",
     "\\views\\maps"
   ],
-  "SelectedNode": "\\campusmap.html",
+  "SelectedNode": "\\javascript\\maps.js",
   "PreviewInSolutionExplorer": false
 }

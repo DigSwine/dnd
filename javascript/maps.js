@@ -1,41 +1,48 @@
 function collegedetails(college) {
     var src = '';
     var collegename = '';
+    var collegequote = '';
     var map = '';
     var textref = '';
     if (college == 'sq') {
         src = 'silverquill.png';
         collegename = 'Silverquill';
+        collegequote = 'Need to find';
         map = 'silverquill_map.png';
         textref = '_silverquill.html';
     }
     if (college == 'pm') {
         src = 'prismari.png';
         collegename = 'Prismari';
+        collegequote = 'Need to find';
         map = 'prismari_map.png';
         textref = '_prismari.html';
     }
     if (college == 'lh') {
         src = 'lorehold.png';
         collegename = 'Lorehold';
+        collegequote = 'Need to find';
         map = 'lorehold_map.png';
         textref = '_lorehold.html';
     }
     if (college == 'qd') {
         src = 'quandrix.png';
         collegename = 'Quandrix';
+        collegequote = 'Need to find';
         map = 'quandrix_map.png';
         textref = '_quandrix.html';
     }
     if (college == 'wb') {
         src = 'witherbloom.png';
-        collegename = 'Witherbloom'
+        collegename = 'Witherbloom';
+        collegequote = 'Need to find';
         map = 'witherbloom_map.png';
         textref = '_witherbloom.html';
     }
     if (college == 'bp') {
         src = 'bibloplex.webp';
-        collegename = 'Bibloplex'
+        collegename = 'Bibloplex';
+        collegequote = 'Need to find';
         map = 'central_map.png';
         textref = '_bibloplex.html';
     }
@@ -46,10 +53,13 @@ function collegedetails(college) {
     src = loc + src;
     map = loc + map;
     textref = htmlloc + textref;
+    collegequote = '"' + collegequote + '"';
 
     $("#thecollegelogo").attr("src", src);
     $("#collegetitle").text(collegename);
+    $("#collegequote").text(collegequote);
     $("#collegemap").attr('src', map);
+    
 
     $.ajax({
         url: textref,

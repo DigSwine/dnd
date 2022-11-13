@@ -66,13 +66,28 @@ body {
     left: 10px;
     max-height: 100%;
     height: 68.5%;
-    width: 1620px;
-    background-color: dimgrey;
+    width: calc(1620px - 270px);
+    border-radius: 25px;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
 }
     .card .header {
         height: 20%;
         width: 100%;
     }
+    .card .header .topbot{
+        width: 100%;
+    }
+        .card .header .topbot .collegetitle {
+            margin: 5px;
+            width: 98.5%;
+            height: 45%;
+        }
+        .card .header .topbot .quote {
+            margin: 5px;
+            width: 98%;
+            height: 40%;
+            font-style: italic;
+        }
         .card .header .closebutton {
             padding: 10px; 
             background-color: transparent; 
