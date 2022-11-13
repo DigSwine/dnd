@@ -12,32 +12,32 @@ body {
 }
     .locname .silverquill {
         position: fixed;
-        left: 46.3%;
+        left: 47.55%;
         top: 20%;
     }
     .locname .prismari {
         position: fixed;
-        left: 25%;
+        left: 26%;
         bottom: 16%;
     }
     .locname .lorehold {
         position: fixed;
-        left: 26%;
-        top: 38%;
+        left: 29%;
+        top: 39%;
     }
     .locname .qundrix {
         position: fixed;
-        right: 22%;
-        top: 38.47%;
+        right: 23%;
+        top: 38%;
     }
     .locname .witherbloom {
         position: fixed;
-        right: 27%;
+        right: 28%;
         bottom: 15%;
     }
     .locname .main_campus {
         position: fixed;
-        left: 45.9%;
+        left: 47.7%;
         top: 46.5%;
     }
     .locname button {
