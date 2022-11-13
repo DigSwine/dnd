@@ -1,0 +1,120 @@
+/* Debug layout */
+div, footer, nav {
+    border: 1px solid #000000;
+}
+
+.header {
+    clear: both;
+    margin-bottom: 10px;
+    height: 10vh;
+    max-height: 10vh;
+    display: flex;
+}
+    .header .logo {
+        height: 100%;
+        margin-bottom: 1%;
+    }
+        .header .logo img {
+            flex: 1;
+            height: 100%;
+        }
+    .header .pagetitle {
+        flex: 2;
+        text-align: center;
+        height: 100%;
+    }
+    .header .loginlayout {
+        flex: 3;
+        text-align: right;
+    }
+
+.wrapper {
+    clear: both;
+    margin-bottom: 10px;
+    height: 90vh;
+    display: flex;
+}
+    .wrapper main {
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        margin-left: 1%;
+        width: 100%;
+        max-height: 100%;
+        height: 2000px;
+    }
+
+
+
+footer {
+    margin-top: 10px;
+    height: 5vh;
+    text-align: center;
+    display: flex;
+}
+    footer .leftspacer {
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        height: 70%;
+        width: 10%;
+    }
+    footer .middlespacer {
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        height: 70%;
+        width: 50%;
+    }
+    footer .rightspacer {
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        height: 70%;
+        width: 100%;
+        text-align: right;
+        color: gray;
+        text-decoration: none;
+    }
+        footer .rightspacer a {
+            text-align: right;
+            color: gray;
+        }
+    footer .cover {
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        height: 70%;
+        width: 10%;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: none;
+    }
+    footer .bmlogo {
+        height: 100%;
+        transition: 2s ease-in-out;
+        opacity: 0;
+        filter: blur(20px);
+    }
+        footer .bmlogo:hover {
+            cursor: default;
+            transition: 2s ease-in-out;
+            opacity: 1;
+            filter: none;
+        }
+
+
+        /* Page Spacifics */
+        
+        /* Home Page */
+body {
+    background-image: url(../assets/MtG_background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0;
+    background-color: white;
+}

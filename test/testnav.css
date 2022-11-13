@@ -1,0 +1,52 @@
+.sidebar {
+    flex: 3;
+    width: 250px;
+    height: 70%;
+    margin: 5px;
+    text-align: right;
+    z-index: 10;
+    font-family: 'Ramus', sans-serif;
+}
+    .sidebar a {
+        padding-top: 0%;
+        padding-left: 1%;
+        padding-right: 2%;
+        padding-bottom: 1%;
+        font-size: 36px;
+        display: block;
+        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+        color: transparent;
+        -moz-background-clip: text;
+        -webkit-background-clip: text;
+    }
+    .sidebar .container{
+        z-index: 10;
+        background: yellow;
+        display: none;
+    }
+
+        .sidebar .container a:nth-child(n) {
+            margin: 1%;
+            padding-top: 0%;
+            padding-left: 1%;
+            padding-right: 3%;
+            padding-bottom: 5%;
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+            transition: 0.3s;
+            vertical-align: middle;
+            font-weight: bold;
+        }
+
+        .sidebar .container a:hover {
+            cursor: pointer;
+            background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+            color: transparent;
+            -moz-background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+/* On screens, where height is less than 450px */
+@media screen and (max-height: 1000px) {
+}
