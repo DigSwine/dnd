@@ -133,3 +133,18 @@ footer {
             opacity: 1;
             filter:none;
         }
+
+ /* Writing Sytles */
+.maintext {
+    font-family: 'Ramus', sans-serif;
+}
+
+.quote {
+    font-family: 'Adulatory', sans-serif;
+    font-size: 24px;
+}
+
+.endquote {
+    text-align: right;
+    font-family: 'Ramus', sans-serif;
+}
