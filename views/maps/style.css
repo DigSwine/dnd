@@ -81,12 +81,17 @@ body {
             margin: 5px;
             width: 98.5%;
             height: 45%;
+            font-family: 'MilleniGem', sans-serif;
+            font-size: 38px;
+            font-weight: bold;
+            line-height: 100px;
         }
         .card .header .topbot .quote {
             margin: 5px;
             width: 98%;
             height: 40%;
             font-style: italic;
+            line-height: 30px;
         }
         .card .header .closebutton {
             padding: 10px; 

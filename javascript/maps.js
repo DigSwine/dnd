@@ -7,42 +7,42 @@ function collegedetails(college) {
     if (college == 'sq') {
         src = 'silverquill.png';
         collegename = 'Silverquill';
-        collegequote = 'Need to find';
+        collegequote = 'Sharp style, sharper wit.';
         map = 'silverquill_map.png';
         textref = '_silverquill.html';
     }
     if (college == 'pm') {
         src = 'prismari.png';
         collegename = 'Prismari';
-        collegequote = 'Need to find';
+        collegequote = 'Express yourself, with the elements!';
         map = 'prismari_map.png';
         textref = '_prismari.html';
     }
     if (college == 'lh') {
         src = 'lorehold.png';
         collegename = 'Lorehold';
-        collegequote = 'Need to find';
+        collegequote = 'Leave no stone unturned!';
         map = 'lorehold_map.png';
         textref = '_lorehold.html';
     }
     if (college == 'qd') {
         src = 'quandrix.png';
         collegename = 'Quandrix';
-        collegequote = 'Need to find';
+        collegequote = 'Math is magic.';
         map = 'quandrix_map.png';
         textref = '_quandrix.html';
     }
     if (college == 'wb') {
         src = 'witherbloom.png';
         collegename = 'Witherbloom';
-        collegequote = 'Need to find';
+        collegequote = 'Get your hands dirty.';
         map = 'witherbloom_map.png';
         textref = '_witherbloom.html';
     }
     if (college == 'bp') {
         src = 'bibloplex.webp';
         collegename = 'Bibloplex';
-        collegequote = 'Need to find';
+        collegequote = 'Apes together Strong!';
         map = 'central_map.png';
         textref = '_bibloplex.html';
     }
