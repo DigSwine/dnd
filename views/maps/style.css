@@ -23,12 +23,12 @@ body {
     .locname .lorehold {
         position: fixed;
         left: 26%;
-        top: 40%;
+        top: 37%;
     }
     .locname .qundrix {
         position: fixed;
         right: 22%;
-        top: 39%;
+        top: 37.5%;
     }
     .locname .witherbloom {
         position: fixed;
@@ -38,7 +38,7 @@ body {
     .locname .main_campus {
         position: fixed;
         left: 45.9%;
-        top: 45%;
+        top: 46.5%;
     }
     .locname button {
         background-color: transparent;
