@@ -17,8 +17,6 @@ body {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background: transparent;
-    font-size: 1.75vh;
-    font-family: 'Ramus', sans-serif;
 }
 
 .pagetitle h1 {
