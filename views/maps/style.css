@@ -12,50 +12,48 @@ body {
 }
     .locname .silverquill {
         position: fixed;
-        left: 40%;
-        top: 10%;
-        padding: 80px;
+        left: 46.3%;
+        top: 20%;
     }
     .locname .prismari {
         position: fixed;
-        left: 15%;
-        bottom: 1%;
-        padding: 80px;
+        left: 25%;
+        bottom: 16%;
     }
     .locname .lorehold {
         position: fixed;
-        left: 15%;
-        top: 30%;
-        padding: 80px;
+        left: 26%;
+        top: 40%;
     }
     .locname .qundrix {
         position: fixed;
-        right: 11%;
-        top: 30%;
-        padding: 80px;
+        right: 22%;
+        top: 39%;
     }
     .locname .witherbloom {
         position: fixed;
-        right: 12%;
-        bottom: 1%;
-        padding: 80px;
+        right: 27%;
+        bottom: 16%;
     }
     .locname .main_campus {
         position: fixed;
-        left: 41%;
-        top: 39%;
-        padding: 100px;
+        left: 45.9%;
+        top: 45%;
     }
     .locname button {
         background-color: transparent;
         color: black;
         font-size: 40px;
         font-weight: bold;
+        padding: 10px;
         border: none;
     }
         .locname button:hover {
             cursor: pointer;
         }
+    .locname button img {
+        height: 50px;
+    }
 
 .card {
     background-image: url(../../assets/collegebackground.jpg);

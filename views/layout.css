@@ -60,11 +60,14 @@ div, footer, nav {
             flex: 1;
             text-align: right;
         }
+
 .landing .pagetitle {
     font-family: 'Mathovia Script', sans-serif;
 }
+
 .pages .pagetitle {
-    font-family: 'Poor Richard', sans-serif;
+    font-family: 'Mekanus ADF Std', sans-serif;
+    letter-spacing: 0rem;
 }
 
 .bm .pagetitle {
