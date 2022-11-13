@@ -52,7 +52,7 @@
 /* On screens, where height is less than 450px */
 @media screen and (max-height: 1000px) {
     .sidebar {
-        width: 18px;
+        
         padding-top: 15px;
     }
         .sidebar a {
