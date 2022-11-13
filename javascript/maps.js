@@ -42,7 +42,7 @@ function collegedetails(college) {
     if (college == 'bp') {
         src = 'bibloplex.webp';
         collegename = 'Bibloplex';
-        collegequote = 'Apes together Strong!';
+        collegequote = 'Infinite Knowledge is Infinite Power';
         map = 'central_map.png';
         textref = '_bibloplex.html';
     }
