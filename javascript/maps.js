@@ -9,6 +9,7 @@ function collegedetails(college) {
         src = 'silverquill.png';
         collegename = 'Silverquill';
         collegequote = 'Sharp style, sharper wit.';
+        collegedescription = '';
         map = 'silverquill_map.png';
         textref = '_silverquill.html';
     }
@@ -16,6 +17,7 @@ function collegedetails(college) {
         src = 'prismari.png';
         collegename = 'Prismari';
         collegequote = 'Express yourself, with the elements!';
+        collegedescription = '';
         map = 'prismari_map.png';
         textref = '_prismari.html';
     }
@@ -23,6 +25,7 @@ function collegedetails(college) {
         src = 'lorehold.png';
         collegename = 'Lorehold';
         collegequote = 'Leave no stone unturned!';
+        collegedescription = '';
         map = 'lorehold_map.png';
         textref = '_lorehold.html';
     }
@@ -30,6 +33,7 @@ function collegedetails(college) {
         src = 'quandrix.png';
         collegename = 'Quandrix';
         collegequote = 'Math is magic.';
+        collegedescription = '';
         map = 'quandrix_map.png';
         textref = '_quandrix.html';
     }
@@ -37,6 +41,7 @@ function collegedetails(college) {
         src = 'witherbloom.png';
         collegename = 'Witherbloom';
         collegequote = 'Get your hands dirty.';
+        collegedescription = '';
         map = 'witherbloom_map.png';
         textref = '_witherbloom.html';
     }
