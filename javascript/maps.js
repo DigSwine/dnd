@@ -40,7 +40,7 @@ function collegedetails(college) {
         textref = '_witherbloom.html';
     }
     if (college == 'bp') {
-        src = 'bibloplex.webp';
+        src = 'bibloplex.png';
         collegename = 'Biblioplex';
         collegequote = 'Infinite Knowledge is Infinite Power';
         map = 'central_map.png';
