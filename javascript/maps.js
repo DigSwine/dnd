@@ -4,6 +4,7 @@ function collegedetails(college) {
     var collegequote = '';
     var map = '';
     var textref = '';
+    var collegedescription = '';
     if (college == 'sq') {
         src = 'silverquill.png';
         collegename = 'Silverquill';
@@ -43,6 +44,7 @@ function collegedetails(college) {
         src = 'bibloplex.png';
         collegename = 'Central Campus';
         collegequote = 'Infinite Knowledge is Infinite Power';
+        collegedescription = 'The central campus is the heart of Strixhaven University. Its extensive grounds include residence halls for first-year students, dining halls, administration buildings, classrooms and laboratories and space for social gatherings.';
         map = 'central_map.png';
         textref = '_centralcampus.html';
     }
@@ -58,8 +60,8 @@ function collegedetails(college) {
     $("#thecollegelogo").attr("src", src);
     $("#collegetitle").text(collegename);
     $("#collegequote").text(collegequote);
+    $("#collegedet").text(collegedescription);
     $("#collegemap").attr('src', map);
-    
 
     $.ajax({
         url: textref,

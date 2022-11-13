@@ -76,11 +76,10 @@ body {
         width: 100%;
     }
     .card .header .topbot{
-        width: 100%;
+        width: 39%;
     }
         .card .header .topbot .collegetitle {
             margin: 5px;
-            width: 98.5%;
             height: 45%;
             font-family: 'MilleniGem', sans-serif;
             font-size: 38px;
@@ -90,8 +89,6 @@ body {
         .card .header .topbot .quote {
             margin: 5px;
             margin-top: 10px;
-            width: 98%;
-            height: 40%;
             font-style: italic;
             line-height: 30px;
         }
@@ -103,11 +100,15 @@ body {
         .closebutton:hover {
             cursor: pointer;
         }
-    .card .content {
-        height: 78%;
-        width: 100%;
-        display: flex;
+    .card .header .collegedet{
+        margin: 5px;
+        text-align: left;
     }
+.card .content {
+    height: 78%;
+    width: 100%;
+    display: flex;
+}
         .card .content .map {
             height: 97.5%;
             width: 50%;
