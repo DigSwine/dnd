@@ -117,17 +117,18 @@ body {
         .card .content .map img {
             width: 100%;
         }
-        .card .content .text{
-            margin: 5px;
-            width: 50%;
-        }
+    .card .content .text {
+        width: 50%;
+        margin-right: 10px;
+        padding-right: 10px;
+    }
             .card .content .text .page {
                 margin-left: 5px;
                 margin-top: 5px;
                 height: 97%;
             }
-            .card .content .text .page .section{
-                margin-top: 5px;
-                height: 87.5%;
-            }
+                .card .content .text .page .section {
+                    margin-top: 5px;
+                    height: 87.5%;
+                }
 
