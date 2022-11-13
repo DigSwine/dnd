@@ -41,10 +41,10 @@ function collegedetails(college) {
     }
     if (college == 'bp') {
         src = 'bibloplex.png';
-        collegename = 'Biblioplex';
+        collegename = 'Central Campus';
         collegequote = 'Infinite Knowledge is Infinite Power';
         map = 'central_map.png';
-        textref = '_bibloplex.html';
+        textref = '_centralcampus.html';
     }
 
     var loc = 'assets/maps/';

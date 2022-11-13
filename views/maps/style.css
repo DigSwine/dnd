@@ -109,21 +109,19 @@ body {
     }
         .card .content .map {
             height: 97.5%;
-            width: 40%;
+            width: 50%;
             margin: 5px;
-            display: flex;
         }
         .card .content .map img {
             width: 100%;
         }
         .card .content .text{
             margin: 5px;
-            width: 60%;
+            width: 50%;
         }
             .card .content .text .page {
                 margin-left: 5px;
                 margin-top: 5px;
-                width: 98.5%;
                 height: 97%;
             }
             .card .content .text .page .section{
