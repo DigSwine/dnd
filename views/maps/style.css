@@ -89,6 +89,7 @@ body {
         }
         .card .header .topbot .quote {
             margin: 5px;
+            margin-top: 10px;
             width: 98%;
             height: 40%;
             font-style: italic;
