@@ -1,3 +1,12 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0;
+    background-color: white;
+    overflow: auto;
+}
+
 /* Debug layout */
 div, footer, nav {
     border: 1px solid #000000;
@@ -6,13 +15,12 @@ div, footer, nav {
 .header {
     clear: both;
     margin-bottom: 10px;
-    height: 10vh;
-    max-height: 10vh;
+    height: 20vh;
     display: flex;
 }
     .header .logo {
         height: 100%;
-        margin-bottom: 1%;
+        width: 10%;
     }
         .header .logo img {
             flex: 1;
@@ -20,7 +28,7 @@ div, footer, nav {
         }
     .header .pagetitle {
         flex: 2;
-        text-align: center;
+        text-align: left;
         height: 100%;
     }
     .header .loginlayout {
@@ -31,7 +39,7 @@ div, footer, nav {
 .wrapper {
     clear: both;
     margin-bottom: 10px;
-    height: 80vh;
+    height: 70vh;
     display: flex;
 }
     .wrapper main {
@@ -43,8 +51,6 @@ div, footer, nav {
         max-height: 100%;
         height: 2000px;
     }
-
-
 
 footer {
     margin-top: 10px;
@@ -112,9 +118,15 @@ footer {
         /* Home Page */
 body {
     background-image: url(../assets/MtG_background.jpg);
+}
+.pagetitle h1 {
+    background-image: url(https://media0.giphy.com/media/YqhIK6Gbor6CLeloBq/giphy.gif?cid=790b7611d1c5a31fa7f5f0c456cdabfea53597097945555c&rid=giphy.gif&ct=g);
     background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: 50% 0;
-    background-color: white;
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+}
+.header .pagetitle {
+    font-family: 'GoudyThirty-DemiBold', sans-serif;
+    font-size: 40px;
 }

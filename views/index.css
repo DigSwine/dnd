@@ -26,15 +26,3 @@ body {
     -moz-background-clip: text;
     -webkit-background-clip: text;
 }
-
-/* Smaller Screens */
-@media screen and (max-width: 1160px) {
-    .image-background-text {
-        padding-left: 0;
-        padding-right: 0;
-        height: 68.5%;
-    }
-    .quote {
-        font-size: 30px;
-    }
-}

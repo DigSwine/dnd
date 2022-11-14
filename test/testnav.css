@@ -4,7 +4,6 @@
     height: 70%;
     margin: 5px;
     text-align: right;
-    z-index: 10;
     font-family: 'Ramus', sans-serif;
 }
     .sidebar a {
@@ -12,40 +11,62 @@
         padding-left: 1%;
         padding-right: 2%;
         padding-bottom: 1%;
-        font-size: 36px;
+        font-size: 3em;
         display: block;
         background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
         color: transparent;
         -moz-background-clip: text;
         -webkit-background-clip: text;
     }
-    .sidebar .container{
-        z-index: 10;
-        background: yellow;
-        display: none;
+
+.container {
+    position: absolute;
+    right: 0.8%;
+    top: 8%;
+    float: right;
+    width: 250px;
+    height: auto;
+    background: yellow;
+    display: none;
+    z-index: 10;
+    text-align: right;
+}
+    .container a:nth-child(n) {
+        display: inline-block;
+        width: 97%;
+        background-color: red;
+        padding-top: 5%;
+        padding-right: 3%;
+        padding-bottom: 5%;
+        text-decoration: none;
+        font-size: 20px;
+        color: black;
+        transition: 0.3s;
+        vertical-align: middle;
+        font-weight: bold;
+        height: 3vh;
     }
-
-        .sidebar .container a:nth-child(n) {
-            margin: 1%;
-            padding-top: 0%;
-            padding-left: 1%;
-            padding-right: 3%;
-            padding-bottom: 5%;
-            text-decoration: none;
-            font-size: 20px;
-            color: black;
-            transition: 0.3s;
-            vertical-align: middle;
-            font-weight: bold;
-        }
-
-        .sidebar .container a:hover {
-            cursor: pointer;
-            background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-            color: transparent;
-            -moz-background-clip: text;
-            -webkit-background-clip: text;
-        }
+    .container a:hover {
+        cursor: pointer;
+        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+        color: transparent;
+        -moz-background-clip: text;
+        -webkit-background-clip: text;
+    }
+    .container input {
+        display: inline-block;
+        margin-top: 5%;
+        width: 100%;
+        text-align: right;
+        height: 3vh;
+    }
+    .container button {
+        height: 3vh;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        width: 100%;
+        display: inline-block;
+    }
 
 /* On screens, where height is less than 450px */
 @media screen and (max-height: 1000px) {

@@ -57,55 +57,50 @@ body {
 
 .card {
     background-image: url(../../assets/collegebackground.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 135%;
+    background-size: cover;
     position: fixed;
     margin-left: 270px;
-    margin-top: 5px;
-    right: 20px;
-    left: 10px;
-    max-height: 100%;
-    height: 68.5%;
-    width: calc(1620px - 270px);
+    margin-right: 15%;
     border-radius: 25px;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     background-color: grey;
 }
     .card .header {
-        height: 20%;
+        height: 15vh;
         width: 100%;
     }
     .card .header .topbot{
         width: 39%;
     }
         .card .header .topbot .collegetitle {
-            margin: 5px;
-            height: 45%;
             font-family: 'MilleniGem', sans-serif;
             font-size: 38px;
             font-weight: bold;
-            line-height: 100px;
         }
         .card .header .topbot .quote {
-            margin: 5px;
             margin-top: 10px;
             font-style: italic;
-            line-height: 30px;
+        }
+        .card .header .topclose {
+            height: 30%;
         }
         .card .header .closebutton {
-            padding: 10px; 
-            background-color: transparent; 
             border: none;
+            margin-right: 10px;
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background-color: transparent;
+            font-weight: bold;
         }
         .closebutton:hover {
             cursor: pointer;
         }
     .card .header .collegedet{
-        margin: 5px;
         text-align: left;
     }
 .card .content {
-    height: 78%;
+    height: 50vh;
     width: 100%;
     display: flex;
 }
@@ -118,17 +113,55 @@ body {
             width: 100%;
         }
     .card .content .text {
-        width: 50%;
+        width: 55%;
         margin-right: 10px;
         padding-right: 10px;
     }
-            .card .content .text .page {
-                margin-left: 5px;
-                margin-top: 5px;
-                height: 97%;
-            }
-                .card .content .text .page .section {
-                    margin-top: 5px;
-                    height: 87.5%;
-                }
 
+@media (max-width: 1600px) {
+        .card .header {
+            height: 10vh;
+        }
+            .card .header .topbot {
+                width: 40%;
+            }
+                .card .header .topbot .collegetitle {
+                    font-size: 30px;
+                }
+                .card .header .topbot .quote {
+                    font-style: italic;
+                    line-height: 22px;
+                }
+            .card .header .topclose {
+                height: 40%;
+            }
+            .card .header .closebutton {
+                position: absolute;
+                top: -30px;
+                right: 5px;
+                background-color: transparent;
+                font-weight: bold;
+            }
+    .card .header .collegedet {
+        text-align: left;
+    }
+
+    .card .content {
+        width: 100%;
+        display: flex;
+    }
+
+        .card .content .map {
+            height: 97.5%;
+            width: 50%;
+            margin: 5px;
+        }
+
+            .card .content .map img {
+                width: 100%;
+            }
+
+        .card .content .text {
+            margin-right: 10px;
+            padding-right: 10px;
+        }
