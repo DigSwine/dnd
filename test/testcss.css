@@ -31,7 +31,7 @@ div, footer, nav {
 .wrapper {
     clear: both;
     margin-bottom: 10px;
-    height: 90vh;
+    height: 80vh;
     display: flex;
 }
     .wrapper main {
