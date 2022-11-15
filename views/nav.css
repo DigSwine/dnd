@@ -48,14 +48,3 @@
         -moz-background-clip: text;
         -webkit-background-clip: text;
     }
-
-/* On screens, where height is less than 450px */
-@media screen and (max-height: 1000px) {
-    .sidebar {
-        
-        padding-top: 15px;
-    }
-        .sidebar a {
-            font-size: 18px;
-        }
-}

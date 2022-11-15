@@ -70,15 +70,17 @@ body {
         width: 100%;
     }
     .card .header .topbot{
-        width: 39%;
+        margin: 5px 5px 5px 5px;
+        width: 100%;
     }
         .card .header .topbot .collegetitle {
             font-family: 'MilleniGem', sans-serif;
+            height: 50%;
             font-size: 38px;
             font-weight: bold;
         }
         .card .header .topbot .quote {
-            margin-top: 10px;
+            height: 50%;
             font-style: italic;
         }
         .card .header .topclose {
@@ -88,7 +90,7 @@ body {
             border: none;
             margin-right: 10px;
             position: absolute;
-            top: -50px;
+            top: 10px;
             right: 0;
             background-color: transparent;
             font-weight: bold;
@@ -98,6 +100,7 @@ body {
         }
     .card .header .collegedet{
         text-align: left;
+        height: 69%;
     }
 .card .content {
     height: 50vh;
@@ -118,50 +121,3 @@ body {
         padding-right: 10px;
     }
 
-@media (max-width: 1600px) {
-        .card .header {
-            height: 10vh;
-        }
-            .card .header .topbot {
-                width: 40%;
-            }
-                .card .header .topbot .collegetitle {
-                    font-size: 30px;
-                }
-                .card .header .topbot .quote {
-                    font-style: italic;
-                    line-height: 22px;
-                }
-            .card .header .topclose {
-                height: 40%;
-            }
-            .card .header .closebutton {
-                position: absolute;
-                top: -30px;
-                right: 5px;
-                background-color: transparent;
-                font-weight: bold;
-            }
-    .card .header .collegedet {
-        text-align: left;
-    }
-
-    .card .content {
-        width: 100%;
-        display: flex;
-    }
-
-        .card .content .map {
-            height: 97.5%;
-            width: 50%;
-            margin: 5px;
-        }
-
-            .card .content .map img {
-                width: 100%;
-            }
-
-        .card .content .text {
-            margin-right: 10px;
-            padding-right: 10px;
-        }

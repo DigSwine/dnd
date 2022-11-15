@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
     "\\test",
-    "\\views"
+    "\\views",
+    "\\views\\maps"
   ],
+  "SelectedNode": "\\views\\layout.css",
   "PreviewInSolutionExplorer": false
 }
