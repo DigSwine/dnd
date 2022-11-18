@@ -1,124 +1,47 @@
 $(document).ready(function () {
     getAll("all");
-
-    //wait
-    setTimeout(function () {
-        //Houses
-        for (var x = 0; x < CollegeName.length; x++) {
-            $("#collegeSelection").append('<option value="' + CollegeName[x] + ' - ' + x + '">' + CollegeName[x] + '</option>');
-        }
-    }, 1000);
 });
 
 // College Selection Change
-$("#collegeSelection").change(function () {
-    var selectedval = $("#collegeSelection option:selected").val();
+$("#toget").change(function () {
+    var selectedval = $("#toget option:selected").val();
     if (selectedval != "default") {
-        changeSelectors(selectedval);
-        unlockCollege("unlock");
+        unlockoptions('unlock');
     } else {
-        changeSelectors('null')
-        unlockCollege("lock");
+        unlockoptions('lock');
     }
 });
 
-// Student Player Change
-$("#collegeStudents").change(function () {
-    var selectedval = $("#collegeStudents option:selected").val();
-    if (selectedval != "default") {
-        editButtons('unlock');
-        getStudentData(selectedval);
-    }
-});
+function unlockoptions(style) {
+    var options = ['contoladd', 'contoledit', 'contoldel'];
 
-
-function changeSelectors(house) {
-    var split = house.split(" - ");
-    var house = split[0];
-
-    removeAllSelectors();
-
-    // Students
-    for (var x = 0; x < StudentName.length; x++) {
-        if (StudentHouse[x]) {
-            if (StudentHouse[x] == house) {
-                if (StudentPlayer[x] != "NPC") {
-                    $("#collegeStudents").append('<option value="' + StudentName[x] + ' - ' + x + '">' + StudentName[x] + " (" + StudentPlayer[x] + ") " + '</option>');
-                } else {
-                    $("#collegeStudents").append('<option value="' + StudentName[x] + ' - ' + x + '">' + StudentName[x] + '</option>');
-                }
-            }
+    for (var x = 0; x < options.length; x++) {
+        if (style == 'unlock') {
+            document.getElementById(options[x]).disabled = false;
         } else {
-            console.log("No student data avaliable, reloading data");
-            getAll("students");
+            document.getElementById(options[x]).disabled = true;
         }
     }
 }
 
-function removeAllSelectors() {
-    // College Students
-    $("#collegeStudents").find('option').remove().end().append('<option> --- Please Select --- </option>').val('default');
-    $("#collegeStudents").find('option:first').attr("selected", "selected");
-}
-
-function getStudentData(data) {
-
-    var split = data.split(" - ");
-    var student = split[0];
-
-    for (var x = 0; x < StudentName.length; x++) {
-        if (StudentName[x] == student) {
-            //studentid
-            selectedstudentid = StudentID[x];
-            // Personal Details
-            $("#personName").val(StudentName[x]);
-            $("#personRace").val(StudentRace[x]);
-            $("#personGender").val(StudentGender[x]);
-            $("#personAge").val(StudentAge[x]);
-
-            // Relationships
-            $("#relMorgan").val(RelMorgan[x]);
-            $("#relSami").val(RelSami[x]);
-            $("#relTimo").val(RelTimo[x]);
-            $("#relMartin").val(RelMart[x]);
-            $("#relWill").val(RelWill[x]);
-            $("#relLover").val(RelLover[x]);
-            $("#relRival").val(RelRival[x]);
+function getmain(toget) {
+    var selectedval = $("#toget option:selected").val();
+    if (toget == 'add') {
+        if (selectedval == 'stu') {
+            textref = '_addstudent.html';
         }
     }
-}
 
-// College Info Enable/Disable
-function unlockCollege(turn) {
-    var names = ['collegeStudents'];
-    for (var x = 0; x < names.length; x++) {
-        toUnlock(names[x], turn);
-    }
-}
+    var htmlloc = '/views/teacherView/';
 
-function editPeople(turn, studentid) {
-    var names = ['personName', 'personRace', 'personGender', 'personAge', 'btnSaveSelected'];
-    for (var x = 0; x < names.length; x++) {
-        toUnlock(names[x], turn);
-        if (turn == "lock") {
-            if (x == names.length - 1) {
-                editAll('students', studentid);
-            }
+    textref = htmlloc + textref;
+
+    $.ajax({
+        url: textref,
+        type: 'GET',
+        success: function (data) {
+            $('#tocontrol').html(data);
         }
-    }
-}
+    });
 
-function editButtons(turn) {
-    var names = ['btnEditSelected'];
-    for (var x = 0; x < names.length; x++) {
-        toUnlock(names[x], turn);
-    }
-}
-
-function toUnlock(element, turn) {
-    if (turn == "unlock") {
-        document.getElementById(element).removeAttribute("disabled");
-    } else {
-        document.getElementById(element).setAttribute('disabled', true);
-    }
 }

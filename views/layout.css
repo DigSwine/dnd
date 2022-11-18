@@ -5,7 +5,7 @@ body {
 
 /* Debug layout */
 div, footer, nav {
-    /* border: 1px solid #000000; */
+    border: 1px solid #000000;
 }
 
 .wrapper {

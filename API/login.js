@@ -26,10 +26,10 @@ function extractdata(type, array) {
         if (type == 'btn') {
             if (per == 'Stu') {
                 sessionStorage.setItem("Data", JSON.stringify(data));
-                window.open('views/studentView/studentview.html', '_self');
+                window.open('studentview.html', '_self');
             }
             if (per == 'Tch') {
-                window.open('views/teacherView/teacherview.html', '_self');
+                window.open('teacherview.html', '_self');
             }
         }
         if (type == 'bm') {

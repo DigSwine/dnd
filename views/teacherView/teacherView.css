@@ -1,0 +1,20 @@
+body{
+    background-color: gray;
+}
+
+.wrapper{
+    position: relative;
+    padding: 5px;
+}
+
+    .wrapper .controls button {
+        font-size: 18px;
+    }
+    .wrapper .data {
+        margin-left: 5px;
+        padding: 5px;
+        width: 100%;        
+    }
+        .wrapper .data .tocontrol {
+            height: 100%;
+        }
