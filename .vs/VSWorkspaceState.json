@@ -1,10 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\test",
+    "\\javascript",
     "\\views",
-    "\\views\\maps"
+    "\\views\\maps",
+    "\\views\\teacherView"
   ],
-  "SelectedNode": "\\views\\layout.css",
+  "SelectedNode": "\\views\\teacherView\\_addstudent.html",
   "PreviewInSolutionExplorer": false
 }
