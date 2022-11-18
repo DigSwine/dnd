@@ -69,6 +69,10 @@ body {
         height: 15vh;
         width: 100%;
     }
+    .card .header .logo{
+        width: 20%;
+        height: 80%;
+    }
     .card .header .topbot{
         margin: 5px 5px 5px 5px;
         width: 100%;
