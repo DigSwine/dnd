@@ -6,14 +6,15 @@
 
     <link rel="stylesheet" type="text/css" href="/views/news/style.css">
 
-    <title>Strixhaven - Strixhaven Star</title>
+    <title>Strixhaven - Home </title>
     <link rel="icon" href="/assets/strix_logo.png">
+
 </head>
 <html>
 <body>
-    <div id="header" class="header pages">
+    <div id="header" class="header landing">
         <div class="logo">
-            <a href="index.html"><img src="../assets/strix_logo.png" /></a>
+            <a href="index.html"><img src="/assets/strix_logo.png" /></a>
         </div>
         <div class="pagetitle">
             <h1 id="pagename">Strixhaven Star</h1>
@@ -34,24 +35,106 @@
             <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
             <a onclick="gopage('admin')" id="admin">Admininstration</a>
         </nav>
-        <main id="main">
+        <main>
 
+            <div class="thepaper">
+                <div class="papeheader">
+                    <h1>Strixhaven Star</h1>
+                    <div class="paperdate">Monday, 1st November, 2022 - X Pages</div>
+                </div>
+
+                <div class="collumn">
+                    <div class="head">
+                        <span class="headline hl1">
+                            It wasn't a dream
+                        </span>
+                        <p>
+                            <span class="headline hl4">
+                                by FRANZ KAFKA
+                            </span>
+                        </p>
+                    </div>
+                    <p>
+                        Some Random Text
+                    </p>
+                </div>
+
+                <div class="collumn">
+                    <div class="head">
+                        <span class="headline hl5">
+                            Column Title 2
+                        </span>
+                        <p>
+                            <span class="headline hl6">
+                                by Jeff Jefferson
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="collumn">
+                    <div class="head">
+                        <span class="headline hl1">
+                            Column Title 3
+                        </span>
+                        <p>
+                            <span class="headline hl2">
+                                by Sarah Davies
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="collumn">
+                    <div class="head">
+                        <span class="headline hl3">
+                            Column Title 4
+                        </span>
+                        <p>
+                            <span class="headline hl4">
+                                by A Talking Plant
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="collumn">
+                    <div class="head">
+                        <span class="headline hl5">
+                            Column Title 5
+                        </span>
+                        <p>
+                            <span class="headline hl4">
+                                by Cha Cha
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
-    <footer>
-        <div class="leftspacer cover">
-            <img class="bmlogo" id="bmlogo" src="assets/blackmarket.png" />
-        </div>
-        <div class="middlespacer">
-        </div>
-        <div class="rightspacer">
-            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
-        </div>
-    </footer>
+<footer>
+    <div class="leftspacer cover">
+        <img class="bmlogo" id="bmlogo" src="assets/blackmarket.png" />
+    </div>
+    <div class="middlespacer"></div>
+    <div class="rightspacer">
+        <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
+    </div>
+</footer>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="/javascript/nav.js"></script>
+<script>
+    var pageid = 'index';
+</script>
+<script src="/javascript/preload.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="../../API/login.js"></script>
+<script>
+
+
+    animation: 5s infinite alternate flip;
+</script>

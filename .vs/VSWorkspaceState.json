@@ -3,9 +3,8 @@
     "",
     "\\javascript",
     "\\views",
-    "\\views\\maps",
-    "\\views\\teacherView"
+    "\\views\\news"
   ],
-  "SelectedNode": "\\views\\teacherView\\_addstudent.html",
+  "SelectedNode": "\\views\\layout.css",
   "PreviewInSolutionExplorer": false
 }
