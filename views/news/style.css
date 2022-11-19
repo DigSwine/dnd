@@ -1,54 +1,48 @@
 body {
-    background-image: url(../../assets/libary.webp);
+    background-image: url(../../assets/collegebackground.jpg);
     background-size: cover;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
 }
 
-:root {
-    --pagewth: 1000px;
+.header {
+    height: 10vh;
 }
-
-.header .pagetitle {
-    text-align: center;
+    .header .pagetitle {
+        text-align: center;
+        font-family: 'GoudyThirty-DemiBold', sans-serif;
+        font-size: 190%;
+    }
+    .header .logo {
+        position: absolute;
+        height: 10vh;
+        float: left;
+    }
+    .header .loginlayout {
+        display: none;
+    }
+.wrapper main {
+    margin-left: 0em;
+    max-height: 85%;
 }
 
 main{
     padding:5px;
 }
 
-
-
-/* News Paper */
-/* Layout */
-.thepaper {
-    margin-left: 100px;
-    height: 68%;
-    background-image: url(../../assets/collegebackground.jpg);
-    background-size: cover;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+.paperdate {
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    padding: 10px 0 10px 0;
 }
-    .thepaper .papeheader {
-        position: relative;
-    }
 
-
-/* Text */
-    .thepaper p {
-        margin-bottom: 20px;
-    }
-    .thepaper .papeheader h1 {
-        text-align: center;
-        font-family: 'GoudyThirty-DemiBold', sans-serif;
-        font-size: 50px;
-    }
-    .thepaper .paperdate {
-        text-align: center;
-        text-transform: uppercase;
-        border-bottom: 2px solid #2f2f2f;
-        border-top: 2px solid #2f2f2f;
-        padding: 10px 0 10px 0;
-    }
-
+.leftcollumn{
+    width: 270px;
+    display: inline-block;
+    vertical-align: top;
+    transition: all .7s;
+    height: 80%;
+}
 .collumn {
     font-size: 14px;
     line-height: 20px;
@@ -56,11 +50,10 @@ main{
     display: inline-block;
     padding: 0 1% 0 1%;
     vertical-align: top;
-    margin-bottom: 50px;
+    margin-bottom: 5px;
     transition: all .7s;
-    height: 79%;
+    height: 80%;
 }
-
     .collumn + .collumn {
         border-left: 1px solid #2f2f2f;
     }
@@ -69,177 +62,37 @@ main{
         text-align: center;
         line-height: normal;
         font-family: 'Playfair Display', serif;
+        font-size: 30px;
         display: block;
-        margin: 0 auto;
+        padding: 10px 0 0 0;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 
-        .collumn .headline.hl1 {
-            font-weight: 700;
-            font-size: 30px;
-            text-transform: uppercase;
-            padding: 10px 0 10px 0;
-        }
-
-        .collumn .headline.hl2 {
-            font-weight: 400;
-            font-style: italic;
-            font-size: 24px;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-
-            .collumn .headline.hl2:before {
-                border-top: 1px solid #2f2f2f;
-                content: '';
-                width: 100px;
-                height: 7px;
-                display: block;
-                margin: 0 auto;
-            }
-
-            .collumn .headline.hl2:after {
-                border-bottom: 1px solid #2f2f2f;
-                content: '';
-                width: 100px;
-                height: 13px;
-                display: block;
-                margin: 0 auto;
-            }
-
-        .collumn .headline.hl3 {
-            font-weight: 400;
-            font-style: italic;
-            font-size: 36px;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-
-        .collumn .headline.hl4 {
-            font-weight: 700;
-            font-size: 12px;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-
-            .collumn .headline.hl4:before {
-                border-top: 1px solid #2f2f2f;
-                content: '';
-                width: 100px;
-                height: 7px;
-                display: block;
-                margin: 0 auto;
-            }
-
-            .collumn .headline.hl4:after {
-                border-bottom: 1px solid #2f2f2f;
-                content: '';
-                width: 100px;
-                height: 10px;
-                display: block;
-                margin: 0 auto;
-            }
-
-        .collumn .headline.hl5 {
-            font-weight: 400;
-            font-size: 42px;
-            text-transform: uppercase;
-            font-style: italic;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-
-        .collumn .headline.hl6 {
-            font-weight: 400;
-            font-size: 18px;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-
-            .collumn .headline.hl6:before {
-                border-top: 1px solid #2f2f2f;
-                content: '';
-                width: 100px;
-                height: 7px;
-                display: block;
-                margin: 0 auto;
-            }
-
-            .collumn .headline.hl6:after {
-                border-bottom: 1px solid #2f2f2f;
-                content: '';
-                width: 100px;
-                height: 10px;
-                display: block;
-                margin: 0 auto;
-            }
-
-        .collumn .headline.hl7 {
-            font-weight: 700;
-            font-size: 12px;
-            box-sizing: border-box;
-            display: block;
-            padding: 10px 0 10px 0;
-        }
-
-        .collumn .headline.hl8 {
-            font-weight: 700;
-            font-size: 12px;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-
-        .collumn .headline.hl9 {
-            font-weight: 700;
-            font-size: 12px;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-
-        .collumn .headline.hl10 {
-            font-weight: 700;
-            font-size: 12px;
-            box-sizing: border-box;
-            padding: 10px 0 10px 0;
-        }
-
-    .collumn .citation {
-        font-family: 'Playfair Display', serif;
-        font-size: 36px;
-        line-height: 44px;
-        /*font-style: italic;*/
+    .collumn .head p {
         text-align: center;
-        font-weight: 400;
-        display: block;
-        margin: 40px 0 40px 0;
-        font-feature-settings: "liga", "dlig";
     }
-
-        .collumn .citation:before {
+    .collumn .author {
+        font-weight: 700;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+        .collumn .author:before {
             border-top: 1px solid #2f2f2f;
             content: '';
             width: 100px;
-            height: 16px;
+            height: 7px;
             display: block;
             margin: 0 auto;
         }
-
-        .collumn .citation:after {
+        .collumn .author:after {
             border-bottom: 1px solid #2f2f2f;
             content: '';
             width: 100px;
-            height: 16px;
+            height: 13px;
             display: block;
             margin: 0 auto;
         }
-
-    .collumn .figure {
-        margin: 0 0 20px;
-    }
-
-    .collumn .figcaption {
-        font-style: italic;
-        font-size: 12px;
-    }
 
 .media {
     -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
