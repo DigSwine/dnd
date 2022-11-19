@@ -27,6 +27,7 @@ div, footer, nav {
     margin-bottom: 10px;
     height: 20vh;
     display: flex;
+    position: relative;
 }
 
     .header .logo {
@@ -41,8 +42,13 @@ div, footer, nav {
     .header .pagetitle {
         flex: 5;
         text-align: left;
-        height: 100%;
+        font-family: 'GoudyThirty-DemiBold', sans-serif;
+        font-size: 40px;
+
     }
+        .header .pagetitle h1 {
+
+        }
 
     .header .loginlayout {
         flex: 1;
@@ -61,17 +67,6 @@ div, footer, nav {
             margin-bottom: 5%;
             margin-right: 2%;
         }
-
-.landing .pagetitle {
-    font-family: 'GoudyThirty-DemiBold', sans-serif;
-    font-size: 40px;
-}
-
-.pages .pagetitle {
-    font-family: 'Mekanus ADF Std', sans-serif;
-    letter-spacing: -0.4rem;
-    font-size: 35px;
-}
 
 .bm .pagetitle {
     font-family: 'Lady Gems', sans-serif;
