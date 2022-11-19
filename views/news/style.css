@@ -102,38 +102,3 @@ main{
 }
 /*________________________________________________________________________________________________________________________________*/
 /*MEDIAQUERIES*/
-@media only all and (max-width: 1300px) {
-    .weatherforcastbox {
-        display: none;
-    }
-}
-
-@media only all and (max-width: 1200px) {
-    .collumn {
-        width: 31%;
-    }
-}
-
-@media only all and (max-width: 900px) {
-    .collumn {
-        width: 47%;
-    }
-}
-
-@media only all and (max-width: 600px) {
-    .collumn {
-        width: 100%;
-    }
-
-        .collumn + .collumn {
-            border-left: none;
-            border-bottom: 1px solid #2f2f2f;
-        }
-
-    header {
-        max-width: 320px;
-        font-size: 60px;
-        line-height: 54px;
-        overflow: hidden;
-    }
-}
