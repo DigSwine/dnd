@@ -13,27 +13,27 @@ div, footer, nav {
 }
 
 .header {
-    clear: both;
-    margin-bottom: 10px;
-    height: 20vh;
+    height: 15vh;
+    position: relative;
+    background-color: red;
     display: flex;
+    padding: 5px 5px 5px 5px;
 }
-    .header .logo {
-        height: 100%;
-        width: 10%;
+    .header .leftspacer {
+        width: 8%;
+        padding: 5px;
     }
-        .header .logo img {
-            flex: 1;
+        .header .leftspacer img {
+            width: 100%;
             height: 100%;
         }
-    .header .pagetitle {
-        flex: 2;
-        text-align: left;
-        height: 100%;
+    .header .middlespacer {
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 70%;
     }
-    .header .loginlayout {
-        flex: 3;
-        text-align: right;
+    .header .rightspacer {
+        width: 20%;
     }
 
 .wrapper {
@@ -128,5 +128,5 @@ body {
 }
 .header .pagetitle {
     font-family: 'GoudyThirty-DemiBold', sans-serif;
-    font-size: 40px;
+    
 }

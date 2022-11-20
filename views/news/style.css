@@ -22,6 +22,7 @@ body {
         .header .logo {
             position: absolute;
             height: 10vh;
+            width: 10vh;
             float: left;
         }
     .header .loginlayout {
