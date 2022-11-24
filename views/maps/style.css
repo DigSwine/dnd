@@ -65,32 +65,41 @@ body {
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     background-color: grey;
 }
-    .card .header {
+    .card .topheader {
         height: 15vh;
         width: 100%;
+        display: inline-flex;
     }
-    .card .header .logo{
-        width: 20%;
-        height: 80%;
-    }
-    .card .header .topbot{
-        margin: 5px 5px 5px 5px;
-        width: 100%;
-    }
-        .card .header .topbot .collegetitle {
-            font-family: 'MilleniGem', sans-serif;
-            height: 50%;
-            font-size: 38px;
-            font-weight: bold;
+        .card .topheader .logo {
+            width: 11vw;
+            height: 100%;
+            display: inline-block;
         }
-        .card .header .topbot .quote {
-            height: 50%;
-            font-style: italic;
+            .card .topheader .logo img{
+                width: 100%;
+                height: 100%;
+            }
+        .card .topheader .topbot {
+            width: 100%;
+            max-width: 30%;
+            text-align: center;
         }
-        .card .header .topclose {
+            .card .topheader .topbot .collegetitle {
+                font-family: 'MilleniGem', sans-serif;
+                height: 50%;
+                font-size: 38px;
+                font-weight: bold;
+                
+            }
+            .card .topheader .topbot .quote {
+                height: 50%;
+                font-style: italic;
+            }
+        .card .topheader .topclose {
             height: 30%;
         }
-        .card .header .closebutton {
+        .card .topheader .closebutton {
+            padding-right: 5px;
             border: none;
             margin-right: 10px;
             position: absolute;
@@ -102,10 +111,12 @@ body {
         .closebutton:hover {
             cursor: pointer;
         }
-    .card .header .collegedet{
-        text-align: left;
-        height: 69%;
-    }
+.card .topheader .collegedet {
+    margin-right: 5px;
+    text-align: left;
+    height: 69%;
+    width: 100%;
+}
 .card .content {
     height: 50vh;
     width: 100%;

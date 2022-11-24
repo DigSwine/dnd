@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\test"
+    "\\assets",
+    "\\views\\maps"
   ],
-  "SelectedNode": "\\test\\testpage.html",
   "PreviewInSolutionExplorer": false
 }
