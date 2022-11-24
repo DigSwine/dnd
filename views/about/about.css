@@ -1,0 +1,30 @@
+body {
+    background-image: url(../../assets/MtG_background.jpg);
+    background-size: cover;
+    background-color: white;
+}
+
+.image-background-text {
+    padding-left: 13.25%;
+    padding-right: 27.25%;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    height: 68.5%;
+}
+
+.text-overlay {
+    text-align: center;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: transparent;
+}
+
+.pagetitle {
+    background-image: url(https://media0.giphy.com/media/YqhIK6Gbor6CLeloBq/giphy.gif?cid=790b7611d1c5a31fa7f5f0c456cdabfea53597097945555c&rid=giphy.gif&ct=g);
+    background-size: cover;
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+}

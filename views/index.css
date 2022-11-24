@@ -1,28 +1,56 @@
 body {
-    background-image: url(../assets/MtG_background.jpg);
-    background-size: cover;
-    background-color: white;
-}
-.image-background-text {
-    padding-left: 13.25%;
-    padding-right: 27.25%;
-    margin-top: 5px;
-    margin-left: 10px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    height: 68.5%;
-}
-.text-overlay {
-    text-align: center;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    background: transparent;
+    color: white;
 }
 
-.pagetitle h1 {
-    background-image: url(https://media0.giphy.com/media/YqhIK6Gbor6CLeloBq/giphy.gif?cid=790b7611d1c5a31fa7f5f0c456cdabfea53597097945555c&rid=giphy.gif&ct=g);
-    background-size: cover;
-    color: transparent;
-    -moz-background-clip: text;
-    -webkit-background-clip: text;
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
+    .video-container video {
+        min-width: 100%;
+        min-height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
+    .video-container:after {
+        content: '';
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+
+.mainwrapper {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: inline-flex;
+    height: calc(100vh - 16px);
+    width: calc(100vw - 16px);
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
+    .mainwrapper div {
+        padding: 5px;
+        font-size: 36px;
+    }
+    .mainwrapper .left {
+        width: 33%;
+        text-align: right;
+    }
+    .mainwrapper .middle {
+        width: auto;
+    }
+    .mainwrapper .right {
+        width: 33%;
+        text-align: left;
+    }

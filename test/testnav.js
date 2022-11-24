@@ -54,5 +54,5 @@ function gopage(goto) {
         url = 'administration.html';
     }
 
-        window.location = url;
+        /* window.location = url; */
 }

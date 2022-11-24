@@ -3,105 +3,70 @@ body {
     overflow-x: hidden;
 }
 
+:root {
+    --headerht: 15%;
+    --footerht: 5%;
+    --mainht: 78.5%;/* 100-15-5-0.25-0.25 */
+    --gaps: 0.25%;
+}
+
 /* Debug layout */
-div, footer, nav {
+header, main, footer, div, a {
     /* border: 1px solid #000000; */
 }
 
-.wrapper {
-    clear: both;
-    margin-bottom: 10px;
-    height: 70vh;
-    display: flex;
-}
-    .wrapper main {
-        position:fixed; 
-        margin-left: 10em;
-        margin-right : 1%;
-        max-height: 100%;
-        height: 2000px;
-    }
-
-.header {
-    clear: both;
-    margin-bottom: 10px;
-    height: 20vh;
-    display: flex;
+header {
+    height: var(--headerht);
+    width: 100%;
+    display: inline-flex;
+    z-index: 5;
     position: relative;
 }
-
-    .header .logo {
-        height: 100%;
-        width: 11vw;
-    }
-        .header .logo img {
-            width: 100%;
-            height: 100%;
-        }
-
-    .header .pagetitle {
+    header div + div {
         margin-left: 5px;
-        margin-right: 5px;
-        flex: 5;
-        text-align: left;
-        font-family: 'GoudyThirty-DemiBold', sans-serif;
-        font-size: 2vw;
-
     }
-        .header .pagetitle h1 {
-
-        }
-
-    .header .loginlayout {
-        flex: 1;
+    header .logo {
+        width: auto;
+    }
+    header .logo img{
+        height: 100%;
+    }
+    header .pagetitle {
+        width: 100%;
+        text-align: center;
+        font-size: 6vh;
+    }
+    header .navigation {
+        width: auto;
         text-align: right;
+        font-size: 36px;
+        padding: 5px 5px 5px 5px;
     }
-        .header .loginlayout input {
-            margin-top: 5%;
-            margin-right: 2%;
-            width: 45%;
-            height: 3vh;
-        }
 
-        .header .loginlayout button {
-            height: 3vh;
-            margin-top: 5%;
-            margin-bottom: 5%;
-            margin-right: 2%;
-        }
 
-.bm .pagetitle {
-    font-family: 'Lady Gems', sans-serif;
+main {
+    z-index: 5;
+    position: relative;
+    width: 100%;
+    height: var(--mainht);
+    margin-top: var(--gaps);
+    margin-bottom: var(--gaps);
 }
 
 footer {
-    margin-top: 10px;
-    height: 5vh;
-    text-align: center;
-    display: flex;
+    z-index: 5;
+    position: relative;
+    height: var(--footerht);
+    width: 100%;
+    display: inline-flex;
 }
     footer .leftspacer {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        height: 70%;
         width: 10%;
     }
     footer .middlespacer {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        height: 70%;
         width: 50%;
     }
     footer .rightspacer {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        height: 70%;
         width: 100%;
         text-align: right;
         color: gray;
@@ -121,21 +86,9 @@ footer {
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: none;
     }
-    footer .bmlogo {
-        height: 100%;
-        transition: 2s ease-in-out;
-        opacity: 0;
-        filter: blur(20px);
-    }
-        footer .bmlogo:hover {
-            cursor: default;
-            transition: 2s ease-in-out;
-            opacity: 1;
-            filter:none;
-        }
 
  /* Writing Sytles */
-.maintext {
+    .maintext {
     font-family: 'Ramus', sans-serif;
     font-size: 1.75vh;
     font-family: 'Ramus', sans-serif;
@@ -166,3 +119,21 @@ footer {
     .scrollbar::-webkit-scrollbar-thumb {
         background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
     }
+
+
+
+
+/* Black Market Stuff
+            footer .bmlogo {
+        height: 100%;
+        transition: 2s ease-in-out;
+        opacity: 0;
+        filter: blur(20px);
+    }
+        footer .bmlogo:hover {
+            cursor: default;
+            transition: 2s ease-in-out;
+            opacity: 1;
+            filter:none;
+        }
+    */

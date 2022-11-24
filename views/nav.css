@@ -1,4 +1,4 @@
-.sidebar {
+/* .navigation {
     height: 98%;
     width: 36px;
     margin-top: 5px;
@@ -6,45 +6,106 @@
     margin-bottom: 5px;
     margin-right: 10px;
     z-index: 1;
-    /*overflow-x: hidden; */
-    font-family: 'Ramus', sans-serif;
+font-family: 'Ramus', sans-serif;
 }
-    .sidebar a:nth-child(1) {
-        padding-top: 0%;
-        padding-left: 1%;
-        padding-right: 2%;
-        padding-bottom: 1%;
-        text-align: left;
-        margin: 2%;
-        font-size: 40px;
-        text-decoration: none;
-        color: black;
-        display: block;
-        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-        color: transparent;
-        -moz-background-clip: text;
-        -webkit-background-clip: text;
-        transition: 0.3s;
+
+.navigation a:nth-child(1) {
+    padding-top: 0%;
+    padding-left: 1%;
+    padding-right: 2%;
+    padding-bottom: 1%;
+    text-align: right;
+    margin: 2%;
+    font-size: 40px;
+    text-decoration: none;
+    color: black;
+    display: block;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+    transition: 0.3s;
+}
+
+.navigation a:nth-child(n+2) {
+    margin: 1%;
+    padding-top: 0%;
+    padding-left: 1%;
+    padding-right: 3%;
+    padding-bottom: 5%;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: none;
+    transition: 0.3s;
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.navigation a:hover {
+    cursor: pointer;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+}
+*/
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+    nav .cover {
+        padding: 8px;
+        background-color: gray;
+        height: calc(100vh - 16px);
+        width: calc(100vw - 16px);
+        overflow: hidden;
+        object-fit: cover;
     }
-    .sidebar a:nth-child(n+2) {
-        margin: 1%;
-        padding-top: 0%;
-        padding-left: 1%;
-        padding-right: 3%;
-        padding-bottom: 5%;
-        text-decoration: none;
-        font-size: 20px;
-        color: black;
-        display: none;
-        transition: 0.3s;
-        text-align: left;
-        vertical-align: middle;
-        font-weight: bold;
-    }
-    .sidebar a:hover {
-        cursor: pointer;
-        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-        color: transparent;
-        -moz-background-clip: text;
-        -webkit-background-clip: text;
-    }
+        nav .cover div {
+            text-align: center;
+            padding: 5px 5px 5px 5px;
+        }
+        nav .cover div + div {
+            margin-top: var(--gaps);
+        }
+        nav .cover .top {
+            text-align: right;
+            font-size: 36px;
+        }
+        nav .cover .mid {
+            font-size: 24px;
+        }
+            nav .cover .mid .navoption {
+                text-decoration: none;
+                font-size: 30px;
+                color: black;
+                transition: 0.3s;
+                text-align: center;
+                vertical-align: middle;
+                font-weight: bold;
+            }
+                nav .cover .mid .navoption a {
+                    display: inline-block;
+                    width: 100%;
+                }
+            nav .cover .mid a+a {
+            }
+                nav .cover .mid a:after {
+                    content: "\a";
+                    white-space: pre;
+                }
+                nav .cover .mid a:hover {
+                    cursor: pointer;
+                    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+                    color: transparent;
+                    -moz-background-clip: text;
+                    -webkit-background-clip: text;
+                }
+        nav .cover .bot {
+
+        }

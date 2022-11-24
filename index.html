@@ -14,68 +14,77 @@
 </head>
 <html>
 <body>
-    <div id="header" class="header landing">
+    <!-- Background Video -->
+    <section id="video" name="background-video">
+        <div class="video-container">
+            <video src="assets/landing.mp4" autoplay muted loop></video>
+        </div>
+    </section>
+
+    <!-- Header -->
+    <header>
         <div class="logo">
-            <a href="index.html"><img src="/assets/strix_logo.png" /></a>
+
         </div>
-        <div class="pagetitle">
-            <h1 id="pagename">Strixhaven University</h1>
+        <div class="pagetitle" id="pagename">
         </div>
-        <div class="loginlayout">
-            <input style="height: 3vh" type="text" placeholder="Username" id="User" />
-            <input style="height: 3vh" type="password" placeholder="Password" id="Pass" />
-            <button style="height: 3vh; width:auto" type="submit" id="logsub">Login</button>
+        <div class="navigation">
+            <a id="navcontroller" class="fa fa-bars" onclick="swapnav('open')"></a>
         </div>
-    </div>
+    </header>
 
-    <div id="mainpage" class="wrapper">
-        <nav id="navigation" class="sidebar">
-            <a id="navcontroller" class="fa fa-bars" onclick="swapnav()"></a>
-            <a onclick="gopage('home')" id="homebtn">Home Page</a>
-            <a onclick="gopage('maps')" id="campmap">University Information</a>
-            <a onclick="gopage('news')" id="news">Strixhaven Star</a>
-            <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
-            <a onclick="gopage('admin')" id="admin">Admininstration</a>
-        </nav>
-        <main id="main">
-            <div class="image-background-text mt-4">
-                <p class="text-overlay maintext">
-                    Welcome to Stixhaven University, a magical school founded seven centuries ago by five ancient dragons.
-                    Here students can study magic and learn from the many sages who take eager learners under their wings.
-                    Being accepted to Strixhaven University is a special honour, the dream of many young students.
-                    Strixhaven is a place of enlightenment and learning, and both its graduates and its delegates are welcomed and respected.
-
-                    <br><br>
-
-                    Strixhaven is the premier institution of magical learning, drawing promising young mages from all over.
-                    Each equipped with its own campus and faculty, Strixhaven's five colleges: Lorehold, Prismari, Quandrix, Silverquill and Witherbloom, cover a vast array of academic and magical specialties.
-
-                    <br><br>
-
-                    As a Strixhaven student a well-rounded education is not all we offer.
-                    You can also partake in the vibrant campus life, with plenty of clubs and other activities.
-                    Even play on one of Strixhaven's prestigious Mage Tower teams and bask in the adoration of cheering crowds!
-
-                    <br><br>
-
-                    <q>
-                        <i class="quote">
-                            The mission of Strixhaven University is to discover and preserve magical knowledge,
-                            to disseminate that knowledge from one generation to the next,
-                            to promote free and open study of magic in all its forms, and to enhance the lives of people throughout the world through the use of magic.
-                        </i>
-                    </q>
-                    <br>
-                    <cite style="text-align:right; display:block">- Strixhaven, mission statement</cite>
-                </p>
+    <!-- Navigation -->
+    <nav id="navigation" hidden>
+        <div class="cover">
+            <div class="top">
+                <a id="navcontroller" class="fa fa-times" onclick="swapnav('close')"></a>
             </div>
-        </main>
-    </div>
+            <div class="mid">
+                <div class="navoption">
+                    <a onclick="gopage('home')" id="homebtn">Home Page</a>
+                </div>
+                <div class="navoption">
+                    <a onclick="gopage('maps')" id="campmap">University Information</a>
+                </div>
+                <div class="navoption">
+                    <a onclick="gopage('news')" id="news">Strixhaven Star</a>
+                </div>
+                <div class="navoption">
+                    <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
+                </div>
+                <div class="navoption">
+                    <a onclick="gopage('admin')" id="admin">Admininstration</a>
+                </div>
+            </div>
+            <div class="bot">
+                <input type="text" placeholder="Username" id="User" />
+                <input type="password" placeholder="Password" id="Pass" />
+                <button type="submit" id="logsub">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <main>
+    </main>
+        <div class="mainwrapper">
+            <div class="left">
+                Strixhaven
+            </div>
+            <div class="middle">
+                <img src="assets/strix_logo.png" />
+            </div>
+            <div class="right">
+                University
+            </div>
+        </div>
+
+    <!-- Footer -->
     <footer>
         <div class="leftspacer"></div>
         <div class="middlespacer"></div>
         <div class="rightspacer">
-            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
+            Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a>
         </div>
     </footer>
 </body>
@@ -87,5 +96,3 @@
     var pageid = 'index';
 </script>
 <script src="/javascript/preload.js"></script>
-<script src="https://unpkg.com/@supabase/supabase-js"></script>
-<script src="../../API/login.js"></script>

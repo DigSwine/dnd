@@ -1,132 +1,32 @@
-body {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: 50% 0;
-    background-color: white;
-    overflow: auto;
-}
-
-/* Debug layout */
+/* Debug */
 div, footer, nav {
     border: 1px solid #000000;
 }
 
-.header {
-    height: 15vh;
+/* Layout // All pages */
+body{
     position: relative;
-    background-color: red;
-    display: flex;
-    padding: 5px 5px 5px 5px;
+    background-color: gray;
 }
-    .header .leftspacer {
-        width: 8%;
-        padding: 5px;
-    }
-        .header .leftspacer img {
-            width: 100%;
-            height: 100%;
-        }
-    .header .middlespacer {
-        margin-left: 5px;
-        margin-right: 5px;
-        width: 70%;
-    }
-    .header .rightspacer {
-        width: 20%;
-    }
 
-.wrapper {
-    clear: both;
-    margin-bottom: 10px;
-    height: 70vh;
-    display: flex;
-}
-    .wrapper main {
-        align-content: center;
-        align-items: center;
-        text-align: center;
-        margin-left: 1%;
-        width: 100%;
-        max-height: 100%;
-        height: 2000px;
-    }
-
-footer {
-    margin-top: 10px;
-    height: 5vh;
+header{
+    height: 15vh;
+    width: 100%;
+    display: inline-flex;
     text-align: center;
-    display: flex;
 }
-    footer .leftspacer {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        height: 70%;
-        width: 10%;
+    header div+div{
+        margin-left: 5px;
     }
-    footer .middlespacer {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        height: 70%;
-        width: 50%;
+    header .left {
+        width: 15%;
     }
-    footer .rightspacer {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        height: 70%;
-        width: 100%;
-        text-align: right;
-        color: gray;
-        text-decoration: none;
+    header .middle {
+        width: 60%;
+        font-size: 6vh;
     }
-        footer .rightspacer a {
-            text-align: right;
-            color: gray;
-        }
-    footer .cover {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        height: 70%;
-        width: 10%;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: none;
+    header .right {
+        width: 25%;
     }
-    footer .bmlogo {
-        height: 100%;
-        transition: 2s ease-in-out;
-        opacity: 0;
-        filter: blur(20px);
-    }
-        footer .bmlogo:hover {
-            cursor: default;
-            transition: 2s ease-in-out;
-            opacity: 1;
-            filter: none;
-        }
 
-
-        /* Page Spacifics */
-        
-        /* Home Page */
-body {
-    background-image: url(../assets/MtG_background.jpg);
-}
-.pagetitle h1 {
-    background-image: url(https://media0.giphy.com/media/YqhIK6Gbor6CLeloBq/giphy.gif?cid=790b7611d1c5a31fa7f5f0c456cdabfea53597097945555c&rid=giphy.gif&ct=g);
-    background-size: cover;
-    color: transparent;
-    -moz-background-clip: text;
-    -webkit-background-clip: text;
-}
-.header .pagetitle {
-    font-family: 'GoudyThirty-DemiBold', sans-serif;
-    
-}
+/* Home Page */

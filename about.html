@@ -1,0 +1,95 @@
+<!Document>
+<head>
+    <link rel="stylesheet" type="text/css" href="/style/imports.css">
+    <link rel="stylesheet" type="text/css" href="/views/layout.css">
+    <link rel="stylesheet" type="text/css" href="/views/nav.css">
+
+    <link rel="stylesheet" type="text/css" href="/views/about/about.css">
+
+    <title>Strixhaven - Home </title>
+    <link rel="icon" href="/assets/strix_logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<html>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="/assets/strix_logo.png" /></a>
+        </div>
+        <div class="pagetitle" id="pagename">
+            Strixhaven University
+        </div>
+        <div class="loginlayout">
+            <a id="navcontroller" class="fa fa-bars" onclick="swapnav()"></a>
+        </div>
+    </header>
+
+    <nav id="navigation" hidden>
+        <div class="cover">
+            <a onclick="gopage('home')" id="homebtn">Home Page</a>
+            <a onclick="gopage('maps')" id="campmap">University Information</a>
+            <a onclick="gopage('news')" id="news">Strixhaven Star</a>
+            <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
+            <a onclick="gopage('admin')" id="admin">Admininstration</a>
+
+            <input type="text" placeholder="Username" id="User" />
+            <input type="password" placeholder="Password" id="Pass" />
+            <button type="submit" id="logsub">Login</button>
+        </div>
+    </nav>
+
+    <main>
+        <div id="content">
+            <div class="image-background-text mt-4">
+                <p class="text-overlay maintext">
+                    Welcome to Stixhaven University, a magical school founded seven centuries ago by five ancient dragons.
+                    Here students can study magic and learn from the many sages who take eager learners under their wings.
+                    Being accepted to Strixhaven University is a special honour, the dream of many young students.
+                    Strixhaven is a place of enlightenment and learning, and both its graduates and its delegates are welcomed and respected.
+
+                    <br><br>
+
+                    Strixhaven is the premier institution of magical learning, drawing promising young mages from all over.
+                    Each equipped with its own campus and faculty, Strixhaven's five colleges: Lorehold, Prismari, Quandrix, Silverquill and Witherbloom, cover a vast array of academic and magical specialties.
+
+                    <br><br>
+
+                    As a Strixhaven student a well-rounded education is not all we offer.
+                    You can also partake in the vibrant campus life, with plenty of clubs and other activities.
+                    Even play on one of Strixhaven's prestigious Mage Tower teams and bask in the adoration of cheering crowds!
+
+                    <br><br>
+
+                    <q>
+                        <i class="quote">
+                            The mission of Strixhaven University is to discover and preserve magical knowledge,
+                            to disseminate that knowledge from one generation to the next,
+                            to promote free and open study of magic in all its forms, and to enhance the lives of people throughout the world through the use of magic.
+                        </i>
+                    </q>
+                    <br>
+                    <cite style="text-align:right; display:block">- Strixhaven, mission statement</cite>
+                </p>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="leftspacer"></div>
+        <div class="middlespacer"></div>
+        <div class="rightspacer">
+            Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a>
+        </div>
+    </footer>
+
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="/javascript/nav.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="../../API/login.js"></script>
