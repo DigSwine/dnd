@@ -12,112 +12,97 @@
 </head>
 <html>
 <body>
-    <div id="header" class="header">
-        <div class="logo">
-            <a href="index.html"><img src="/assets/strix_logo.png" /></a>
-        </div>
-        <div class="pagetitle">
-            <h1 id="pagename">Strixhaven Star</h1>
-        </div>
-        <div class="loginlayout">
-            <input style="height: 3vh" type="text" placeholder="Username" id="User" />
-            <input style="height: 3vh" type="password" placeholder="Password" id="Pass" />
-            <button style="height: 3vh; width:auto" type="submit" id="logsub">Login</button>
-        </div>
-    </div>
-    <div class="paperdate">Monday, 1st November, 2022 - X Pages</div>
+    <!-- Header -->
+    <div data-include="header"></div>
 
-    <div id="mainpage" class="wrapper">
-        <main>
-            <div class="leftcollumn">
-                <nav id="navigation" class="sidebar">
-                    <a id="navcontroller" class="fa fa-bars" onclick="swapnav()"></a>
-                    <a onclick="gopage('home')" id="homebtn">Home Page</a>
-                    <a onclick="gopage('maps')" id="campmap">University Information</a>
-                    <a onclick="gopage('news')" id="news">Strixhaven Star</a>
-                    <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
-                    <a onclick="gopage('admin')" id="admin">Admininstration</a>
-                </nav>
-            </div>
-            <div class="collumn">
-                <div class="head">
-                    <span class="headline">
-                        Column Title 1
-                    </span>
-                    <p>
-                        <span class="author">
-                            by FRANZ KAFKA
-                        </span>
-                    </p>
-                </div>
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
+
+    <!-- main -->
+    <main>
+        <div class="leftcollumn">
+        </div>
+        <div class="collumn">
+            <div class="head">
+                <span class="headline">
+                    Column Title 1
+                </span>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <span class="author">
+                        by FRANZ KAFKA
+                    </span>
                 </p>
             </div>
-
-            <div class="collumn">
-                <div class="head">
-                    <span class="headline">
-                        Column Title 2
-                    </span>
-                    <p>
-                        <span class="author">
-                            by Jeff Jefferson
-                        </span>
-                    </p>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </div>
-
-            <div class="collumn">
-                <div class="head">
-                    <span class="headline">
-                        Column Title 3
-                    </span>
-                    <p>
-                        <span class="author">
-                            by Sarah Davies
-                        </span>
-                    </p>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </div>
-
-            <div class="collumn">
-                <div class="head">
-                    <span class="headline">
-                        Column Title 4
-                    </span>
-                    <p>
-                        <span class="author">
-                            by A Talking Plant
-                        </span>
-                    </p>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </div>
-        </main>
-    </div>
-    <footer>
-        <div class="leftspacer"></div>
-        <div class="middlespacer"></div>
-        <div class="rightspacer">
-            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
         </div>
-    </footer>
+
+        <div class="collumn">
+            <div class="head">
+                <span class="headline">
+                    Column Title 2
+                </span>
+                <p>
+                    <span class="author">
+                        by Jeff Jefferson
+                    </span>
+                </p>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+
+        <div class="collumn">
+            <div class="head">
+                <span class="headline">
+                    Column Title 3
+                </span>
+                <p>
+                    <span class="author">
+                        by Sarah Davies
+                    </span>
+                </p>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+
+        <div class="collumn">
+            <div class="head">
+                <span class="headline">
+                    Column Title 4
+                </span>
+                <p>
+                    <span class="author">
+                        by A Talking Plant
+                    </span>
+                </p>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div data-include="footer"></div>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="/javascript/nav.js"></script>
 <script>
-    var pageid = 'index';
+    var pageid = 'news';
+    $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = 'views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+    })
 </script>
 <script src="/javascript/preload.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>

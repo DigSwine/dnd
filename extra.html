@@ -11,46 +11,32 @@
 </head>
 <html>
 <body>
-    <div id="header" class="header pages">
-        <div class="logo">
-            <a href="index.html"><img src="../assets/strix_logo.png" /></a>
-        </div>
-        <div class="pagetitle">
-            <h1 id="pagename">Extracurricular</h1>
-        </div>
-        <div class="loginlayout">
-            <input style="height: 3vh" type="text" placeholder="Username" id="User" />
-            <input style="height: 3vh" type="password" placeholder="Password" id="Pass" />
-            <button style="height: 3vh; width:auto" type="submit" id="logsub">Login</button>
-        </div>
-    </div>
+    <!-- Header -->
+    <div data-include="header"></div>
 
-    <div id="mainpage" class="wrapper">
-        <nav id="navigation" class="sidebar">
-            <a id="navcontroller" class="fa fa-bars" onclick="swapnav()"></a>
-            <a onclick="gopage('home')" id="homebtn">Home Page</a>
-            <a onclick="gopage('maps')" id="campmap">University Information</a>
-            <a onclick="gopage('news')" id="news">Strixhaven Star</a>
-            <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
-            <a onclick="gopage('admin')" id="admin">Admininstration</a>
-        </nav>
-        <main id="main">
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
 
-        </main>
+    <main>
+
+    </main>
     </div>
-    <footer>
-        <div class="leftspacer">
-        </div>
-        <div class="middlespacer">
-        </div>
-        <div class="rightspacer">
-            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
-        </div>
-    </footer>
+    <!-- Footer -->
+    <div data-include="footer"></div>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="/javascript/nav.js"></script>
+<script>
+    var pageid = 'admin';
+    $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = 'views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+    })
+</script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="../../API/login.js"></script>

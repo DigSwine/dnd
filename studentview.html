@@ -11,9 +11,15 @@
 </head>
 <html>
 <body>
+    <!-- Header -->
+    <div data-include="header"></div>
+
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
+
     <main>
         <div class="header">
-            <img id="collegelogo" class="logo"/>
+            <img id="collegelogo" class="logo" />
             <h1 id="welcome" class="welcome"></h1>
         </div>
         <div class="display">
@@ -29,11 +35,24 @@
             </div>
         </div>
     </main>
+
+    <!-- Footer -->
+    <div data-include="footer"></div>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script>
+    var pageid = 'news';
+    $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = 'views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+    })
+</script>
 <script src="../../API/api.js"></script>
 <script>
     $(document).ready(function () {

@@ -13,82 +13,68 @@
 
 </head>
 <html>
-<body id="body">
-    <div id="header" class="header">
-        <div class="logo">
-            <a href="index.html"><img src="../../assets/strix_logo.png" /></a>
-        </div>
-        <div class="pagetitle">
-            <h1 id="pagename">University Information</h1>
-        </div>
-        <div class="loginlayout">
-            <input style="height: 3vh" type="text" placeholder="Username" id="User" />
-            <input style="height: 3vh" type="password" placeholder="Password" id="Pass" />
-            <button style="height: 3vh; width:auto" type="submit" id="logsub">Login</button>
-        </div>
-    </div>
+<body>
+    <!-- Header -->
+    <div data-include="header"></div>
 
-    <div id="mainpage" class="wrapper">
-        <nav id="navigation" class="sidebar">
-            <a id="navcontroller" class="fa fa-bars" onclick="swapnav()"></a>
-            <a onclick="gopage('home')" id="homebtn">Home Page</a>
-            <a onclick="gopage('maps')" id="campmap">University Information</a>
-            <a onclick="gopage('news')" id="news">Strixhaven Star</a>
-            <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
-            <a onclick="gopage('admin')" id="admin">Admininstration</a>
-        </nav>
-        <main id="main">
-            <div class="locname">
-                <button class="silverquill" onclick="collegedetails('sq'); openclosecollege('open')"><img src="assets/maps/silverquill.png" /></button>
-                <button class="prismari" onclick="collegedetails('pm'); openclosecollege('open')"><img src="assets/maps/prismari.png" /></button>
-                <button class="lorehold" onclick="collegedetails('lh'); openclosecollege('open')"><img src="assets/maps/lorehold.png" /></button>
-                <button class="qundrix" onclick="collegedetails('qd'); openclosecollege('open')"><img src="assets/maps/quandrix.png" /></button>
-                <button class="witherbloom" onclick="collegedetails('wb'); openclosecollege('open')"><img src="assets/maps/witherbloom.png" /></button>
-                <button class="main_campus" onclick="collegedetails('bp'); openclosecollege('open')"><img src="assets/maps/bibloplex.png" /></button>
-            </div>
-        </main>
-        <div class="card" id="card" style="display:none">
-            <div style="position: relative; padding:5px">
-                <div class="topheader">
-                    <div class="logo">
-                        <img id="thecollegelogo" style="width:100%" src="assets/strix_logo.png" />
-                    </div>
-                    <div class="topbot">
-                        <div class="collegetitle" id="collegetitle">College Loading</div>
-                        <div class="quote" id="collegequote">defult</div>
-                    </div>
-                    <div>
-                        <div class="topclose">
-                            <button class="closebutton" onclick="openclosecollege('close')">X</button>
-                        </div>
-                        <div class="collegedet maintext" id="collegedet"></div>
-                    </div>
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
+
+    <main>
+        <div class="locname">
+            <button class="silverquill" onclick="collegedetails('sq'); openclosecollege('open')"><img src="assets/maps/silverquill.png" /></button>
+            <button class="prismari" onclick="collegedetails('pm'); openclosecollege('open')"><img src="assets/maps/prismari.png" /></button>
+            <button class="lorehold" onclick="collegedetails('lh'); openclosecollege('open')"><img src="assets/maps/lorehold.png" /></button>
+            <button class="qundrix" onclick="collegedetails('qd'); openclosecollege('open')"><img src="assets/maps/quandrix.png" /></button>
+            <button class="witherbloom" onclick="collegedetails('wb'); openclosecollege('open')"><img src="assets/maps/witherbloom.png" /></button>
+            <button class="main_campus" onclick="collegedetails('bp'); openclosecollege('open')"><img src="assets/maps/bibloplex.png" /></button>
+        </div>
+    </main>
+    <div class="card" id="card" style="display:none">
+        <div style="position: relative; padding:5px">
+            <div class="topheader">
+                <div class="logo">
+                    <img id="thecollegelogo" style="width:100%" src="assets/strix_logo.png" />
                 </div>
-                <div class="content">
-                    <div class="map">
-                        <img id="collegemap" />
+                <div class="topbot">
+                    <div class="collegetitle" id="collegetitle">College Loading</div>
+                    <div class="quote" id="collegequote">defult</div>
+                </div>
+                <div>
+                    <div class="topclose">
+                        <button class="closebutton" onclick="openclosecollege('close')">X</button>
                     </div>
-                    <div class="maintext text scrollbar" id="collegedescription">
+                    <div class="collegedet maintext" id="collegedet"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="map">
+                    <img id="collegemap" />
+                </div>
+                <div class="maintext text scrollbar" id="collegedescription">
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="leftspacer"></div>
-        <div class="middlespacer">
-        </div>
-        <div class="rightspacer">
-            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
-        </div>
-    </footer>
+    <!-- Footer -->
+    <div data-include="footer"></div>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="/javascript/nav.js"></script>
+<script>
+    var pageid = 'maps';
+    $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = 'views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+    })
+</script>
 <script src="/javascript/maps.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="../../API/login.js"></script>
