@@ -73,24 +73,41 @@ nav {
         }
 
         /* Navigation Background colours */
-        nav .cover li:nth-of-type(1) {
-            background-color: #29363B
-        }
-        nav .cover li:nth-of-type(2) {
-            background-color: #EA495F
-        }
-        nav .cover li:nth-of-type(3) {
-            background-color: #F4837D
-        }
-        nav .cover li:nth-of-type(4) {
-            background-color: #FDCEA9
-        }
-        nav .cover li:nth-of-type(5) {
-            background-color: #99B998
-        }
-        nav .cover li:nth-of-type(6) {
-            background-color: #29363B
-        }
-        nav .cover li:nth-of-type(7) {
-            background-color: #550101
-        }
+:root {
+    --colour1: #0287a8;
+    --colour2: #006fa6;
+    --colour3: #525292;
+    --colour4: #6f3d7c;
+    --colour5: #e32c64;
+    --colour6: #ec5250;
+    --colour7: #f78e54;
+}
+
+        /* Home */
+nav .cover li:nth-of-type(1) {
+    background-color: var(--colour1);
+}
+        /* About */
+nav .cover li:nth-of-type(2) {
+    background-color: var(--colour2);
+}
+        /* University Information */
+nav .cover li:nth-of-type(3) {
+    background-color: var(--colour3);
+}
+        /* Strixhaven Star */
+nav .cover li:nth-of-type(4) {
+    background-color: var(--colour4);
+}
+        /* Extra */
+nav .cover li:nth-of-type(5) {
+    background-color: var(--colour5)
+}
+        /* Administration */
+nav .cover li:nth-of-type(6) {
+    background-color: var(--colour6);
+}
+        /* Login */
+nav .cover li:nth-of-type(7) {
+    background-color: var(--colour7);
+}
