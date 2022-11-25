@@ -14,32 +14,13 @@
 </head>
 <html>
 <body>
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="/assets/strix_logo.png" /></a>
-        </div>
-        <div class="pagetitle" id="pagename">
-            Strixhaven University
-        </div>
-        <div class="loginlayout">
-            <a id="navcontroller" class="fa fa-bars" onclick="swapnav()"></a>
-        </div>
-    </header>
+    <!-- Header -->
+    <div data-include="header"></div>
 
-    <nav id="navigation" hidden>
-        <div class="cover">
-            <a onclick="gopage('home')" id="homebtn">Home Page</a>
-            <a onclick="gopage('maps')" id="campmap">University Information</a>
-            <a onclick="gopage('news')" id="news">Strixhaven Star</a>
-            <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
-            <a onclick="gopage('admin')" id="admin">Admininstration</a>
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
 
-            <input type="text" placeholder="Username" id="User" />
-            <input type="password" placeholder="Password" id="Pass" />
-            <button type="submit" id="logsub">Login</button>
-        </div>
-    </nav>
-
+    <!-- Main -->
     <main>
         <div id="content">
             <div class="image-background-text mt-4">
@@ -77,19 +58,22 @@
     </main>
 
 
-    <footer>
-        <div class="leftspacer"></div>
-        <div class="middlespacer"></div>
-        <div class="rightspacer">
-            Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a>
-        </div>
-    </footer>
-
-
+    <!-- Footer -->
+    <div data-include="footer"></div>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="/javascript/nav.js"></script>
+<script>
+    var pageid = 'about';
+    $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = 'views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+    })
+</script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="../../API/login.js"></script>

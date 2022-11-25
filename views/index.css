@@ -2,6 +2,10 @@ body {
     color: white;
 }
 
+header .logo{
+    display: none;
+}
+
 .video-container {
     position: absolute;
     top: 0;
@@ -42,11 +46,12 @@ body {
     .mainwrapper div {
         padding: 5px;
         font-size: 5vw;
-        font-family: 'GoudyThirty-DemiBold';
+        font-family: 'Autumn Flowers', sans-serif;
     }
     .mainwrapper .left {
         width: 33%;
         text-align: right;
+
     }
     .mainwrapper .middle {
         width: 17vw;

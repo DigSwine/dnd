@@ -35,6 +35,9 @@ function gopage(goto) {
     if (goto == 'home') {
         url = 'index.html';
     }
+    if (goto == 'about') {
+        url = 'about.html';
+    }
     if (goto == 'maps') {
         url = 'campusmap.html';
     }
@@ -47,6 +50,9 @@ function gopage(goto) {
     if (goto == 'admin') {
         url = 'administration.html';
     }
+    if (goto == 'login') {
+        url = 'login.html';
+    }
 
-        window.location = url;
+    window.location = url;
 }

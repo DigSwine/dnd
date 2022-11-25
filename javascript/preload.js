@@ -8,7 +8,6 @@ function preload(page) {
 
     if (page == 'index') {
         images = [
-            "blackmarket.png",
             "MtG_background.jpg",
             "strix_logo.png",
             "strix_map.png",
@@ -21,7 +20,7 @@ function preload(page) {
             "maps/witherbloom_map.png"
         ];
     }
-    for (var i = 0; i < arguments.length; i++) {
+    for (var i = 0; i < images.length; i++) {
         console.log(images[i]);
         images[i] = '../assets/' + images[i];
         images[i] = new Image();
