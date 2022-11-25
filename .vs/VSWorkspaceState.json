@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\views\\maps"
+    "\\javascript",
+    "\\views"
   ],
+  "SelectedNode": "\\javascript\\preload.js",
   "PreviewInSolutionExplorer": false
 }

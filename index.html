@@ -14,6 +14,12 @@
 </head>
 <html>
 <body>
+    <!-- Header -->
+    <div data-include="header"></div>
+
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
+
     <!-- Background Video -->
     <section id="video" name="background-video">
         <div class="video-container">
@@ -21,72 +27,23 @@
         </div>
     </section>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">
-
-        </div>
-        <div class="pagetitle" id="pagename">
-        </div>
-        <div class="navigation">
-            <a id="navcontroller" class="fa fa-bars" onclick="swapnav('open')"></a>
-        </div>
-    </header>
-
-    <!-- Navigation -->
-    <nav id="navigation" hidden>
-        <div class="cover">
-            <div class="top">
-                <a id="navcontroller" class="fa fa-times" onclick="swapnav('close')"></a>
-            </div>
-            <div class="mid">
-                <div class="navoption">
-                    <a onclick="gopage('home')" id="homebtn">Home Page</a>
-                </div>
-                <div class="navoption">
-                    <a onclick="gopage('maps')" id="campmap">University Information</a>
-                </div>
-                <div class="navoption">
-                    <a onclick="gopage('news')" id="news">Strixhaven Star</a>
-                </div>
-                <div class="navoption">
-                    <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
-                </div>
-                <div class="navoption">
-                    <a onclick="gopage('admin')" id="admin">Admininstration</a>
-                </div>
-            </div>
-            <div class="bot">
-                <input type="text" placeholder="Username" id="User" />
-                <input type="password" placeholder="Password" id="Pass" />
-                <button type="submit" id="logsub">Login</button>
-            </div>
-        </div>
-    </nav>
-
     <!-- Main -->
-    <main>
-    </main>
-        <div class="mainwrapper">
-            <div class="left">
-                Strixhaven
-            </div>
-            <div class="middle">
-                <img src="assets/strix_logo.png" />
-            </div>
-            <div class="right">
-                University
-            </div>
+    <main></main>
+
+    <div class="mainwrapper">
+        <div class="left">
+            Strixhaven
         </div>
+        <div class="middle">
+            <img src="assets/strix_logo.png" />
+        </div>
+        <div class="right">
+            University
+        </div>
+    </div>
 
     <!-- Footer -->
-    <footer>
-        <div class="leftspacer"></div>
-        <div class="middlespacer"></div>
-        <div class="rightspacer">
-            Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a>
-        </div>
-    </footer>
+    <div data-include="footer"></div>
 </body>
 </html>
 
@@ -94,5 +51,12 @@
 <script src="/javascript/nav.js"></script>
 <script>
     var pageid = 'index';
+    $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = 'views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+    })
 </script>
 <script src="/javascript/preload.js"></script>

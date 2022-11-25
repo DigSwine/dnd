@@ -12,7 +12,7 @@ body {
 
 /* Debug layout */
 header, main, footer, div, a {
-    /* border: 1px solid #000000; */
+    /* border: 1px solid #FFFFFF; */
 }
 
 header {
@@ -69,13 +69,15 @@ footer {
     footer .rightspacer {
         width: 100%;
         text-align: right;
+        display: inline-block;
+        align-self: flex-end;
         color: gray;
         text-decoration: none;
     }
-    footer .rightspacer a {
-        text-align: right;
-        color: gray;
-    }
+        footer .rightspacer a {
+            text-align: right;
+            color: gray;
+        }
     footer .cover {
         margin-top: 5px;
         margin-left: 10px;

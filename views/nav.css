@@ -93,8 +93,6 @@ nav {
                     display: inline-block;
                     width: 100%;
                 }
-            nav .cover .mid a+a {
-            }
                 nav .cover .mid a:after {
                     content: "\a";
                     white-space: pre;
