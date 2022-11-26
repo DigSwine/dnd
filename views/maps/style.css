@@ -115,7 +115,7 @@ main .locations {
     width: 100%;
 }
 .card .content {
-    height: 65vh;
+    height: 50vh;
     width: 100%;
     display: flex;
 }
