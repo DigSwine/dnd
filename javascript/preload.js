@@ -37,8 +37,14 @@ function preload() {
         } else {
             if (images[i].contains(".mp4")) {
                 const video = document.createElement("video");
-                video.src = await preloadVideo(images[x]);
+                video.src = preloadVideo(images[x]);
             }
         }
     }
+}
+
+function preloadVideo(src) {
+    const res = await fetch(src);
+    const blob = await res.blob();
+    return URL.createObjectURL(blob);
 }
