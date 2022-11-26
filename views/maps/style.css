@@ -1,59 +1,75 @@
 body {
     background-image: url(../../assets/strix_map.png);
-    background-color: gray;
-    background-repeat: no-repeat;
-    background-size: 100% 135%;
+    background-size: cover;
+    background-color: white;
 }
 
-.locname {
+main .locations {
     z-index: 1;
     position: relative;
-    text-align: center;
+    height: 100%;
 }
-    .locname .silverquill {
-        position: fixed;
-        left: 47.55%;
-        top: 20%;
+    main .locations .silverquill {
+        position: absolute;
+        left: 47.5%;
+        top: 35px;
     }
-    .locname .prismari {
-        position: fixed;
-        left: 26%;
-        bottom: 16%;
+    main .locations .prismari {
+        position: absolute;
+        left: 30%;
+        bottom: 8%;
     }
-    .locname .lorehold {
+    main .locations .lorehold {
         position: fixed;
         left: 29%;
         top: 39%;
     }
-    .locname .qundrix {
+    main .locations .qundrix {
         position: fixed;
         right: 23%;
         top: 38%;
     }
-    .locname .witherbloom {
+    main .locations .witherbloom {
         position: fixed;
         right: 28%;
         bottom: 15%;
     }
-    .locname .main_campus {
+    main .locations .main_campus {
         position: fixed;
         left: 47.7%;
         top: 46.5%;
     }
-    .locname button {
+    main .locations button {
         background-color: transparent;
-        color: black;
-        font-size: 40px;
-        font-weight: bold;
-        padding: 10px;
         border: none;
     }
-        .locname button:hover {
+        main .locations button:hover {
             cursor: pointer;
         }
-    .locname button img {
-        height: 50px;
-    }
+        main .locations button img {
+            height: 50px;
+        }
+
+.parent {
+    position: relative;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.child-group {
+    border: 2px solid green;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.child {
+    float: left;
+    height: 90px;
+    width: 70px;
+    border: 1px solid red;
+}
+
 
 .card {
     background-image: url(../../assets/collegebackground.jpg);
