@@ -1,9 +1,8 @@
-body {
-    color: white;
-}
-
 header .logo{
     display: none;
+}
+header .navigation {
+    color: white;
 }
 
 .video-container {
