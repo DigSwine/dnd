@@ -28,9 +28,17 @@ function preload() {
     
 
     for (var i = 0; i < images.length; i++) {
-        console.log(images[i]);
         images[i] = '../assets/' + images[i];
-        images[i] = new Image();
-        images[i].src = preload.arguments[i];
+        if (images[i].contains(".png") || images[i].contains(".jpg") || images[i].contains(".webp")) {
+            console.log(images[i]);
+            
+            images[i] = new Image();
+            images[i].src = preload.arguments[i];
+        } else {
+            if (images[i].contains(".mp4")) {
+                const video = document.createElement("video");
+                video.src = await preloadVideo(images[x]);
+            }
+        }
     }
 }
