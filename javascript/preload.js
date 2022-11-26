@@ -3,16 +3,14 @@ $(document).ready(function () {
 });
 
 // Pre load images 
-function preload(page) {
+function preload() {
     var images = [];
-
-    if (page == 'index') {
         images = [
-            "landing.mp4",
+            
             "testing.mp4",
-            "strix_logo.png",
+            
             "strix_map.png",
-            "MtG_background.jpg",
+            
             "collegebackground.jpg",
             "maps/central_map.png",
             "maps/lorehold_map.png",
@@ -20,9 +18,31 @@ function preload(page) {
             "maps/quandrix_map.png",
             "maps/silverquill_map.png",
             "maps/witherbloom_map.png"
-        ];
-    }
+    ];
+
+    /* all pages */
+    images.push("strix_logo.png");
+
+    /* Landing Images */
+    images.push("landing.mp4");
+
+    /* About Images */
+    images.push("MtG_background.jpg");
+    
+    /* Maps Images */
+
+    /* News Images */
+
+    /* Extra Images */
+
+    /* Admin Images */
+
+    /* Login Images */
+
+    
+
     for (var i = 0; i < images.length; i++) {
+        console.log(images[i]);
         images[i] = '../assets/' + images[i];
         images[i] = new Image();
         images[i].src = preload.arguments[i];
