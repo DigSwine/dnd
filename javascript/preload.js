@@ -44,7 +44,7 @@ function preload() {
 }
 
 function preloadVideo(src) {
-    const res = await fetch(src);
-    const blob = await res.blob();
+    const res = fetch(src);
+    const blob = res.blob();
     return URL.createObjectURL(blob);
 }
