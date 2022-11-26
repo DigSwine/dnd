@@ -29,13 +29,13 @@ function preload() {
 
     for (var i = 0; i < images.length; i++) {
         images[i] = '../assets/' + images[i];
-        if (images[i].contains(".png") || images[i].contains(".jpg") || images[i].contains(".webp")) {
+        if (images[i].includes(".png") || images[i].includes(".jpg") || images[i].includes(".webp")) {
             console.log(images[i]);
             
             images[i] = new Image();
             images[i].src = preload.arguments[i];
         } else {
-            if (images[i].contains(".mp4")) {
+            if (images[i].includes(".mp4")) {
                 const video = document.createElement("video");
                 video.src = preloadVideo(images[x]);
             }
