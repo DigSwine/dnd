@@ -8,11 +8,12 @@ body {
     --footerht: 5%;
     --mainht: 78.5%;/* 100-15-5-0.25-0.25 */
     --gaps: 0.25%;
+    --headersides: 10%;
 }
 
 /* Debug layout */
 header, main, footer, div, a {
-    /* border: 1px solid #FFFFFF; */
+    /* border: 1px solid rgba(0,0,0); */
 }
 
 header {
@@ -26,18 +27,21 @@ header {
         margin-left: 5px;
     }
     header .logo {
-        width: auto;
+        width: var(--headersides);
     }
     header .logo img{
         height: 100%;
     }
     header .pagetitle {
+        line-height: 1.75;
         width: 100%;
         text-align: center;
-        font-size: 6vh;
+        font-size: 8vh;
+        font-family: 'Rotten Banquet', sans-serif;
+        color: black;
     }
     header .navigation {
-        width: auto;
+        width: var(--headersides);
         text-align: right;
         font-size: 36px;
         padding: 5px 5px 5px 5px;
