@@ -10,7 +10,7 @@ function preload() {
     images.push("strix_logo.png");
 
     /* Landing Images */
-    images.push("landing.mp4");
+    // images.push("landing.mp4");
 
     /* About Images */
     images.push("MtG_background.jpg");
@@ -36,15 +36,8 @@ function preload() {
             images[i].src = preload.arguments[i];
         } else {
             if (images[i].includes(".mp4")) {
-                const video = document.createElement("video");
-                video.src = preloadVideo(images[i]);
+
             }
         }
     }
-}
-
-function preloadVideo(src) {
-    const res = fetch(src);
-    const blob = res.blob();
-    return URL.createObjectURL(blob);
 }
