@@ -47,6 +47,7 @@ header .logo{
         padding: 5px;
         font-size: 5vw;
         font-family: 'Autumn Flowers', sans-serif;
+        color: goldenrod;
     }
     .mainwrapper .left {
         width: 33%;

@@ -8,9 +8,11 @@ function preload(page) {
 
     if (page == 'index') {
         images = [
-            "MtG_background.jpg",
+            "landing.mp4",
+            "testing.mp4",
             "strix_logo.png",
             "strix_map.png",
+            "MtG_background.jpg",
             "collegebackground.jpg",
             "maps/central_map.png",
             "maps/lorehold_map.png",
@@ -21,7 +23,6 @@ function preload(page) {
         ];
     }
     for (var i = 0; i < images.length; i++) {
-        console.log(images[i]);
         images[i] = '../assets/' + images[i];
         images[i] = new Image();
         images[i].src = preload.arguments[i];
