@@ -37,7 +37,7 @@ function preload() {
         } else {
             if (images[i].includes(".mp4")) {
                 const video = document.createElement("video");
-                video.src = preloadVideo(images[x]);
+                video.src = preloadVideo(images[i]);
             }
         }
     }
