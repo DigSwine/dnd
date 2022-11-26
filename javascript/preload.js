@@ -5,20 +5,6 @@ $(document).ready(function () {
 // Pre load images 
 function preload() {
     var images = [];
-        images = [
-            
-            "testing.mp4",
-            
-            "strix_map.png",
-            
-            "collegebackground.jpg",
-            "maps/central_map.png",
-            "maps/lorehold_map.png",
-            "maps/prismari_map.png",
-            "maps/quandrix_map.png",
-            "maps/silverquill_map.png",
-            "maps/witherbloom_map.png"
-    ];
 
     /* all pages */
     images.push("strix_logo.png");
