@@ -88,10 +88,12 @@ footer {
         align-self: flex-end;
         color: gray;
         text-decoration: none;
+        font-size: 2vh;
     }
         footer .rightspacer a {
             text-align: right;
             color: gray;
+            font-size: 2vh;
         }
     footer .cover {
         margin-top: 5px;

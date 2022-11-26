@@ -24,8 +24,17 @@ function preload() {
     /* Admin Images */
 
     /* Login Images */
-    console.log(images);
+       
 
-    images[i] = new Image();
-    images[i].src = preload.arguments[i];
+    for (var i = 0; i < images.length; i++) {
+        images[i] = '../assets/' + images[i];
+        if (images[i].includes(".png") || images[i].includes(".jpg") || images[i].includes(".webp")) {            
+            images[i] = new Image();
+            images[i].src = preload.arguments[i];
+        } else {
+            if (images[i].includes(".mp4")) {
+
+            }
+        }
+    }
 }
