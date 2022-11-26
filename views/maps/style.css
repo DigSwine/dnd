@@ -55,16 +55,15 @@ main .locations {
     background-image: url(../../assets/collegebackground.jpg);
     background-size: cover;
     position: absolute;
-    top: 15vh;
-    margin-left: 270px;
-    
-    margin-right: 15%;
+    top: 16vh;
+    margin-left: 15vw;
+    margin-right: 15vw;
     border-radius: 25px;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     background-color: grey;
 }
     .card .topheader {
-        height: 15vh;
+        height: 13vh;
         width: 100%;
         display: inline-flex;
     }
@@ -116,7 +115,7 @@ main .locations {
     width: 100%;
 }
 .card .content {
-    height: 50vh;
+    height: 65vh;
     width: 100%;
     display: flex;
 }
