@@ -28,5 +28,4 @@ function preload() {
 
     images[i] = new Image();
     images[i].src = preload.arguments[i];
-    }
 }
