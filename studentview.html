@@ -17,23 +17,9 @@
     <!-- Navigation -->
     <div data-include="navigation"></div>
 
+    <!-- Main -->
     <main>
-        <div class="header">
-            <img id="collegelogo" class="logo" />
-            <h1 id="welcome" class="welcome"></h1>
-        </div>
-        <div class="display">
-            <div class="personal">
-                <input id="age" disabled />
-                <input id="gender" disabled />
-                <input id="race" disabled />
-            </div>
-            <div id="reportcard">
-                <select>
-                    <option> --- Please Select Report --- </option>
-                </select>
-            </div>
-        </div>
+        
     </main>
 
     <!-- Footer -->
@@ -44,7 +30,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
-    var pageid = 'Under Development';
+    var pageid = 'Student View is Under Development';
     $(function () {
         var includes = $('[data-include]')
         $.each(includes, function () {
@@ -58,24 +44,9 @@
     $(document).ready(function () {
         var data = JSON.parse(sessionStorage.getItem("Data"));
         if (data) {
-            getstudent(data['student_id']);
-            getschool(data['student_id']);
+            console.log(data);
+            // getstudent(data);
+            // getschool(data);
         }
     })
-
-    function setdataabout(from, data) {
-        var user = data[0];
-
-        if (from == "student") {
-            $('#welcome').text('Welcome ' + user['character_name']);
-            $('#age').val(user['character_age']);
-            $('#gender').val(user['character_gender']);
-            $('#race').val(user['character_race']);
-        }
-        if (from == "college") {
-            if (user['college_id']['college_name'] == 'First Years') {
-                $('#collegelogo').attr('src', '../../assets/strix_logo.png');
-            }
-        }     
-    }
 </script>

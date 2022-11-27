@@ -29,8 +29,7 @@
             Login
         </span>
 
-        <form>
-                
+        <form id="login_form">    
             <label for="user">Username</label>            
                 <br>
             <input id="user" type="text" placeholder="Username">
@@ -52,6 +51,10 @@
 <script src="/javascript/nav.js"></script>
 <script src="/javascript/login.js"></script>
 <script>
+    $("#login_form").submit(function (e) {
+        e.preventDefault();
+    });
+
     var pageid = '';
     $(function () {
         var includes = $('[data-include]')
@@ -62,5 +65,4 @@
     })
 </script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
-<script src="/API/api.js"></script>
 <script src="/API/login.js"></script>

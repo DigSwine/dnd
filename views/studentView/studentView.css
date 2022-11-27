@@ -1,34 +1,45 @@
-body{
-    background-color: black;
+body {
+    background-color: darkslategrey;
 }
 
-main {
-    background-color: grey;
-    padding: 1vh;
-}
 
-.logo {
-    height: 20%;
-    width: 13%;
-    display: inline-block;
-    border: none;
-}
-
-.welcome {
-    display: inline;
-    margin-left: 2%;
-    background-color: red;
-    width: 50%;
-    height: 50%;
-}
-
-.display {
-    background-color: cadetblue;
-    height: 88%;
+header {
+    height: var(--headerht);
     width: 100%;
+    display: inline-flex;
+    z-index: 10;
+    position: relative;
 }
+        header .logo img {
+            height: 100%;
+        }
+    header .pagetitle {
+        line-height: 1.75;
+        width: 100%;
+        text-align: center;
+        font-size: 8vh;
+        font-family: 'Rotten Banquet', sans-serif;
+        color: black;
+    }
+        header .navigation .hamburger {
+            display: none;
+        }
 
-.personal 
-{
-    text-align: right;
+.firstyear {
+    content: url(../../assets/strix_logo.png);
+}
+.lorehold {
+    content: url(../../assets/maps/lorehold.png);
+}
+.silverquill {
+    content: url(../../assets/maps/silverquill.png);
+}
+.quandrix {
+    content: url(../../assets/maps/quandrix.png);
+}
+.witherbloom {
+    content: url(../../assets/maps/witherbloom.png);
+}
+.prismari {
+    content: url(../../assets/maps/prismari.png);
 }
