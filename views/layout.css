@@ -13,7 +13,7 @@ body {
 
 /* Debug layout */
 header, main, footer, div, a {
-    /* border: 1px solid rgba(0,0,0); */
+     border: 1px solid rgba(0,0,0); 
 }
 
 header {
@@ -40,16 +40,16 @@ header {
         font-family: 'Rotten Banquet', sans-serif;
         color: black;
     }
-    header .navigation {
+    header .thenavigation {
         width: var(--headersides);
         text-align: right;
         font-size: 36px;
         padding: 5px 5px 5px 5px;
     }
-        header .navigation .hamburger {
+        header .thenavigation .hamburger {
             
         }
-            header .navigation .hamburger:hover {
+            header .thenavigation .hamburger:hover {
                 cursor: pointer;
                 background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
                 color: transparent;

@@ -14,8 +14,9 @@
     <!-- Header -->
     <div data-include="header"></div>
 
-    <!-- Navigation -->
-    <div data-include="navigation"></div>
+    <!-- Logout -->
+    <button class="logout" onclick="logout()">Logout</button>
+    
 
     <!-- Main -->
     <main>
@@ -44,9 +45,12 @@
     $(document).ready(function () {
         var data = JSON.parse(sessionStorage.getItem("Data"));
         if (data) {
-            console.log(data);
             // getstudent(data);
             // getschool(data);
         }
     })
+    function logout() {
+        sessionStorage.clear();
+        window.location = 'index.html';
+    }
 </script>

@@ -21,8 +21,17 @@ header {
         font-family: 'Rotten Banquet', sans-serif;
         color: black;
     }
-        header .navigation .hamburger {
+        header .thenavigation .hamburger {
             display: none;
+        }
+
+        .logout{
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            padding: 5px;
+            font-size: 3vh;
+            z-index: 50;
         }
 
 .firstyear {
