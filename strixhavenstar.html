@@ -18,81 +18,15 @@
     <!-- Navigation -->
     <div data-include="navigation"></div>
 
-    <!-- Paper date -->
-    <div class="paperdate">Monday, 1st November, 2022 - X Pages</div>
-
     <!-- main -->
     <main>
+        <div class="paperdate">Monday, 1st November, 2022 - X Pages</div>
 
+        <div id="page1" class="pg1 show"></div>
+        <div id="page2" class="pg2 hide"></div>
+        <div id="page3" class="pg3 hide"></div>
+        <div id="page4" class="pg4 hide"></div>
 
-
-
-
-        <!--<div class="leftcollumn">
-        </div>
-        <div class="collumn">
-            <div class="head">
-                <span class="headline">
-                    Column Title 1
-                </span>
-                <p>
-                    <span class="author">
-                        by FRANZ KAFKA
-                    </span>
-                </p>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>
-
-        <div class="collumn">
-            <div class="head">
-                <span class="headline">
-                    Column Title 2
-                </span>
-                <p>
-                    <span class="author">
-                        by Jeff Jefferson
-                    </span>
-                </p>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>
-
-        <div class="collumn">
-            <div class="head">
-                <span class="headline">
-                    Column Title 3
-                </span>
-                <p>
-                    <span class="author">
-                        by Sarah Davies
-                    </span>
-                </p>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>
-
-        <div class="collumn">
-            <div class="head">
-                <span class="headline">
-                    Column Title 4
-                </span>
-                <p>
-                    <span class="author">
-                        by A Talking Plant
-                    </span>
-                </p>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>-->
     </main>
 
     <!-- Footer -->
@@ -111,6 +45,26 @@
             $(this).load(file)
         })
     })
+
+    var pageshowing = "pg1";
+    var url = "";
+
+    if (pageshowing == "pg1") {
+        url = "views/news/_page1.html";
+    }
+    if (pageshowing == "pg2") {
+        
+    }
+    if (pageshowing == "pg3") {
+        
+    }
+    if (pageshowing == "pg4") {
+        
+    }
+
+    $.get(url, function (data) {
+        $(".pg1").html(data);
+    });
 </script>
 <script src="/javascript/preload.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>

@@ -1,5 +1,5 @@
 body {
-    background-image: url(../../assets/collegebackground.jpg);
+    background-image: url(../../assets/star/paper_1.jpg);
     background-size: cover;
 }
 
@@ -33,19 +33,60 @@ body {
     max-height: 85%;
 }
 
-main {
-    padding: 5px;
-    height: 75%; /* 100-15-5-0.25-0.25-3 */
-    
-}
-
-.paperdate {
+main .paperdate {
     text-align: center;
     text-transform: uppercase;
     border-bottom: 2px solid #2f2f2f;
     border-top: 2px solid #2f2f2f;
     height: 3%;
 }
+
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+
+.pg1 {
+    display: flex;
+    padding-left: 1%;
+    position: relative;
+    height: 100%;
+    width: 98%;
+    text-align: left;
+}
+.pg1 .leftcol{
+    height: 100%;
+    width: 70%;
+}
+    .pg1 .rightwrapper {
+        border-left: 2px solid #2f2f2f;
+        position: relative;
+        height: 100%;
+        width: 30%;
+    }
+        .pg1 .rightwrapper .top {
+            height: 50%;
+        }
+        .pg1 .rightwrapper .bot {
+            height: 50%;
+        }
+            .pg1 .rightwrapper .bot:before {
+                border-top: 2px solid #2f2f2f;
+                content: '';
+                display: block;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+
+
+
+
+
+
+
 
 .leftcollumn{
     width: 270px;
