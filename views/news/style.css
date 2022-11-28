@@ -41,36 +41,74 @@ main .paperdate {
     height: 3%;
 }
 
-.show{
+.show {
     display: block;
-}
+}    
 .hide{
     display: none;
 }
 
+.RCorn {
+    width: 1%;
+    position: absolute;
+    top: 3.75%;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    background: linear-gradient(-135deg, transparent 50%, white 0);
+    transition: 0.5s;
+    box-shadow: -5px 5px 5px black;
+}
+.RCorn:hover {
+    height: 50px;
+    width: 50px;
+}
+.LCorn {
+    width: 1%;
+    position: absolute;
+    top: 3.75%;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background: linear-gradient(135deg, transparent 50%, white 0);
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px black;
+}
+    .LCorn:hover {
+        height: 50px;
+        width: 50px;
+    }
+
+p {
+    margin: 0;
+}
+
 .pg1 {
-    display: flex;
-    padding-left: 1%;
-    position: relative;
+    display:flex;
+    padding-left: 3%;
+    position: absolute;
     height: 100%;
-    width: 98%;
+    width: 94%;
     text-align: left;
 }
-.pg1 .leftcol{
-    height: 100%;
-    width: 70%;
-}
+    .pg1 .leftcol {
+        height: 100%;
+        width: 70%;        
+    }
     .pg1 .rightwrapper {
         border-left: 2px solid #2f2f2f;
         position: relative;
         height: 100%;
         width: 30%;
     }
-        .pg1 .rightwrapper .top {
+        .pg1 .rightwrapper div {
             height: 50%;
+            padding-right: 3%;
+            padding-left: 1%;
+        }
+        .pg1 .rightwrapper .top {
         }
         .pg1 .rightwrapper .bot {
-            height: 50%;
         }
             .pg1 .rightwrapper .bot:before {
                 border-top: 2px solid #2f2f2f;
@@ -80,14 +118,95 @@ main .paperdate {
                 margin-right: 15px;
             }
 
+:root {
+    --pg2colwidth: calc(100%/3);
+}
+.pg2 {
+    display: flex;
+    padding-left: 3%;
+    position: absolute;
+    height: 100%;
+    width: 94%;
+    text-align: left;
+}
+    .pg2 .left {
+        height: 100%;
+        width: var(--pg2colwidth);
+    }
+    .pg2 .midwrapper {
+        height: 100%;
+        width: var(--pg2colwidth);
+        border-left: 2px solid #2f2f2f;
+        border-right: 2px solid #2f2f2f;
+    }
+        .pg2 .midwrapper .top {
+            height: 50%;
+            width: 100%;
+        }
+        .pg2 .midwrapper .bot {
+            height: 50%;
+            width: 100%;
+        }
+            .pg2 .midwrapper .bot:before {
+                border-top: 2px solid #2f2f2f;
+                content: '';
+                display: block;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+    .pg2 .right {
+        height: 100%;
+        width: var(--pg2colwidth);
+    }
+
+.pg3 {
+    display: flex;
+    padding-left: 3%;
+    position: absolute;
+    height: 100%;
+    width: 94%;
+    text-align: left;
+}
+    .pg3 .colL {
+        width: 50%;
+        height: 100%;
+    }
+    .pg3 .colR {
+        width: 50%;
+        height: 100%;
+        border-left: 2px solid #2f2f2f;
+    }
+    .pg3 .joblisting{
+        position: relative;
+        border: 1px solid;
+        margin: 15px 5px 0 5px;
+        padding: 2px;
+    }
+        .pg3 .joblisting + .joblisting {
+            margin: 5px 5px 0 5px;
+        }
+        .pg3 .joblisting .jobwrapper{
+            display:flex;
+        }
+            .pg3 .joblisting .jobwrapper .title {
+                font-weight: bold;
+            }
+            .pg3 .joblisting .jobwrapper .title:after {
+                content: ' -';
+            }
+            .pg3 .joblisting .jobwrapper .place {
+                font-style: italic;
+            }
+            .pg3 .joblisting .jobwrapper .place:before {
+                content: ' - ';
+            }
+        .pg3 .joblisting .desc {
+            margin: 0;
+        }
 
 
 
-
-
-
-
-
+/*
 .leftcollumn{
     width: 270px;
     display: inline-block;
@@ -152,5 +271,4 @@ main .paperdate {
     mix-blend-mode: multiply;
     width: 100%;
 }
-/*________________________________________________________________________________________________________________________________*/
-/*MEDIAQUERIES*/
+                */

@@ -22,11 +22,12 @@
     <main>
         <div class="paperdate">Monday, 1st November, 2022 - X Pages</div>
 
-        <div id="page1" class="pg1 show"></div>
-        <div id="page2" class="pg2 hide"></div>
-        <div id="page3" class="pg3 hide"></div>
-        <div id="page4" class="pg4 hide"></div>
+        <div id="page1" class="pg1 show">page 1</div>
+        <div id="page2" class="pg2 hide">page 2</div>
+        <div id="page3" class="pg3 hide">page 3</div>
 
+        <div id="leftc" class="LCorn hide" onclick="previouspg()"></div>
+        <div id="rightc" class="RCorn show" onclick="nextpg()"></div>
     </main>
 
     <!-- Footer -->
@@ -46,25 +47,66 @@
         })
     })
 
-    var pageshowing = "pg1";
-    var url = "";
+    function nextpg(){
+        var currentpg = $(".show").attr("id");
+        var next = "";
+        var nextcl = "";
+        var currcl = document.getElementById(currentpg).classList.toString();
+        var split = currcl.split(" ");
+        document.getElementById("leftc").classList = "LCorn show";
 
-    if (pageshowing == "pg1") {
-        url = "views/news/_page1.html";
-    }
-    if (pageshowing == "pg2") {
-        
-    }
-    if (pageshowing == "pg3") {
-        
-    }
-    if (pageshowing == "pg4") {
-        
+        if (currentpg == "page1") {
+            next = "page2";
+            nextcl = "pg2";
+        }
+        if (currentpg == "page2") {
+            next = "page3";
+            nextcl = "pg3";
+            document.getElementById("rightc").classList = "RCorn hide";
+        }
+        currcl = split[0] + " hide";
+        document.getElementById(currentpg).classList = currcl;
+        document.getElementById(next).classList = nextcl + " show";
     }
 
-    $.get(url, function (data) {
-        $(".pg1").html(data);
+    function previouspg() {
+        var currentpg = $(".show").attr("id");
+        var next = "";
+        var nextcl = "";
+        var currcl = document.getElementById(currentpg).classList.toString();
+        var split = currcl.split(" ");
+        document.getElementById("rightc").classList = "RCorn show";
+
+        if (currentpg == "page3") {
+            next = "page2";
+            nextcl = "pg2";
+        }
+        if (currentpg == "page2") {
+            next = "page1";
+            nextcl = "pg1";
+            document.getElementById("leftc").classList = "LCorn hide";
+        }
+        currcl = split[0] + " hide";
+        document.getElementById(currentpg).classList = currcl;
+        document.getElementById(next).classList = nextcl + " show";
+    }
+
+    var ids = [".pg1", ".pg2", ".pg3"];
+    var urls = ["views/news/_page1.html", "views/news/_page2.html", "views/news/_page3.html"];
+
+    $.get(urls[0], function (data) {
+        $(ids[0]).html(data);
+        console.log("page 1 has been loaded");
     });
+    $.get(urls[1], function (data) {
+        $(ids[1]).html(data);
+        console.log("page 2 has been loaded");
+    });
+    $.get(urls[2], function (data) {
+        $(ids[2]).html(data);
+        console.log("page 3 has been loaded");
+    });
+
 </script>
 <script src="/javascript/preload.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
