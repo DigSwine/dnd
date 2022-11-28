@@ -33,8 +33,10 @@ body {
     max-height: 85%;
 }
 
-main{
-    padding:5px;
+main {
+    padding: 5px;
+    height: 75%; /* 100-15-5-0.25-0.25-3 */
+    
 }
 
 .paperdate {
@@ -42,7 +44,7 @@ main{
     text-transform: uppercase;
     border-bottom: 2px solid #2f2f2f;
     border-top: 2px solid #2f2f2f;
-    padding: 10px 0 10px 0;
+    height: 3%;
 }
 
 .leftcollumn{
