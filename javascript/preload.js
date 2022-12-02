@@ -5,7 +5,6 @@ $(document).ready(function () {
 
     if (checked == 0) {
         getpapercontent();
-        console.log("Cookies have been set");
     }
     
 });
