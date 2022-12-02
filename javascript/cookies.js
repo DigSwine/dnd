@@ -3,10 +3,7 @@ function cookify(cname, cvalue) {
     var checked = checkCookie(cname);
 
     if (checked == 0) {
-        const d = new Date();
-        d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-        let expires = "expires=" + d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        document.cookie = cname + "=" + cvalue + "; path=/";
     }
 }
 
