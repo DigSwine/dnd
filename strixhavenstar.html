@@ -56,8 +56,8 @@
     })
 
     function setpages() {
-        var cnames = ["cookie 1 left", "cookie 1 rtop", "cookie 1 rbot"];
-        var locname = ["pg1left", "pg1Rtop", "pg1Rbot"];
+        var cnames = ["cookie 1 left", "cookie 1 rtop", "cookie 1 rbot", "cookie 2 left", "cookie 2 Mtop", "cookie 2 Mbot", "cookie 2 right"];
+        var locname = ["pg1left", "pg1Rtop", "pg1Rbot", "pg2left", "pg2Mtop", "pg2Mbot","pg2right"];
         for (var x = 0; x < cnames.length; x++) {
             var cvalue = getCookie(cnames[x]);
             var broke = cvalue.split(' : ');
@@ -67,8 +67,6 @@
             var author = broke[3];
             var content = broke[4];
             document.getElementById(locname[x]).innerHTML = "<p class='headline'>" + title + "</p>" + "<p class='author'>" + author + "</p>" + "<div id='content" + pg + loc + "' class='content'>" + content + "</p>";
-
-            console.log(document.cookie);
         }
     }
 
