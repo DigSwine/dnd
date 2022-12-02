@@ -36,18 +36,44 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/javascript/nav.js"></script>
+<script src="/javascript/paper.js"></script>
+<script src="/javascript/cookies.js"></script>
+<script src="/javascript/preload.js"></script>
+<script src="/API/api.js"></script>
 <script>
     var pageid = 'Strixhaven Star';
     $(function () {
         var includes = $('[data-include]')
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
-            $(this).load(file)
+            $(this).load(file);
         })
+        setTimeout(() => {
+            setpages();
+        }, 100)
     })
 
-    function nextpg(){
+    function setpages() {
+        var cnames = ["cookie 1 left", "cookie 1 rtop", "cookie 1 rbot"];
+        var locname = ["pg1left", "pg1Rtop", "pg1Rbot"];
+        for (var x = 0; x < cnames.length; x++) {
+            var cvalue = getCookie(cnames[x]);
+            var broke = cvalue.split(' : ');
+            var pg = broke[0];
+            var loc = broke[1];
+            var title = broke[2];
+            var author = broke[3];
+            var content = broke[4];
+            document.getElementById(locname[x]).innerHTML = "<p class='headline'>" + title + "</p>" + "<p class='author'>" + author + "</p>" + "<div id='content" + pg + loc + "' class='content'>" + content + "</p>";
+
+            console.log(document.cookie);
+        }
+    }
+
+
+    function nextpg() {
         var currentpg = $(".show").attr("id");
         var next = "";
         var nextcl = "";
@@ -108,5 +134,3 @@
     });
 
 </script>
-<script src="/javascript/preload.js"></script>
-<script src="/javascript/paper.js"></script>

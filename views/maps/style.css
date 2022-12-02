@@ -85,7 +85,10 @@ main .locations {
         display: inline-flex;
     }
         .card .topheader .logo {
-            width: 11vw;
+            padding: 1%;
+            max-width: 8%;
+            max-height: 80%;
+            width: 100%;
             height: 100%;
             display: inline-block;
         }
@@ -96,21 +99,20 @@ main .locations {
         .card .topheader .topbot {
             width: 100%;
             max-width: 30%;
-            text-align: center;
         }
             .card .topheader .topbot .collegetitle {
                 font-family: 'MilleniGem', sans-serif;
+                line-height: 2.5;
                 height: 50%;
                 font-size: 38px;
                 font-weight: bold;
-                
             }
             .card .topheader .topbot .quote {
                 height: 50%;
                 font-style: italic;
             }
         .card .topheader .topclose {
-            height: 30%;
+            height: 20%;
         }
         .card .topheader .closebutton {
             padding-right: 5px;
@@ -126,10 +128,11 @@ main .locations {
             cursor: pointer;
         }
 .card .topheader .collegedet {
-    margin-right: 5px;
-    text-align: left;
-    height: 69%;
-    width: 100%;
+    position: absolute;
+    top: 10%;
+    left: 47.5%;
+    margin-right: 15px;
+    
 }
 .card .content {
     height: 50vh;
@@ -146,7 +149,7 @@ main .locations {
         }
     .card .content .text {
         width: 55%;
-        margin-right: 10px;
+        margin: 5px;
         padding-right: 10px;
     }
 

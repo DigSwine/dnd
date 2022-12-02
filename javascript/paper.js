@@ -10,3 +10,4 @@ class pagecontent {
         this.img = img;
     }
 }
+

@@ -1,9 +1,8 @@
 body {
     background-image: url(../../assets/star/paper_1.jpg);
     background-size: cover;
+    background-color: black;
 }
-
-
 
 main .paperdate {
     text-align: center;
@@ -23,11 +22,11 @@ main .paperdate {
 .RCorn {
     width: 1%;
     position: absolute;
-    top: 3.75%;
+    top: 3.5%;
     right: 0;
     height: 30px;
     width: 30px;
-    background: linear-gradient(-135deg, transparent 50%, white 0);
+    background: linear-gradient(-135deg, black 50%, #f3e4ce 0);
     transition: 0.5s;
     box-shadow: -5px 5px 5px black;
 }
@@ -38,11 +37,11 @@ main .paperdate {
 .LCorn {
     width: 1%;
     position: absolute;
-    top: 3.75%;
+    top: 3.5%;
     left: 0;
     height: 30px;
     width: 30px;
-    background: linear-gradient(135deg, transparent 50%, white 0);
+    background: linear-gradient(135deg, black 50%, #f3e4ce 0);
     transition: 0.5s;
     box-shadow: 5px 5px 5px black;
 }
@@ -176,66 +175,45 @@ p {
             margin: 0;
         }
 
-
-
-/*
-.leftcollumn{
-    width: 270px;
-    display: inline-block;
-    vertical-align: top;
-    transition: all .7s;
-    height: 80%;
+.headline {
+    text-align: center;
+    line-height: normal;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    display: block;
+    padding: 10px 0 0 0;
+    font-weight: 700;
+    text-transform: uppercase;
 }
-.collumn {
+.author {
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.author:before {
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.author:after {
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 13px;
+    display: block;
+    margin: 0 auto;
+}
+.content{
+    padding: 10px;
+    text-align: justify;
     font-size: 14px;
-    line-height: 20px;
-    width: 17.5%;
-    display: inline-block;
-    padding: 0 1% 0 1%;
-    vertical-align: top;
-    margin-bottom: 5px;
-    transition: all .7s;
-    height: 80%;
 }
-    .collumn + .collumn {
-        border-left: 1px solid #2f2f2f;
-    }
 
-    .collumn .headline {
-        text-align: center;
-        line-height: normal;
-        font-family: 'Playfair Display', serif;
-        font-size: 30px;
-        display: block;
-        padding: 10px 0 0 0;
-        font-weight: 700;
-        text-transform: uppercase;
-    }
-
-    .collumn .head p {
-        text-align: center;
-    }
-    .collumn .author {
-        font-weight: 700;
-        font-size: 12px;
-        box-sizing: border-box;
-    }
-        .collumn .author:before {
-            border-top: 1px solid #2f2f2f;
-            content: '';
-            width: 100px;
-            height: 7px;
-            display: block;
-            margin: 0 auto;
-        }
-        .collumn .author:after {
-            border-bottom: 1px solid #2f2f2f;
-            content: '';
-            width: 100px;
-            height: 13px;
-            display: block;
-            margin: 0 auto;
-        }
+    /*
 
 .media {
     -webkit-filter: sepia(80%) contrast(1) opacity(0.8);

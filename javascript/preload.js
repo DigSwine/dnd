@@ -1,6 +1,34 @@
 $(document).ready(function () {
     preload();
+    getpapercontent();
 });
+
+// Strixhaven Star
+function getpapercontent() {
+    const { createClient } = supabase;
+
+    var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
+    var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
+    const _supabase = createClient(url, anon);
+
+    _supabase.from('_tblStrixhavenStar').select('*').then(response => {
+        arytostr(response.data);
+    })
+}
+
+function arytostr(array) {
+    for (var x = 0; x < array.length; x++) {
+        var page = array[x]['page'];
+        var loc = array[x]['loc'];
+        var title = array[x]['title'];
+        var author = array[x]['author'];
+        var content = array[x]['content'];
+        var img = array[x]['img'];
+        var cname = "cookie " + page + " " + loc;
+        var string = page + " : " + loc + " : " + title + " : " + author + " : " + content + " : " + img;
+        cookify(cname, string);
+    }
+}
 
 // Pre load images 
 function preload() {
