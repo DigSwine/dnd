@@ -27,13 +27,20 @@ function unlockoptions(style) {
 function getmain(toget) {
     var selectedval = $("#toget option:selected").val();
     if (toget == 'add') {
+        if (selectedval == 'news') {
+            alert("Talk to me, this doesnt work sadly <3");
+        }
         if (selectedval == 'stu') {
             textref = '_addstudent.html';
         }
     }
+    if (toget == 'edit') {
+        if (selectedval == 'news') {
+            textref = '_editstar.html';
+        }
+    }
 
     var htmlloc = '/views/teacherView/';
-
     textref = htmlloc + textref;
 
     $.ajax({

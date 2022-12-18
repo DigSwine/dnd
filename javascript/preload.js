@@ -48,8 +48,24 @@ function preload() {
 
     /* About Images */
     images.push("MtG_background.jpg");
-    
-    /* Maps Images */
+
+    /* Logos */
+    images.push("bibloplex.png");
+    images.push("lorehold.png");
+    images.push("prismari.png");
+    images.push("quandrix.png");
+    images.push("silverquill.png");
+    images.push("witherbloom.png");
+
+
+    /* Maps Images */    
+    images.push("attempt.jpg");
+    images.push("central_map.png");
+    images.push("lorehold_map.png");
+    images.push("prismari_map.png");
+    images.push("quandrix_map.png");
+    images.push("silverquill_map.png");
+    images.push("witherbloom_map.png");
 
     /* News Images */
 
@@ -61,6 +77,7 @@ function preload() {
        
 
     for (var i = 0; i < images.length; i++) {
+        console.log(images[i]);
         images[i] = '../assets/' + images[i];
         if (images[i].includes(".png") || images[i].includes(".jpg") || images[i].includes(".webp")) {            
             images[i] = new Image();

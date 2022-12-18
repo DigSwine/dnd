@@ -9,47 +9,48 @@
 </head>
 <html>
 <body>
-    <div id="header" class="header landing">
-        <div class="pagetitle">
-            <h1 id="pagename">Teacher View</h1>
-        </div>
-        <div class="loginlayout">
-            <button style="height: 3vh; width:auto" type="submit" id="logsub">Logout</button>
-        </div>
-    </div>
+    <!-- Header -->
+    <div data-include="header"></div>
 
-    <div id="mainpage" class="wrapper">
-        <div class='controls'>
-            <select style="height: 3vh; width:auto; font-size: 16px;" id="toget">
+    <!-- log out -->
+    <button class="logoutbtn" type="submit" id="logsub">Logout</button>
+
+    <!-- Main -->
+    <main>
+        <div class='selectors'>
+            <select id="toget">
                 <option value="default">--- Please Select ---</option>
-                <option value="teach">Teacher</option>
-                <option value="stu">Student</option>
-                <option value=" exam">Examination</option>
-                <option value="none">Other</option>
+                <option value="teach" disabled>Teacher</option>
+                <option value="stu" disabled>Student</option>
+                <option value="exam" disabled>Examination</option>
+                <option value="news">Strixhaven Star</option>
             </select>
-            <button id="contoladd" onclick="getmain('add')" disabled>Add</button>
-            <button id="contoledit" disabled>Edit</button>
-            <button id="contoldel" disabled>Remove</button>
-        </div>
-        <div class="data">
-            <div id="tocontrol" class="tocontrol">
-
+            <div class="controls">
+                <button id="contoladd" onclick="getmain('add')" disabled>Add</button>
+                <button id="contoledit" onclick="getmain('edit')" disabled>Edit</button>
+                <button id="contoldel" disabled>Remove</button>
             </div>
         </div>
-    </div>
-    <footer>
-        <div class="leftspacer">
+        <div class="bodycard">
+
         </div>
-        <div class="middlespacer"></div>
-        <div class="rightspacer">
-            <p> Created by <a href="https://jolly-entremet-53ac7c.netlify.app/" target="_blank">Morgan Wilson-Slider</a></p>
-        </div>
-    </footer>
+    </main>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script src="../../javascript/vars.js"></script>
 <script src="../../javascript/teacherview.js"></script>
+
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="../../API/api.js"></script>
+
+<script>
+    var pageid = 'Teacher View';
+    $(function () {        
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = 'views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+    })
+</script>
