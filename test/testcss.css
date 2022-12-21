@@ -1,6 +1,6 @@
 /* Debug */
 div, footer, nav {
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
 }
 
 /* Layout // All pages */
@@ -9,24 +9,113 @@ body{
     background-color: gray;
 }
 
-header{
-    height: 15vh;
-    width: 100%;
-    display: inline-flex;
-    text-align: center;
+/* Admin Page */
+:root {
+    --cardwd: 25vw;
+    --cardht: 30vh;
 }
-    header div+div{
-        margin-left: 5px;
-    }
-    header .left {
-        width: 15%;
-    }
-    header .middle {
-        width: 60%;
-        font-size: 6vh;
-    }
-    header .right {
-        width: 25%;
-    }
 
-/* Home Page */
+main{
+    display:flex;
+}
+
+.headteacher {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.admin {
+    width: var(--cardwd);
+    height: var(--cardht);
+    position: relative;
+    font-family: verdana;
+}
+    .admin .face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        background-color: whitesmoke;
+        border-radius: 10px;
+    }
+    .admin .admincard {
+        width: 100%;
+        height: 100%;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transition: all .5s linear;
+        transition: all .5s linear;
+        border-radius: 10px;
+        box-shadow: 0px 10px 40px -7px #000;
+    }
+        .admin .admincard .front {
+            transition: all .5s linear;
+            background-image: url('../assets/strix_logo.png');
+            background-color: cadetblue;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+        .admin .admincard .back {
+            overflow: hidden;
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            box-sizing: border-box;
+        }
+            .admin .admincard .back .tname {
+                font-size: 1.2em;
+                font-weight: bold;
+                padding-top: 5px;
+            }
+            .admin .admincard .back .tsch {
+                font-size: 1.25vh;
+                font-style: italic;
+            }
+            .admin .admincard .back .tdesc {
+                font-size: 1.6vh;
+                padding: 5px;
+                height: 100%;
+                text-align: justify;
+                padding: 0 15px 0 15px;
+            }
+            
+
+            .flipped {
+                -webkit-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+            }
+
+/*---------------------------------------- */
+.card-container {
+    padding: 10px;
+    display: flex;
+    position: relative;
+}
+    .card-container .card {
+        width: 150px;
+        height: 200px;
+        position: relative;
+        background-color: red;
+        border-radius: 10px;
+        box-shadow: -7px 10px 40px 0px #000;
+        transition: all ease-in-out 0.5s;
+    }
+        .card-container .card:not(:first-child) {
+            margin-left: -100px;
+        }
+        .card-container .card:hover {
+            z-index: 999;
+            transform: translate(-5%, -5%);
+            box-shadow: 0 10px 15px 0px #000;
+        }
+    .card-container .cover {
+        width: 150px;
+        height: 200px;
+        position: relative;
+        border-radius: 10px;
+        box-shadow: -7px 10px 40px 0px #000;
+        transition: all ease-in-out 0.5s;
+    }

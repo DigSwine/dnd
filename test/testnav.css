@@ -1,73 +1,163 @@
-.sidebar {
-    flex: 3;
-    width: 250px;
-    height: 70%;
-    margin: 5px;
-    text-align: right;
-    font-family: 'Ramus', sans-serif;
-}
-    .sidebar a {
-        padding-top: 0%;
-        padding-left: 1%;
-        padding-right: 2%;
-        padding-bottom: 1%;
-        font-size: 3em;
-        display: block;
-        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-        color: transparent;
-        -moz-background-clip: text;
-        -webkit-background-clip: text;
-    }
-
-.container {
+nav {
     position: absolute;
-    right: 0.8%;
-    top: 8%;
-    float: right;
-    width: 250px;
-    height: auto;
-    background: yellow;
+    top: 0;
+    left: 0;
+    z-index: 100;
     display: none;
-    z-index: 10;
-    text-align: right;
 }
-    .container a:nth-child(n) {
-        display: inline-block;
-        width: 97%;
-        background-color: red;
-        padding-top: 5%;
-        padding-right: 3%;
-        padding-bottom: 5%;
-        text-decoration: none;
-        font-size: 20px;
-        color: black;
-        transition: 0.3s;
-        vertical-align: middle;
-        font-weight: bold;
-        height: 3vh;
-    }
-    .container a:hover {
-        cursor: pointer;
-        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-        color: transparent;
-        -moz-background-clip: text;
-        -webkit-background-clip: text;
-    }
-    .container input {
-        display: inline-block;
-        margin-top: 5%;
-        width: 100%;
-        text-align: right;
-        height: 3vh;
-    }
-    .container button {
-        height: 3vh;
-        margin-top: 5%;
-        margin-bottom: 5%;
-        width: 100%;
-        display: inline-block;
+
+    nav .cover {
+        padding: 8px;
+        height: calc(100vh - 16px);
+        width: calc(100vw - 16px);
+        overflow: hidden;
+        object-fit: cover;
+        left: 200px;
+        top: 0px;
     }
 
-/* On screens, where height is less than 450px */
-@media screen and (max-height: 1000px) {
+        nav .cover div {
+            text-align: center;
+            padding: 5px 5px 5px 5px;
+        }
+
+            nav .cover div + div {
+                margin-top: var(--gaps);
+            }
+
+        nav .cover .top {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            text-align: right;
+            font-size: 36px;
+            z-index: 105;
+        }
+
+        nav .cover ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 101;
+            display: flex;
+            list-style: none;
+            height: 100%;
+            width: 100%;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 0;
+        }
+
+            nav .cover ul li {
+                flex-basis: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+
+.show {
+    opacity: 1;
+}
+
+.hide {
+    opacity: 0;
+}
+
+nav .cover ul li a {
+    position: relative;
+    text-transform: uppercase;
+    font-family: 'Work sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 4px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.9rem;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+nav .cover .top a:hover, nav .cover li a:hover {
+    cursor: pointer;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+}
+
+/* Navigation Background colours */
+:root {
+    --colour1: #0287a8;
+    --colour2: #006fa6;
+    --colour3: #525292;
+    --colour4: #6f3d7c;
+    --colour5: #e32c64;
+    --colour6: #ec5250;
+    --colour7: #f78e54;
+}
+/* Home */
+nav .cover li:nth-of-type(1) {
+    background-color: var(--colour1);
+}
+/* About */
+nav .cover li:nth-of-type(2) {
+    background-color: var(--colour2);
+}
+/* University Information */
+nav .cover li:nth-of-type(3) {
+    background-color: var(--colour3);
+}
+/* Strixhaven Star */
+nav .cover li:nth-of-type(4) {
+    background-color: var(--colour4);
+}
+/* Extra */
+nav .cover li:nth-of-type(5) {
+    background-color: var(--colour5)
+}
+/* Administration */
+nav .cover li:nth-of-type(6) {
+    background-color: var(--colour6);
+}
+/* Login */
+nav .cover li:nth-of-type(7) {
+    background-color: var(--colour7);
+}
+
+/* Animations */
+@keyframes fadein {
+    0% {
+        transform: translate(100%);
+        display: none;
+    }
+
+    100% {
+        transform: translate(0);
+        display: block;
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        transform: translate(0);
+        display: block;
+    }
+
+    100% {
+        transform: translate(100%);
+        display: none;
+    }
+}
+
+/* Animated Classes */
+.showing_fadein {
+    -webkit-animation: fadein 1.0s forwards;
+}
+
+.hidden_fadeout {
+    -webkit-animation: fadeout 1.0s forwards;
 }

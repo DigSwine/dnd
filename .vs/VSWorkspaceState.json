@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\views",
-    "\\views\\teacherView"
+    "\\assets",
+    "\\assets\\maps",
+    "\\assets\\teachers"
   ],
+  "SelectedNode": "\\assets\\teachers\\Jadzi_the_Oracle.png",
   "PreviewInSolutionExplorer": false
 }

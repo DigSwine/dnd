@@ -1,15 +1,56 @@
 <!Document>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../style/imports.css">
+    <link rel="stylesheet" type="text/css" href="../views/layout.css">
+
+    <link rel="stylesheet" type="text/css" href="testnav.css">
+
     <link rel="stylesheet" type="text/css" href="testcss.css">
 </head>
 <html>
 <body>
-    <header>
-        <div class="left">div L</div>
-        <div class="middle">
-            Strixhaven University
+    <!-- Header -->
+    <div data-include="header"></div>
+
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
+
+    <main>
+        <div class="card headteacher">
+            <div class="admin">
+                <div class="admincard clickcard">
+                    <div class="front face" style="background-image: url('../assets/teachers/Jadzi_the_Oracle.png'); "></div>
+                    <div class="back face">
+                        <div class="tname">Jadzi the Oracle</div>
+                        <div class="tsch">Head Teacher</div>
+                        <div class="tdesc">
+                            The title of Strixhavens Oracle is only granted to the wisest and most accomplished mage in the multiverse. In order to be the Oracle, one must understand the fundamental truths about the nature of magic and the building blocks of the world, know and wield hundreds if not thousands of spells, and possess impeccable judgment and virtue.
+                            <br /><br />
+                            The title is currently held by Jadzi, an older human woman who graduated from Strixhaven long ago. With her incredible memory, the legends say she has memorized the location of every star arch on the plane.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="right">div R</div>
-    </header>
+    </main>
+
+    <!-- Footer -->
+    <div data-include="footer"></div>
 </body>
 </html>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="testnav.js"></script>
+<script>
+    var pageid = 'Test page';
+    $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = '../views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+    })
+</script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="../../API/login.js"></script>

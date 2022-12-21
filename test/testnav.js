@@ -1,36 +1,38 @@
-/* var us, ps = '';
+var us, ps = '';
 $('#User').change(function () {
-    us = $('#User').val();
+   // us = $('#User').val();
 });
 
 $('#Pass').change(function () {
-    ps = $('#Pass').val();
+    // ps = $('#Pass').val();
 });
 
 $('#logsub').click(function () {
-    login('btn', us, ps);
+    // login('btn', us, ps);
 })
 
 $('#bmlogo').click(function () {
-    login('bm', us, ps);
+    // login('bm', us, ps);
 })
-*/
 
-function swapnav() {
-    var current = document.getElementById("navcontroller").classList[1];
+// https://fontawesome.com/v4/icons/
 
-    if (current == 'fa-times') {
-        //close
-        document.getElementById("navcontroller").classList = 'fa fa-bars';
+var navoptions = ["one", "two", "three", "four", "five", "six", "seven"];
+var xwords = ["zero", "one", "two", "three", "four", "five", "six"];
+var delayInMilliseconds = 5000; //1 second
 
-        document.getElementById("navcontainer").style.display = 'none';
+function swapnav(type) {
+    console.log(type);
+    //close
+    if (type == 'close') {
+        document.getElementById('navigation').classList = "hidden_fadeout";
     } else {
         //open
-        if (current == 'fa-bars') {
-            //close
-            document.getElementById("navcontroller").classList = 'fa fa-times';
+        if (type == 'open') {
+            document.getElementById("navigation").style.display = 'block';
 
-            document.getElementById("navcontainer").style.display = 'block';
+            /* Controls */
+            document.getElementById('navigation').classList = "showing_fadein";
         }
     }
 }
@@ -40,6 +42,9 @@ function gopage(goto) {
 
     if (goto == 'home') {
         url = 'index.html';
+    }
+    if (goto == 'about') {
+        url = 'about.html';
     }
     if (goto == 'maps') {
         url = 'campusmap.html';
@@ -53,6 +58,14 @@ function gopage(goto) {
     if (goto == 'admin') {
         url = 'administration.html';
     }
+    if (goto == 'login') {
+        url = 'login.html';
+    }
 
-        /* window.location = url; */
+    // window.location = url;
+    swapnav('close');
 }
+
+$(".clickcard").click(function () {
+    $(this).toggleClass("flipped");
+});
