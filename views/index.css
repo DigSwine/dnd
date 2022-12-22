@@ -46,23 +46,29 @@ header .thenavigation {
         padding: 5px;
         font-size: 5vw;
         font-family: 'Autumn Flowers', sans-serif;
-        color: goldenrod;
     }
     .mainwrapper .left {
         width: 33%;
         text-align: right;
-
+        background: linear-gradient(90deg, rgba(0,0,0, 0) 0%, rgb(0, 0, 0) 25%, rgb(218,165,32) 100%);
+        color: transparent;
+        -moz-background-clip: text;
+        -webkit-background-clip: text;
     }
     .mainwrapper .middle {
         width: 17vw;
         height: 34vh; /* Needs to be *2 of width */
     }
-    .mainwrapper .middle img{
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
+        .mainwrapper .middle img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
     .mainwrapper .right {
         width: 33%;
         text-align: left;
+        background: linear-gradient(270deg, rgba(0,0,0, 0) 0%, rgb(0, 0, 0) 25%, rgb(218,165,32) 100%);
+        color: transparent;
+        -moz-background-clip: text;
+        -webkit-background-clip: text;
     }
