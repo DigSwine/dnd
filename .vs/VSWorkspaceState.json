@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\assets",
+    "\\assets\\teachers",
+    "\\assets\\teachers\\lorehold",
     "\\test"
   ],
-  "SelectedNode": "\\test\\testcss.css",
+  "SelectedNode": "\\assets\\teachers\\lorehold\\Losheel.jpg",
   "PreviewInSolutionExplorer": false
 }

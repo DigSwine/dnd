@@ -43,13 +43,12 @@ main{
 }
 
 :root {
-    --hsize: 15vh;
-    --wsize: 8vw;
+    --hsize: 20vh;
+    --wsize: 12vw;
 }
 .admin{
-    display: flex;
-    width: 100%;
-    height: 100%;
+    position: relative;
+    margin-top: 2%;
 }
     .admin .deans {
         display: flex;
@@ -58,22 +57,33 @@ main{
         transform: translate(-50%);
     }
     .admin .profs {
-        display: flex;
         position: absolute;
-        top: calc(var(--hsize)*1.5);
+        left: 50%;
+        top: calc(var(--hsize)*1.1);
+        transform: translate(-50%);
     }
-    .admin .timg {
-        padding: 5px 15px 5px 15px;
-        max-height: var(--hsize);
-        max-width: var(--wsize);
-        min-height: var(--hsize);
-        min-width: var(--wsize);
+        .admin .profs .top {
+            display: flex;
+        }
+        .admin .profs .bot {
+            display: flex;
+        }
+    .admin div {
+        
     }
+        .admin div .timg {
+            margin: 5px 5px 5px 5px;
+            padding: 5px 15px 5px 15px;
+            max-height: var(--hsize);
+            max-width: var(--wsize);
+            min-height: var(--hsize);
+            min-width: var(--wsize);
+        }
         .admin .timg img {
             height: 100%;
             width: 100%;
             border-radius: 100%;
-            transition-duration: 1s;
+            transition-duration: 0.5s;
             object-fit: cover;
         }
         .admin .timg img:hover {
