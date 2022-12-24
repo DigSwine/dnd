@@ -44,7 +44,7 @@ main{
 
 :root {
     --hsize: 20vh;
-    --wsize: 12vw;
+    --wsize: 10vw;
 }
 .admin{
     position: relative;
