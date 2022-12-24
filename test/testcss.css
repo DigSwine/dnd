@@ -86,6 +86,7 @@ main{
             transition-duration: 0.5s;
             object-fit: cover;
         }
-        .admin .timg img:hover {
-            border-radius: 0;
-        }
+            .admin .timg img:hover {
+                border-radius: 0;
+                cursor: pointer;
+            }
