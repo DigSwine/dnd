@@ -1,0 +1,91 @@
+body {
+    position: relative;
+    background-color: gray;
+}
+
+.subtitle {
+    font-size: 21px;
+}
+
+/* The subnavigation menu */
+.subnav {
+    overflow: hidden;
+}
+
+    .subnav .subnav-content {
+        z-index: 1;
+    }
+
+        .subnav .subnav-content a {
+            padding: 10px;
+            color: white;
+            font-size: 18px;
+            font-variant-caps: all-petite-caps;
+            text-decoration: none;
+        }
+
+            .subnav .subnav-content a:hover {
+                background-color: #eee;
+                color: black;
+            }
+
+.hidden {
+    display: none;
+}
+
+:root {
+    --hsize: 20vh;
+    --wsize: 10vw;
+}
+
+.admin {
+    position: relative;
+    margin-top: 2%;
+}
+
+    .admin .deans {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .admin .profs {
+        position: absolute;
+        left: 50%;
+        top: calc(var(--hsize)*1.1);
+        transform: translate(-50%);
+    }
+
+        .admin .profs .top {
+            display: flex;
+        }
+
+        .admin .profs .bot {
+            display: flex;
+        }
+
+    .admin div {
+    }
+
+        .admin div .timg {
+            margin: 5px 5px 5px 5px;
+            padding: 5px 15px 5px 15px;
+            max-height: var(--hsize);
+            max-width: var(--wsize);
+            min-height: var(--hsize);
+            min-width: var(--wsize);
+        }
+
+    .admin .timg img {
+        height: 100%;
+        width: 100%;
+        border-radius: 100%;
+        transition-duration: 0.5s;
+        object-fit: cover;
+    }
+
+        .admin .timg img:hover {
+            border-radius: 0;
+            cursor: pointer;
+        }

@@ -19,7 +19,93 @@
 
     <!-- Main -->
     <main>
+        <div class="subtitle">Meet the Team</div>
+        <div class="subnav">
+            <div class="subnav-content">
+                <a href="#lorehold">lorehold</a>
+                <a href="#prismari">prismari</a>
+                <a href="#silverquill">silverquill</a>
+                <a href="#quandrix">quandrix</a>
+                <a href="#witherbloom">witherbloom</a>
 
+            </div>
+        </div>
+        <div class="hidden" id="lorehold">
+            <div class="admin">
+                <div class="deans">
+                    <!-- Augusta Tullus, Dean of Order -->
+                    <div class="timg front"><img src="assets/teachers/lorehold/Augusta_Tullus.jpg" /></div>
+                    <!-- Plargg, Dean of Chaos -->
+                    <div class="timg"><img src="assets/teachers/lorehold/Plargg.jpg" /></div>
+                </div>
+                <div class="profs">
+                    <div class="top">
+                        <!-- Tervis Sharpwing, Professor of Order -->
+                        <div class="timg"><img src="assets/teachers/lorehold/Tervish_Sharpwing.jpg" /></div>
+                        <!-- Xyla Langning, Professor of Order -->
+                        <div class="timg"><img src="assets/teachers/lorehold/Xyla_Langning.jpg" /></div>
+                        <!-- Osgir, Professor of Order -->
+                        <div class="timg"><img src="assets/teachers/lorehold/Osgir_The_Reconstructor.jpg" /></div>
+                        <!-- Hofri Ghostforce, Professor of Order -->
+                        <div class="timg"><img src="assets/teachers/lorehold/Hofri_Ghostforce.jpg" /></div>
+                    </div>
+                    <div class="bot">
+                        <!-- Losheel, Professor of Chaos -->
+                        <div class="timg"><img src="assets/teachers/lorehold/Losheel.jpg" /></div>
+                        <!-- Lianna Flametongue, Professor of Chaos -->
+                        <div class="timg"><img src="assets/teachers/lorehold/Lianna Flametongue.jpg" /></div>
+                        <!-- Marrick Deepfinder, Professor of Chaos -->
+                        <div class="timg"><img src="assets/teachers/lorehold/Marrick_Deepfinder.jpg" /></div>
+                        <!-- Riri Brighteye, Professor of Chaos -->
+                        <div class="timg"><img src="assets/teachers/lorehold/Riri_Brighteye.jpg" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden" id="prismari">
+            <div class="admin">
+                <div class="deans">
+                    
+                    <!-- Uvilda, Dean of Perfection -->
+                    <div class="timg front"><img src="assets/teachers/prismari/Uvilda_Dean_of_Perfection.jpg" /></div>
+                    <!-- Nassari, Dean of Expression -->
+                    <div class="timg"><img src="assets/teachers/prismari/Nassari_Dead_of_Expression.jpg" /></div>
+                    
+                </div>
+                <div class="profs">
+                    <div class="top">
+                        <!-- Veyran, Professor of Perfection -->
+                        <div class="timg"><img src="assets/teachers/prismari/Veyran_Voice_of_Duality.jpg" /></div>
+                        <!-- Akhwa, Professor of Perfection -->
+                        <div class="timg"><img src="assets/teachers/prismari/Akhwa.jpg" /></div>
+                        <!-- Zeph, Professor of Perfection -->
+                        <div class="timg"><img src="assets/teachers/prismari/Zeph.jpg" /></div>
+                        <!--  
+                        <div class="timg"><img src="assets/teachers/prismari/Hofri_Ghostforce.jpg" /></div>
+                        -->
+                    </div>
+                    <div class="bot">
+                        <!-- Zaffai, Professor of Expression -->
+                        <div class="timg"><img src="assets/teachers/prismari/Zaffai_Thunder_Conductor.jpg" /></div>
+                        <!-- Arkin Minexes, Professor of Expression -->
+                        <div class="timg"><img src="assets/teachers/prismari/Arkin_Minexes.jpg" /></div>
+                        <!-- Rock "Earsplitter", Professor of Expression -->
+                        <div class="timg"><img src="assets/teachers/prismari/Rock.jpg" /></div>
+                        <!-- Ignaria Kahafi, Professor of Expression -->
+                        <div class="timg"><img src="assets/teachers/prismari/Ignaria_Kahafi.jpg" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden" id="silverquill">
+            silverquill
+        </div>
+        <div class="hidden" id="quandrix">
+            quandrix
+        </div>
+        <div class="hidden" id="witherbloom">
+            witherbloom
+        </div>
     </main>
 
     <!-- Footer -->
@@ -38,6 +124,30 @@
             $(this).load(file)
         })
     })
+
+    $("a").click(function () {
+        // Get Selected
+        var h = $(this).attr('href');
+        var ref = h.split('#');
+
+        // check current classlist
+        var c = document.getElementById(ref[1]).classList;
+
+        if (c == "hidden") {
+            //Close All
+            document.getElementById("lorehold").classList = "hidden";
+            document.getElementById("prismari").classList = "hidden";
+            document.getElementById("silverquill").classList = "hidden";
+            document.getElementById("quandrix").classList = "hidden";
+            document.getElementById("witherbloom").classList = "hidden";
+
+            // Open Selected
+            document.getElementById(ref[1]).classList = "";
+        } else {
+            // Close Focused
+            document.getElementById(ref[1]).classList = "hidden";
+        }
+    });
 </script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="../../API/login.js"></script>

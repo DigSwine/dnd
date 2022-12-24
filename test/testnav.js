@@ -65,27 +65,3 @@ function gopage(goto) {
     // window.location = url;
     swapnav('close');
 }
-
-$("a").click(function () {
-    // Get Selected
-    var h = $(this).attr('href');
-    var ref = h.split('#');
-
-    // check current classlist
-    var c = document.getElementById(ref[1]).classList;
-
-    if (c == "hidden") {
-        //Close All
-        document.getElementById("lorehold").classList = "hidden";
-        document.getElementById("prismari").classList = "hidden";
-        document.getElementById("silverquill").classList = "hidden";
-        document.getElementById("quandrix").classList = "hidden";
-        document.getElementById("witherbloom").classList = "hidden";
-
-        // Open Selected
-        document.getElementById(ref[1]).classList = "";
-    } else {
-        // Close Focused
-        document.getElementById(ref[1]).classList = "hidden";
-    }
-});
