@@ -1,5 +1,7 @@
 body {
     position: relative;
+    background-image: url(../../assets/adminbg.png);
+    background-size: cover;
     background-color: gray;
 }
 
@@ -42,32 +44,27 @@ body {
     position: relative;
     margin-top: 2%;
 }
-
     .admin .deans {
         display: flex;
         position: absolute;
         left: 50%;
         transform: translate(-50%);
     }
-
     .admin .profs {
         position: absolute;
         left: 50%;
         top: calc(var(--hsize)*1.1);
         transform: translate(-50%);
     }
-
         .admin .profs .top {
             display: flex;
         }
-
         .admin .profs .bot {
             display: flex;
         }
-
     .admin div {
-    }
 
+    }
         .admin div .timg {
             margin: 5px 5px 5px 5px;
             padding: 5px 15px 5px 15px;
@@ -76,16 +73,20 @@ body {
             min-height: var(--hsize);
             min-width: var(--wsize);
         }
-
     .admin .timg img {
+        box-shadow: 0 15px 25px rgba(0,0,0,.6);
         height: 100%;
         width: 100%;
         border-radius: 100%;
         transition-duration: 0.5s;
         object-fit: cover;
+        
     }
-
         .admin .timg img:hover {
             border-radius: 0;
             cursor: pointer;
         }
+
+.pos-top {
+    object-position: top;
+}

@@ -2,10 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\assets",
-    "\\assets\\teachers",
-    "\\assets\\teachers\\lorehold",
-    "\\test"
+    "\\javascript",
+    "\\test",
+    "\\views",
+    "\\views\\about",
+    "\\views\\maps"
   ],
-  "SelectedNode": "\\assets\\teachers\\lorehold\\Losheel.jpg",
+  "SelectedNode": "\\views\\maps\\style.css",
   "PreviewInSolutionExplorer": false
 }
