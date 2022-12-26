@@ -131,7 +131,7 @@ body {
         display: flex;
     }
         .model .content .left {
-            width: 50%;
+            max-width: 50%;
             margin: 5px;
             height: 60vh;
         }
