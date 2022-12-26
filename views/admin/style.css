@@ -58,9 +58,12 @@ body {
         .admin .profs .bot {
             display: flex;
         }
-    .admin div {
-
-    }
+        .admin .profs .extras {
+            display: flex;
+            display: none;
+        }
+        .admin div {
+        }
         .admin div .timg {
             margin: 5px 5px 5px 5px;
             padding: 5px 15px 5px 15px;
