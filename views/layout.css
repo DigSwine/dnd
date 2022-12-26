@@ -1,6 +1,7 @@
 body {
      overflow-y: hidden;
      overflow-x: hidden; 
+     margin: 0;
 }
 
 :root {
@@ -23,6 +24,9 @@ header {
     z-index: 10;
     position: relative;
 }
+    header div {
+        margin: 8px;
+    }
     header div + div {
         margin-left: 5px;
     }
@@ -75,6 +79,9 @@ footer {
     width: 100%;
     display: inline-flex;
 }
+    footer div {
+        margin: 8px;
+    }
     footer .leftspacer {
         width: 10%;
     }
