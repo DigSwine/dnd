@@ -2,12 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\assets",
-    "\\javascript",
-    "\\test",
-    "\\views",
-    "\\views\\about",
-    "\\views\\maps"
+    "\\assets\\teachers",
+    "\\assets\\teachers\\witherbloom",
+    "\\views"
   ],
-  "SelectedNode": "\\views\\maps\\style.css",
+  "SelectedNode": "\\assets\\teachers\\witherbloom\\Kojils_Tall_Ear.jpg",
   "PreviewInSolutionExplorer": false
 }
