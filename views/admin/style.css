@@ -5,7 +5,9 @@ body {
     background-color: gray;
 }
 .subtitle {
-    font-size: 21px;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: -10px;
 }
 /* The subnavigation menu */
 .subnav {
@@ -15,14 +17,15 @@ body {
         z-index: 1;
     }
         .subnav .subnav-content a {
-            padding: 10px;
+            margin: 30px;
+            padding: 20px;
             color: white;
-            font-size: 18px;
+            font-size: 20px;
             font-variant-caps: all-petite-caps;
             text-decoration: none;
         }
             .subnav .subnav-content a:hover {
-                background-color: #eee;
+                background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
                 color: black;
             }
 
@@ -89,6 +92,25 @@ body {
             cursor: pointer;
         }
 
+.prin {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+    .prin .pimg {
+        margin: 15px 5px 5px 5px;
+        height: 75%;
+        width: 100%;
+    }
+        .prin .pimg img {
+            height: 75%;
+            width: 75%;
+            border-radius: 100%;
+            transition-duration: 0.5s;
+            object-fit: cover;
+        }
+
+
 .pos-top {
     object-position: top;
 }
@@ -96,38 +118,39 @@ body {
 .model {
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     padding: 50px;
-    height: 70%;
-    width: 80%;
+    height: 60%;
+    width: 60%;
     border-radius: 30px;
     background-color: lightseagreen;
     position: absolute;
-    top: 15vh;
+    bottom: 6vh;
     left: 50%;
     transform: translate(-50%);
     transition-duration: 1s;
-    z-index: 100;
+    z-index: 90;
 }
     .model .closebtn {
         position: absolute;
         top: 25px;
-        right: 40px;
+        right: 25px;
         width: 40px;
         height: 40px;
         text-align: center;
+        font-weight: bold;
         align-content:center;
-        color: white;
+        color: darkslategray;
         z-index: 10;
     }
         .model .closebtn:hover {
             cursor: pointer;
         }
     .model .Hname{
-        font-size: 30px;
+        font-size: 45px;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         text-align: center;
     }
     .model .Hprof {
-        font-size: 15px;
+        font-size: 20px;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         text-align: center;
     }
@@ -137,14 +160,11 @@ body {
         .model .content .left {
             max-width: 50%;
             margin: 5px;
-            height: 60vh;
+            height: 50vh;
         }
             .model .content .left img {
                 width: 100%;
                 height: 100%;
-                
-                max-width: 100%;
-                max-height: 100%;
                 object-fit: cover;
             }
         .model .content .right {
@@ -154,5 +174,11 @@ body {
             margin: 5px;
             height: 90%;
             /* Text Styling */
+            font-size: 20px;
             text-align: justify;
         }
+    .model p {
+        margin: 0;
+        padding: 0;
+        font-family: 'Ramus', sans-serif;
+    }

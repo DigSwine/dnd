@@ -20,15 +20,15 @@
         <div class='selectors'>
             <select id="toget">
                 <option value="default">--- Please Select ---</option>
-                <option value="teach" disabled>Teacher</option>
                 <option value="stu" disabled>Student</option>
                 <option value="exam" disabled>Examination</option>
+                <option value="extra" disabled>Extracurricular</option>
                 <option value="news">Strixhaven Star</option>
             </select>
             <div class="controls">
-                <button id="contoladd" onclick="getmain('add')" disabled>Add</button>
-                <button id="contoledit" onclick="getmain('edit')" disabled>Edit</button>
-                <button id="contoldel" disabled>Remove</button>
+                <button id="contoladd" onclick="getmain('add')" hidden>Add</button>
+                <button id="contoledit" onclick="getmain('edit')" hidden>Edit</button>
+                <button id="contoldel" hidden>Remove</button>
             </div>
         </div>
         <div class="bodycard">

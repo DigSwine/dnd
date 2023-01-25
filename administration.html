@@ -32,6 +32,11 @@
 
             </div>
         </div>
+        <div class="prin" id="principle">
+                <div class="pimg">
+                    <img src="assets/teachers/Jadzi_the_Oracle.png" />
+                </div>
+        </div>
         <div class="hidden" id="lorehold">
             <div class="admin">
                 <div class="deans">
@@ -254,12 +259,15 @@
             document.getElementById("silverquill").classList = "hidden";
             document.getElementById("quandrix").classList = "hidden";
             document.getElementById("witherbloom").classList = "hidden";
+            document.getElementById("principle").classList = "hidden";
 
             // Open Selected
             document.getElementById(ref[1]).classList = "";
         } else {
             // Close Focused
             document.getElementById(ref[1]).classList = "hidden";
+            // Open Principle
+            document.getElementById("principle").classList = "prin";
         }
     });
     $("img").click(function () {

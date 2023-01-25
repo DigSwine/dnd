@@ -33,28 +33,28 @@ main .locations {
     }
     main .locations .prismari {
         position: absolute;
-        left: 25%;
-        bottom: 16%;
+        left: 22.5%;
+        bottom: 13%;
     }
     main .locations .lorehold {
         position: absolute;
         left: 26%;
-        top: 35%;
+        top: 36%;
     }
     main .locations .qundrix {
         position: absolute;
-        right: 22.5%;
+        right: 19.75%;
         top: 37%;
     }
     main .locations .witherbloom {
         position: absolute;
-        right: 27.3%;
-        bottom: 17%;
+        right: 24.75%;
+        bottom: 14%;
     }
     main .locations .main_campus {
         position: absolute;
         left: 48.75%;
-        top: 47.5%;
+        top: 44%;
     }
     main .locations button {
         background-color: transparent;
@@ -103,12 +103,13 @@ main .locations {
             .card .topheader .topbot .collegetitle {
                 font-family: 'MilleniGem', sans-serif;
                 line-height: 2.5;
-                height: 50%;
-                font-size: 38px;
+                height: 60%;
+                font-size: 45px;
                 font-weight: bold;
+                word-spacing: -6px;
             }
             .card .topheader .topbot .quote {
-                height: 50%;
+                height: 40%;
                 font-style: italic;
             }
         .card .topheader .topclose {
@@ -119,20 +120,22 @@ main .locations {
             border: none;
             margin-right: 10px;
             position: absolute;
+            color: darkslategray;
             top: 10px;
             right: 0;
             background-color: transparent;
             font-weight: bold;
+            font-size: 16px;
         }
         .closebutton:hover {
             cursor: pointer;
         }
 .card .topheader .collegedet {
     position: absolute;
-    top: 10%;
+    top: 7%;
     left: 47.5%;
+    font-size: 18px;
     margin-right: 15px;
-    
 }
 .card .content {
     height: 50vh;
@@ -149,7 +152,39 @@ main .locations {
         }
     .card .content .text {
         width: 55%;
-        margin: 5px;
-        padding-right: 10px;
+        margin: 9px;
+        padding-right: 20px;
     }
 
+.maintext {
+    font-size: 17px;
+    text-align: justify;
+}
+    .maintext strong{
+        font-size: 20px;
+    }
+
+.start {
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 1520px) {
+    .card .topheader .topbot .collegetitle {
+        font-size: 30px;
+    }
+    .card .topheader .collegedet {
+        font-size: 16px;
+    }
+    .maintext {
+        font-size: 16px;
+        text-align: justify;
+    }
+        .maintext strong {
+            font-size: 18px;
+        }
+    .card .topheader .logo {
+        max-width: 6%;
+        max-height: 75%;
+    }
+}

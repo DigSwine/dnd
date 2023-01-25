@@ -116,13 +116,13 @@ footer {
  /* Writing Sytles */
     .maintext {
     font-family: 'Ramus', sans-serif;
-    font-size: 1.75vh;
+    font-size: 2vh;
     font-family: 'Ramus', sans-serif;
 }
 
 .quote {
     font-family: 'Adulatory', sans-serif;
-    font-size: 24px;
+    font-size: 3vh;
 }
 
 .endquote {
