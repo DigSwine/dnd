@@ -77,7 +77,7 @@ function preload() {
        
 
     for (var i = 0; i < images.length; i++) {
-        console.log(images[i]);
+        //console.log(images[i]);
         images[i] = '../assets/' + images[i];
         if (images[i].includes(".png") || images[i].includes(".jpg") || images[i].includes(".webp")) {            
             images[i] = new Image();
