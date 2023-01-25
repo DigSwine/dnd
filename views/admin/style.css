@@ -159,6 +159,8 @@ body {
     }
         .model .content .left {
             max-width: 50%;
+            min-height: 100%;
+            min-width: 50%;
             margin: 5px;
             height: 50vh;
         }
@@ -182,3 +184,13 @@ body {
         padding: 0;
         font-family: 'Ramus', sans-serif;
     }
+
+@media screen and (max-width: 1520px) {
+    .model p {
+        font-size: 18px;
+    }
+    .model .Hname {
+        margin-top: -20px;
+        font-size: 30px;
+    }
+}
