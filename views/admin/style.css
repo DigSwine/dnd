@@ -51,9 +51,13 @@ body {
         left: 50%;
         top: calc(var(--hsize)*1.1);
         transform: translate(-50%);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
         .admin .profs .top {
             display: flex;
+
         }
         .admin .profs .bot {
             display: flex;
