@@ -169,9 +169,9 @@ main .locations {
     padding: 0;
 }
 
-@media screen and (max-width: 1520px) {
+@media screen and (max-width: 1540px) {
     .card .topheader .topbot .collegetitle {
-        font-size: 30px;
+        font-size: 40px;
     }
     .card .topheader .collegedet {
         font-size: 16px;
@@ -183,8 +183,4 @@ main .locations {
         .maintext strong {
             font-size: 18px;
         }
-    .card .topheader .logo {
-        max-width: 6%;
-        max-height: 75%;
-    }
 }
