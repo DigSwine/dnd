@@ -16,22 +16,24 @@
 
     <!-- Logout -->
     <button class="logout" onclick="logout()">Logout</button>
-    
+
+    <!-- BG -->
+    <div id="bg1"></div>
+    <div id="particleGenerator"></div>
 
     <!-- Main -->
     <main>
-        
+        <div class="card">
+            <img src="assets/eliza.jpg" />
+        </div>
     </main>
-
-    <!-- Footer -->
-    <div data-include="footer"></div>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
-    var pageid = 'Student View is Under Development';
+    var pageid = 'Data is being collected please wait';
     $(function () {
         var includes = $('[data-include]')
         $.each(includes, function () {
@@ -41,16 +43,83 @@
     })
 </script>
 <script src="../../API/api.js"></script>
+<script src="/javascript/login.js"></script>
 <script>
     $(document).ready(function () {
         var data = JSON.parse(sessionStorage.getItem("Data"));
         if (data) {
-            // getstudent(data);
-            // getschool(data);
+            getstudent(data);
+            getschool(data);
         }
     })
     function logout() {
         sessionStorage.clear();
         window.location = 'index.html';
     }
+    function setdataabout(type, data) {
+        if (type == "student") {
+            document.getElementById("pagename").innerText = "Welcome " + data[0]["character_name"];
+            document.getElementById("CName").innerText = data[0]["character_name"];
+            document.getElementById("CAge").innerText = data[0]["character_age"];      
+        
+            
+
+            /* 
+            character_gender:"Female" 
+            character_player:"Morgan"
+            character_race:"Kalashtar"
+            id: 1 */
+
+        } else if (type == "college") {
+            if (data[0]['college_id']['college_name'] == "First Years") {
+                // Back of cards swap to selected college
+            } else {
+
+            }            
+        }
+    }
+
+    /*
+
+  using 
+    - an animated gif of sparkles.
+    - an animated gradient as a holo effect.
+    - color-dodge mix blend mode
+  
+*/
+var x;
+var $cards = $(".card");
+var $style = $(".hover");
+
+$cards
+  .on("mousemove touchmove", function(e) { 
+    // normalise touch/mouse
+    e.preventDefault();
+    var $card = $(this);
+    var h = $card.height();
+    var w = $card.width();
+    var px = Math.abs(Math.floor(100 / w * 0)-100);
+    var py = Math.abs(Math.floor(100 / h * 0)-100);
+    var pa = (50-px)+(50-py);
+    var p_opc = 20+(Math.abs(pa)*1.5);
+    // css to apply for active card
+    var opc = `opacity: ${p_opc/100};`
+    // set / apply css class and style
+    $cards.removeClass("active");
+    $card.removeClass("animated");
+    $card.attr( "style", tf );
+    $style.html(style);
+    if ( e.type === "touchmove" ) {
+      return false; 
+    }
+    clearTimeout(x);
+  }).on("mouseout touchend touchcancel", function() {
+    // remove css, apply custom animation on end
+    var $card = $(this);
+    $style.html("");
+    $card.removeAttr("style");
+    x = setTimeout(function() {
+      $card.addClass("animated");
+    },2500);
+  });
 </script>

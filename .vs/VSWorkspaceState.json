@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\assets",
-    "\\assets\\teachers",
-    "\\assets\\teachers\\quandrix",
-    "\\views"
+    "\\views",
+    "\\views\\addons"
   ],
+  "SelectedNode": "\\assets",
   "PreviewInSolutionExplorer": false
 }
