@@ -145,7 +145,6 @@ main {
     z-index: 10;
     border-radius: 5%;
     box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.5s ease, box-shadow 0.2s ease;
     background-color: #040712;
     background-image: var(--front);
     background-size: cover;

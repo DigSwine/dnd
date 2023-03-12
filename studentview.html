@@ -101,9 +101,6 @@ $cards
     var px = Math.abs(Math.floor(100 / w * 0)-100);
     var py = Math.abs(Math.floor(100 / h * 0)-100);
     var pa = (50-px)+(50-py);
-    var p_opc = 20+(Math.abs(pa)*1.5);
-    // css to apply for active card
-    var opc = `opacity: ${p_opc/100};`
     // set / apply css class and style
     $cards.removeClass("active");
     $card.removeClass("animated");
@@ -120,6 +117,6 @@ $cards
     $card.removeAttr("style");
     x = setTimeout(function() {
       $card.addClass("animated");
-    },2500);
+    },1000);
   });
 </script>
