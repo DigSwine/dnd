@@ -91,32 +91,28 @@ nav .cover ul li a {
     --colour6: #ec5250;
     --colour7: #f78e54;
 }
-        /* Home */
-nav .cover li:nth-of-type(1) {
-    background-color: var(--colour1);
-}
         /* About */
-nav .cover li:nth-of-type(2) {
+nav .cover li:nth-of-type(1) {
     background-color: var(--colour2);
 }
         /* University Information */
-nav .cover li:nth-of-type(3) {
+nav .cover li:nth-of-type(2) {
     background-color: var(--colour3);
 }
         /* Strixhaven Star */
-nav .cover li:nth-of-type(4) {
+nav .cover li:nth-of-type(3) {
     background-color: var(--colour4);
 }
         /* Extra */
-nav .cover li:nth-of-type(5) {
+nav .cover li:nth-of-type(4) {
     background-color: var(--colour5)
 }
         /* Administration */
-nav .cover li:nth-of-type(6) {
+nav .cover li:nth-of-type(5) {
     background-color: var(--colour6);
 }
         /* Login */
-nav .cover li:nth-of-type(7) {
+nav .cover li:nth-of-type(6) {
     background-color: var(--colour7);
 }
 

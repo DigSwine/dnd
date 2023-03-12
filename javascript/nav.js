@@ -39,10 +39,6 @@ function swapnav(type) {
 
 function gopage(goto) {
     var url = '';
-
-    if (goto == 'home') {
-        url = 'index.html';
-    }
     if (goto == 'about') {
         url = 'about.html';
     }
