@@ -44,7 +44,7 @@ function preload() {
     images.push("strix_logo.png");
 
     /* Landing Images */
-    // images.push("landing.mp4");
+    // images.push("landing2.mp4");
 
     /* About Images */
     images.push("MtG_background.jpg");
