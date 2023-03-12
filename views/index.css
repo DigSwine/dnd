@@ -14,7 +14,6 @@ header .thenavigation {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
     .video-container video {
         min-width: 100%;
@@ -32,46 +31,4 @@ header .thenavigation {
         top: 0;
         left: 0;
         position: absolute;
-    }
-
-.mainwrapper {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    display: inline-flex;
-    height: calc(100vh - 16px);
-    width: calc(100vw - 16px);
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-}
-    .mainwrapper div {
-        padding: 5px;
-        font-size: 5vw;
-        font-family: 'Autumn Flowers', sans-serif;
-    }
-    .mainwrapper .left {
-        width: 33%;
-        text-align: right;
-        background: linear-gradient(90deg, rgba(0,0,0, 0) 0%, rgb(0, 0, 0) 25%, rgb(218,165,32) 100%);
-        color: transparent;
-        -moz-background-clip: text;
-        -webkit-background-clip: text;
-    }
-    .mainwrapper .middle {
-        width: 17vw;
-        height: 34vh; /* Needs to be *2 of width */
-    }
-        .mainwrapper .middle img {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-    .mainwrapper .right {
-        width: 33%;
-        text-align: left;
-        background: linear-gradient(270deg, rgba(0,0,0, 0) 0%, rgb(0, 0, 0) 25%, rgb(218,165,32) 100%);
-        color: transparent;
-        -moz-background-clip: text;
-        -webkit-background-clip: text;
     }

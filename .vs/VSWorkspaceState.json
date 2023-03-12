@@ -3,8 +3,9 @@
     "",
     "\\assets",
     "\\views",
-    "\\views\\addons"
+    "\\views\\admin",
+    "\\views\\studentView"
   ],
-  "SelectedNode": "\\assets",
+  "SelectedNode": "\\views\\index.css",
   "PreviewInSolutionExplorer": false
 }
