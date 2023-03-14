@@ -57,12 +57,17 @@
 
         document.getElementById('myVideo').addEventListener('ended', myHandler, false);
         function myHandler(e) {
-           // window.location = 'about.html';
+           window.location = 'about.html';
         }
 
         // preload();
     })
     function test() {
-        document.getElementById("myVideo").play();
+        console.log("t");
+        try {
+            document.getElementById("myVideo").play();
+        } catch (err) {
+            console.log(err)
+        }
     }
 </script>
