@@ -37,7 +37,7 @@ function arytostr(array) {
 }
 
 //// Pre load images 
-//function preload() {
+function preload() {
     
 //    var images = [];
 
@@ -89,4 +89,4 @@ function arytostr(array) {
 //            }
 //        }
 //    }
-//}
+}
