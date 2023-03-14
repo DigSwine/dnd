@@ -21,10 +21,13 @@
     <div data-include="navigation"></div>
 
     <!-- Background Video -->
-    
+
     <section>
+        <audio controls autoplay>
+            <source src="assets/Strix_music.mp3" type="audio/mpeg">
+        </audio>
         <div class="video-container">
-            <video id="myVideo" src="/assets/landing2.mp4"></video>
+            <video id="myVideo" src="/assets/landing2.mp4" autoplay muted></video>
         </div>
     </section>
 
@@ -44,7 +47,6 @@
 <script>
     var pageid = '';
     $(function () {
-        playvid();
         var includes = $('[data-include]')
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
@@ -58,7 +60,4 @@
 
         preload();
     })
-    function playvid() {
-        document.getElementById("myVideo").play();
-    }
 </script>
