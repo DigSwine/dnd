@@ -21,10 +21,10 @@
     <div data-include="navigation"></div>
 
     <!-- Background Video -->
+    
     <section>
         <div class="video-container">
-            <video id="myVideo" src="/assets/landing2.mp4" autoplay muted></video>
-            <!-- TODO EMBED YOUTUBE VIDEO https://www.youtube.com/watch?v=vg5sA0Wd2K4&ab_channel=DignifiedCoder -->
+            <video id="myVideo" src="/assets/landing2.mp4"></video>
         </div>
     </section>
 
@@ -44,6 +44,7 @@
 <script>
     var pageid = '';
     $(function () {
+        playvid();
         var includes = $('[data-include]')
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
@@ -57,4 +58,7 @@
 
         preload();
     })
+    function playvid() {
+        document.getElementById("myVideo").play();
+    }
 </script>
