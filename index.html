@@ -23,11 +23,8 @@
     <!-- Background Video -->
 
     <section>
-        <audio controls autoplay>
-            <source src="assets/Strix_music.mp3" type="audio/mpeg">
-        </audio>
         <div class="video-container">
-            <video id="myVideo" src="/assets/landing2.mp4" autoplay muted></video>
+            <video id="myVideo" muted src="/assets/landing2.mp4" autoplay></video>
         </div>
     </section>
 
@@ -47,6 +44,7 @@
 <script>
     var pageid = '';
     $(function () {
+        test();
         var includes = $('[data-include]')
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
@@ -59,5 +57,19 @@
         }
 
         preload();
+        function test(){
+            var vid = document.getElementById('myVideo');
+            vid.click();
+            var temp = vid.src;
+            vid.src = "";
+            vid.muted = false;
+            vid.src = temp;
+            try {
+                vid.play();
+            } catch (err) {
+                alert();
+            }
+            
+        }
     })
 </script>
