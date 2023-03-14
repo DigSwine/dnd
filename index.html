@@ -23,12 +23,16 @@
     <!-- Background Video -->
     <section>
         <div class="video-container">
-            <video id="myVideo" src="/assets/landing2.mp4" muted autoplay></video>
+            <video id="myVideo" src="/assets/landing2.mp4" autoplay></video>
         </div>
     </section>
 
     <!-- Main -->
-    <main></main>
+    <main>
+        <form hidden>
+            <input id="btn" type="button" />
+        </form>
+    </main>
 
     <!-- Footer -->
     <div data-include="footer"></div>
@@ -43,6 +47,8 @@
 <script>
     var pageid = '';
     $(function () {
+        document.getElementById('btn').addEventListener('click', test, false);
+        document.getElementById("btn").click();
         var includes = $('[data-include]')
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
@@ -51,9 +57,12 @@
 
         document.getElementById('myVideo').addEventListener('ended', myHandler, false);
         function myHandler(e) {
-           window.location = 'about.html';
+           // window.location = 'about.html';
         }
 
         // preload();
     })
+    function test() {
+        
+    }
 </script>
