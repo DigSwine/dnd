@@ -58,7 +58,7 @@ For only then you will find the hidden mark </div>
     
     $(function () {
         var id = 'mytext';
-        autoType(id, 500, 70);
+        autoType(id, 250, 70);
 
         var includes = $('[data-include]')
         $.each(includes, function () {
@@ -125,6 +125,7 @@ For only then you will find the hidden mark </div>
 
     function autoType(id, delay, speed) {
         var ori = document.getElementById(id);
+        ori.style.display = "block";
         var s = ori.innerHTML;
         ori.innerHTML = '';
 
@@ -135,10 +136,15 @@ For only then you will find the hidden mark </div>
                 i++;
                 if (i >= s.length) {
                     clearInterval(interval);
-                    randomize();
-                    var btn = document.getElementById("btn");
-                    btn.style.display = "block";
-                    btn.addEventListener("click", playvid);
+                    setTimeout(function () {
+                        ori.style.display = "none";
+                        setTimeout(function () {
+                            randomize();
+                            var btn = document.getElementById("btn");
+                            btn.style.display = "block";
+                            btn.addEventListener("click", playvid);
+                        }, 250)
+                    }, 1000)
                 }
             }, speed);
         }, delay);

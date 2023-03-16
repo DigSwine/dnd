@@ -100,6 +100,7 @@ header .thenavigation {
     text-align: center;
     font-family: Montserrat;
     white-space: pre;
+    display: none;
 }
     .mytext::after {
         content: '|';
