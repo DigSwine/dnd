@@ -67,6 +67,8 @@
     function test() {
         document.getElementById("btn").style.display = "none";
         document.getElementById("light").style.display = "none";
+        document.getElementById("madeby").style.display = "none";
+        document.getElementById("navcontroller").style.display = "none";
         try {
             document.getElementById("myVideo").play();
         } catch (err) {
@@ -92,13 +94,28 @@
         light.style.left = e.pageX + "px";       
     }
 
-    function randomize(){
+    function randomize() {
+        // get random number between 1 && 70 
         let x = Math.random() * 70;
         let y = Math.random() * 70;
+
         var btn = document.getElementById("btn");
-       
-        btn.style.top = y + "%";
-        btn.style.left = y + "%";
+
+        // assign to sections
+        let z = Math.floor((Math.random() * 4) + 1);
+        if (z == 1) {
+            btn.style.top = y + "%";
+            btn.style.left = y + "%";
+        } else if (z == 2) {
+            btn.style.bottom = y + "%";
+            btn.style.left = y + "%";
+        } else if (z == 3) {
+            btn.style.bottom = y + "%";
+            btn.style.right = y + "%";
+        } else if (z == 4) {
+            btn.style.top = y + "%";
+            btn.style.right = y + "%";
+        }
     }
 
 
