@@ -1,11 +1,13 @@
-body{
+body {
     background-color: black;
 }
-header .logo{
+
+header .logo {
     display: none;
 }
+
 header .thenavigation {
-    color: white;
+    
 }
 
 .video-container {
@@ -15,6 +17,7 @@ header .thenavigation {
     width: 100%;
     height: 100%;
 }
+
     .video-container video {
         min-width: 100%;
         min-height: 100%;
@@ -24,3 +27,39 @@ header .thenavigation {
         transform: translate(-50%, -50%);
         object-fit: cover;
     }
+
+.light {
+    width: 20vw;
+    height: 20vw;
+    background: white;
+    position: absolute;
+    border-radius: 50%;
+    top: 0%;
+    left: 0%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0;
+    filter: blur(5vw);
+}
+
+.btn {
+    position: absolute;
+
+    color: black;
+    padding: 15px;
+    border: solid;
+    border-color: black;
+    width: 200px;
+    animation: colorswap 2s forwards linear 20s;
+}
+.btn:hover {
+    color: white;
+    border-color: white;
+}
+
+@keyframes colorswap{
+    to {
+        color: gray;
+        border-color: gray;
+    }
+}
+

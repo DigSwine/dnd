@@ -13,7 +13,7 @@
 
 </head>
 <html>
-<body>
+<body id="body">
     <!-- Header -->
     <div data-include="header"></div>
 
@@ -23,17 +23,19 @@
     <!-- Background Video -->
     <section>
         <div class="video-container">
-            <video id="myVideo" src="/assets/landing2.mp4" autoplay></video>
+            <video id="myVideo" src="/assets/landing2.mp4"></video>
         </div>
     </section>
 
+    <!-- Flashlight -->
+    <div id="light" class="light"></div>
+
     <!-- Main -->
     <main>
-        <form hidden>
-            <input id="btn" type="button" />
-        </form>
+        <div id="btn" class="btn">
+            Click to begin your adventure
+        </div>
     </main>
-
     <!-- Footer -->
     <div data-include="footer"></div>
 </body>
@@ -47,8 +49,8 @@
 <script>
     var pageid = '';
     $(function () {
-        document.getElementById('btn').addEventListener('click', test, false);
-        document.getElementById("btn").click();
+        randomize();
+        document.getElementById("btn").addEventListener("click", test);
         var includes = $('[data-include]')
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
@@ -63,11 +65,41 @@
         // preload();
     })
     function test() {
-        console.log("t");
+        document.getElementById("btn").style.display = "none";
+        document.getElementById("light").style.display = "none";
         try {
             document.getElementById("myVideo").play();
         } catch (err) {
             console.log(err)
         }
     }
+
+    var light = document.querySelector('.light'),
+        height = 200,
+        width = 200;
+
+    document.addEventListener('mousemove', function (e) {
+        setPosition(e);
+    });
+
+    document.addEventListener('touchmove', function (e) {
+        setPosition(e);
+    });
+
+    function setPosition(e) {
+        light.style.opacity = 0.5;
+        light.style.top = e.pageY + "px";
+        light.style.left = e.pageX + "px";       
+    }
+
+    function randomize(){
+        let x = Math.random() * 70;
+        let y = Math.random() * 70;
+        var btn = document.getElementById("btn");
+       
+        btn.style.top = y + "%";
+        btn.style.left = y + "%";
+    }
+
+
 </script>
