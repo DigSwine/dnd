@@ -115,15 +115,14 @@ footer {
     }
 
  /* Writing Sytles */
-    .maintext {
-    font-family: 'Ramus', sans-serif;
-    font-size: 2vh;
+.maintext {
+    white-space: pre;
     font-family: 'Ramus', sans-serif;
 }
 
-.quote {
+q {
     font-family: 'Adulatory', sans-serif;
-    font-size: 3vh;
+    font-size: 2rem;
 }
 
 .endquote {
