@@ -1,4 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/kingdom-ink-personal-use');
+@import url('https://fonts.cdnfonts.com/css/kleymisska');
+
 body {
     background-color: black;
 }
@@ -95,10 +97,12 @@ header .thenavigation {
     }
 
 .mytext {
-    color: white;
-    font-size: 2rem;
+    color: darkgoldenrod;
+    font-size: 3rem;
     text-align: center;
-    font-family: Montserrat;
+    word-spacing: 5px;
+    line-height: 70px;
+    font-family: 'Kleymisska', sans-serif;
     white-space: pre;
     display: none;
 }

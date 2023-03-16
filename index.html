@@ -38,7 +38,7 @@ Let's see if you are smarter than the rest
 To gain access my domain
 A golden key you must obtain
 So trust your light and search the dark
-For only then you will find the hidden mark </div>
+For only then you will find the hidden mark</div>
         <div id="btn" class="btn glow-on-hover">
             Begin Your Adventure!
         </div>
@@ -58,7 +58,7 @@ For only then you will find the hidden mark </div>
     
     $(function () {
         var id = 'mytext';
-        autoType(id, 1000, 70);
+        autoType(id, 1000, 90);
 
         var includes = $('[data-include]')
         $.each(includes, function () {
@@ -137,14 +137,17 @@ For only then you will find the hidden mark </div>
                 if (i >= s.length) {
                     clearInterval(interval);
                     setTimeout(function () {
-                        ori.style.display = "none";
+                        ori.style.filter = "blur(10px)";
+                        ori.style.opacity = "0";
+                        ori.style.transitionDuration = "0.5s";
                         setTimeout(function () {
+                            ori.style.display = "none";
                             randomize();
                             var btn = document.getElementById("btn");
                             btn.style.display = "block";
                             btn.addEventListener("click", playvid);
-                        }, 250)
-                    }, 1000)
+                        }, 500)
+                    }, 5000)
                 }
             }, speed);
         }, delay);
