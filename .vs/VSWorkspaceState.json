@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\javascript",
     "\\views",
-    "\\views\\addons"
+    "\\views\\about"
   ],
+  "SelectedNode": "\\views\\nav.css",
   "PreviewInSolutionExplorer": false
 }
