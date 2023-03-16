@@ -29,8 +29,8 @@ header .thenavigation {
     }
 
 .light {
-    width: 20vw;
-    height: 20vw;
+    width: 15vw;
+    height: 15vw;
     background: white;
     position: absolute;
     border-radius: 50%;
@@ -43,7 +43,6 @@ header .thenavigation {
 
 .btn {
     position: absolute;
-
     color: black;
     padding: 15px;
     border: solid;
