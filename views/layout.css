@@ -116,7 +116,7 @@ footer {
     }
 
  /* Writing Sytles */
-.maintext {
+p {
     white-space: pre;
     font-family: 'Ramus', sans-serif;
 }
