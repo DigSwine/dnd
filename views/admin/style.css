@@ -1,11 +1,11 @@
 body {
     position: relative;
     background-image: url(../../assets/adminbg.png);
-    background-size: cover;
+    background-size:cover;
     background-color: gray;
 }
 .subtitle {
-    font-size: 26px;
+    font-size: 2rem;
     font-weight: bold;
     margin-top: -10px;
 }
@@ -20,7 +20,7 @@ body {
             margin: 30px;
             padding: 20px;
             color: white;
-            font-size: 20px;
+            font-size: 2rem;
             font-variant-caps: all-petite-caps;
             text-decoration: none;
         }
@@ -34,8 +34,8 @@ body {
 }
 
 :root {
-    --hsize: 20vh;
-    --wsize: 10vw;
+    --hsize: 200px;
+    --wsize: 200px;
 }
 
 .admin {
@@ -74,16 +74,14 @@ body {
         .admin div .timg {
             margin: 5px 5px 5px 5px;
             padding: 5px 15px 5px 15px;
-            max-height: var(--hsize);
-            max-width: var(--wsize);
-            min-height: var(--hsize);
-            min-width: var(--wsize);
+            height: var(--hsize);
+            width: var(--wsize);
         }
     .admin .timg img {
         box-shadow: 0 15px 25px rgba(0,0,0,.6);
         height: 100%;
         width: 100%;
-        border-radius: 100%;
+        border-radius: 50%;
         transition-duration: 0.5s;
         object-fit: cover;
     }
@@ -185,12 +183,18 @@ body {
         font-family: 'Ramus', sans-serif;
     }
 
-@media screen and (max-width: 1540px) {
-    .model p {
-        font-size: 18px;
+@media (max-width: 375px) {
+    :root {
+        --hsize: 50px;
+        --wsize: 50px;
     }
-    .model .Hname {
-        margin-top: -20px;
-        font-size: 30px;
+
+    .admin div .timg {
+        margin: 0px 0px 0px 0px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .subtitle {
+        font-size: 1.25rem;
     }
 }

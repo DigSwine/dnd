@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\API",
     "\\views",
-    "\\views\\about"
+    "\\views\\about",
+    "\\views\\admin"
   ],
-  "SelectedNode": "\\administration.html",
   "PreviewInSolutionExplorer": false
 }

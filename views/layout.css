@@ -6,9 +6,9 @@ body {
 }
 
 :root {
-    --headerht: 15%;
+    --headerht: 17%;
     --footerht: 5%;
-    --mainht: 78.5%;/* 100-15-5-0.25-0.25 */
+    --mainht: 77.5%;/* 100-17-5-0.25-0.25 */
     --gaps: 0.25%;
     --headersides: 10%;
 }
@@ -41,7 +41,7 @@ header {
         line-height: 1.75;
         width: 100%;
         text-align: center;
-        font-size: 8vh;
+        font-size: 6rem;
         font-family: 'Rotten Banquet', sans-serif;
         color: black;
     }
@@ -79,6 +79,7 @@ footer {
     height: var(--footerht);
     width: 100%;
     display: inline-flex;
+    opacity: 0.5;
 }
     footer div {
         margin: 8px;
@@ -94,13 +95,13 @@ footer {
         text-align: right;
         display: inline-block;
         align-self: flex-end;
-        color: gray;
+        color: darkgoldenrod;
         text-decoration: none;
         font-size: 2vh;
     }
         footer .rightspacer a {
             text-align: right;
-            color: gray;
+            color: darkgoldenrod;
             font-size: 2vh;
         }
     footer .cover {
@@ -146,7 +147,19 @@ q {
         background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
     }
 
-
+@media (max-width: 375px) {
+    :root {
+        --headerht: 10%;
+        --footerht: 5%;
+        --mainht: 78.5%; /* 100-15-5-0.25-0.25 */
+        --gaps: 0.25%;
+        --headersides: 10%;
+    }
+    header .pagetitle {
+        line-height: 1.50;
+        font-size: 2rem;
+    }
+}
 
 
 /* Black Market Stuff
