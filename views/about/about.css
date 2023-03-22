@@ -6,13 +6,17 @@ body {
 
 .image-background-text {
     height: 100%;
-    margin: 0% 10% 0% 10%;
-    font-size: 1.2rem;
+    margin: 0% 0% 0% 0%;
 }
 
 .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 50px;
+    transform: translateX(-50%) translateY(-50%);
     text-align: center;
     -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     background: transparent;
 }
