@@ -121,14 +121,17 @@ footer {
 
  /* Writing Sytles */
 p {
-    white-space: pre;
+    white-space: pre-line;
+    text-align: justify;
     font-family: 'Valneck';
     font-size: 1.2rem;
 }
-
 q {
     font-family: 'Adulatory', sans-serif;
     font-size: 2rem;
+}
+strong {
+    font-size: 1.3rem;
 }
 
 .endquote {

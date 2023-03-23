@@ -16,6 +16,7 @@ body {
     padding: 10px;
     transform: translateX(-50%) translateY(-50%);
     text-align: center;
+    width: 60%;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(7px);
     background: transparent;
