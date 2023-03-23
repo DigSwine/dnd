@@ -4,7 +4,6 @@ body {
     background-color: black;
 }
 
-
 header .pagetitle {
     font-family: 'Last Rite', sans-serif;
 }
@@ -129,7 +128,6 @@ p {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
-                filter: grayscale();
             }
         .pg1 .secContainer .right {
             margin-left: 15px;
