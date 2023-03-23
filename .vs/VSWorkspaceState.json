@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\API",
-    "\\javascript",
-    "\\views\\admin"
+    "\\views",
+    "\\views\\about"
   ],
-  "SelectedNode": "\\about.html",
+  "SelectedNode": "\\views\\layout.css",
   "PreviewInSolutionExplorer": false
 }
