@@ -42,8 +42,12 @@ header {
         width: 100%;
         text-align: center;
         font-size: 6rem;
-        font-family: 'Rotten Banquet', sans-serif;
-        color: black;
+        font-family: 'Unfair Shares', sans-serif;
+        
+        
+        color: darkgoldenrod;
+        -webkit-text-stroke: 2px black;
+        text-shadow: 0px 3px 5px black;
     }
     header .thenavigation {
         width: var(--headersides);
@@ -118,7 +122,7 @@ footer {
  /* Writing Sytles */
 p {
     white-space: pre;
-    font-family: 'Ramus', sans-serif;
+    font-family: 'Valneck';
     font-size: 1.2rem;
 }
 
