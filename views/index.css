@@ -67,6 +67,8 @@ header .thenavigation {
     font-family: 'Kleymisska', sans-serif;
     white-space: pre;
     display: none;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
     .mytext::after {
         content: '|';
