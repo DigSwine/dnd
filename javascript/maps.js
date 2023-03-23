@@ -9,7 +9,7 @@ function collegedetails(college) {
         src = 'silverquill.png';
         collegename = 'Silverquill';
         collegequote = 'Sharp style, sharper wit.';
-        collegedescription = "Right north of the central campus lays a region that looks very much like an extension of it. Silverquill's campus is the most urban of all five colleges, with buildings of stately elegance spread across it.";
+        collegedescription = "Right north of the central campus lies a region that looks very much like an extension of it. Silverquill's campus is the most urban of all five colleges, with buildings of stately elegance spread across it.";
         map = 'silverquill_map.png';
         textref = '_silverquill.html';
     }
@@ -25,14 +25,14 @@ function collegedetails(college) {
         src = 'lorehold.png';
         collegename = 'Lorehold';
         collegequote = 'Leave no stone unturned!';
-        collegedescription = "The Lorehold Campus is situated northwest of the central campus in a region of stark vertical relief. It's a desert like environment with plenty of mountain mesas, as well as a great chasm filled with ruins from an ancient settlement.";
+        collegedescription = "The Lorehold Campus is situated northwest of the central campus in a region of stark vertical relief. It's a desert-like environment with plenty of mountain mesas, as well as a great chasm filled with ruins from an ancient settlement.";
         map = 'lorehold_map.png';
         textref = '_lorehold.html';
     }
     if (college == 'qd') {
         src = 'quandrix.png';
         collegename = 'Quandrix';
-        collegequote = 'Math is magic.';
+        collegequote = 'Maths is magic.';
         collegedescription = "To the northeast of the Central Campus there lays a coastline, which is filled by abundant rivers and streams as well as lush woodland. This is where the Quandrix College commits their study.";
         map = 'quandrix_map.png';
         textref = '_quandrix.html';
