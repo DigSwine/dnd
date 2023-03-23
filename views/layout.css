@@ -122,14 +122,14 @@ p {
     white-space: pre-line;
     text-align: justify;
     font-family: 'Valneck';
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 q {
     font-family: 'Adulatory', sans-serif;
     font-size: 2rem;
 }
 strong {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 .endquote {

@@ -20,4 +20,5 @@ body {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(7px);
     background: transparent;
+    font-size: 1.2rem;
 }

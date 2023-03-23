@@ -75,7 +75,6 @@ function collegedetails(college) {
             $('#collegedescription').html(data);
         }
     });
-    
 }
 
 function openclosecollege(type) {
