@@ -4,12 +4,59 @@ body {
     background-color: black;
 }
 
-main .paperdate {
-    text-align: center;
-    text-transform: uppercase;
+
+header .pagetitle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Last Rite', sans-serif;
+}
+header .logo {
+    display: none;
+}
+header .hamburger {
+    position: absolute;
+    right: 1%;
+}
+
+main {
+    font-family: 'FreeSans', sans-serif;
+    font-size: 1rem;
+}
+
+.topcontainer {
+    position: relative;
+    padding: 15px;    
+    width: 90%;
+    margin: 0 5% 0 5%;
     border-bottom: 2px solid #2f2f2f;
     border-top: 2px solid #2f2f2f;
-    height: 3%;
+}
+.issue {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    padding: 5px;
+    left: 5%;
+    text-align: left;
+}
+.issue:before{
+    content: "No. ";
+}
+.slogan {
+    text-transform: uppercase;
+    text-align: center;
+}
+.paperdate {
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #2f2f2f;
+    padding: 5px;
+    right: 5%;
+    text-align: right;
 }
 
 .show {
@@ -20,8 +67,18 @@ main .paperdate {
     display: none;
 }
 
+p {
+    margin: 0;
+}
+
+.bodycontainer {
+    position: relative;
+    padding: 15px;
+    width: 90%;
+    margin: 0 5% 0 5%;
+}
+
 .RCorn {
-    width: 1%;
     position: absolute;
     top: 3.5%;
     right: 0;
@@ -31,10 +88,10 @@ main .paperdate {
     transition: 0.5s;
     box-shadow: -5px 5px 5px black;
 }
-.RCorn:hover {
-    height: 50px;
-    width: 50px;
-}
+    .RCorn:hover {
+        height: 50px;
+        width: 50px;
+    }
 .LCorn {
     width: 1%;
     position: absolute;
@@ -51,9 +108,7 @@ main .paperdate {
         width: 50px;
     }
 
-p {
-    margin: 0;
-}
+
 
 .pg1 {
     display:flex;

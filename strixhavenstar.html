@@ -22,14 +22,19 @@
 
     <!-- main -->
     <main>
-        <div class="paperdate">Monday, 1st November, 2022 - X Pages</div>
-
+        <div class="topcontainer">
+            <div class="issue">2098423</div>
+            <div class="slogan">the only paper around</div>
+            <div class="paperdate">Monday, 1st November, 2022</div>
+        </div>
+        <div class="bodycontainer">
+            <div id="leftc" class="LCorn hide" onclick="previouspg()"></div>
+            <div id="rightc" class="RCorn show" onclick="nextpg()"></div>
+        </div>
         <div id="page1" class="pg1 show">page 1</div>
         <div id="page2" class="pg2 hide">page 2</div>
         <div id="page3" class="pg3 hide">page 3</div>
 
-        <div id="leftc" class="LCorn hide" onclick="previouspg()"></div>
-        <div id="rightc" class="RCorn show" onclick="nextpg()"></div>
     </main>
 </body>
 </html>
