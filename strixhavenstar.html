@@ -68,54 +68,64 @@
         }
     }
 
+    var showing = 0;
+    var pages = ["page1", "page2", "page3"];
+
+    function toggleshow(el) {
+        var element = document.getElementById(el);
+        var tCL = element.classList;
+        console.log("tCL = " + tCL);
+        if (tCL.contains("show")) {
+            var newCL = tCL.replace("show", "hide");
+            console.log("newCL = " + newCL);
+        }           
+        document.getElementById(el).classList = tCL;
+    }
+
 
     function nextpg() {
-        var currentpg = $(".show").attr("id");
-        var next = "";
-        var nextcl = "";
-        var currcl = document.getElementById(currentpg).classList.toString();
-        var split = currcl.split(" ");
-        document.getElementById("leftc").classList = "LCorn show";
+        if (showing < 2) {
+            for (var x = 0; x < pages.length; x++) {
+                toggleshow(pages[x]);
+            }
+            showing++;
 
-        if (currentpg == "page1") {
-            next = "page2";
-            nextcl = "pg2";
+            var toshow = document.getElementById(pages[showing]);
+            var tCL = toshow.classList;
+            if (tCL.contains("hide")) {
+                var newCL = tCL.replace("hide", "show");
+                console.log("newCL = " + newCL);
+            }       
+            document.getElementById(pages[showing]).classList = tCL + " show";
+            document.getElementById("leftc").classList = "LCorn show";
+            if (showing == 2) {
+                document.getElementById("rightc").classList = "RCorn hide";
+            }
         }
-        if (currentpg == "page2") {
-            next = "page3";
-            nextcl = "pg3";
-            document.getElementById("rightc").classList = "RCorn hide";
-        }
-        currcl = split[0] + " hide";
-        document.getElementById(currentpg).classList = currcl;
-        document.getElementById(next).classList = nextcl + " show";
     }
 
     function previouspg() {
-        var currentpg = $(".show").attr("id");
-        var next = "";
-        var nextcl = "";
-        var currcl = document.getElementById(currentpg).classList.toString();
-        var split = currcl.split(" ");
-        document.getElementById("rightc").classList = "RCorn show";
-
-        if (currentpg == "page3") {
-            next = "page2";
-            nextcl = "pg2";
+        if (showing > 0) {
+            for (var x = 0; x < pages.length; x++) {
+                toggleshow(pages[x]);
+            }
+            showing--;
+            var toshow = document.getElementById(pages[showing]);
+            var tCL = toshow.classList;
+            if (tCL.contains("hide")) {
+                var newCL = tCL.replace("hide", "show");
+                console.log("newCL = " + newCL);
+            }
+            document.getElementById(pages[showing]).classList = tCL + " show";
+            document.getElementById("leftc").classList = "LCorn show";
+            if (showing == 2) {
+                document.getElementById("rightc").classList = "RCorn hide";
+            }
         }
-        if (currentpg == "page2") {
-            next = "page1";
-            nextcl = "pg1";
-            document.getElementById("leftc").classList = "LCorn hide";
-        }
-        currcl = split[0] + " hide";
-        document.getElementById(currentpg).classList = currcl;
-        document.getElementById(next).classList = nextcl + " show";
     }
 
     var ids = [".pg1", ".pg2", ".pg3"];
     var urls = ["views/news/_page1.html", "views/news/_page2.html", "views/news/_page3.html"];
-
     $.get(urls[0], function (data) {
         $(ids[0]).html(data);
         console.log("page 1 has been loaded");
