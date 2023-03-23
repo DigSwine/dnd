@@ -6,14 +6,7 @@ body {
 
 
 header .pagetitle {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     font-family: 'Last Rite', sans-serif;
-}
-header .hamburger {
-    position: absolute;
-    right: 1%;
 }
 
 main {
@@ -140,7 +133,7 @@ p {
             }
         .pg1 .secContainer .right {
             margin-left: 15px;
-            padding: 15px 15px 15px 15px;
+            padding: 0 15px 15px 15px;
             border-left: 2px solid #2f2f2f;
             height: calc(100% - 30px);
             width: 70%;
@@ -246,28 +239,25 @@ p {
 }
 .author {
     font-weight: 700;
-    font-size: 12px;
-    box-sizing: border-box;
+    font-size: 0.7rem;
     text-align: center;
 }
-.author:before {
-    border-top: 1px solid #2f2f2f;
-    content: '';
-    width: 100px;
-    height: 7px;
-    display: block;
-    margin: 0 auto;
-}
-.author:after {
-    border-bottom: 1px solid #2f2f2f;
-    content: '';
-    width: 100px;
-    height: 13px;
-    display: block;
-    margin: 0 auto;
-}
+    .author:before {
+        border-top: 1px solid #2f2f2f;
+        content: '';
+        width: 50px;
+        display: block;
+        margin: 0 auto 0 auto;
+    }
+    .author:after {
+        border-bottom: 1px solid #2f2f2f;
+        content: '';
+        width: 50px;
+        display: block;
+        margin: 0 auto 0 auto;
+    }
 .content{
     padding: 10px;
     text-align: justify;
-    font-size: 14px;
+    font-size: 1rem;
 }
