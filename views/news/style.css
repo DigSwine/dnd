@@ -11,9 +11,6 @@ header .pagetitle {
     transform: translateX(-50%);
     font-family: 'Last Rite', sans-serif;
 }
-header .logo {
-    display: none;
-}
 header .hamburger {
     position: absolute;
     right: 1%;
@@ -73,8 +70,9 @@ p {
 
 .bodycontainer {
     position: relative;
-    padding: 15px;
+    padding: 0 15px 15px 15px;
     width: 90%;
+    height: 90%;
     margin: 0 5% 0 5%;
 }
 
@@ -108,42 +106,47 @@ p {
         width: 50px;
     }
 
-
-
 .pg1 {
-    display:flex;
-    padding-left: 3%;
-    position: absolute;
+    position: relative;
     height: 100%;
-    width: 94%;
+    width: 100%;
     text-align: left;
 }
-    .pg1 .leftcol {
-        height: 100%;
-        width: 70%;        
-    }
-    .pg1 .rightwrapper {
-        border-left: 2px solid #2f2f2f;
+.pg1 .Mainheadline{
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+}
+    .pg1 .secContainer {
         position: relative;
-        height: 100%;
-        width: 30%;
+        height: 94%;
+        display: flex;
     }
-        .pg1 .rightwrapper div {
-            height: 50%;
-            padding-right: 3%;
-            padding-left: 1%;
+        .pg1 .secContainer .leftcol {
+            position: relative;
+            height: 100%;
+            width: 30%;
         }
-        .pg1 .rightwrapper .top {
-        }
-        .pg1 .rightwrapper .bot {
-        }
-            .pg1 .rightwrapper .bot:before {
-                border-top: 2px solid #2f2f2f;
-                content: '';
-                display: block;
-                margin-left: 15px;
-                margin-right: 15px;
+            .pg1 .secContainer .leftcol video {
+                max-height: 100%;
+                max-width: 100%;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                filter: grayscale();
             }
+        .pg1 .secContainer .right {
+            margin-left: 15px;
+            padding: 15px 15px 15px 15px;
+            border-left: 2px solid #2f2f2f;
+            height: calc(100% - 30px);
+            width: 70%;
+            column-count: 2;
+            white-space: pre-line;
+        }
 
 :root {
     --pg2colwidth: calc(100%/3);
@@ -237,7 +240,7 @@ p {
     font-family: 'Playfair Display', serif;
     font-size: 30px;
     display: block;
-    padding: 10px 0 0 0;
+    padding: 0 0 0 0;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -268,13 +271,3 @@ p {
     text-align: justify;
     font-size: 14px;
 }
-
-    /*
-
-.media {
-    -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
-    filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
-    mix-blend-mode: multiply;
-    width: 100%;
-}
-                */

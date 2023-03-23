@@ -10,7 +10,6 @@
 
     <title>Strixhaven - Strixhaven Star </title>
     <link rel="icon" href="/assets/strix_logo.png">
-
 </head>
 <html>
 <body>
@@ -30,11 +29,11 @@
         <div class="bodycontainer">
             <div id="leftc" class="LCorn hide" onclick="previouspg()"></div>
             <div id="rightc" class="RCorn show" onclick="nextpg()"></div>
-        </div>
-        <div id="page1" class="pg1 show">page 1</div>
-        <div id="page2" class="pg2 hide">page 2</div>
-        <div id="page3" class="pg3 hide">page 3</div>
 
+            <div id="page1" class="pg1 show">page 1</div>
+            <div id="page2" class="pg2 hide">page 2</div>
+            <div id="page3" class="pg3 hide">page 3</div>
+        </div>
     </main>
 </body>
 </html>
@@ -60,8 +59,8 @@
     })
 
     function setpages() {
-        var cnames = ["cookie 1 left", "cookie 1 rtop", "cookie 1 rbot", "cookie 2 left", "cookie 2 Mtop", "cookie 2 Mbot", "cookie 2 right"];
-        var locname = ["pg1left", "pg1Rtop", "pg1Rbot", "pg2left", "pg2Mtop", "pg2Mbot","pg2right"];
+        var cnames = ["cookie 1 left", "cookie 2 left", "cookie 2 Mtop", "cookie 2 Mbot", "cookie 2 right"];
+        var locname = ["col1", "pg2left", "pg2Mtop", "pg2Mbot", "pg2right"];
         for (var x = 0; x < cnames.length; x++) {
             var cvalue = getCookie(cnames[x]);
             var broke = cvalue.split(' : ');
