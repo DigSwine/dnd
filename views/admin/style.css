@@ -17,10 +17,9 @@ body {
         z-index: 1;
     }
         .subnav .subnav-content a {
-            margin: 30px;
-            padding: 20px;
+            padding: 0 25px 0 25px;
             color: white;
-            font-size: 2rem;
+            font-size: 1.75rem;
             font-variant-caps: all-petite-caps;
             text-decoration: none;
         }
@@ -33,168 +32,91 @@ body {
     display: none;
 }
 
-:root {
-    --hsize: 200px;
-    --wsize: 200px;
-}
-
-.admin {
+.cubeWrapper {
     position: relative;
-    margin-top: 2%;
+    width: 100%;
+    margin: 15px 0 0 0;
 }
-    .admin .deans {
+.cubes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+    .cubes .newRow {
         display: flex;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-        z-index: 0;
-    }
-    .admin .profs {
-        position: absolute;
-        left: 50%;
-        top: calc(var(--hsize)*1.1);
-        transform: translate(-50%);
-        display: flex;
-        flex-wrap: wrap;
+        width: 51%;
+        align-items: center;
         justify-content: center;
     }
-        .admin .profs .top {
-            display: flex;
 
-        }
-        .admin .profs .bot {
-            display: flex;
-        }
-        .admin .profs .extras {
-            display: flex;
-            display: none;
-        }
-        .admin div {
-        }
-        .admin div .timg {
-            margin: 5px 5px 5px 5px;
-            padding: 5px 15px 5px 15px;
-            height: var(--hsize);
-            width: var(--wsize);
-        }
-    .admin .timg img {
-        box-shadow: 0 15px 25px rgba(0,0,0,.6);
+.cubeP {
+    height: 500px;
+    width: 600px;
+    background-size: cover;
+    background-position: center;
+    border: 5px solid #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.1);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.cube {
+    height: 225px;
+    width: 200px;
+    background-size: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.1);
+    position: relative;
+    margin: 0 5px 15px 5px;
+    transition: 0.2s ease;
+    overflow: hidden;
+}
+    .cube img {
         height: 100%;
         width: 100%;
-        border-radius: 50%;
-        transition-duration: 0.5s;
-        object-fit: cover;
     }
-        .admin .timg img:hover {
-            border-radius: 0;
-            cursor: pointer;
-        }
+    .cube:hover {
+        cursor: pointer;
+        width: 300px;
+    }
 
-.prin {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
+.content {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.5s ease;
+    z-index: 2;
 }
-    .prin .pimg {
-        margin: 15px 5px 5px 5px;
-        height: 75%;
-        width: 100%;
-    }
-        .prin .pimg img {
-            height: 75%;
-            width: 75%;
-            border-radius: 100%;
-            transition-duration: 0.5s;
-            object-fit: cover;
-        }
-
-
-.pos-top {
-    object-position: top;
-}
-
-.model {
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    padding: 50px;
-    height: 60%;
-    width: 60%;
-    border-radius: 30px;
-    background-color: lightseagreen;
-    position: absolute;
-    bottom: 6vh;
-    left: 50%;
-    transform: translate(-50%);
-    transition-duration: 1s;
-    z-index: 90;
-}
-    .model .closebtn {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        width: 40px;
-        height: 40px;
+    .content h1 {
         text-align: center;
-        font-weight: bold;
-        align-content:center;
-        color: darkslategray;
-        z-index: 10;
+        color: #fff;
+        width: 95%;
+        display: inline-block;
+        margin: 5px 0 0 0;
+        font-size: 2rem;
     }
-        .model .closebtn:hover {
-            cursor: pointer;
-        }
-    .model .Hname{
-        font-size: 45px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    .content h2 {
         text-align: center;
+        color: #fff;
+        display: inline-block;
+        margin: 0 0 5px 0;
+        font-size: 0.8rem;
     }
-    .model .Hprof {
-        font-size: 20px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    .content p {
         text-align: center;
-    }
-    .model .content {
-        display: flex;
-    }
-        .model .content .left {
-            max-width: 50%;
-            min-height: 100%;
-            min-width: 50%;
-            margin: 5px;
-            height: 50vh;
-        }
-            .model .content .left img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        .model .content .right {
-            padding-left: 10px;
-            padding-right: 10px;
-            width: 50%;
-            margin: 5px;
-            height: 90%;
-            /* Text Styling */
-            font-size: 20px;
-            text-align: justify;
-        }
-    .model p {
         margin: 0;
-        padding: 0;
-        font-family: 'Ramus', sans-serif;
+        color: #fff;
+        width: 90%;
+        font-size: 1rem;
+        display: inline-block;
+    }
+    .content:hover {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.8);
     }
 
-@media (max-width: 375px) {
-    :root {
-        --hsize: 50px;
-        --wsize: 50px;
-    }
-
-    .admin div .timg {
-        margin: 0px 0px 0px 0px;
-        padding: 5px 5px 5px 5px;
-    }
-
-    .subtitle {
-        font-size: 1.25rem;
-    }
+/* Principle */
+.principle {
+    background-image: url('../../assets/teachers/Jadzi_the_Oracle.png');
 }

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-body{
+body {
+    background-image: url(../../assets/libary.webp);
+    background-size: cover;
     background-color: #808080;
 }
 
@@ -80,30 +82,6 @@ body{
     margin: 0 5px 15px 5px;
     transition: 0.2s ease;
 }
-    .cube .frontpage {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        max-width: 90%;
-        text-shadow: 0 1px 3px #000;
-        transition: 0.5s ease;
-    }
-        .cube .frontpage h1 {
-            text-align: left;
-            font-size: 1.1rem;
-            color: #fff;
-            margin: 0;
-            user-select: none;
-        }
-        .cube .frontpage p {
-            color: #fff;
-            margin: 0;
-            text-align: left;
-            font-size: 0.9rem;
-        }
-    .cube:hover .frontpage {
-        opacity: 0;
-    }
     .cube:hover{
         width:350px;
         
