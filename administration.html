@@ -143,7 +143,12 @@
 
         newPersonContainer.classList = "cube";
         newPersonContainer.id = name;
-        newPersonContainer.style.backgroundImage = "url(../assets/teachers/" + img + ")";
+
+        imageLocation = "../assets/teachers/" + img;
+        newPersonContainer.style.backgroundImage = "url(" + imageLocation + ")";        
+
+        var image = document.createElement("img");
+        image.src = imageLocation;
 
         if (!newPersonContainer.style.backgroundImage) {
             console.log(name + " >> " + newPersonContainer.style.backgroundImage);
