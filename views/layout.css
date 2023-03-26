@@ -153,20 +153,21 @@ strong {
         background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
     }
 
-@media (max-width: 375px) {
+@media only screen and (max-width: 1540px) {
     :root {
-        --headerht: 10%;
+        --headerht: 15%;
         --footerht: 5%;
-        --mainht: 78.5%; /* 100-15-5-0.25-0.25 */
+        --mainht: 77.5%; /* 100-17-5-0.25-0.25 */
         --gaps: 0.25%;
         --headersides: 10%;
     }
     header .pagetitle {
-        line-height: 1.50;
-        font-size: 2rem;
+        font-size: 4rem;
+    }
+    header .logo {
+        font-size: 4rem;
     }
 }
-
 
 /* Black Market Stuff
             footer .bmlogo {

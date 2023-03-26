@@ -259,3 +259,22 @@ p {
     text-align: justify;
     font-size: 1rem;
 }
+
+@media only screen and (max-width: 1540px) {
+    .RCorn {
+        height: 40px;
+        width: 40px;
+    }
+        .RCorn:hover {
+            height: 50px;
+            width: 50px;
+        }
+    .LCorn {
+        height: 40px;
+        width: 40px;
+    }
+        .LCorn:hover {
+            height: 50px;
+            width: 50px;
+        }
+}

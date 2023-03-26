@@ -22,3 +22,9 @@ body {
     background: transparent;
     font-size: 1.2rem;
 }
+
+@media only screen and (max-width: 1540px) {
+    .text-overlay {
+        font-size: 1.1rem;
+    }
+}
