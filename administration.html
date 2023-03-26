@@ -173,12 +173,11 @@
 
         const newSchoolType = document.createElement("div");
 
-        const newHiddenControl = document.createElement("h1");
+        const newHiddenName = document.createElement("h1");
+        const newHiddenRoll = document.createElement("h4");
         const newHiddenSection = document.createElement("section");
         const newHiddenTitle = document.createElement("h2");
-        const newPersonRoll = document.createElement("h3");
         const newHiddenContent = document.createElement("p");
-
 
         newHiddenSection.classList = "shrink goaway";
         newHiddenSection.id = name + "_hidden";
@@ -189,10 +188,13 @@
         newPersonContainer.id = name;
 
 
-        newHiddenControl.title = "click to open infoBox";
-        newHiddenControl.classList = "void";
-        newHiddenControl.innerText = "Click for more information";
-        newPerson.appendChild(newHiddenControl);
+        newHiddenName.title = "click to open infoBox";
+        newHiddenName.classList = "void";
+        newHiddenName.innerText = name;
+        newHiddenRoll.innerText = role + " of " + type;
+
+        newPerson.appendChild(newHiddenName);
+        newPerson.appendChild(newHiddenRoll);
 
 
         imageLocation = "../assets/teachers/" + img;
@@ -212,10 +214,6 @@
         // Create Person
         newPerson.classList = "content";
 
-        newPersonRoll.innerText = role + " of " + type;
-
-        newHiddenSection.appendChild(newHiddenTitle);
-        newHiddenSection.appendChild(newPersonRoll);
         newHiddenSection.appendChild(newHiddenContent);
 
 

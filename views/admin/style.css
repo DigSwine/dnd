@@ -1,5 +1,3 @@
-html {
-}
 body {
     position: relative;
     background-image: url('https://www.freeindianmatrimony.com/wp-content/uploads/2018/03/Karma-Final.jpg');
@@ -8,12 +6,15 @@ body {
     background-repeat: no-repeat;
     overflow: hidden;
 }
+.thenavigation .hamburger{
+    color: white;
+}
+
 .subtitle {
     font-size: 2rem;
     font-weight: bold;
     margin-top: -10px;
 }
-/* The subnavigation menu */
 .subnav {
     overflow: hidden;
 }
@@ -85,17 +86,30 @@ body {
     .content h1 {
         text-align: center;
         color: white;
-        width: 95%;
+        width: 100%;
         display: inline-block;
+        position: absolute;
+        left: 0;
+        bottom: 30px;
         margin: 0;
         font-size: 2rem;
+    }
+    .content h4 {
+        text-align: center;
+        color: white;
+        width: 100%;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        bottom: 10px;
+        margin: 0;
+        font-size: 1.2rem;
     }
     .content:hover {
         opacity: 1;
         background: rgba(0, 0, 0, 0.8);
     }
 
-/* Principle */
 .principle {
     position: relative;
     max-height: 98%;
