@@ -82,9 +82,8 @@ body {
     margin: 0 5px 15px 5px;
     transition: 0.2s ease;
 }
-    .cube:hover{
-        width:350px;
-        
+    .cube:hover {
+        width: 350px;
     }
 
 .content {
