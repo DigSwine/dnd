@@ -1,8 +1,12 @@
+html {
+}
 body {
     position: relative;
     background-image: url('https://www.freeindianmatrimony.com/wp-content/uploads/2018/03/Karma-Final.jpg');
     background-size: cover;
     background-color: gray;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 .subtitle {
     font-size: 2rem;
@@ -129,20 +133,7 @@ body {
             font-size: 1.5rem;
         }
 
-
-
-
-
-
-
-
-
-
-
-
 @import "compass/css3";
-
-@import url(https://fonts.googleapis.com/css?family=Berkshire+Swash|Open+Sans);
 
 * {
     box-sizing: border-box;
@@ -151,6 +142,13 @@ body {
 html, body {
     height: 100%;
 }
+
+.goaway{
+    position: absolute;
+    top: 0%;
+    transform:translateY(-100%);
+}
+
 
 h1 {
     text-align: center;
@@ -178,7 +176,6 @@ section {
     position: absolute;
     top: 0px;
     left: 100%;
-    transition: all 200ms;
     pointer-events: none;
     z-index: 25;
 }
@@ -200,6 +197,7 @@ section {
     }
     section p {
         width: 90%;
+        text-align: center;
         margin: 0 auto;
         color: #444;
         font: 1rem;

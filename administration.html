@@ -47,27 +47,7 @@
         <div id="schools">
 
         </div>
-
-
-        <section class="shrink">
-            <h2>Did Someone Say Beer?</h2>
-            <p>lauter ibu mouthfeel, mouthfeel keg autolysis. carboy tulip glass lager filter, caramel malt pub bock! racking, real ale tulip glass, krug sparge krausen krausen, hop back. hops; brewing units of bitterness hop back alpha acid carbonation! cold filter, becher dry hopping biere de garde malt extract rims. brew alcohol sparge mash tun kolsch abbey.</p>
-
-            <p>barley malt extract oxidized imperial seidel sparge noble hops lagering. terminal gravity bright beer top-fermenting yeast; top-fermenting yeast. double bock/dopplebock hefe brewing bottom fermenting yeast keg. bock, " keg bittering hops acid rest hand pump dextrin aroma hops brewhouse." tulip glass gravity brew amber, brew kettle aroma hops. beer, brew conditioning tank microbrewery, aau lager secondary fermentation." bitter conditioning bacterial brew kettle original gravity brewpub keg tulip glass. amber, sour/acidic lauter brew brewpub; aerobic trappist final gravity rims biere de garde.</p>
-
-        </section>
     </main>
-
-    <!-- Model -->
-    <div class="model" id="card" hidden>
-        <div class="closebtn" id="mclose">X</div>
-        <div class="Hname" id="AdName"></div>
-        <div class="Hprof" id="AdProf"></div>
-        <div class="content">
-            <div id="leftbox" class="left"></div>
-            <div id="rightbox" class="right"></div>
-        </div>
-    </div>
 </body>
 </html>
 
@@ -87,6 +67,8 @@
         alert();
     });
 
+    var schools = ["lorehold", "prismari", "silverquill", "quandrix", "witherbloom", "principle"];
+
     $("a").click(function () {
         // Get Selected
         var h = $(this).attr('href');
@@ -104,6 +86,8 @@
             // Open Selected
             document.getElementById(ref[1]).classList = "";
             document.getElementById("principle").classList = "hidden";
+
+            window.scrollTo(0, 0);
         } else {
             // Close Focused
             document.getElementById(ref[1]).classList = "hidden";
@@ -116,7 +100,7 @@
 </script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
-    var schools = ["lorehold", "prismari", "silverquill", "quandrix", "witherbloom", "principle"];
+    
     const { createClient } = supabase;
     var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
     var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
@@ -151,6 +135,11 @@
     function toggleHidden() {
         var element = this.querySelector('section');
         var CL = element.classList;
+        if (CL == "shrink goaway") {
+            element.style.top = "0px";
+            CL.remove("goaway");
+        }
+        
         if (CL == "shrink") {
             CL.remove("shrink");
             var bounding = element.getBoundingClientRect();
@@ -191,7 +180,7 @@
         const newHiddenContent = document.createElement("p");
 
 
-        newHiddenSection.classList = "shrink";
+        newHiddenSection.classList = "shrink goaway";
         newHiddenSection.id = name + "_hidden";
         newHiddenTitle.innerText = name;
         newHiddenContent.innerText = desc;
