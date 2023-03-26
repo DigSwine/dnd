@@ -1,7 +1,7 @@
 body {
     position: relative;
-    background-image: url(../../assets/adminbg.png);
-    background-size:cover;
+    background-image: url('https://www.freeindianmatrimony.com/wp-content/uploads/2018/03/Karma-Final.jpg');
+    background-size: cover;
     background-color: gray;
 }
 .subtitle {
@@ -50,17 +50,6 @@ body {
         justify-content: center;
     }
 
-.cubeP {
-    height: 500px;
-    width: 600px;
-    background-size: cover;
-    background-position: center;
-    border: 5px solid #fff;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.1);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
 .cube {
     height: 225px;
     width: 200px;
@@ -70,7 +59,6 @@ body {
     position: relative;
     margin: 0 5px 15px 5px;
     transition: 0.2s ease;
-    overflow: hidden;
 }
     .cube img {
         height: 100%;
@@ -88,29 +76,6 @@ body {
     transition: 0.5s ease;
     z-index: 2;
 }
-    .content h1 {
-        text-align: center;
-        color: #fff;
-        width: 95%;
-        display: inline-block;
-        margin: 5px 0 0 0;
-        font-size: 2rem;
-    }
-    .content h2 {
-        text-align: center;
-        color: #fff;
-        display: inline-block;
-        margin: 0 0 5px 0;
-        font-size: 0.8rem;
-    }
-    .content p {
-        text-align: center;
-        margin: 0;
-        color: #fff;
-        width: 90%;
-        font-size: 1rem;
-        display: inline-block;
-    }
     .content:hover {
         opacity: 1;
         background: rgba(0, 0, 0, 0.8);
@@ -118,5 +83,124 @@ body {
 
 /* Principle */
 .principle {
-    background-image: url('../../assets/teachers/Jadzi_the_Oracle.png');
+    position: relative;
+    max-height: 98%;
+    width: 98%;
+    display: flex;
+    padding: 100px 30px 0 15px;
 }
+    .principle .left {
+        position: relative;
+        height: 100%;
+        width: 40%;
+    }
+        .principle .left img {
+            height: 450px;
+            border: 8px solid #B8860B;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.1);
+        }
+    .principle .right {
+        position: relative;
+        height: 100%;
+        width: 55%;
+    }
+        .principle .right h1 {
+            text-align: center;
+            color: #fff;
+            width: 95%;
+            display: inline-block;
+            margin: 0;
+            font-size: 2rem;
+        }
+        .principle .right h2 {
+            text-align: center;
+            color: #fff;
+            width: 95%;
+            display: inline-block;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .principle .right p {
+            text-align: center;
+            color: #fff;
+            width: 95%;
+            display: inline-block;
+            margin: 5px 0 0 0;
+            font-size: 1.5rem;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Berkshire+Swash|Open+Sans);
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    width: 95%;
+    display: inline-block;
+    margin: 5px 0 0 0;
+    font-size: 2rem;
+}
+
+.shrink {
+    opacity: 0;
+}
+.void{
+    pointer-events: none;
+}
+
+section {
+    width: 400px;
+    height: auto;
+    padding: 15px 15px 20px 15px;
+    border-radius: 0 20px 20px 20px;
+    background: rgb(234,234,234);
+    box-shadow: inset 0 0 5px 4px rgba(25,25,25,.8);
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    transition: all 200ms;
+    pointer-events: none;
+    z-index: 25;
+}
+    section h2 {
+        text-align: center;
+        color: #444;
+        width: 95%;
+        display: inline-block;
+        margin: 0;
+        font-size: 2rem;
+    }
+    section h3 {
+        text-align: center;
+        color: #444;
+        width: 95%;
+        display: inline-block;
+        margin: 0 0 5px 0;
+        font-size: 1rem;
+    }
+    section p {
+        width: 90%;
+        margin: 0 auto;
+        color: #444;
+        font: 1rem;
+    }

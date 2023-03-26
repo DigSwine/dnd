@@ -1,12 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\assets\\teachers",
     "\\assets\\teachers\\lorehold",
+    "\\javascript",
     "\\views",
-    "\\views\\admin"
+    "\\views\\news"
   ],
-  "SelectedNode": "\\assets\\teachers\\lorehold\\Lianna_Flametongue.jpg",
+  "SelectedNode": "\\views\\news\\style.css",
   "PreviewInSolutionExplorer": false
 }

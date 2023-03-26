@@ -29,24 +29,33 @@
             </div>
         </div>
         <div id="principle">
-            <div class="cubeWrapper">
-                <div id="cubes">
-                    <div class="cubeP principle">
-                        <div class="content">
-                            <h1>Jadzi_the_Oracle</h1>
-                            <p>
-                                The title of Strixhavens Oracle is only granted to the wisest and most accomplished mage in the multiverse. In order to be the Oracle, one must understand the fundamental truths about the nature of magic and the building blocks of the world, know and wield hundreds if not thousands of spells, and possess impeccable judgment and virtue.
+            <div class="principle">
+                <div class="left">
+                    <img src="../../assets/teachers/Jadzi_the_Oracle.png" />
+                </div>
+                <div class="right">
+                    <h1>Jadzi the Oracle</h1>
+                    <h2>Principle</h2>
+                    <p>
+                        The title of Strixhavens Oracle is only granted to the wisest and most accomplished mage in the multiverse. In order to be the Oracle, one must understand the fundamental truths about the nature of magic and the building blocks of the world, know and wield hundreds if not thousands of spells, and possess impeccable judgment and virtue.
 
-                                The title is currently held by Jadzi, an older human woman who graduated from Strixhaven long ago. With her incredible memory, the legends say she has memorized the location of every star arch on the plane.
-                            </p>
-                        </div>
-                    </div>
+                        The title is currently held by Jadzi, an older human woman who graduated from Strixhaven long ago. With her incredible memory, the legends say she has memorized the location of every star arch on the plane.
+                    </p>
                 </div>
             </div>
         </div>
         <div id="schools">
 
         </div>
+
+
+        <section class="shrink">
+            <h2>Did Someone Say Beer?</h2>
+            <p>lauter ibu mouthfeel, mouthfeel keg autolysis. carboy tulip glass lager filter, caramel malt pub bock! racking, real ale tulip glass, krug sparge krausen krausen, hop back. hops; brewing units of bitterness hop back alpha acid carbonation! cold filter, becher dry hopping biere de garde malt extract rims. brew alcohol sparge mash tun kolsch abbey.</p>
+
+            <p>barley malt extract oxidized imperial seidel sparge noble hops lagering. terminal gravity bright beer top-fermenting yeast; top-fermenting yeast. double bock/dopplebock hefe brewing bottom fermenting yeast keg. bock, " keg bittering hops acid rest hand pump dextrin aroma hops brewhouse." tulip glass gravity brew amber, brew kettle aroma hops. beer, brew conditioning tank microbrewery, aau lager secondary fermentation." bitter conditioning bacterial brew kettle original gravity brewpub keg tulip glass. amber, sour/acidic lauter brew brewpub; aerobic trappist final gravity rims biere de garde.</p>
+
+        </section>
     </main>
 
     <!-- Model -->
@@ -74,6 +83,10 @@
         })
     })
 
+    $(".cube").click(function () {
+        alert();
+    });
+
     $("a").click(function () {
         // Get Selected
         var h = $(this).attr('href');
@@ -98,6 +111,8 @@
             document.getElementById("principle").classList.remove('hidden');
         }
     });
+
+
 </script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
@@ -123,11 +138,41 @@
                     var desc = teacher['teacher_description'];
 
                     addElement(school, name, role, type, img, desc);
-                    // document.getElementById(name).addEventListener("click", test);
+
+                    var p = document.getElementById(name);
+                    if (p) {
+                        p.addEventListener("click", toggleHidden);
+                    }
                 }
             }
         })
     }
+
+    function toggleHidden() {
+        var element = this.querySelector('section');
+        var CL = element.classList;
+        if (CL == "shrink") {
+            CL.remove("shrink");
+            var bounding = element.getBoundingClientRect();
+            if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                // get height of hidden
+                var eleH = element.offsetHeight;
+                // minus cube height
+                var heightofCube = this.offsetHeight;
+                let style = getComputedStyle(this);
+                let borderBottomWidth = parseInt(style.borderBottomWidth) || 0;
+                var fullH = heightofCube - borderBottomWidth - borderBottomWidth;
+                var attempt = eleH - fullH;
+                element.style.top = "-" + attempt + "px";
+                element.style.borderRadius = "20px 20px 20px 0px";
+            }
+            this.addEventListener("mouseout", toggleHidden);
+        } else {
+            element.classList = "shrink";
+            this.removeEventListener("mouseout", toggleHidden);
+        }
+    }
+
     var t = 0;
     function addElement(schoolname, name, role, type, img, desc) {
         const newSchool = document.createElement("div");
@@ -136,16 +181,34 @@
         const newProfs = document.createElement("div");
         const newPersonContainer = document.createElement("div");
         const newPerson = document.createElement("div");
-        const newPersonName = document.createElement("h1");
-        const newPersonRoll = document.createElement("h2");
-        const newPersonDetails = document.createElement("p");
+
         const newSchoolType = document.createElement("div");
+
+        const newHiddenControl = document.createElement("h1");
+        const newHiddenSection = document.createElement("section");
+        const newHiddenTitle = document.createElement("h2");
+        const newPersonRoll = document.createElement("h3");
+        const newHiddenContent = document.createElement("p");
+
+
+        newHiddenSection.classList = "shrink";
+        newHiddenSection.id = name + "_hidden";
+        newHiddenTitle.innerText = name;
+        newHiddenContent.innerText = desc;
 
         newPersonContainer.classList = "cube";
         newPersonContainer.id = name;
 
+
+        newHiddenControl.title = "click to open infoBox";
+        newHiddenControl.classList = "void";
+        newHiddenControl.innerText = "Click for more information";
+        newPerson.appendChild(newHiddenControl);
+
+
         imageLocation = "../assets/teachers/" + img;
-        newPersonContainer.style.backgroundImage = "url(" + imageLocation + ")";        
+        newPersonContainer.style.backgroundImage = "url(" + imageLocation + ")";
+        newPersonContainer.loading = "lazy";
 
         var image = document.createElement("img");
         image.src = imageLocation;
@@ -160,14 +223,14 @@
         // Create Person
         newPerson.classList = "content";
 
-        newPersonName.innerText = name;
         newPersonRoll.innerText = role + " of " + type;
-        newPersonDetails.innerText = desc;
 
-        newPerson.appendChild(newPersonName);
-        newPerson.appendChild(newPersonRoll);
-        newPerson.appendChild(newPersonDetails);
+        newHiddenSection.appendChild(newHiddenTitle);
+        newHiddenSection.appendChild(newPersonRoll);
+        newHiddenSection.appendChild(newHiddenContent);
 
+
+        newPerson.appendChild(newHiddenSection);
         newPersonContainer.appendChild(newPerson);
 
         // Make School
