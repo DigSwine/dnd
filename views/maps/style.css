@@ -200,6 +200,7 @@ p {
         max-height: 70%;
     }
         .card .content .text {
+            color: hotpink;
             height: 435px;
         }
 }
