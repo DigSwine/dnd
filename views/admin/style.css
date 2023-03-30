@@ -228,8 +228,8 @@ section {
         font-size: 1.3rem;
     }
     .cube {
-        height: 175px;
-        width: 150px;
+        height: 150px;
+        width: 125px;
     }
         .cube:hover {
             width: 200px;
