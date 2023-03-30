@@ -48,11 +48,9 @@
                     <div class="collegetitle" id="collegetitle">College Loading</div>
                     <div class="quote" id="collegequote">defult</div>
                 </div>
-                <div>
-                    <div class="topclose">
-                        <button class="closebutton" onclick="openclosecollege('close')">X</button>
-                    </div>
-                    <p class="collegedet" id="collegedet"></p>
+                <p class="collegedet" id="collegedet"></p>
+                <div class="topclose">
+                    <button class="closebutton" onclick="openclosecollege('close')">X</button>
                 </div>
             </div>
             <div class="content">
@@ -78,9 +76,7 @@
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file)
         })
-
         console.log("Height = " + screen.height + " >> Width = " + screen.width);
-        console.log();
     })
 </script>
 <script src="/javascript/maps.js"></script>
