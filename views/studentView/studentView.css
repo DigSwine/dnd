@@ -28,15 +28,8 @@ header {
             height: 100%;
         }
     header .pagetitle {
-        line-height: 1.75;
-        width: 100%;
-        text-align: center;
-        font-size: 8vh;
-        font-family: 'Rotten Banquet', sans-serif;
-        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-        color: transparent;
-        -moz-background-clip: text;
-        -webkit-background-clip: text;
+        font-size: 5rem;
+        color: darkgoldenrod;
     }
         header .thenavigation .hamburger {
             display: none;
@@ -136,20 +129,18 @@ main {
 }
 
 .card {
-    position: absolute;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%);
-    height: 50%;
+    height: 325px;
+    margin: 15px;
+    width: 50%;
     overflow: hidden;
     z-index: 10;
     border-radius: 5%;
     box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
     background-color: #040712;
     background-image: var(--front);
+    background-position-x: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
     transform-origin: center;
 }
     .card img {
@@ -158,20 +149,13 @@ main {
     .card:hover {
         box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
     }
-    .card:before,
-    .card:after {
+    .card:before, .card:after {
         content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
         background-repeat: no-repeat;
         opacity: .5;
         mix-blend-mode: color-dodge;
         transition: all .33s ease;
     }
-
     .card:before {
         background-position: 50% 50%;
         background-size: 300% 300%;
@@ -180,7 +164,6 @@ main {
         filter: brightness(.5) contrast(1);
         z-index: 1;
     }
-
     .card:after {
         opacity: 1;
         background-image: url("https://assets.codepen.io/13471/sparkles.gif"), url(https://assets.codepen.io/13471/holo.png), linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
@@ -193,17 +176,13 @@ main {
         mix-blend-mode: color-dodge;
         opacity: .75;
     }
-
-    .card.active:after,
-    .card:hover:after {
+    .card.active:after, .card:hover:after {
         filter: brightness(1) contrast(1);
         opacity: 1;
     }
-
     .card.active, .card:hover {
         transition: box-shadow 0.1s ease-out;
     }
-
         .card.active:before, .card:hover:before {
             background-position: 50% 50%;
             background-size: 250% 250%;
@@ -211,19 +190,20 @@ main {
             filter: brightness(.66) contrast(1.33);
             transition: none;
         }
-
     .card.animated {
         transition: none;
         animation: holoCard var(--speed) ease 0s 1;
     }
         .card.animated:before {
             transition: none;
-            animation: holoGradient var(--speed) ease 0s 1;
         }
         .card.animated:after {
             transition: none;
+            height: 100%;
+            width: 100%;
             animation: holoSparkle var(--speed) ease 0s 1;
         }
+
 @keyframes holoSparkle {
     0%, 100% {
         opacity: 1;
@@ -237,25 +217,153 @@ main {
         filter: brightness(1.2) contrast(1.5);
     }
 }
-@keyframes holoGradient {
-    0%, 100% {
-        opacity: 0.5;
-        background-position: 50% 50%;
-        filter: brightness(0.5) contrast(0);
-    }
 
-    50% {
-        background-position: 0% 0%;
-        opacity: 1;
-        filter: brightness(.1) contrast(1.25);
-    }
+.container{
+    height: 100%;
+    display: flex;
+    position: relative; 
+    padding: 15px;
 }
-@keyframes holoCard {
-    0%, 100% {
-        transform: rotateY(0deg) rotateX(0deg) translate(-50%);
+
+.controls {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    z-index: 15;
+    display: flex;
+}
+.control {
+    background-color: white;
+    height: 80%;
+    width: 100%;
+    margin: 10px;
+    position: relative;
+}
+    .control p {
+        position: absolute;
+        margin:0;
+        text-align: center;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+        font-size: 24px;
     }
 
-    50% {
-        transform: rotateY(20deg) rotateX(0deg) translate(-50%);
+label {
+    color: white;
+    display: block
+}
+input {
+    color: white;
+    margin: 5px 5px 5px 0;
+    text-align: center;
+    padding: 5px;
+    width: 250px;
+    background-color: transparent;
+    border: none;
+}
+
+.left {
+    position: relative;
+    height: 100%;
+    width: 1000px;
+}
+.left .lefttopcontainer{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+.left .profile {
+    margin: 15px 15px 15px 0;
+    width: 100%;
+    text-align: right;
+}
+    .left .info {
+        transition: all 0.5s;
+        opacity: 1;
     }
+    .left .personality {
+        width: 100%;
+        height: calc(50% - 100px);
+        text-align: right;
+    }
+    .left .personality .personalityprofile{
+        margin: 0 15px 0 0;
+    }
+        .left .personality .personalityprofile input {
+            width: 400px;
+            height: 50px
+        }
+.personal{
+    display: flex;  
+}
+    .personal p {
+        color: white;
+        padding: 5px;
+        margin: 5px 15px 5px 5px;
+        flex: 2;
+    }
+    .personal input {
+        padding: 0;
+        width: 500px;
+    }
+.left .story {
+    width: 100%;
+    transition: all 0.5s;
+    opacity: 0;
+    background-color: red;
+}
+.left .story h1{
+    margin: 0;
+    padding: 0;
+    height: 30px;
+}
+    .left .story textarea {
+        width: calc(100% - 30px);
+        height: calc(100% - 30px - 30px);
+        max-width: calc(100% - 30px);
+        max-height: calc(100% - 30px - 30px);
+        min-width: calc(100% - 30px);
+        min-height: calc(100% - 30px - 30px);
+        margin: 15px;
+        resize: none;
+    }
+    .left .story .backstory {
+        background-color: deeppink;
+        color: white;
+        width: 100%;
+        height: calc(100% - 60%);
+    }
+    .left .story .extrainfo {
+        background-color: purple;
+        color: white;
+        width: 100%;
+        height: calc(100% - 55%);
+    }
+
+.right {
+    margin-left: 5px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.mainslider {
+    color: white;
+    height: 100%;
+    width: 400%;
+    transition: all 1s;
+    display: flex;
+}
+
+.slide {
+    margin: 0 0 0 0;
+    width: 100%;
+    height: 670px;
+}
+.right h1{
+    padding: 0;
+    margin: 0;
 }

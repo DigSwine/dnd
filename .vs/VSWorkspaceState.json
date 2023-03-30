@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets\\teachers\\lorehold",
-    "\\javascript",
     "\\views",
-    "\\views\\news"
+    "\\views\\studentView"
   ],
-  "SelectedNode": "\\views\\news\\style.css",
+  "SelectedNode": "\\studentview.html",
   "PreviewInSolutionExplorer": false
 }

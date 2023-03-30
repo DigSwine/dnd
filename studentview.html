@@ -23,9 +23,99 @@
 
     <!-- Main -->
     <main>
-        <div class="card">
-            <img src="assets/eliza.jpg" />
+        <div class="container">
+            <div class="left">
+                <div class="personcontainer">
+                    <div class="info" id="info">
+                        <div class="lefttopcontainer">
+                            <div class="card">
+                                <img src="assets/eliza.jpg" />
+                            </div>
+                            <form id="profileform" class="profile">
+                                <label>Name: <input id="name" placeholder="Name" /></label>
+                                <label>Age: <input id="age" placeholder="Age" /></label>
+                                <label>Gender: <input id="gender" placeholder="Gender" /></label>
+                                <label>Race: <input id="race" placeholder="Race" /></label>
+                                <label>Alignment: <input id="alignment" placeholder="Alignment" /></label>
+                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" /></label>
+                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" /></label>
+                                <label>Height: <input id="height" placeholder="Height" /></label>
+                                <label>Weight: <input id="weight" placeholder="Weight" /></label>
+                            </form>
+                        </div>
+                        <div class="personality">
+                            <div class="personal">
+                                <p>Personality Traits:</p>
+                                <input placeholder="Personality Traits" />
+                            </div>
+                            <div class="personal">
+                                <p>Ideals:</p>
+                                <input placeholder="Ideals" />
+                            </div>
+                            <div class="personal">
+                                <p>Bonds:</p>
+                                <input placeholder="Bonds" />
+                            </div>
+                            <div class="personal">
+                                <p>Flaws:</p>
+                                <input placeholder="Flaws" />
+                            </div>
+                            <form id="personality" class="personalityprofile" hidden>
+                                <label>Personality Traits: <input id="personalitytraits" placeholder="PERSONALITY TRAITS" /></label>
+                                <label>Ideals: <input id="ideals" placeholder="IDEALS" /></label>
+                                <label>Bonds: <input id="bonds" placeholder="BONDS" /></label>
+                                <label>Flaws: <input id="flaws" placeholder="FLAWS" /></label>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="story" id="story">
+                        <div class="backstory">
+                            <h1>Backstory</h1>
+                            <textarea class="test"></textarea>
+                        </div>
+                        <div class="extrainfo">
+                            <h1>Homebrew Crap</h1>
+                            <textarea class="test"></textarea>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="control" id="profile"><p>Profile</p></div>
+                    <div class="control" id="details"><p>Details</p></div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="right">
+                <div class="controls">
+                    <div class="control" id="one"><p>Relationships</p></div>
+                    <div class="control" id="two"><p>Exam Report Card</p></div>
+                    <div class="control" id="three"><p>Course Report Card</p></div>
+                    <div class="control" id="four"><p>Extracurriculas</p></div>
+                </div>
+                <div class="mainslider" id="mainslider">
+                    <div class="slide" id="S1">
+                        <h1 class="slideTitle"> Page 1 </h1>
+                    </div>
+                    <div class="slide">
+                        <h1 class="slideTitle"> Page 2 </h1>
+                    </div>
+                    <div class="slide">
+                        <h1 class="slideTitle"> Page 3 </h1>
+                    </div>
+                    <div class="slide">
+                        <h1 class="slideTitle"> Page 4 </h1>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
     </main>
 </body>
 </html>
@@ -39,8 +129,50 @@
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file)
-        })
+        }) 
     })
+
+    $('.left .control').click(function () {
+        if (this.id == "details") {
+            document.getElementById("info").style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById("info").style.display = "none";
+                document.getElementById("story").style.display = "block";
+                document.getElementById("story").style.opacity = 1;
+            }, 500);
+        } else {
+            document.getElementById("story").style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById("story").style.display = "none";
+                document.getElementById("info").style.display = "block";
+                document.getElementById("info").style.opacity = 1;
+            }, 500);
+        }
+    });
+
+    var showing = 0;
+    $('.right .control').click(function () {
+        var MS = document.getElementById('mainslider');
+        showing = toshow(this.id);
+        var distance = "-" + $("#S1").width() * showing + "px";
+        MS.style.transform = "translateX(" + distance + ")";
+    });
+    function toshow(id) {
+        var send = 0;
+        if (id == "one") {
+            send = 0;
+        }
+        if (id == "two") {
+            send = 1;
+        }
+        if (id == "three") {
+            send = 2;
+        }
+        if (id == "four") {
+            send = 3;
+        }
+        return send;
+    }
 </script>
 <script src="../../API/api.js"></script>
 <script src="/javascript/login.js"></script>
@@ -48,8 +180,8 @@
     $(document).ready(function () {
         var data = JSON.parse(sessionStorage.getItem("Data"));
         if (data) {
-            getstudent(data);
-            getschool(data);
+           getstudent(data);
+           getschool(data);
         }
     })
     function logout() {
@@ -58,13 +190,14 @@
     }
     function setdataabout(type, data) {
         if (type == "student") {
+            /*
             document.getElementById("pagename").innerText = "Welcome " + data[0]["character_name"];
             document.getElementById("CName").innerText = data[0]["character_name"];
             document.getElementById("CAge").innerText = data[0]["character_age"];      
         
             
 
-            /* 
+            
             character_gender:"Female" 
             character_player:"Morgan"
             character_race:"Kalashtar"
@@ -104,8 +237,6 @@ $cards
     // set / apply css class and style
     $cards.removeClass("active");
     $card.removeClass("animated");
-    $card.attr( "style", tf );
-    $style.html(style);
     if ( e.type === "touchmove" ) {
       return false; 
     }
@@ -114,7 +245,6 @@ $cards
     // remove css, apply custom animation on end
     var $card = $(this);
     $style.html("");
-    $card.removeAttr("style");
     x = setTimeout(function() {
       $card.addClass("animated");
     },1000);

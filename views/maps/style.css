@@ -150,6 +150,7 @@ main .locations {
         }
         .card .content .map img {
             width: 100%;
+            height: 100%;
         }
     .card .content .text {
         width: 55%;
