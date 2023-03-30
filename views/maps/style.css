@@ -138,10 +138,10 @@ main .locations {
     margin: 0 19px 0 0;
 }
 .card .content {
-    height: 90%;
-    max-height:90%;
+    height: 100%;
     width: 100%;
     display: flex;
+    position: relative;
 }
         .card .content .map {
             height: 97.5%;
@@ -155,7 +155,7 @@ main .locations {
     .card .content .text {
         width: 55%;
         max-width: 55%;
-        height: 471px;
+        height: 100%;
         margin: 9px;
         padding-right: 20px;
     }
@@ -202,6 +202,7 @@ p {
     }
         .card .content .text {
             color: hotpink;
-            height: 435px;
+            height: 400px;
         }
+
 }
