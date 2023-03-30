@@ -84,13 +84,14 @@ main .locations {
     .card .topheader {
         height: 5%;
         width: 100%;
-        display: flex;
+        display: inline-flex;
     }
         .card .topheader .logo {
             padding: 0.5%;
-            max-width: 7%;
+            max-width: 7.5%;
             width: 100%;
             height: 100%;
+            display: inline-block;
         }
             .card .topheader .logo img{
                 width: 100%;
@@ -137,23 +138,23 @@ main .locations {
     margin: 0 19px 0 0;
 }
 .card .content {
-    position: relative;
+    height: 90%;
+    max-height:90%;
+    width: 100%;
     display: flex;
-    height: 100%;
 }
         .card .content .map {
-            height: auto;
+            height: 97.5%;
             width: 50%;
-            flex: 1;
+            margin: 5px;
         }
         .card .content .map img {
             width: 100%;
-            max-height: 100%;
         }
     .card .content .text {
-        flex: 1;
-        width: 50%;
-        height: 100%;
+        width: 55%;
+        max-width: 55%;
+        height: 471px;
         margin: 9px;
         padding-right: 20px;
     }
@@ -196,11 +197,9 @@ p {
     .card {
         top: 20%;
         width: 95%;
-        max-height: 70%;
     }
         .card .content .text {
             color: hotpink;
-            height: 400px;
+            height: 435px;
         }
-
 }
