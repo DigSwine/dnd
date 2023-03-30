@@ -192,6 +192,7 @@ p {
     .card {
         top: 20%;
         width: 95%;
+        height: 500px;
     }
         .card .content .text {
             color: hotpink;
