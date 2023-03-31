@@ -42,8 +42,6 @@
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/javascript/nav.js"></script>
 <script src="/javascript/paper.js"></script>
-<script src="/javascript/cookies.js"></script>
-<script src="/javascript/preload.js"></script>
 <script src="/API/api.js"></script>
 <script>
     var pageid = 'Strixhaven Star';
@@ -53,28 +51,100 @@
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file);
         })
-        setTimeout(() => {
-            setpages();
-        }, 300)
+        getpapercontent();
     })
 
-    function setpages() {
-        var cnames = ["cookie 1 left", "cookie 2 left", "cookie 2 Mtop", "cookie 2 Mbot", "cookie 2 right"];
-        var locname = ["col1", "pg2left", "pg2Mtop", "pg2Mbot", "pg2right"];
-        for (var x = 0; x < cnames.length; x++) {
-            var cvalue = getCookie(cnames[x]);
-            var broke = cvalue.split(' : ');
-            document.getElementById(locname[x]).innerHTML = "<p class='headline'>" + broke[2] + "</p>" + "<p class='author'>" + broke[3] + "</p>" + "<div class='content'>" + broke[4] + "</p>";
+    // Strixhaven Star
+    function getpapercontent() {
+        const { createClient } = supabase;
+
+        var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
+        var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
+        const _supabase = createClient(url, anon);
+
+        _supabase.from('_tblStrixhavenStar').select('*').then(response => {
+            unpackdata(response.data);
+        })
+    }
+
+    function unpackdata(data) {
+        for (var x = 0; x < data.length; x++) {
+            var story = data[x];
+            var page = story['pageNo'];
+            var location = story['location'];
+
+            var title = story['title'];
+            var content = story['content'];
+
+            // Get correct page
+            var togoPage = document.getElementById('page' + page);
+
+            if (page == 1) {
+                togoPage.querySelector('.Mainheadline').innerText = title;
+                togoPage.querySelector('#' + location).innerText = content;
+
+                // check if sec con is out of view.
+                var contentContainer = togoPage.querySelector('.secContainer');
+                var bounding = contentContainer.getBoundingClientRect();
+                if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                    //get height of title
+                    var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                    var currentH = contentContainer.offsetHeight;
+                    contentContainer.style.height = currentH - headerH;
+                }
+            } else {
+                var id = "";
+                if (location == "left") {
+                    id = 'pg2left';
+                }
+                if (location == "middle top") {
+                    id = 'pg2Mtop';
+                }
+                if (location == "middle bottom") {
+                    id = 'pg2Mbot';
+                }
+                if (location == "right") {
+                    id = 'pg2right';
+                }
+                if (id) {
+                    var col = togoPage.querySelector('#' + id);
+
+                    // Create Title and Content
+                    const newTitle = document.createElement("h2");
+                    const newContent = document.createElement("p");
+
+                    newTitle.innerText = title;
+                    newContent.innerText = content;
+
+                    // Append Title to Col
+                    col.appendChild(newTitle);
+                    // Append Content to Col
+                    col.appendChild(newContent);
+
+                    
+                } else {
+                    console.log(story);
+                }
+            }
         }
     }
+        
+    
+
+
+
+
+
+
+
+
+
 
     var showing = 0;
     var pages = ["page1", "page2", "page3"];
-
     function toggleshow(el) {
         var element = document.getElementById(el);
         var tCL = element.classList;
-        console.log("tCL = " + tCL);
         if (tCL.contains("show")) {
             var newCL = tCL.replace("show", "hide");
             console.log("newCL = " + newCL);

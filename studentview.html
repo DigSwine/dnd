@@ -43,22 +43,22 @@
                                 <label>Weight: <input id="weight" placeholder="Weight" /></label>
                             </form>
                         </div>
-                        <div class="personality">
+                        <div class="personality scrollbar">
                             <div class="personal">
                                 <p>Personality Traits:</p>
-                                <input placeholder="Personality Traits" />
+                                <textarea placeholder="Personality Traits"></textarea>
                             </div>
                             <div class="personal">
                                 <p>Ideals:</p>
-                                <input placeholder="Ideals" />
+                                <textarea placeholder="Ideals"></textarea>
                             </div>
                             <div class="personal">
                                 <p>Bonds:</p>
-                                <input placeholder="Bonds" />
+                                <textarea placeholder="Bonds"></textarea>
                             </div>
                             <div class="personal">
                                 <p>Flaws:</p>
-                                <input placeholder="Flaws" />
+                                <textarea placeholder="Flaws"></textarea>
                             </div>
                             <form id="personality" class="personalityprofile" hidden>
                                 <label>Personality Traits: <input id="personalitytraits" placeholder="PERSONALITY TRAITS" /></label>
@@ -74,7 +74,7 @@
                             <textarea class="test"></textarea>
                         </div>
                         <div class="extrainfo">
-                            <h1>Homebrew Crap</h1>
+                            <h1>Extra Notes</h1>
                             <textarea class="test"></textarea>
                         </div>                        
                     </div>
@@ -85,28 +85,58 @@
                 </div>
             </div>
 
-
-
-
-
-
-
             <div class="right">
                 <div class="controls">
-                    <div class="control" id="one"><p>Relationships</p></div>
+                    <div class="control" id="one"><p>Course Listings</p></div>
                     <div class="control" id="two"><p>Exam Report Card</p></div>
-                    <div class="control" id="three"><p>Course Report Card</p></div>
+                    <div class="control" id="three"><p>Relationships</p></div>
                     <div class="control" id="four"><p>Extracurriculas</p></div>
                 </div>
                 <div class="mainslider" id="mainslider">
                     <div class="slide" id="S1">
-                        <h1 class="slideTitle"> Page 1 </h1>
+                        <h1 class="slideTitle"> Courses </h1>
+                        <div class="subnav">
+                            <div id="one" class="sub">First Years</div>
+                            <div id="two" class="sub">Second Years</div>
+                            <div id="three" class="sub">Thrid Years</div>
+                            <div id="four" class="sub">Fourth Years</div>
+                        </div>
+                        <div id="yrCLASSESone" class="yr one">
+                            <h2>Enrolled in</h2>
+                            <table id="enrolledCLASSES">
+                                <tr>
+                                    <th>Class Title</th>
+                                    <th>Teacher Name</th>
+                                    <th>Teacher Image</th>
+                                </tr>
+                                <tr>
+                                    <td>Class 1</td>
+                                    <td>Jeff Dunham</td>
+                                    <td><img src="assets/eliza.jpg" /></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div id="yrCLASSEStwo" class="yr two" hidden>
+
+                        </div>
+                        <div id="yrCLASSESthree" class="yr three" hidden>
+
+                        </div>
+                        <div id="yrCLASSESfour" class="yr four" hidden>
+
+                        </div>
                     </div>
                     <div class="slide">
                         <h1 class="slideTitle"> Page 2 </h1>
                     </div>
-                    <div class="slide">
-                        <h1 class="slideTitle"> Page 3 </h1>
+                    <div class="slide" style="background-color: antiquewhite">
+                        <h1 class="slideTitle"> Relationships </h1>
+                        <div class="relation">
+                            <img src="assets/eliza.jpg" />
+                            <p class="name">Eliza</p>
+                            <p class="name">Archenemy</p>
+                        </div>
                     </div>
                     <div class="slide">
                         <h1 class="slideTitle"> Page 4 </h1>
@@ -123,7 +153,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
-    var pageid = 'Data is being collected please wait';
+    var pageid = 'Loading';
     $(function () {
         var includes = $('[data-include]')
         $.each(includes, function () {
@@ -149,6 +179,14 @@
             }, 500);
         }
     });
+
+    $('.sub').click(function () {
+        document.getElementById('yrCLASSESone').setAttribute('hidden', true);
+        document.getElementById('yrCLASSEStwo').setAttribute('hidden', true);
+        document.getElementById('yrCLASSESthree').setAttribute('hidden', true);
+        document.getElementById('yrCLASSESfour').setAttribute('hidden', true);
+        document.getElementById('yrCLASSES' + this.id).removeAttribute('hidden');
+    })
 
     var showing = 0;
     $('.right .control').click(function () {

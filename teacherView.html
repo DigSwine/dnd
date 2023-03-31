@@ -12,45 +12,251 @@
     <!-- Header -->
     <div data-include="header"></div>
 
-    <!-- log out -->
-    <button class="logoutbtn" type="submit" id="logsub">Logout</button>
+    <!-- Logout -->
+    <button class="logout" onclick="logout()">Logout</button>
+
+    <!-- BG -->
+    <div id="bg1"></div>
+    <div id="particleGenerator"></div>
 
     <!-- Main -->
     <main>
-        <div class='selectors'>
-            <select id="toget">
-                <option value="default">--- Please Select ---</option>
-                <option value="stu" disabled>Student</option>
-                <option value="exam" disabled>Examination</option>
-                <option value="extra" disabled>Extracurricular</option>
-                <option value="news">Strixhaven Star</option>
-            </select>
-            <div class="controls">
-                <button id="contoladd" onclick="getmain('add')" hidden>Add</button>
-                <button id="contoledit" onclick="getmain('edit')" hidden>Edit</button>
-                <button id="contoldel" hidden>Remove</button>
+        <div class="controls">
+            <div id="one" class="control">
+                <p>Players</p>
+            </div>
+            <div id="two" class="control">
+                <p>Strixhaven Star</p>
+            </div>
+            <div id="three" class="control">
+                <p>NPCs</p>
+            </div>
+            <div id="four" class="control">
+                <p>COMING SOON</p>
             </div>
         </div>
-        <div class="bodycard">
-
+        <div id="mainslider" class="allContainer">
+            <div id="S1" class="page">
+                <h1>Page 1</h1>
+            </div>
+            <div id="S2" class="page">
+                <div class="subnav">
+                    <div class="sub">Page 1</div>
+                    <div class="sub">Page 2</div>
+                </div>
+                <div class="SScontainer">
+                    <div id="page1" class="pg1 show">page 1</div>
+                    <div id="page2" class="pg2 show">page 2</div>
+                </div>
+                <div class="save" id="SSSave">Save</div>
+            </div>
+            <div id="S3" class="page">
+                <h1>Page 1</h1>
+            </div>
+            <div id="S4" class="page">
+                <img src="/assets/eliza.jpg" />
+            </div>
         </div>
+
     </main>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="../../javascript/teacherview.js"></script>
-
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
-<script src="../../API/api.js"></script>
-
+<script src="/API/api.js"></script>
 <script>
-    var pageid = 'Teacher View';
+    var pageid = 'Professor DM';
     $(function () {        
         var includes = $('[data-include]')
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file)
         })
+        StrixhavenStar("get");
     })
+
+    var showing = 0;
+    $('.control').click(function () {
+        var MS = document.getElementById('mainslider');
+        showing = toshow(this.id);
+        var distance = "-" + $("#S1").width() * showing + "px";
+        MS.style.transform = "translateX(" + distance + ")";
+    });
+    function toshow(id) {
+        var send = 0;
+        if (id == "one") {
+            send = 0;
+        }
+        if (id == "two") {
+            send = 1;
+        }
+        if (id == "three") {
+            send = 2;
+        }
+        if (id == "four") {
+            send = 3;
+        }
+        return send;
+    }
+    var ids = [".pg1", ".pg2", ".pg3"];
+    var urls = ["views/news/_page1.html", "views/news/_page2.html", "views/news/_page3.html"];
+    $.get(urls[0], function (data) {
+        $(ids[0]).html(data);
+        console.log("page 1 has been loaded");
+    });
+    $.get(urls[1], function (data) {
+        $(ids[1]).html(data);
+        console.log("page 2 has been loaded");
+    });
+    $.get(urls[2], function (data) {
+        $(ids[2]).html(data);
+        console.log("page 3 has been loaded");
+    });
+    $("#SSSave").click(function () {
+        StrixhavenStar("save");
+    })
+</script>
+<script>
+    function logout() {
+        sessionStorage.clear();
+        window.location = 'login.html';
+    }
+
+    const { createClient } = supabase;
+
+    var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
+    var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
+    const _supabase = createClient(url, anon);
+
+    function StrixhavenStar(todo) {
+        if (todo == "get") {
+            _supabase.from('_tblStrixhavenStar').select('*').then(response => {
+                var alldata = response.data;
+                for (var x = 0; x < alldata.length; x++) {
+                    var data = alldata[x];
+
+                    var page = data['pageNo'];
+                    var location = data['location'];
+
+                    var title = data['title'];
+                    var content = data['content'];
+
+                    // Get correct page
+                    var togoPage = document.getElementById('page' + page);
+
+                    // Create Editable Boxs
+                    const newMainTitle = document.createElement("input");
+                    const newSection = document.createElement("div");
+                    const newLeft = document.createElement("div");
+                    const newLeftVid = document.createElement("video");
+                    const newRight = document.createElement("div");
+                    const newMainContent = document.createElement("textarea");
+
+                    if (page == 1) {
+                        togoPage.querySelector('.Mainheadline').style.display = "none";
+
+                        newMainTitle.classList = "Mainheadline";
+                        newMainTitle.id = "newMainHeaderPage1";
+                        newMainTitle.value = title;
+                        togoPage.appendChild(newMainTitle);
+
+                        togoPage.querySelector('.secContainer').style.display = "none";
+
+                        newSection.classList = "secContainer";
+
+                        newLeft.id = "pg1left";
+                        newLeft.classList = "leftcol";
+
+                        newLeftVid.src = "../assets/defSSvideo.mp4";
+                        newLeftVid.type = "video/mp4";
+                        newLeftVid.setAttribute("muted", true);
+                        newLeftVid.setAttribute("autoplay", true);
+                        newLeftVid.setAttribute("loop", true);
+
+                        newLeft.appendChild(newLeftVid);
+
+                        newSection.appendChild(newLeft);
+
+
+                        newRight.id = "one";
+                        newRight.classList = "right";
+
+
+                        newMainContent.style.width = "200%";
+                        newMainContent.style.height = "100%";
+                        newMainContent.style.marginLeft = "15px";
+                        newMainContent.value = content;
+                        newMainContent.id = "newMainContentPage1";
+
+
+                        newRight.appendChild(newMainContent);
+
+                        newSection.appendChild(newRight);
+
+                        togoPage.appendChild(newSection);
+
+
+
+                        // check if sec con is out of view.
+                        var contentContainer = togoPage.querySelector('.secContainer');
+                        var bounding = contentContainer.getBoundingClientRect();
+                        if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                            //get height of title
+                            var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                            var currentH = contentContainer.offsetHeight;
+                            contentContainer.style.height = currentH - headerH;
+                        }
+                    } else {
+                        var id = "";
+                        if (location == "left") {
+                            id = 'pg2left';
+                        }
+                        if (location == "middle top") {
+                            id = 'pg2Mtop';
+                        }
+                        if (location == "middle bottom") {
+                            id = 'pg2Mbot';
+                        }
+                        if (location == "right") {
+                            id = 'pg2right';
+                        }
+                        if (id) {
+                            var col = togoPage.querySelector('#' + id);
+
+                            // Create Title and Content
+                            const newTitle = document.createElement("h2");
+                            const newContent = document.createElement("p");
+
+                            newTitle.innerText = title;
+                            newContent.innerText = content;
+
+                            // Append Title to Col
+                            col.appendChild(newTitle);
+                            // Append Content to Col
+                            col.appendChild(newContent);
+
+
+                        } else {
+                            console.log(story);
+                        }
+                    }
+                }
+            })
+        }
+        if (todo == "save") {
+            // Get Data
+
+            // Page 1
+            var newPG1Title = document.getElementById("newMainHeaderPage1").value;
+            var newPG1Content = document.getElementById("newMainContentPage1").value;
+
+            _supabase.from('_tblStrixhavenStar').update({ title: newPG1Title, content: newPG1Content }).eq('pageNo', 1, 'location', "one").select().then(response => {
+                alert("Saved");
+            })
+
+            
+        }
+    }
 </script>

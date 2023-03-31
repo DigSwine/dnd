@@ -15,12 +15,6 @@ $('#bmlogo').click(function () {
     login('bm', us, ps);
 })
 
-// https://fontawesome.com/v4/icons/
-
-var navoptions = ["one", "two", "three", "four", "five", "six", "seven"];
-var xwords = ["zero", "one", "two", "three", "four", "five", "six"];
-var delayInMilliseconds = 5000; //1 second
-
 function swapnav(type) {
     console.log(type);
     //close
@@ -44,6 +38,9 @@ function gopage(goto) {
     }
     if (goto == 'maps') {
         url = 'campusmap.html';
+    }
+    if (goto == 'libary') {
+        url = 'libary.html';
     }
     if (goto == 'news') {
         url = 'strixhavenstar.html';

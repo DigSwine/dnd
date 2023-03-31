@@ -297,13 +297,24 @@ input {
             height: 50px
         }
 .personal{
+    text-align: right;
     display: flex;  
 }
     .personal p {
         color: white;
+        max-width: 20%;
         padding: 5px;
         margin: 5px 15px 5px 5px;
         flex: 2;
+    }
+    .personal textarea {
+        width: 475px;
+        height: 255px;
+        margin: 0 0 10px 0;
+        resize: none;
+        color: white;
+        text-align: center;
+        background-color: transparent;
     }
     .personal input {
         padding: 0;
@@ -313,8 +324,8 @@ input {
     width: 100%;
     transition: all 0.5s;
     opacity: 0;
-    background-color: red;
 }
+
 .left .story h1{
     margin: 0;
     padding: 0;
@@ -329,15 +340,14 @@ input {
         min-height: calc(100% - 30px - 30px);
         margin: 15px;
         resize: none;
+        background-color: lightgray;
     }
     .left .story .backstory {
-        background-color: deeppink;
         color: white;
         width: 100%;
         height: calc(100% - 60%);
     }
     .left .story .extrainfo {
-        background-color: purple;
         color: white;
         width: 100%;
         height: calc(100% - 55%);
@@ -358,10 +368,71 @@ input {
     display: flex;
 }
 
+/* All */
+table {
+}
+tr {
+}
+th {
+}
+td {
+    text-align: left;
+}
+    td img {
+        height: 50px;
+    }
+
+/* Classes */
+.subnav {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+}
+.sub {
+    flex: 1;
+}
+    .sub:hover {
+        cursor: pointer;
+        color: darkgoldenrod;
+    }
+.one {
+    background-color: red;
+}
+.two {
+    background-color: hotpink;
+}
+.three {
+    background-color: purple;
+}
+.four {
+    background-color: blue;
+}
+
+/* Exam Report */
+
+
+/* Relationships */
+.relation{
+    display: flex;
+    text-align: left;
+    color: black;
+    padding: 15px;
+}
+    .relation img {
+        width: 100px;
+    }
+    .relation p {
+        margin: 10px;
+        width: 100px;
+    }
+
+
+    /* Extracurriculas */
 .slide {
     margin: 0 0 0 0;
     width: 100%;
-    height: 670px;
+    height: calc(100% - 100px);
 }
 .right h1{
     padding: 0;

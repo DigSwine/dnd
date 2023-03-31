@@ -1,0 +1,51 @@
+<!Document>
+<head>
+    <link rel="stylesheet" type="text/css" href="/styles/imports.css">
+    <link rel="stylesheet" type="text/css" href="/views/layout.css">
+    <link rel="stylesheet" type="text/css" href="/views/nav.css">
+
+    <link rel="stylesheet" type="text/css" href="/views/libary/libary.css">
+
+    <title>Strixhaven - Home </title>
+    <link rel="icon" href="/assets/strix_logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<html>
+<body id="body">
+    <svg style="width: 0; height: 0;" id="svg"></svg>
+    <!-- Header -->
+    <div data-include="header"></div>
+
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
+    
+    <!-- Main -->
+    <main>
+        <h1>Coming Soon</h1>
+    </main>
+    <!-- Footer -->
+    <div data-include="footer"></div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="/javascript/nav.js"></script>
+<script>
+    var pageid = 'Strixhaven Libary';
+
+    $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function () {
+            var file = 'views/addons/_' + $(this).data('include') + '.html'
+            $(this).load(file)
+        })
+
+        document.getElementById('myVideo').addEventListener('ended', myHandler, false);
+        function myHandler(e) {
+            window.location = 'about.html';
+        }
+        // preload();
+    })
+</script>

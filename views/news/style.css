@@ -55,17 +55,15 @@ main {
     display: none;
 }
 
-p {
-    margin: 0;
-}
-
 .bodycontainer {
     position: relative;
     padding: 0 15px 15px 15px;
     width: 90%;
     height: 90%;
+    max-height: 90%;
     margin: 0 5% 0 5%;
 }
+
 
 .RCorn {
     z-index: 10;
@@ -98,23 +96,26 @@ p {
         width: 75px;
     }
 
+:root {
+    --pg2colwidth: calc(100%/3);
+    --colpadding: 15px;
+}
+
 .pg1 {
-    position: relative;
     height: 100%;
-    width: 100%;
+    padding: 0 50px 0 50px;
     text-align: left;
 }
 .pg1 .Mainheadline{
     text-align: center;
-    font-size: 4rem;
+    font-size: 2.75rem;
     font-weight: bold;
-    height: auto;
-    max-width: 100%;
+    height: 70px;
     width: 100%;
 }
     .pg1 .secContainer {
         position: relative;
-        height: 94%;
+        height: calc(100% - 70px);
         display: flex;
     }
         .pg1 .secContainer .leftcol {
@@ -131,26 +132,24 @@ p {
             }
         .pg1 .secContainer .right {
             margin-left: 15px;
-            padding: 0 15px 15px 15px;
+            padding: var(--colpadding);
             border-left: 2px solid #2f2f2f;
             height: calc(100% - 30px);
             width: 70%;
             column-count: 2;
             white-space: pre-line;
+            font-size: 1.2rem;
         }
 
-:root {
-    --pg2colwidth: calc(100%/3);
-}
 .pg2 {
     display: flex;
-    padding-left: 3%;
+    padding: 0 50px 0 50px;
     position: absolute;
     height: 100%;
-    width: 94%;
     text-align: left;
 }
     .pg2 .left {
+        padding: var(--colpadding);
         height: 100%;
         width: var(--pg2colwidth);
     }
@@ -161,10 +160,12 @@ p {
         border-right: 2px solid #2f2f2f;
     }
         .pg2 .midwrapper .top {
+            padding: var(--colpadding);
             height: 50%;
             width: 100%;
         }
         .pg2 .midwrapper .bot {
+            padding: var(--colpadding);
             height: 50%;
             width: 100%;
         }
@@ -176,16 +177,15 @@ p {
                 margin-right: 15px;
             }
     .pg2 .right {
+        padding: var(--colpadding);
         height: 100%;
         width: var(--pg2colwidth);
     }
 
 .pg3 {
     display: flex;
-    padding-left: 3%;
-    position: absolute;
     height: 100%;
-    width: 94%;
+    padding: 0 50px 0 50px;
     text-align: left;
 }
     .pg3 .colL {
