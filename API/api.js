@@ -10,7 +10,6 @@ function getAll(toget) {
         // College Data
         _supabase.from('view_allcolleges').select('*').then(response => {
             // extractdata('colleges', response.data);
-            console.log("College Data Loaded");
         })
     }
 
@@ -18,7 +17,6 @@ function getAll(toget) {
         // Student Data
         _supabase.from('view_allstudents').select('*').then(response => {
             // extractdata('students', response.data);
-            console.log("Student Data Loaded");
         })
     }
 
@@ -26,7 +24,6 @@ function getAll(toget) {
         // Link Students to Colleges
         _supabase.from('view_student_college').select('*').then(response => {
             // extractdata('collegemembers', response.data);
-            console.log("College Members Data Loaded");
         })
     }
 
