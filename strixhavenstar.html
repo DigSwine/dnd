@@ -27,12 +27,12 @@
             <div class="paperdate">Monday, 1st November, 2022</div>
         </div>
         <div class="bodycontainer">
-            <div id="leftc" class="LCorn hide" onclick="previouspg()"></div>
-            <div id="rightc" class="RCorn show" onclick="nextpg()"></div>
+            <div id="leftc" class="LCorn" style="display: none" onclick="previouspg()"></div>
+            <div id="rightc" class="RCorn" style="display: block" onclick="nextpg()"></div>
 
-            <div id="page1" class="pg1 show">page 1</div>
-            <div id="page2" class="pg2 hide">page 2</div>
-            <div id="page3" class="pg3 hide">page 3</div>
+            <div id="page1" class="pg1" style="display: block">page 1</div>
+            <div id="page2" class="pg2" style="display: none">page 2</div>
+            <div id="page3" class="pg3" style="display: none">page 3</div>
         </div>
     </main>
 </body>
@@ -128,28 +128,12 @@
             }
         }
     }
-        
-    
-
-
-
-
-
-
-
-
-
 
     var showing = 0;
     var pages = ["page1", "page2", "page3"];
     function toggleshow(el) {
         var element = document.getElementById(el);
-        var tCL = element.classList;
-        if (tCL.contains("show")) {
-            var newCL = tCL.replace("show", "hide");
-            console.log("newCL = " + newCL);
-        }           
-        document.getElementById(el).classList = tCL;
+        element.style.display = "none";
     }
 
 
@@ -159,18 +143,15 @@
                 toggleshow(pages[x]);
             }
             showing++;
-
             var toshow = document.getElementById(pages[showing]);
-            var tCL = toshow.classList;
-            if (tCL.contains("hide")) {
-                var newCL = tCL.replace("hide", "show");
-                console.log("newCL = " + newCL);
-            }       
-            document.getElementById(pages[showing]).classList = tCL + " show";
-            document.getElementById("leftc").classList = "LCorn show";
+            var preBtn = document.getElementById('leftc');
+            var nexBtn = document.getElementById('rightc');
             if (showing == 2) {
-                document.getElementById("rightc").classList = "RCorn hide";
+                toshow.style.display = "flex";
+                nexBtn.style.display = "none";
             }
+            preBtn.style.display = "block";
+            toshow.style.display = "flex";
         }
     }
 
@@ -181,15 +162,14 @@
             }
             showing--;
             var toshow = document.getElementById(pages[showing]);
-            var tCL = toshow.classList;
-            if (tCL.contains("hide")) {
-                var newCL = tCL.replace("hide", "show");
-                console.log("newCL = " + newCL);
-            }
-            document.getElementById(pages[showing]).classList = tCL + " show";
-            document.getElementById("rightc").classList = "RCorn show";
+            var preBtn = document.getElementById('leftc');
+            var nexBtn = document.getElementById('rightc');
             if (showing == 0) {
-                document.getElementById("leftc").classList = "LCorn hide";
+                toshow.style.display = "block";
+                preBtn.style.display = "none";
+            } else {
+                toshow.style.display = "flex";
+                nexBtn.style.display = "block";
             }
         }
     }

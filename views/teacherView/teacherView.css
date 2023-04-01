@@ -159,13 +159,18 @@ header {
     }
 
 .SScontainer {
+    background-image: url(../../assets/star/paper_1.jpg);
+    background-size: cover;
     height: calc(100% - 50px - 50px);
     width: 100%;
-    display: flex;
+}
+
+:root {
+    --pg2colwidth: calc(100%/3);
+    --colpadding: 15px;
 }
 
 .pg1 {
-    flex: 1;
     height: calc(100% - 50px);
     padding: 0 50px 0 50px;
     text-align: left;
@@ -205,13 +210,11 @@ header {
             font-size: 1.2rem;
         }
 
-
 .pg2 {
-    display: none;
+    height: calc(100% - 50px);
     padding: 0 50px 0 50px;
-    position: absolute;
-    height: 100%;
     text-align: left;
+    display: flex;
 }
     .pg2 .left {
         padding: var(--colpadding);
@@ -226,13 +229,13 @@ header {
     }
         .pg2 .midwrapper .top {
             padding: var(--colpadding);
-            height: 50%;
-            width: 100%;
+            height: calc(100% / 2 - 15px);
+            width: calc(100% - 30px);
         }
         .pg2 .midwrapper .bot {
             padding: var(--colpadding);
-            height: 50%;
-            width: 100%;
+            height: calc(100% / 2 - 15px);
+            width: calc(100% - 30px);
         }
             .pg2 .midwrapper .bot:before {
                 border-top: 2px solid #2f2f2f;
@@ -246,10 +249,39 @@ header {
         height: 100%;
         width: var(--pg2colwidth);
     }
+    .pg2 input {
+        margin: 0 0 5px 0;
+        width: 100%;
+        height: 30px;
+        white-space: pre-line;
+        font-family: 'Valneck';
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    .pg2 textarea {
+        width: 100%;
+        height: calc(100% - 30px);
+        text-align: justify;
+        font-family: 'Valneck';
+        font-size: 1rem;
+    }
 
+textarea, input {
+    background-color: transparent;
+    border: none;
+    resize: none;
+}
+
+.footerSpace {
+    display: flex;
+}
+.baseSpacer {
+    width: 25%;
+    padding: 15px;
+}
 .save {
     background-color: white;
-    width: 100px;
+    width: 50%;
     padding: 15px;
 }
 .save:hover {

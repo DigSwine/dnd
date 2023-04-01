@@ -41,14 +41,18 @@
             </div>
             <div id="S2" class="page">
                 <div class="subnav">
-                    <div class="sub">Page 1</div>
-                    <div class="sub">Page 2</div>
+                    <div id="SSPage1" class="sub">Page 1</div>
+                    <div id="SSPage2" class="sub">Page 2</div>
                 </div>
                 <div class="SScontainer">
-                    <div id="page1" class="pg1 show">page 1</div>
-                    <div id="page2" class="pg2 show">page 2</div>
+                    <div id="page1" class="pg1">page 1</div>
+                    <div id="page2" class="pg2" style="display: none">page 2</div>
                 </div>
-                <div class="save" id="SSSave">Save</div>
+                <div class="footerSpace">
+                    <div class="baseSpacer"></div>
+                    <div class="save" id="SSSave">Save</div>
+                    <div class="baseSpacer"></div>
+                </div>
             </div>
             <div id="S3" class="page">
                 <h1>Page 1</h1>
@@ -74,7 +78,7 @@
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file)
         })
-        StrixhavenStar("get");
+            StrixhavenStar("get");            
     })
 
     var showing = 0;
@@ -117,6 +121,18 @@
     $("#SSSave").click(function () {
         StrixhavenStar("save");
     })
+    $(".sub").click(function () {
+        if (this.id == "SSPage1") {
+            document.getElementById("page1").style.display = "block";
+            document.getElementById("page2").style.display = "none";
+        }
+        if (this.id == "SSPage2") {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "flex";
+        }
+
+    
+    })
 </script>
 <script>
     function logout() {
@@ -132,8 +148,9 @@
 
     function StrixhavenStar(todo) {
         if (todo == "get") {
-            _supabase.from('_tblStrixhavenStar').select('*').then(response => {
+            _supabase.from('_tblStrixhavenStar').select('*').order('id', { ascending: true }).then(response => {
                 var alldata = response.data;
+                var runs = 0;
                 for (var x = 0; x < alldata.length; x++) {
                     var data = alldata[x];
 
@@ -146,23 +163,23 @@
                     // Get correct page
                     var togoPage = document.getElementById('page' + page);
 
-                    // Create Editable Boxs
-                    const newMainTitle = document.createElement("input");
-                    const newSection = document.createElement("div");
-                    const newLeft = document.createElement("div");
-                    const newLeftVid = document.createElement("video");
-                    const newRight = document.createElement("div");
-                    const newMainContent = document.createElement("textarea");
-
                     if (page == 1) {
-                        togoPage.querySelector('.Mainheadline').style.display = "none";
+                        // Create Editable Boxs
+                        const newMainTitle = document.createElement("input");
+                        const newSection = document.createElement("div");
+                        const newLeft = document.createElement("div");
+                        const newLeftVid = document.createElement("video");
+                        const newRight = document.createElement("div");
+                        const newMainContent = document.createElement("textarea");
+
+                        togoPage.querySelector('.Mainheadline').remove();
 
                         newMainTitle.classList = "Mainheadline";
                         newMainTitle.id = "newMainHeaderPage1";
                         newMainTitle.value = title;
                         togoPage.appendChild(newMainTitle);
 
-                        togoPage.querySelector('.secContainer').style.display = "none";
+                        togoPage.querySelector('.secContainer').remove();
 
                         newSection.classList = "secContainer";
 
@@ -209,54 +226,93 @@
                             contentContainer.style.height = currentH - headerH;
                         }
                     } else {
-                        var id = "";
-                        if (location == "left") {
-                            id = 'pg2left';
+                        // Create Editable Boxs
+                        const newleft = document.createElement("div");
+                        const newMTop = document.createElement("div");
+                        const newMBot = document.createElement("div");
+                        const newright = document.createElement("div");
+
+                        const newTitle = document.createElement("input");
+                        const newCONTENT = document.createElement("textarea");
+
+                        newTitle.value = title;
+                        newCONTENT.value = content;
+
+                        if (runs == 0) {
+                            togoPage.querySelector("#pg2left").remove();
+                            togoPage.querySelector("#pg2right").remove(); 
+                            togoPage.querySelector("#pg2Mtop").remove();
+                            togoPage.querySelector("#pg2Mbot").remove();
+                            runs++;
                         }
-                        if (location == "middle top") {
-                            id = 'pg2Mtop';
+
+                        if (location == "right") {
+                            newright.id = "pg2right";
+                            newright.classList = "right";
+                            newTitle.id = 'newpg2rightTITLE';
+                            newCONTENT.id = 'newpg2rightCONTENT';
+                            newright.appendChild(newTitle);
+                            newright.appendChild(newCONTENT);
+                            togoPage.appendChild(newright);
                         }
                         if (location == "middle bottom") {
-                            id = 'pg2Mbot';
+                            newright.id = "pg2Mbot";
+                            newright.classList = "bot";
+                            newTitle.id = 'newpg2MBTITLE';
+                            newCONTENT.id = 'newpg2MBCONTENT';
+                            newright.appendChild(newTitle);
+                            newright.appendChild(newCONTENT);
+                            togoPage.querySelector('.midwrapper').appendChild(newright);
                         }
-                        if (location == "right") {
-                            id = 'pg2right';
+                        if (location == "middle top") {
+                            newright.id = "pg2Mtop";
+                            newright.classList = "top";
+                            newTitle.id = 'newpg2MTTITLE';
+                            newCONTENT.id = 'newpg2MTCONTENT';
+                            newright.appendChild(newTitle);
+                            newright.appendChild(newCONTENT);
+                            togoPage.querySelector('.midwrapper').appendChild(newright);
                         }
-                        if (id) {
-                            var col = togoPage.querySelector('#' + id);
-
-                            // Create Title and Content
-                            const newTitle = document.createElement("h2");
-                            const newContent = document.createElement("p");
-
-                            newTitle.innerText = title;
-                            newContent.innerText = content;
-
-                            // Append Title to Col
-                            col.appendChild(newTitle);
-                            // Append Content to Col
-                            col.appendChild(newContent);
-
-
-                        } else {
-                            console.log(story);
-                        }
+                        if (location == "left") {
+                            newleft.id = "pg2left";
+                            newleft.classList = "left";
+                            newTitle.id = 'newpg2leftTITLE';
+                            newCONTENT.id = 'newpg2leftCONTENT';
+                            newleft.appendChild(newTitle);
+                            newleft.appendChild(newCONTENT);
+                            togoPage.insertBefore(newleft, togoPage.querySelector('.midwrapper'));
+                        }                        
                     }
                 }
             })
         }
         if (todo == "save") {
-            // Get Data
-
             // Page 1
             var newPG1Title = document.getElementById("newMainHeaderPage1").value;
             var newPG1Content = document.getElementById("newMainContentPage1").value;
 
-            _supabase.from('_tblStrixhavenStar').update({ title: newPG1Title, content: newPG1Content }).eq('pageNo', 1, 'location', "one").select().then(response => {
-                alert("Saved");
+            // Page 2
+            var newPG2TitleL = document.getElementById("newpg2leftTITLE").value;
+            var newPG2ContentL = document.getElementById("newpg2leftCONTENT").value;
+            var newPG2TitleMT = document.getElementById("newpg2MTTITLE").value;
+            var newPG2ContentMT = document.getElementById("newpg2MTCONTENT").value;
+            var newPG2TitleMB = document.getElementById("newpg2MBTITLE").value;
+            var newPG2ContentMB = document.getElementById("newpg2MBCONTENT").value;
+            var newPG2TitleR = document.getElementById("newpg2rightTITLE").value;
+            var newPG2ContentR = document.getElementById("newpg2rightCONTENT").value;
+
+            _supabase.from('_tblStrixhavenStar').update({ title: newPG1Title, content: newPG1Content }).eq('location', 'one').then(response => {
+            })
+            _supabase.from('_tblStrixhavenStar').update({ title: newPG2TitleL, content: newPG2ContentL }).eq('location', 'left').then(response => {
+            })
+            _supabase.from('_tblStrixhavenStar').update({ title: newPG2TitleMT, content: newPG2ContentMT }).eq('location', 'middle top').then(response => {
+            })
+            _supabase.from('_tblStrixhavenStar').update({ title: newPG2TitleMB, content: newPG2ContentMB }).eq('location', 'middle bottom').then(response => {
+            })
+            _supabase.from('_tblStrixhavenStar').update({ title: newPG2TitleR, content: newPG2ContentR }).eq('location', 'right').then(response => {
             })
 
-            
+            alert("This should of saved have a check on Strixhaven Star or reload the page");
         }
     }
 </script>
