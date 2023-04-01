@@ -150,12 +150,16 @@ header {
     width: 100%;
     height: 50px;
 }
-    .subnav .sub{
+    .subnav .sub {
+        color: white;
         flex: 1;
+        padding: 15px;
+        transition: all 0.5s;
     }
     .subnav .sub:hover {
         cursor: pointer;
         color: darkgoldenrod;
+        background-color: darkslategrey;
     }
 
 .SScontainer {
@@ -280,10 +284,13 @@ textarea, input {
     padding: 15px;
 }
 .save {
-    background-color: white;
+    color: white;
     width: 50%;
     padding: 15px;
+    transition: all 0.5s;
 }
-.save:hover {
-    cursor: pointer;
-}
+    .save:hover {
+        cursor: pointer;
+        color: darkgoldenrod;
+        background-color: darkslategrey;
+    }
