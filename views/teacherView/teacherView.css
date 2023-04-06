@@ -25,20 +25,16 @@ header {
     z-index: 10;
     position: relative;
 }
-
     header .logo img {
         height: 100%;
     }
-
     header .pagetitle {
         font-size: 5rem;
         color: darkgoldenrod;
     }
-
     header .thenavigation .hamburger {
         display: none;
     }
-
 .logout {
     position: absolute;
     right: 8px;
@@ -59,7 +55,6 @@ header {
     -webkit-transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
     transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
 }
-
 .particle {
     opacity: 0;
     position: absolute;
@@ -83,7 +78,6 @@ header {
         transform: translateY(-1500%);
     }
 }
-
 @keyframes particleAnim {
     0% {
         opacity: 0;
@@ -108,7 +102,6 @@ header {
     z-index: 15;
     display: flex;
 }
-
 .control {
     background-color: white;
     height: 80%;
@@ -164,13 +157,14 @@ header {
     transition: all 0.5s;
 }
 .page {
+    position: relative;
     height: calc(100% - 100px);
     width: 100%;
     background-color: rebeccapurple;
 }
-.page img {
-    height: 100%;
-}
+    .page img {
+        margin: 50px;
+    }
 
 .subnav{
     display: flex;
@@ -302,6 +296,9 @@ textarea, input {
     border: none;
     resize: none;
 }
+    input[disabled] {
+        color: black;
+    }
 
 .footerSpace {
     display: flex;
@@ -322,7 +319,7 @@ textarea, input {
         background-color: darkslategrey;
     }
 
-    /* Players */
+/* Players */
 .Playerprofile{
     width: 30%;
     height: 100%;
@@ -332,11 +329,43 @@ textarea, input {
         height: 40%;
         width: 100%;
         display: flex;
+        background-color: darkcyan;
     }
         .Playerprofile .PPtop .PPLeft {
             height: 100%;
             width: 40%;
+            background-color: gray;
         }
+            .Playerprofile .PPtop .PPLeft img {
+                height: 100%;
+                margin: 0;
+            }
+        .Playerprofile .PPtop .PPRight {
+            width: 60%;
+            position: relative;
+            text-align: right;
+        }
+            .Playerprofile .PPtop .PPRight form{
+                height: 100%;
+                width: 100%;
+                margin: 0;
+            }
+            .Playerprofile .PPtop .PPRight form label {
+                margin: 0 15px 0 0;
+                width: 100%;
+                display: block;
+            }
+            .Playerprofile .PPtop .PPRight form label input {
+                width: 50%;
+                height: calc(100%/9);
+                text-align: center;
+            }
+            
+
+
+
+
+
     .Playerprofile .PPbot {
         height: 60%;
         width: 100%;

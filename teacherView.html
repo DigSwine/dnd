@@ -57,16 +57,31 @@
                 <div class="Playerprofile">
                     <div class="PPtop">
                         <div class="PPLeft">
-                            <img id="PPimg"/>
+                            <img id="PPimg" />
                         </div>
-                        <div class="PPRight"></div>
+                        <div class="PPRight">
+                            <form id="profileform" class="profile">
+                                <label>Name: <input id="name" placeholder="Name" /></label>
+                                <label>Age: <input id="age" placeholder="Age" /></label>
+                                <label>Gender: <input id="gender" placeholder="Gender" /></label>
+                                <label>Race: <input id="race" placeholder="Race" /></label>
+                                <label>Alignment: <input id="alignment" placeholder="Alignment" /></label>
+                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" /></label>
+                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" /></label>
+                                <label>Height: <input id="height" placeholder="Height" /></label>
+                                <label>Weight: <input id="weight" placeholder="Weight" /></label>
+                            </form>
+                        </div>
                     </div>
                     <div class="PPbot scrollbar">
-
+                        
                     </div>
                 </div>
                 <div class="PlayerprofileRight">
-
+                    <div class="PPjob"></div>
+                    <div class="PPcourses"></div>
+                    <div class="PPexmas"></div>
+                    <div class="PPrelationships"></div>
                 </div>
             </div>
             <div id="S2" class="page">
@@ -88,7 +103,7 @@
                 <h1>Page 1</h1>
             </div>
             <div id="S4" class="page">
-                <img src="/assets/eliza.jpg" />
+                <img src="/assets/blackmarket.png" />
             </div>
         </div>
 
@@ -97,18 +112,17 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script src="../../javascript/teacherview.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/API/api.js"></script>
 <script>
     var pageid = 'Professor DM';
-    $(function () {        
+    $(function () {
         var includes = $('[data-include]')
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file)
         })
-        StrixhavenStar("get");  
+        StrixhavenStar("get");
         getPP();
     })
 
@@ -139,15 +153,12 @@
     var urls = ["views/news/_page1.html", "views/news/_page2.html", "views/news/_page3.html"];
     $.get(urls[0], function (data) {
         $(ids[0]).html(data);
-        console.log("page 1 has been loaded");
     });
     $.get(urls[1], function (data) {
         $(ids[1]).html(data);
-        console.log("page 2 has been loaded");
     });
     $.get(urls[2], function (data) {
         $(ids[2]).html(data);
-        console.log("page 3 has been loaded");
     });
     $("#SSSave").click(function () {
         StrixhavenStar("save");
@@ -160,12 +171,29 @@
         if (this.id == "SSPage2") {
             document.getElementById("page1").style.display = "none";
             document.getElementById("page2").style.display = "flex";
-        }   
+        }
     })
     $('.option').click(function () {
         for (var x = 0; x < PPCplayer.length; x++) {
             if (PPCplayer[x] == this.innerText) {
-                document.getElementById('PPimg').src = PPCimg[x];
+                var page = document.getElementById("S1");
+                var profile = page.querySelector(".Playerprofile");
+
+                profile.querySelector('#PPimg').src = PPCimg[x];
+                profile.querySelector('#name').value = PPCname[x];
+                profile.querySelector('#age').value = PPCage[x];
+                profile.querySelector('#gender').value = PPCgender[x];
+                profile.querySelector('#race').value = PPCrace[x];
+                profile.querySelector('#alignment').value = PPCalignment[x];
+                profile.querySelector('#haircolour').value = PPChaircolor[x];
+                profile.querySelector('#eyecolour').value = PPCeyecolor[x];
+                profile.querySelector('#height').value = PPCheight[x];
+                profile.querySelector('#weight').value = PPCweight[x];
+
+                var elems = ['#name', '#age', '#gender', '#race', '#alignment', '#haircolour', '#eyecolour', '#height', '#weight'];
+                for (var y = 0; y < elems.length; y++) {
+                    profile.querySelector(elems[y]).setAttribute("disabled", true);
+                }
             }
         }
     })
@@ -175,12 +203,6 @@
         sessionStorage.clear();
         window.location = 'login.html';
     }
-
-    const { createClient } = supabase;
-
-    var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
-    var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
-    const _supabase = createClient(url, anon);
 
     function StrixhavenStar(todo) {
         if (todo == "get") {
@@ -276,7 +298,7 @@
 
                         if (runs == 0) {
                             togoPage.querySelector("#pg2left").remove();
-                            togoPage.querySelector("#pg2right").remove(); 
+                            togoPage.querySelector("#pg2right").remove();
                             togoPage.querySelector("#pg2Mtop").remove();
                             togoPage.querySelector("#pg2Mbot").remove();
                             runs++;
@@ -317,7 +339,7 @@
                             newleft.appendChild(newTitle);
                             newleft.appendChild(newCONTENT);
                             togoPage.insertBefore(newleft, togoPage.querySelector('.midwrapper'));
-                        }                        
+                        }
                     }
                 }
             })
@@ -356,7 +378,12 @@
     var PPCname = [];
     var PPCrace = [];
     var PPCgender = [];
+    var PPChaircolor = [];
+    var PPCeyecolor = [];
     var PPCage = [];
+    var PPCheight = [];
+    var PPCweight = [];
+    var PPCalignment = [];
     var PPCimg = [];
 
     var NPCPname = [];
@@ -378,9 +405,15 @@
                     PPCgender.push(person['character_gender']);
                     PPCname.push(person['character_name']);
                     PPCrace.push(person['character_race']);
+                    PPCalignment.push(person['Alignment']);
+                    PPChaircolor.push(person['Hair Colour']); 
+                    PPCeyecolor.push(person['Eye Colour']); 
+                    PPCweight.push(person['Weight']);
+                    PPCheight.push(person['Height']);
+                    
                 } else {
                     // NPCs
-                    NPCPimg.push(person['Profile Picture']);
+                    NPCPimg.push(person["assets/students/npcs/" + 'Profile Picture']);
                     NPCPage.push(person['character_age']);
                     NPCPgender.push(person['character_gender']);
                     NPCPname.push(person['character_name']);

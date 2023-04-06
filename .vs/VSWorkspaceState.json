@@ -3,9 +3,8 @@
     "",
     "\\API",
     "\\javascript",
-    "\\views",
-    "\\views\\news"
+    "\\views"
   ],
-  "SelectedNode": "\\views\\news\\_page1.html",
+  "SelectedNode": "\\API\\login.js",
   "PreviewInSolutionExplorer": false
 }

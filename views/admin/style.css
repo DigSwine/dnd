@@ -105,6 +105,20 @@ body {
         margin: 0;
         font-size: 1.2rem;
     }
+    .content .infobtn{
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        line-height: 17px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        height: 20px;
+        width: 20px;
+    }
     .content:hover {
         opacity: 1;
         background: rgba(0, 0, 0, 0.4);

@@ -170,6 +170,7 @@
         const newProfs = document.createElement("div");
         const newPersonContainer = document.createElement("div");
         const newPerson = document.createElement("div");
+        const newInfobtn = document.createElement("div");
 
         const newSchoolType = document.createElement("div");
 
@@ -187,12 +188,15 @@
         newPersonContainer.classList = "cube";
         newPersonContainer.id = name;
 
+        newInfobtn.classList = "infobtn";
+        newInfobtn.innerText = "i";
 
         newHiddenName.title = "click to open infoBox";
         newHiddenName.classList = "void";
         newHiddenName.innerText = name;
         newHiddenRoll.innerText = role + " of " + type;
 
+        newPerson.appendChild(newInfobtn);
         newPerson.appendChild(newHiddenName);
         newPerson.appendChild(newHiddenRoll);
 

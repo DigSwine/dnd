@@ -1,3 +1,9 @@
-body{
-    background-color: grey;
+body {
+    background-image: url(../../assets/libary/libarybg.jpg);
+    background-size: cover;
+    background-color: #808080;
+}
+
+header .thenavigation {
+    color: white;
 }

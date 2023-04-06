@@ -41,7 +41,7 @@ header {
         line-height: 1.75;
         width: 100%;
         text-align: center;
-        font-size: 6rem;
+        font-size: 5rem;
         font-family: 'Unfair Shares', sans-serif;        
         color: darkgoldenrod;
         -webkit-text-stroke: 2px black;
@@ -168,7 +168,7 @@ strong {
         --headersides: 10%;
     }
     header .pagetitle {
-        font-size: 4rem;
+        font-size: 3rem;
     }
     header .logo {
         font-size: 4rem;
