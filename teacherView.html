@@ -101,6 +101,9 @@
             </div>
             <div id="S3" class="page">
                 <h1>Page 1</h1>
+                <select id="NPClist">
+                    <option>-- Please Select an NPC --</option>
+                </select>
             </div>
             <div id="S4" class="page">
                 <img src="/assets/blackmarket.png" />
@@ -386,11 +389,17 @@
     var PPCalignment = [];
     var PPCimg = [];
 
-    var NPCPname = [];
-    var NPCPrace = [];
-    var NPCPgender = [];
-    var NPCPage = [];
-    var NPCPimg = [];
+    var NPCid = [];
+    var NPCimg = [];
+    var NPCage = [];
+    var NPCgender = [];
+    var NPCname = [];
+    var NPCrace = [];
+    var NPCalignment = [];
+    var NPChaircolor = [];
+    var NPCeyecolor = [];
+    var NPCweight = [];
+    var NPCheight = [];
 
     function getPP() {
         _supabase.from('_tblStudents').select('*').order('id', { ascending: true }).then(response => {
@@ -410,15 +419,34 @@
                     PPCeyecolor.push(person['Eye Colour']); 
                     PPCweight.push(person['Weight']);
                     PPCheight.push(person['Height']);
-                    
                 } else {
                     // NPCs
-                    NPCPimg.push(person["assets/students/npcs/" + 'Profile Picture']);
-                    NPCPage.push(person['character_age']);
-                    NPCPgender.push(person['character_gender']);
-                    NPCPname.push(person['character_name']);
-                    NPCPrace.push(person['character_race']);
+                    NPCid.push(person['id']);
+                    NPCimg.push("assets/students/npcs/" + person['Profile Picture']);
+                    NPCage.push(person['character_age']);
+                    NPCgender.push(person['character_gender']);
+                    NPCname.push(person['character_name']);
+                    NPCrace.push(person['character_race']);
+                    NPCalignment.push(person['Alignment']);
+                    NPChaircolor.push(person['Hair Colour']);
+                    NPCeyecolor.push(person['Eye Colour']);
+                    NPCweight.push(person['Weight']);
+                    NPCheight.push(person['Height']);
+                    console.log(NPCname.length);
                 }
+            }
+            // CREATE NPC LIST
+            var page = document.getElementById('S3');
+            console.log(NPCname.length);
+            for (var x = 0; x < NPCname.length; x++) {
+                var newOption = document.createElement('option');
+
+                newOption.value = NPCid[x];
+                newOption.innerText = NPCname[x];
+
+                console.log(newOption);
+
+                page.querySelector('#NPClist').appendChild(newOption);
             }
         })
     }
