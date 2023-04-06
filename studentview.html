@@ -29,7 +29,7 @@
                     <div class="info" id="info">
                         <div class="lefttopcontainer">
                             <div class="card">
-                                <img src="assets/eliza.jpg" />
+                                <img id="profilepicture" />
                             </div>
                             <form id="profileform" class="profile">
                                 <label>Name: <input id="name" placeholder="Name" /></label>
@@ -216,48 +216,41 @@
 <script src="/javascript/login.js"></script>
 <script>
     $(document).ready(function () {
-        var data = JSON.parse(sessionStorage.getItem("Data"));
+        var data = JSON.parse(sessionStorage.getItem("Student_Id"));
         if (data) {
-           getstudent(data);
-           getschool(data);
+            getStudentDataByID(data);
         }
     })
     function logout() {
         sessionStorage.clear();
         window.location = 'login.html';
     }
-    function setdataabout(type, data) {
-        if (type == "student") {
-            /*
-            document.getElementById("pagename").innerText = "Welcome " + data[0]["character_name"];
-            document.getElementById("CName").innerText = data[0]["character_name"];
-            document.getElementById("CAge").innerText = data[0]["character_age"];      
-        
-            
 
-            
-            character_gender:"Female" 
-            character_player:"Morgan"
-            character_race:"Kalashtar"
-            id: 1 */
+    function getStudentDataByID(sid) {
+        _supabase.from('_tblStudents').select('*').eq('id', sid).order('id', { ascending: true }).then(response => {
+            for (var x = 0; x < response.data.length; x++) {
+                var student = response.data[x];
+                var alignment = student['Alignment'];
+                var eyes = student['Eye Colour'];
+                var hair = student['Hair Colour'];
+                var height = student['Height'];
+                var img = student['Profile Picture'];
+                var weight = student['Weight'];
+                var age = student['character_age'];
+                var gender = student['character_gender'];
+                var name = student['character_name'];
+                var race = student['character_race'];
 
-        } else if (type == "college") {
-            if (data[0]['college_id']['college_name'] == "First Years") {
-                // Back of cards swap to selected college
-            } else {
+                document.getElementById('profilepicture').src = "assets/students/players/"+img;
 
-            }            
-        }
+
+
+
+
+                }
+            })
     }
 
-    /*
-
-  using 
-    - an animated gif of sparkles.
-    - an animated gradient as a holo effect.
-    - color-dodge mix blend mode
-  
-*/
 var x;
 var $cards = $(".card");
 var $style = $(".hover");

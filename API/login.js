@@ -17,7 +17,7 @@ function extractdata(array) {
         var data = array[x];
         var per = data['log_per'];
         if (per == 'Stu') {
-            sessionStorage.setItem("Data", JSON.stringify(data['student_id']));
+            sessionStorage.setItem("Student_Id", JSON.stringify(data['student_id']));
             window.open('studentview.html', '_self');
         }
         if (per == 'Tch') {

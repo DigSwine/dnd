@@ -186,56 +186,75 @@ main {
 .pg3 {
     display: flex;
     height: 100%;
-    padding: 0 50px 0 50px;
+    padding: 0 0 0 50px;
     text-align: left;
 }
-    .pg3 .colL {
-        width: 50%;
+    .pg3 .jobs {
+        width: 100%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-top: 10px;
     }
-    .pg3 .colR {
-        width: 50%;
-        height: 100%;
-        border-left: 2px solid #2f2f2f;
-    }
-    .pg3 .joblisting{
+    .pg3 .jobs .job{
+        border: solid 1px black;
+        width: auto;
+        padding: 5px;
+        margin: 5px;
         position: relative;
-        border: 1px solid;
-        margin: 15px 5px 0 5px;
-        padding: 2px;
     }
-        .pg3 .joblisting + .joblisting {
-            margin: 5px 5px 0 5px;
-        }
-        .pg3 .joblisting .jobwrapper{
-            display:flex;
-        }
-            .pg3 .joblisting .jobwrapper .title {
-                font-weight: bold;
-            }
-            .pg3 .joblisting .jobwrapper .title:after {
-                content: ' -';
-            }
-            .pg3 .joblisting .jobwrapper .place {
-                font-style: italic;
-            }
-            .pg3 .joblisting .jobwrapper .place:before {
-                content: ' - ';
-            }
-        .pg3 .joblisting .desc {
+        .pg3 .jobs .job h3 {
             margin: 0;
+            font-size: 1rem;
         }
+        .pg3 .jobs .job .details{
+            display: flex;
+        }
+            .pg3 .jobs .job .details p {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+        .pg3 .jobs .job button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 50px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            font-size: 0.9rem;
+        }
+            .pg3 .jobs .job button:hover {
+                cursor: pointer;
+            }
+            .pg3 .jobs .job button:active {
+                background-color: black;
+                color: darkgoldenrod;
+            }
+            .pg3 .jobs .job button span {
+                display: block;
+                height: 30px;
+                position: absolute;
+                top: 10px;
+                right: 0;
+                width: auto;
+                transform: translateY(-50%);
+                margin: 0;
+                transform: rotate(90deg);
+            }
 
-.headline {
-    text-align: center;
-    line-height: normal;
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    display: block;
-    padding: 0 0 0 0;
-    font-weight: 700;
-    text-transform: uppercase;
-}
+        .headline {
+            text-align: center;
+            line-height: normal;
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            display: block;
+            padding: 0 0 0 0;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 .author {
     font-weight: 700;
     font-size: 0.7rem;
