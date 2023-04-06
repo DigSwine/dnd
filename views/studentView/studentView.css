@@ -438,3 +438,25 @@ td {
     padding: 0;
     margin: 0;
 }
+
+
+.myjob {
+    margin: 15px;
+    text-align: left;
+}
+    .myjob .jobdetails {
+        display: flex;
+        position: relative;
+        width: 100%;
+    }
+        .myjob .jobdetails h3 {
+            margin: 0;
+        }
+        .myjob .jobdetails p {
+            margin: 0;
+            flex: 1;
+        }
+        .myjob .jobdetails button {
+            margin: 0;
+            flex: 1;
+        }

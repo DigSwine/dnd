@@ -139,7 +139,9 @@
                         </div>
                     </div>
                     <div class="slide">
-                        <h1 class="slideTitle"> Page 4 </h1>
+                        <div id="currentJob">
+                            
+                        </div>
                     </div>
 
                 </div>
@@ -227,6 +229,7 @@
     }
 
     function getStudentDataByID(sid) {
+        /* Student Data */
         _supabase.from('_tblStudents').select('*').eq('id', sid).order('id', { ascending: true }).then(response => {
             for (var x = 0; x < response.data.length; x++) {
                 var student = response.data[x];
@@ -253,13 +256,59 @@
                 info.querySelector('#eyecolour').value = eyes;
                 info.querySelector('#height').value = height;
                 info.querySelector('#weight').value = weight;
+            }
+        })
+        _supabase.from('Job<>Student').select('Job (id, Title, Location, Pay)').eq('Student', sid).then(response => {
+            if (response.data.length > 0) {
+                for (var x = 0; x < response.data.length; x++) {
+                    var data = response.data[x];
+                    var job = data['Job'];
 
-                  
+                    var currentJob = document.getElementById('currentJob');
+
+                    const theJob = document.createElement('div');
+                    const theJobDetails = document.createElement('div');
+                    const theTitle = document.createElement('h3');
+                    const theLocation = document.createElement('p');
+                    const theWage = document.createElement('p');
+                    const QuitButton = document.createElement('button');
+
+                    theJob.classList = "myjob";
+                    theJob.id = "myjob";
+                    QuitButton.classList = "quit";
+                    QuitButton.id = job['id'];
+                    QuitButton.innerText = "resign";
+
+                    theTitle.innerText = job['Title'];
+
+                    theJobDetails.classList = "jobdetails";
+
+                    theLocation.innerText = job['Location'];
+                    theWage.innerText = job['Pay'];
+
+                    theJobDetails.appendChild(theLocation);
+                    theJobDetails.appendChild(theWage);
+                    theJobDetails.appendChild(QuitButton);
 
 
+                    theJob.appendChild(theTitle);
+                    theJob.appendChild(theJobDetails);
+                    currentJob.appendChild(theJob);
 
+                    document.getElementById(job['id']).addEventListener('click', quitJob, false);
                 }
-            })
+            }
+        })
+    }
+    function quitJob() {
+        var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
+        var jid = this.id;
+        _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
+        })
+        _supabase.from('_tblJobs').update({ 'Player Filled': 'No' }).eq('id', jid).then(response => {
+        })
+        alert("You have now resigned");
+        document.getElementById('myjob').style.display = "none";
     }
 
 var x;
