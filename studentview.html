@@ -241,9 +241,20 @@
                 var name = student['character_name'];
                 var race = student['character_race'];
 
-                document.getElementById('profilepicture').src = "assets/students/players/"+img;
+                var info = document.getElementById('info');
+                info.querySelector('#profilepicture').src = "assets/students/players/" + img;
 
+                info.querySelector('#name').value = name;
+                info.querySelector('#age').value = age;
+                info.querySelector('#gender').value = gender;
+                info.querySelector('#race').value = race;
+                info.querySelector('#alignment').value = alignment;
+                info.querySelector('#haircolour').value = hair;
+                info.querySelector('#eyecolour').value = eyes;
+                info.querySelector('#height').value = height;
+                info.querySelector('#weight').value = weight;
 
+                  
 
 
 
