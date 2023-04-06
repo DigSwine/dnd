@@ -101,9 +101,11 @@
             </div>
             <div id="S3" class="page">
                 <h1>Page 1</h1>
-                <select id="NPClist">
-                    <option>-- Please Select an NPC --</option>
-                </select>
+                <label>Students
+                    <select id="NPClist">
+                        <option>-- Please Select an NPC --</option>
+                    </select>
+                </label>
             </div>
             <div id="S4" class="page">
                 <img src="/assets/blackmarket.png" />
@@ -441,7 +443,7 @@
             for (var x = 0; x < NPCname.length; x++) {
                 var newOption = document.createElement('option');
 
-                newOption.value = NPCid[x];
+                newOption.value = x;
                 newOption.innerText = NPCname[x];
 
                 console.log(newOption);
