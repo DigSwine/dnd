@@ -91,6 +91,7 @@
                         _supabase.from('Job<>Student').insert({ 'Job': jid, 'Student': id }).then(response => {
 
                         })
+                        alert("You have applied for the role! CONGRDULATIONS");
                     } else {
                         alert("Unfortuantly another student has already applyed for this position.");
                     }
