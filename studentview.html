@@ -256,6 +256,8 @@
                 info.querySelector('#eyecolour').value = eyes;
                 info.querySelector('#height').value = height;
                 info.querySelector('#weight').value = weight;
+
+                document.getElementById('pagename').innerText = "Welcome " + name + "!";
             }
         })
         _supabase.from('Job<>Student').select('Job (id, Title, Location, Pay)').eq('Student', sid).then(response => {
