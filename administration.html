@@ -20,11 +20,11 @@
     <main>
         <div class="subnav">
             <div class="subnav-content">
-                <a href="#lorehold">lorehold</a>
-                <a href="#prismari">prismari</a>
-                <a href="#silverquill">silverquill</a>
-                <a href="#quandrix">quandrix</a>
-                <a href="#witherbloom">witherbloom</a>
+                <a id="sublor" href="#lorehold">lorehold</a>
+                <a id="subpri" href="#prismari">prismari</a>
+                <a id="subsil" href="#silverquill">silverquill</a>
+                <a id="subqun" href="#quandrix">quandrix</a>
+                <a id="subwit" href="#witherbloom">witherbloom</a>
 
             </div>
         </div>
@@ -63,16 +63,16 @@
         })
     })
 
-    $(".cube").click(function () {
-        alert();
-    });
-
     var schools = ["lorehold", "prismari", "silverquill", "quandrix", "witherbloom", "principle"];
-
+    var subnavs = ['sublor', 'subpri', 'subsil', 'subqun', 'subwit'];
     $("a").click(function () {
         // Get Selected
         var h = $(this).attr('href');
         var ref = h.split('#');
+
+        for (var x = 0; x < subnavs.length; x++) {
+            document.getElementById(subnavs[x]).classList = "";
+        }
 
         // check current classlist
         var CL = document.getElementById(ref[1]).classList;
@@ -82,8 +82,9 @@
                 //Close All
                 document.getElementById(schools[x]).classList = "hidden";
             }
-
+            
             // Open Selected
+            this.classList = "selected";
             document.getElementById(ref[1]).classList = "";
             document.getElementById("principle").classList = "hidden";
 
