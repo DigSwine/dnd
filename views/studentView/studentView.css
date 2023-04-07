@@ -249,6 +249,10 @@ main {
         transform: translateY(-50%);
         font-size: 24px;
     }
+    .control:hover {
+        background-color: darkgoldenrod;
+        color: white;
+    }
 
 label {
     color: white;
