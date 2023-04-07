@@ -17,23 +17,9 @@ body {
     height: 0;
 }
 
-header {
-    height: var(--headerht);
-    width: 100%;
-    display: inline-flex;
-    z-index: 10;
-    position: relative;
+header .thenavigation .hamburger {
+    color: white;
 }
-        header .logo img {
-            height: 100%;
-        }
-    header .pagetitle {
-        font-size: 5rem;
-        color: darkgoldenrod;
-    }
-        header .thenavigation .hamburger {
-            display: none;
-        }
 
 .logout {
     position: absolute;

@@ -6,16 +6,17 @@
 
     <link rel="stylesheet" type="text/css" href="/views/studentView/studentView.css">
 
-    <style>
-    </style>
+    <title>Student</title>
+    <link rel="icon" href="/assets/strix_logo.png">
+
 </head>
 <html>
 <body>
     <!-- Header -->
     <div data-include="header"></div>
 
-    <!-- Logout -->
-    <button class="logout" onclick="logout()">Logout</button>
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
 
     <!-- BG -->
     <div id="bg1"></div>
@@ -76,7 +77,7 @@
                         <div class="extrainfo">
                             <h1>Extra Notes</h1>
                             <textarea class="test"></textarea>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
                 <div class="controls">
@@ -140,7 +141,7 @@
                     </div>
                     <div class="slide">
                         <div id="currentJob">
-  
+
                         </div>
                     </div>
                 </div>
@@ -151,6 +152,7 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="/javascript/nav.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
     var pageid = 'Loading';
@@ -221,10 +223,6 @@
             getStudentDataByID(data);
         }
     })
-    function logout() {
-        sessionStorage.clear();
-        window.location = 'login.html';
-    }
 
     function getStudentDataByID(sid) {
         /* Student Data */

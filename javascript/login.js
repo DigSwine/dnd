@@ -1,3 +1,14 @@
+var us, ps = '';
+$('#User').change(function () {
+	us = $('#User').val();
+});
+$('#Pass').change(function () {
+	ps = $('#Pass').val();
+});
+$('#logsub').click(function () {
+	login('btn', us, ps);
+})
+
 function beginTransition() {
 	var title = document.getElementById('theTitle');
 	var input = document.getElementsByClassName('inputBox');
@@ -36,11 +47,9 @@ function beginTransition() {
 		mes.style.top = "40%";
 	}, 1000);
 }
-
 function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
-
 function particlesInit() {
 	var generator = document.getElementById("particleGenerator");
 	var particleCount = 200;
@@ -54,5 +63,4 @@ function particlesInit() {
 		generator.appendChild(node);
 	}
 }
-
 particlesInit();

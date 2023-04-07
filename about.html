@@ -48,7 +48,6 @@ and to enhance the lives of people throughout the world through the use of magic
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="/javascript/nav.js"></script>
-<script src="/javascript/preload.js"></script>
 <script>
     var pageid = 'Strixhaven University';
     $(function () {
@@ -56,6 +55,7 @@ and to enhance the lives of people throughout the world through the use of magic
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file)
+            console.log(this);
         })
     })
 </script>

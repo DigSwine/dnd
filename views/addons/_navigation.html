@@ -1,30 +1,18 @@
 <nav id="navigation">
-    <div class="cover">
-        <div class="top">
+    <div class="cover"></div>
+    <div class="NavContainer">
+        <div class="close">
             <a id="navcontroller" class="fa fa-times" onclick="swapnav('close')"></a>
         </div>
-        <ul>
-            <li id="one">
-                <a onclick="gopage('about')" id="aboutbtn">About</a>
-            </li>
-            <li id="two">
-                <a onclick="gopage('maps')" id="campmap">University Information</a>
-            </li>
-            <li id="three">
-                <a onclick="gopage('news')" id="news">Strixhaven Star</a>
-            </li>
-            <li id="four">
-                <a onclick="gopage('libary')" id="admin">Libary</a>
-            </li>
-            <li id="five">
-                <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
-            </li>
-            <li id="six">
-                <a onclick="gopage('admin')" id="admin">administration</a>
-            </li>
-            <li id="seven">
-                <a onclick="gopage('login')" id="login">Login</a>
-            </li>
-        </ul>
+        <div class="NavSubContainer">
+            <a onclick="gopage('about')" id="aboutbtn">About</a>
+            <a onclick="gopage('maps')" id="campmap">University Information</a>
+            <a onclick="gopage('news')" id="news">Strixhaven Star</a>
+            <a onclick="gopage('libary')" id="admin">Library</a>
+            <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
+            <a onclick="gopage('admin')" id="admin">Administration</a>
+            <a onclick="gopage('login')" id="login">Login</a>
+            <div class="logState"></div>
+        </div>
     </div>
 </nav>

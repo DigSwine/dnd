@@ -1,32 +1,38 @@
-var us, ps = '';
-$('#User').change(function () {
-    us = $('#User').val();
-});
-
-$('#Pass').change(function () {
-    ps = $('#Pass').val();
-});
-
-$('#logsub').click(function () {
-    login('btn', us, ps);
-})
-
-$('#bmlogo').click(function () {
-    login('bm', us, ps);
-})
-
 function swapnav(type) {
-    console.log(type);
+    var nav = document.getElementById("navigation");
+    var subNav = nav.querySelector('.NavSubContainer');
+    var subNav2 = nav.querySelector('.logState');
     //close
     if (type == 'close') {
-            document.getElementById('navigation').classList = "hidden_fadeout";
+        nav.style.display = "none";
     } else {
         //open
         if (type == 'open') {
-            document.getElementById("navigation").style.display = 'block';
+            if (sessionStorage.getItem('Student_Id')) {
+                
+                var logout = subNav.querySelector('#logout');
+                if (!logout) {
+                    subNav.querySelector('#login').remove();
 
-            /* Controls */
-                document.getElementById('navigation').classList = "showing_fadein";           
+                    var newLogout = document.createElement('a');
+                    newLogout.id = "logout";
+                    newLogout.innerText = "Logout";
+                    newLogout.addEventListener("click", logot, false);
+
+                    var newProfile = document.createElement('a');
+                    newProfile.id = "profile";
+                    newProfile.innerText = "Profile";
+                    newProfile.onclick = function () {
+                        gopage("profile");
+                    };
+
+                    subNav2.appendChild(newProfile);
+                    subNav2.appendChild(newLogout);
+                }
+            }
+            if (nav) {
+                nav.style.display = "block";
+            }            
         }
     }
 }
@@ -54,6 +60,18 @@ function gopage(goto) {
     if (goto == 'login') {
         url = 'login.html';
     }
+    if (goto == 'profile') {
+        url = 'studentview.html';
+    }
 
     window.location = url;
+}
+
+function logot() {
+    sessionStorage.clear();
+    if (window.location.href.includes('studentview') || window.location.href.includes('teacherview')) {
+        window.location = 'login.html';
+    } else {
+        window.location = window.location.href;
+    }
 }
