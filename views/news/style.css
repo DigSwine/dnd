@@ -8,8 +8,8 @@ header .pagetitle {
     font-family: 'Last Rite', sans-serif;
 }
 
-main {
-    font-family: 'FreeSans', sans-serif;
+main, p, h2, Mainheadline {
+    font-family: 'Underwood319', sans-serif;
     font-size: 1rem;
 }
 
@@ -149,6 +149,12 @@ main {
     height: 100%;
     text-align: left;
 }
+.pg2 h2{
+    font-size: 1.3rem;
+}
+    .pg2 p {
+        font-size: 1.1rem;
+    }
     .pg2 .left {
         padding: var(--colpadding);
         height: 100%;
@@ -206,7 +212,7 @@ main {
     }
         .pg3 .jobs .job h3 {
             margin: 0;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
         .pg3 .jobs .job .details{
             display: flex;
@@ -215,17 +221,23 @@ main {
                 margin: 0;
                 font-size: 0.9rem;
             }
-        .pg3 .jobs .job button {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 30px;
-            height: 50px;
-            margin: 0;
-            padding: 0;
-            border: none;
-            font-size: 0.9rem;
-        }
+                .pg3 .jobs .job .details p + p{
+                    margin-left: 10px;
+                    padding-left: 10px;
+                    border-left: 1px solid black;
+                }
+                .pg3 .jobs .job button {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 30px;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                    border: none;
+                    font-size: 0.8rem;
+                    border-left: 1px solid black;
+                }
             .pg3 .jobs .job button:hover {
                 cursor: pointer;
             }
@@ -237,7 +249,7 @@ main {
                 display: block;
                 height: 30px;
                 position: absolute;
-                top: 10px;
+                top: 5px;
                 right: 0;
                 width: auto;
                 transform: translateY(-50%);
