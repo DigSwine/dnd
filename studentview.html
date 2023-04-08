@@ -283,7 +283,12 @@
                 storyloc.querySelector('#extrainfo').value = notes;
 
                 if (name) {
-                    document.getElementById('pagename').innerText = "Welcome " + name + "!";
+                    var headertitle = document.getElementById('pagename');
+                    if (headertitle) {
+                        headertitle.innerText = "Welcome " + name + "!";
+                    } else {
+                        console.log("no header");
+                    }
                 } else {
                     console.log(response.data);
                 }
