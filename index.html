@@ -76,13 +76,12 @@ For only then you will find the hidden mark</div>
         document.getElementById("light").style.display = "none";
         document.getElementById("madeby").style.display = "none";
         document.getElementById("navcontroller").style.display = "none";
-        try {
-            var vid = document.getElementById("myVideo")
-            vid.volume = 0.2;
+
+        var vid = document.getElementById("myVideo");
+        if (vid) {
+            vid.volume = 0.1;
             vid.play();
-        } catch (err) {
-            console.log(err)
-        }
+        }        
     }
 
     document.addEventListener('mousemove', function (e) {
