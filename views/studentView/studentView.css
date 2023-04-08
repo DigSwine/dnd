@@ -274,7 +274,8 @@ main {
 
 label {
     color: white;
-    display: block
+    font-family: 'Valneck';
+    display: block;
 }
 input, textarea {
     color: white;
@@ -285,7 +286,7 @@ input, textarea {
     width: 250px;
     background-color: transparent;
     border: none;
-
+    font-family: Arial;
 }
     input:enabled, textarea:enabled {
         border: 1px solid white;
