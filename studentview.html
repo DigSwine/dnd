@@ -296,12 +296,14 @@
 
                 if (name) {
                     var headertitle = document.getElementById('pagename');
-                    while (!headertitle) {
-                        setTimeout(
-                            headertitle = document.getElementById('pagename')
-                            , 2000);
+                    if (headertitle) {
+                        headertitle.innerText = "Welcome " + name;
+                    } else {
+                        setTimeout(function () {
+                            headertitle = document.getElementById('pagename');
+                            headertitle.innerText = "Welcome " + name;
+                        }, 5000);
                     }
-                    headertitle.innerText = "Welcome " + name;
                 } else {
                     console.log(response.data);
                 }
