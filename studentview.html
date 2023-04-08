@@ -282,7 +282,11 @@
                 storyloc.querySelector('#backstory').value = story;
                 storyloc.querySelector('#extrainfo').value = notes;
 
-                document.getElementById('pagename').innerText = "Welcome " + name + "!";
+                if (name) {
+                    document.getElementById('pagename').innerText = "Welcome " + name + "!";
+                } else {
+                    console.log(response.data);
+                }
             }
         })
         _supabase.from('Job<>Student').select('Job (id, Title, Location, Pay)').eq('Student', sid).then(response => {
