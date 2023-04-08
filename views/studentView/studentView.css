@@ -17,6 +17,12 @@ body {
     height: 0;
 }
 
+header .pagetitle {
+    font-family: 'posting', sans-serif;
+    font-size: 6rem;
+    text-shadow: none;
+    -webkit-text-stroke: 0px black;
+}
 header .thenavigation .hamburger {
     color: white;
 }
@@ -226,6 +232,7 @@ main {
     width: 100%;
     margin: 10px;
     position: relative;
+    border-radius: 3px;
 }
     .control p {
         position: absolute;
@@ -239,6 +246,7 @@ main {
     .control:hover {
         background-color: darkgoldenrod;
         color: white;
+        cursor: pointer;
     }
 
 .subControls {
@@ -255,6 +263,7 @@ main {
         color: black;
         background-color: white;
         position: relative;
+        border-radius: 3px;
     }
         .subControls .subControl p{
             margin: 0;
@@ -270,6 +279,7 @@ main {
         .subControls .subControl:hover {
             background-color: darkgoldenrod;
             color: white;
+            cursor: pointer;
         }
 
 label {
@@ -299,6 +309,10 @@ input, textarea {
     height: 100%;
     width: 1000px;
 }
+    .left h1 {
+        font-family: 'Valneck';
+        letter-spacing: 3px;
+    }
 .left .lefttopcontainer{
     display: flex;
     position: relative;
