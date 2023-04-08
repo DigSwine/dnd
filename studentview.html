@@ -65,6 +65,10 @@
                                 <p>Flaws:</p>
                                 <textarea id="flaws" placeholder="Flaws" disabled></textarea>
                             </div>
+                            <div class="personal">
+                                <p>Goals:</p>
+                                <textarea id="goals" placeholder="Your lift time desire" disabled></textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="story" id="story">
@@ -163,7 +167,7 @@
     })
 
     $(' .subControls .subControl').click(function () {
-        var inputs = ['name', 'age', 'gender', 'race', 'alignment', 'haircolour', 'eyecolour', 'height', 'weight', 'personalitytraits', 'ideals', 'bonds', 'flaws', 'backstory', 'extrainfo'];
+        var inputs = ['name', 'age', 'gender', 'race', 'alignment', 'haircolour', 'eyecolour', 'height', 'weight', 'personalitytraits', 'ideals', 'bonds', 'flaws', 'backstory', 'extrainfo', 'goals'];
         if (this.id == "edit") {
             for (var x = 0; x < inputs.length; x++) {
                 var elem = document.getElementById(inputs[x]);
@@ -260,6 +264,7 @@
                 var flaw = student['Flaws'];
                 var story = student['Backstory'];
                 var notes = student['Notes'];
+                var goal = student['Goals'];
 
                 var info = document.getElementById('info');
                 info.querySelector('#profilepicture').src = "assets/students/players/" + img;
@@ -277,11 +282,13 @@
                 info.querySelector('#ideals').value = ideal;
                 info.querySelector('#bonds').value = bond;
                 info.querySelector('#flaws').value = flaw;
+                info.querySelector('#goals').value = goal;
 
                 info.querySelector('#personalitytraits').style.height = info.querySelector('#personalitytraits').scrollHeight + 'px';
                 info.querySelector('#ideals').style.height = info.querySelector('#ideals').scrollHeight + 'px';
                 info.querySelector('#bonds').style.height = info.querySelector('#bonds').scrollHeight + 'px';
                 info.querySelector('#flaws').style.height = info.querySelector('#flaws').scrollHeight + 'px';
+                info.querySelector('#goals').style.height = info.querySelector('#goals').scrollHeight + 'px';
 
                 var storyloc = document.getElementById('story');
                 storyloc.querySelector('#backstory').value = story;
@@ -354,7 +361,7 @@
             }            
         }
 
-        _supabase.from('_tblStudents').update({ 'character_name': data[0], 'character_age': data[1], 'character_gender': data[2], 'character_race': data[3], 'Alignment': data[4], 'Hair Colour': data[5], 'Eye Colour': data[6], 'Height': data[7], 'Weight': data[8], 'Personality': data[9], 'Ideals': data[10], 'Bonds': data[11], 'Flaws': data[12], 'Backstory': data[13], 'Notes': data[14] }).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
+        _supabase.from('_tblStudents').update({ 'character_name': data[0], 'character_age': data[1], 'character_gender': data[2], 'character_race': data[3], 'Alignment': data[4], 'Hair Colour': data[5], 'Eye Colour': data[6], 'Height': data[7], 'Weight': data[8], 'Personality': data[9], 'Ideals': data[10], 'Bonds': data[11], 'Flaws': data[12], 'Backstory': data[13], 'Notes': data[14], 'Goals': data[15] }).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
             var currentpage = location.pathname;
             window.location = currentpage;
         })
