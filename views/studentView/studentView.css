@@ -240,6 +240,26 @@ main {
         color: white;
     }
 
+.subControls {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+}
+    .subControls .subControl {
+        margin: 0 5px 0 0;
+        width: calc(100% - 50% - 30px);
+        padding: 5px;
+        color: black;
+        background-color: white;
+        text-align: center;
+    }
+        .subControls .subControl:hover {
+            background-color: darkgoldenrod;
+            color: white;
+        }
+
 label {
     color: white;
     display: block
@@ -269,6 +289,7 @@ input {
     margin: 15px 15px 15px 0;
     width: 100%;
     text-align: right;
+    position: relative;
 }
     .left .info {
         transition: all 0.5s;
@@ -299,12 +320,15 @@ input {
     }
     .personal textarea {
         width: 475px;
-        height: 255px;
+        height: auto;
         margin: 0 0 10px 0;
         resize: none;
         color: white;
         text-align: center;
         background-color: transparent;
+    }
+    .personal textarea:focus {
+        height: 225px;
     }
     .personal input {
         padding: 0;

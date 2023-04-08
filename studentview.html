@@ -33,50 +33,48 @@
                                 <img id="profilepicture" />
                             </div>
                             <form id="profileform" class="profile">
-                                <label>Name: <input id="name" placeholder="Name" /></label>
-                                <label>Age: <input id="age" placeholder="Age" /></label>
-                                <label>Gender: <input id="gender" placeholder="Gender" /></label>
-                                <label>Race: <input id="race" placeholder="Race" /></label>
-                                <label>Alignment: <input id="alignment" placeholder="Alignment" /></label>
-                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" /></label>
-                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" /></label>
-                                <label>Height: <input id="height" placeholder="Height" /></label>
-                                <label>Weight: <input id="weight" placeholder="Weight" /></label>
+                                <label>Name: <input id="name" placeholder="Name" disabled /></label>
+                                <label>Age: <input id="age" placeholder="Age" disabled /></label>
+                                <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
+                                <label>Race: <input id="race" placeholder="Race" disabled /></label>
+                                <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
+                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
+                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
+                                <label>Height: <input id="height" placeholder="Height" disabled /></label>
+                                <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
+                                <div class="subControls">
+                                    <div class="subControl" id="edit">Edit</div>
+                                    <div class="subControl" id="save">Save</div>
+                                </div>
                             </form>
                         </div>
                         <div class="personality scrollbar">
                             <div class="personal">
                                 <p>Personality Traits:</p>
-                                <textarea placeholder="Personality Traits"></textarea>
+                                <textarea id="personalitytraits" placeholder="Personality Traits" disabled></textarea>
                             </div>
                             <div class="personal">
                                 <p>Ideals:</p>
-                                <textarea placeholder="Ideals"></textarea>
+                                <textarea id="ideals" placeholder="Ideals" disabled></textarea>
                             </div>
                             <div class="personal">
                                 <p>Bonds:</p>
-                                <textarea placeholder="Bonds"></textarea>
+                                <textarea id="bonds" placeholder="Bonds" disabled></textarea>
                             </div>
                             <div class="personal">
                                 <p>Flaws:</p>
-                                <textarea placeholder="Flaws"></textarea>
+                                <textarea id="flaws" placeholder="Flaws" disabled></textarea>
                             </div>
-                            <form id="personality" class="personalityprofile" hidden>
-                                <label>Personality Traits: <input id="personalitytraits" placeholder="PERSONALITY TRAITS" /></label>
-                                <label>Ideals: <input id="ideals" placeholder="IDEALS" /></label>
-                                <label>Bonds: <input id="bonds" placeholder="BONDS" /></label>
-                                <label>Flaws: <input id="flaws" placeholder="FLAWS" /></label>
-                            </form>
                         </div>
                     </div>
                     <div class="story" id="story">
                         <div class="backstory">
                             <h1>Backstory</h1>
-                            <textarea class="test"></textarea>
+                            <textarea id="backstory" class="test"></textarea>
                         </div>
                         <div class="extrainfo">
                             <h1>Extra Notes</h1>
-                            <textarea class="test"></textarea>
+                            <textarea id="extrainfo" class="test"></textarea>
                         </div>
                     </div>
                 </div>
@@ -113,7 +111,7 @@
                                 <tr>
                                     <td>Class 1</td>
                                     <td>Jeff Dunham</td>
-                                    <td><img src="assets/eliza.jpg" /></td>
+                                    <td><img src="" /></td>
                                 </tr>
                             </table>
 
@@ -134,7 +132,7 @@
                     <div class="slide" style="background-color: antiquewhite">
                         <h1 class="slideTitle"> Relationships </h1>
                         <div class="relation">
-                            <img src="assets/eliza.jpg" />
+                            <img src="" />
                             <p class="name">Eliza</p>
                             <p class="name">Archenemy</p>
                         </div>
@@ -163,6 +161,23 @@
             $(this).load(file)
         }) 
     })
+
+    $(' .subControls .subControl').click(function () {
+        var inputs = ['name', 'age', 'gender', 'race', 'alignment', 'haircolour', 'eyecolour', 'height', 'weight', 'personalitytraits', 'ideals', 'bonds', 'flaws', 'backstory', 'extrainfo'];
+        if (this.id == "edit") {
+            for (var x = 0; x < inputs.length; x++) {
+                var elem = document.getElementById(inputs[x]);
+                elem.toggleAttribute("disabled", false);
+            }
+        }
+        if (this.id == "save") {
+            for (var x = 0; x < inputs.length; x++) {
+                var elem = document.getElementById(inputs[x]);
+                elem.toggleAttribute("disabled", false);
+            }
+            saveStudentData(inputs);            
+        }
+    });
 
     $('.left .control').click(function () {
         if (this.id == "details") {
@@ -239,10 +254,15 @@
                 var gender = student['character_gender'];
                 var name = student['character_name'];
                 var race = student['character_race'];
+                var personal = student['Personality'];
+                var ideal = student['Ideals'];
+                var bond = student['Bonds'];
+                var flaw = student['Flaws'];
+                var story = student['Backstory'];
+                var notes = student['Notes'];
 
                 var info = document.getElementById('info');
                 info.querySelector('#profilepicture').src = "assets/students/players/" + img;
-
                 info.querySelector('#name').value = name;
                 info.querySelector('#age').value = age;
                 info.querySelector('#gender').value = gender;
@@ -252,6 +272,15 @@
                 info.querySelector('#eyecolour').value = eyes;
                 info.querySelector('#height').value = height;
                 info.querySelector('#weight').value = weight;
+
+                info.querySelector('#personalitytraits').value = personal;
+                info.querySelector('#ideals').value = ideal;
+                info.querySelector('#bonds').value = bond;
+                info.querySelector('#flaws').value = flaw;
+
+                var storyloc = document.getElementById('story');
+                storyloc.querySelector('#backstory').value = story;
+                storyloc.querySelector('#extrainfo').value = notes;
 
                 document.getElementById('pagename').innerText = "Welcome " + name + "!";
             }
@@ -296,6 +325,23 @@
                     document.getElementById(job['id']).addEventListener('click', quitJob, false);
                 }
             }
+        })
+    }
+    function saveStudentData(inputs) {
+        /* Eliza Belmont */
+        var data = [];
+        for (var x = 0; x < inputs.length; x++) {
+            var value = document.getElementById(inputs[x]).value;
+            if (value) {
+                data.push(value);
+            } else {
+                data.push("");
+                console.log(data);
+            }            
+        }
+
+        _supabase.from('_tblStudents').update({ 'character_name': data[0], 'character_age': data[1], 'character_gender': data[2], 'character_race': data[3], 'Alignment': data[4], 'Hair Colour': data[5], 'Eye Colour': data[6], 'Height': data[7], 'Weight': data[8], 'Personality': data[9], 'Ideals': data[10], 'Bonds': data[11], 'Flaws': data[12], 'Backstory': data[13], 'Notes': data[14] }).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
+            location.reload();
         })
     }
     function quitJob() {

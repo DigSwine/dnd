@@ -1,12 +1,5 @@
 $(document).ready(function () {
-    preload();
-    //Check if cookie exists
-    var checked = checkCookie("cookie 1 left");
-
-    if (checked == 0) {
-        getpapercontent();
-    }
-    
+    preload();    
 });
 
 //// Pre load images 
