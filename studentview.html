@@ -284,11 +284,12 @@
 
                 if (name) {
                     var headertitle = document.getElementById('pagename');
-                    if (headertitle) {
-                        headertitle.innerText = "Welcome " + name + "!";
-                    } else {
-                        console.log("no header");
+                    while (!headertitle) {
+                        setTimeout(
+                            headertitle = document.getElementById('pagename')
+                            , 2000);
                     }
+                    headertitle.innerText = "Welcome " + name + "!";
                 } else {
                     console.log(response.data);
                 }
