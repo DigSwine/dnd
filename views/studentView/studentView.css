@@ -248,13 +248,15 @@ main {
     display: flex;
 }
     .subControls .subControl {
-        margin: 0 5px 0 0;
-        width: calc(100% - 50% - 30px);
-        padding: 5px;
+        width: calc(100% - 50% - 2.5px);
         color: black;
         background-color: white;
         text-align: center;
+        font-family: 'Valneck';
     }
+        .subControls .subControl + .subControl {
+            margin: 0 0 0 5px;
+        }
         .subControls .subControl:hover {
             background-color: darkgoldenrod;
             color: white;
@@ -273,6 +275,7 @@ input, textarea {
     width: 250px;
     background-color: transparent;
     border: none;
+
 }
     input:enabled, textarea:enabled {
         border: 1px solid white;
