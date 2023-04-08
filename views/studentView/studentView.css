@@ -264,7 +264,7 @@ label {
     color: white;
     display: block
 }
-input {
+input, textarea {
     color: white;
     margin: 5px 5px 5px 0;
     text-align: center;
@@ -273,6 +273,11 @@ input {
     background-color: transparent;
     border: none;
 }
+    input:enabled, textarea:enabled {
+        border: 1px solid white;
+        border-radius: 6px;
+        margin: 4px 5px 4px 0;
+    }
 
 .left {
     position: relative;
@@ -354,7 +359,6 @@ input {
         min-height: calc(100% - 30px - 30px);
         margin: 15px;
         resize: none;
-        background-color: lightgray;
     }
     .left .story .backstory {
         color: white;
