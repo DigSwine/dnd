@@ -183,31 +183,42 @@ main {
             filter: brightness(.66) contrast(1.33);
             transition: none;
         }
-    .card.animated {
+    .card .animated {
         transition: none;
-        animation: holoCard var(--speed) ease 0s 1;
     }
-        .card.animated:before {
-            transition: none;
-        }
-        .card.animated:after {
-            transition: none;
-            height: 100%;
-            width: 100%;
-            animation: holoSparkle var(--speed) ease 0s 1;
+        .card .animated:after {
+            background-image: url(../../assets/sparkles.gif);
         }
 
 @keyframes holoSparkle {
     0%, 100% {
-        opacity: 1;
+        opacity: .75;
         background-position: 50% 50%;
-        filter: brightness(1) contrast(1.5);
+        filter: brightness(1.2) contrast(1.25);
     }
 
-    50% {
+    5%, 8% {
+        opacity: 1;
+        background-position: 40% 40%;
+        filter: brightness(.8) contrast(1.2);
+    }
+
+    13%, 16% {
         opacity: .5;
-        transform: translate3d(0, 0, 0.01px) rotateY(20deg) rotateX(5deg);
-        filter: brightness(1.2) contrast(1.5);
+        background-position: 50% 50%;
+        filter: brightness(1.2) contrast(.8);
+    }
+
+    35%, 38% {
+        opacity: 1;
+        background-position: 60% 60%;
+        filter: brightness(1) contrast(1);
+    }
+
+    55% {
+        opacity: .33;
+        background-position: 45% 45%;
+        filter: brightness(1.2) contrast(1.25);
     }
 }
 
@@ -303,12 +314,15 @@ input, textarea {
         border-radius: 6px;
         margin: 4px 5px 4px 0;
     }
-
-.left {
-    position: relative;
-    height: 100%;
-    width: 1000px;
-}
+    label, input:disabled, textarea:disabled {
+        pointer-events: none;
+        cursor: url(http://cur.cursors-4u.net/user/use-1/use160.cur), progress !important;
+    }
+        .left {
+            position: relative;
+            height: 100%;
+            width: 1000px;
+        }
     .left h1 {
         font-family: 'Valneck';
         letter-spacing: 3px;
