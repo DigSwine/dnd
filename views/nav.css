@@ -74,3 +74,26 @@ nav {
                 cursor: pointer;
                 color: darkgoldenrod;
             }
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: auto;
+    width: 100%;
+    opacity: 0.5;
+}
+    footer div {
+        padding: 5px 5px 15px 5px;
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: darkgoldenrod;
+        font-size: 2vh;
+    }
+        footer div a {
+            text-align: right;
+            color: darkgoldenrod;
+            font-size: 2vh;
+        }

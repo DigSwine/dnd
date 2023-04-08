@@ -75,48 +75,6 @@ main {
     margin-bottom: var(--gaps);
 }
 
-footer {
-    z-index: 5;
-    position: relative;
-    height: var(--footerht);
-    width: 100%;
-    display: inline-flex;
-    opacity: 0.5;
-}
-    footer div {
-        margin: 8px;
-    }
-    footer .leftspacer {
-        width: 10%;
-    }
-    footer .middlespacer {
-        width: 50%;
-    }
-    footer .rightspacer {
-        width: 100%;
-        text-align: right;
-        display: inline-block;
-        align-self: flex-end;
-        color: darkgoldenrod;
-        text-decoration: none;
-        font-size: 2vh;
-    }
-        footer .rightspacer a {
-            text-align: right;
-            color: darkgoldenrod;
-            font-size: 2vh;
-        }
-    footer .cover {
-        margin-top: 5px;
-        margin-left: 10px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        height: 70%;
-        width: 10%;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: none;
-    }
-
  /* Writing Sytles */
 p {
     white-space: pre-line;
