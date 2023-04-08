@@ -336,12 +336,12 @@
                 data.push(value);
             } else {
                 data.push("");
-                console.log(data);
             }            
         }
 
         _supabase.from('_tblStudents').update({ 'character_name': data[0], 'character_age': data[1], 'character_gender': data[2], 'character_race': data[3], 'Alignment': data[4], 'Hair Colour': data[5], 'Eye Colour': data[6], 'Height': data[7], 'Weight': data[8], 'Personality': data[9], 'Ideals': data[10], 'Bonds': data[11], 'Flaws': data[12], 'Backstory': data[13], 'Notes': data[14] }).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
-            location.reload();
+            var currentpage = location.pathname;
+            window.location = currentpage;
         })
     }
     function quitJob() {
