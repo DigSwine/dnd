@@ -112,6 +112,7 @@ header .thenavigation .hamburger {
 
 main {
     position: relative;
+    height: 80%;
 }
 
 .card {
@@ -208,7 +209,7 @@ main {
     height: 100%;
     display: flex;
     position: relative; 
-    padding: 15px;
+    padding: 5px;
 }
 
 .controls {
