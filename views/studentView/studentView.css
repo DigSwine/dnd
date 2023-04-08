@@ -298,7 +298,7 @@ label {
     font-family: 'Valneck';
     display: block;
 }
-input, textarea {
+input, textarea:read-only, textarea {
     color: white;
     margin: 5px 5px 5px 0;
     text-align: center;
@@ -309,7 +309,10 @@ input, textarea {
     border: none;
     font-family: Arial;
 }
-    input:enabled, textarea:enabled {
+textarea:read-only {
+    cursor: url(http://cur.cursors-4u.net/user/use-1/use160.cur), progress !important;
+}
+    input:enabled, textarea {
         border: 1px solid white;
         border-radius: 6px;
         margin: 4px 5px 4px 0;

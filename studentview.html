@@ -51,34 +51,34 @@
                         <div class="personality scrollbar">
                             <div class="personal">
                                 <p>Personality Traits:</p>
-                                <textarea id="personalitytraits" placeholder="Personality Traits" disabled></textarea>
+                                <textarea id="personalitytraits" placeholder="Personality Traits" readonly></textarea>
                             </div>
                             <div class="personal">
                                 <p>Ideals:</p>
-                                <textarea id="ideals" placeholder="Ideals" disabled></textarea>
+                                <textarea id="ideals" placeholder="Ideals" readonly></textarea>
                             </div>
                             <div class="personal">
                                 <p>Bonds:</p>
-                                <textarea id="bonds" placeholder="Bonds" disabled></textarea>
+                                <textarea id="bonds" placeholder="Bonds" readonly></textarea>
                             </div>
                             <div class="personal">
                                 <p>Flaws:</p>
-                                <textarea id="flaws" placeholder="Flaws" disabled></textarea>
+                                <textarea id="flaws" placeholder="Flaws" readonly></textarea>
                             </div>
                             <div class="personal">
                                 <p>Goals:</p>
-                                <textarea id="goals" placeholder="Your life time desire" disabled></textarea>
+                                <textarea id="goals" placeholder="Your life time desire" readonly></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="story" id="story">
                         <div class="backstory">
                             <h1>Backstory</h1>
-                            <textarea id="backstory" class="scrollbar" placeholder="Backstory"></textarea>
+                            <textarea id="backstory" class="scrollbar" placeholder="Backstory" readonly></textarea>
                         </div>
                         <div class="extrainfo">
                             <h1>Extra Notes</h1>
-                            <textarea id="extrainfo" class="scrollbar" placeholder="Info about you"></textarea>
+                            <textarea id="extrainfo" class="scrollbar" placeholder="Info about you" readonly></textarea>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,12 @@
         if (this.id == "edit") {
             for (var x = 0; x < inputs.length; x++) {
                 var elem = document.getElementById(inputs[x]);
-                elem.toggleAttribute("disabled", false);
+                
+                if (elem.tagName.toLowerCase() == "textarea") {
+                    elem.toggleAttribute("readonly", false);
+                } else {
+                    elem.toggleAttribute("disabled", false);
+                }
             }
         }
         if (this.id == "save") {
