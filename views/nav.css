@@ -27,10 +27,17 @@ nav {
         padding: 5px;
         z-index: 110;
         background-color: black;
-        background-image: url(../../assets/sparkles.gif);
-        background-size: cover;
-        background-position: center;
     }
+        nav .NavContainer .bgvid {
+            min-width: 100%;
+            min-height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            max-width: 100%;
+        }
         nav .NavContainer .close {
             text-align: right;
             font-size: 2.5rem;
@@ -44,11 +51,11 @@ nav {
             }
         nav .NavContainer .NavSubContainer {
             text-align: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             height: calc(100% - 40px);
-            white-space: pre-line;
             color: white;
             position: relative;
+            padding-top: 45px;
         }
         nav .NavContainer .NavSubContainer .logState{
             position: absolute;
