@@ -278,6 +278,11 @@
                 info.querySelector('#bonds').value = bond;
                 info.querySelector('#flaws').value = flaw;
 
+                info.querySelector('#personalitytraits').style.height = info.querySelector('#personalitytraits').scrollHeight + 'px';
+                info.querySelector('#ideals').style.height = info.querySelector('#ideals').scrollHeight + 'px';
+                info.querySelector('#bonds').style.height = info.querySelector('#bonds').scrollHeight + 'px';
+                info.querySelector('#flaws').style.height = info.querySelector('#flaws').scrollHeight + 'px';
+
                 var storyloc = document.getElementById('story');
                 storyloc.querySelector('#backstory').value = story;
                 storyloc.querySelector('#extrainfo').value = notes;

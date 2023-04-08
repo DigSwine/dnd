@@ -269,6 +269,7 @@ input, textarea {
     margin: 5px 5px 5px 0;
     text-align: center;
     padding: 5px;
+    height: auto;
     width: 250px;
     background-color: transparent;
     border: none;
