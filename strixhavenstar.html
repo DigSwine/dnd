@@ -195,15 +195,17 @@
 
                 newjob.appendChild(newtitle);
                 newjob.appendChild(newdetails);
-                newbtn.appendChild(newbtntxt);
-                newjob.appendChild(newbtn);
-
+                if (sessionStorage.getItem('Student_Id')) {
+                    newbtn.appendChild(newbtntxt);
+                    newbtn.addEventListener('click', apply, false);
+                    newjob.appendChild(newbtn);
+                }
                 newjob.classList = "job";
 
                 var page = document.querySelector(".pg3");
                 page.querySelector('#joblisting').appendChild(newjob);
 
-                document.getElementById("job:" + jid).addEventListener('click', apply, false);
+                
             }
         }
     }
