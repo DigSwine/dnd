@@ -571,37 +571,25 @@ td {
         display: flex;
         border-bottom: 2px solid black;
         padding: 0 5px 10px 10px;
-        height: calc(100% / 3 - 20px);
+        height: calc(100% / 3 - 24px);
     }
         .activities .club + .club {
             margin: 5px 0 0 0;
         }
 
-        .activities .club .clubname {
+        .activities .club .clubname,
+        .activities .club .clubskill,
+        .activities .club .dice,
+        .activities .club .members,
+        .activities .club .quit {
+            text-align: left;
             margin: 0;
             flex: 1;
+            height: 20px;
         }
-
-        .activities .club .clubskill {
-            margin: 0;
-            flex: 1;
-        }
-
-        .activities .club .dice {
-            margin: 0;
-            flex: 1;
-        }
-
-        .activities .club .members {
-            margin: 0;
-            flex: 1;
-        }
-
+            .activities .club .members{
+                height: auto;
+            }
             .activities .club .members .member {
                 margin: 0;
             }
-
-        .activities .club .quit {
-            margin: 0;
-            flex: 1;
-        }

@@ -83,21 +83,12 @@
 
         _supabase.from('Job<>Student').select('*').eq('Student', id).then(response => {
             if (response.data.length == 0) {
-                _supabase.from('Job<>Student').select('*').eq('Job', jid).then(response => {
-                    if (response.data.length == 1) {
-                        _supabase.from('_tblJobs').update({ 'Player Filled': 'Yes' }).eq('id', jid).then(response => {
+                _supabase.from('Job<>Student').insert({ 'Job': jid, 'Student': id }).then(response => {
 
-                        })
-                        _supabase.from('Job<>Student').insert({ 'Job': jid, 'Student': id }).then(response => {
-
-                        })
-                        alert("You have applied for the role! CONGRDULATIONS");
-                    } else {
-                        alert("Unfortuantly another student has already applyed for this position.");
-                    }
                 })
+                alert("You have applied for the role! CONGRDULATIONS");
             } else {
-                alert("Unfortuantly you already have another job. Please resign and apply later on.");
+                alert("Unfortuantly, we can only allow you to have one job.");
             }
         })
     }
@@ -170,43 +161,37 @@
             var jpay = job["Pay"];
             var jtit = job["Title"];
             var jid = job["id"];
-            var filled = job['Player Filled'];
+            const newjob = document.createElement("div");
+            const newtitle = document.createElement("h3");
+            const newdetails = document.createElement("div");
+            const newlocation = document.createElement("p");
+            const newpay = document.createElement("p");
+            const newbtn = document.createElement("button");
+            const newbtntxt = document.createElement("span");
 
-            if (filled != "Yes") {
-                const newjob = document.createElement("div");
-                const newtitle = document.createElement("h3");
-                const newdetails = document.createElement("div");
-                const newlocation = document.createElement("p");
-                const newpay = document.createElement("p");
-                const newbtn = document.createElement("button");
-                const newbtntxt = document.createElement("span");
+            newtitle.innerText = "Job Title: " + jtit;
+            newlocation.innerText = "Location: " + jloc;
+            newpay.innerText = "Wage: " + jpay;
+            newbtntxt.innerText = "Apply";
 
-                newtitle.innerText = "Job Title: " + jtit;
-                newlocation.innerText = "Location: " + jloc;
-                newpay.innerText = "Wage: " + jpay;
-                newbtntxt.innerText = "Apply";
+            newdetails.classList = "details";
 
-                newdetails.classList = "details";
+            newdetails.appendChild(newlocation);
+            newdetails.appendChild(newpay);
 
-                newdetails.appendChild(newlocation);
-                newdetails.appendChild(newpay);
+            newbtn.id = "job:" + jid;
 
-                newbtn.id = "job:" + jid;
-
-                newjob.appendChild(newtitle);
-                newjob.appendChild(newdetails);
-                if (sessionStorage.getItem('Student_Id')) {
-                    newbtn.appendChild(newbtntxt);
-                    newbtn.addEventListener('click', apply, false);
-                    newjob.appendChild(newbtn);
-                }
-                newjob.classList = "job";
-
-                var page = document.querySelector(".pg3");
-                page.querySelector('#joblisting').appendChild(newjob);
-
-                
+            newjob.appendChild(newtitle);
+            newjob.appendChild(newdetails);
+            if (sessionStorage.getItem('Student_Id')) {
+                newbtn.appendChild(newbtntxt);
+                newbtn.addEventListener('click', apply, false);
+                newjob.appendChild(newbtn);
             }
+            newjob.classList = "job";
+
+            var page = document.querySelector(".pg3");
+            page.querySelector('#joblisting').appendChild(newjob);
         }
     }
 
@@ -217,11 +202,7 @@
             applyforjob(this.id);
         } else {
             alert("FUCK YOU LOG IN");
-        }
-
-
-
-        
+        }        
     }
 
     var showing = 0;

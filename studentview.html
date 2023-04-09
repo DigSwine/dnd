@@ -348,12 +348,20 @@
 
                         _supabase.from('Job<>Student').select('Student (id, character_name, character_player)').eq('Job', job['id']).then(response => {
                             var allworkers = response.data;
+                            var wcount = 0;
+                            var coworkers = "";
                             for (var y = 0; y < allworkers.length; y++) {
                                 var worker = allworkers[y]['Student'];
-                                if (!worker['character_player']) {
-                                    theCoworker.innerText = worker['character_name'];
+                                if (sessionStorage.getItem('Student_Id') != worker['id']) {
+                                    if (wcount > 0) {
+                                        coworkers = coworkers + " & " + worker['character_name'];
+                                    } else {
+                                        coworkers = worker['character_name'];
+                                    }
+                                    wcount++;
                                 }
                             }
+                            theCoworker.innerText = coworkers;
                             theCoworker.classList = "coworker";
 
                             theJobDetails.appendChild(theTitle);
@@ -368,7 +376,7 @@
                 }
             }
         })
-        _supabase.from('Club<>Student').select('club (id, name)').eq('student', sid).then(response => {
+        _supabase.from('Club<>Student').select('club (*)').eq('student', sid).then(response => {
             if (response.data.length > 0) {
                 var activites = document.getElementById('activities');
                 for (var x = 0; x < response.data.length; x++) {
@@ -377,13 +385,14 @@
 
                     var clubid = club['id'];
                     var clubname = club['name'];
+                    var clubskills = club['skills'];
 
                     const theClub = document.createElement('div');
                     const theClubName = document.createElement('p');
                     const theClubSkill = document.createElement('p');
                     const theClubDice = document.createElement('p');
                     const theClubMembers = document.createElement('div');
-                    const theClubMember = document.createElement('p');
+                    
                     const theClubQuit = document.createElement('button');
 
                     theClub.classList = "club";
@@ -392,26 +401,28 @@
                     theClubName.innerText = clubname;
 
                     theClubSkill.classList = "clubskill";
-                    theClubSkill.innerText = clubname;
+                    theClubSkill.innerText = clubskills;
 
                     theClubDice.classList = "dice";
                     theClubDice.innerText = "1d4";
 
                     theClubMembers.classList = "members";
 
-                    theClubMember.classList = "member";
-                    var members = ['Eliza 0', 'Eliza 1', 'Eliza 2', 'Eliza 3', 'Eliza 4'];
-                    for (var y = 0; y < members.length; y++) {
-                        theClubMember.innerText = members[y];
-                        console.log(members[y]);
-                        theClubMembers.appendChild(theClubMember);
-                    }
+                    _supabase.from('Club<>Student').select('student (*)').eq('club', clubid).then(response => {
+                        for (var y = 0; y < response.data.length; y++) {
+                            if (sessionStorage.getItem("Student_Id") != response.data[y]['student']['id']) {
+                                const theClubMember = document.createElement('p');
+                                theClubMember.classList = "member";
+                                theClubMember.innerText = response.data[y]['student']['character_name'];
+                                theClubMembers.appendChild(theClubMember);
+                            }
+                        }
+                    })
 
-                    theClubQuit.innerText = "Leave Club";
+                    theClubQuit.classList = "quit";
+                    theClubQuit.innerText = "Quit Club";
                     theClubQuit.id = clubid;
 
-                    
-                    
                     theClub.appendChild(theClubName);
                     theClub.appendChild(theClubSkill);
                     theClub.appendChild(theClubDice);
@@ -445,8 +456,6 @@
         var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
         var jid = this.id;
         _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
-        })
-        _supabase.from('_tblJobs').update({ 'Player Filled': 'No' }).eq('id', jid).then(response => {
         })
         alert("You have now resigned");
         document.getElementById('myjob').style.display = "none";
