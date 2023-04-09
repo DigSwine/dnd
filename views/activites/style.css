@@ -21,58 +21,6 @@ body {
     flex-wrap: wrap;
 }
 
-.p1 {
-    background-image: url('../../assets/clubs/Nerco.jpg');
-}
-.p2 {
-    background-image: url('../../assets/clubs/Dead L Soc.jpg');
-}
-.p3 {
-    background-image: url('../../assets/clubs/Fine Art Soc.jpg');
-}
-.p4 {
-    background-image: url('../../assets/clubs/Chess Soc.jpg');
-}
-.p5 {
-    background-image: url('../../assets/clubs/History Nerds.jpg');
-}
-.p6 {
-    background-image: url('../../assets/clubs/Hufflepuff.jpg');
-}
-.p7 {
-    background-image: url('../../assets/clubs/Athletics.jpg');
-}
-.p8 {
-    background-image: url('../../assets/clubs/Balls.jpg');
-}
-.p9 {
-    background-image: url('../../assets/clubs/Band.jpg');
-}
-.p10 {
-    background-image: url('../../assets/clubs/Buisness Men.jpg');
-}
-.p11 {
-    background-image: url('../../assets/clubs/Drowning.jpg');
-}
-.p12 {
-    background-image: url('../../assets/clubs/Fitness.jpg');
-}
-.p13 {
-    background-image: url('../../assets/clubs/Play Actors.jpg');
-}
-.p14 {
-    background-image: url('../../assets/clubs/Quiditch.jpg');
-}
-.p15 {
-    background-image: url('../../assets/clubs/Religion.jpg');
-}
-.p16 {
-    background-image: url('../../assets/clubs/RP.jpg');
-}
-.p17 {
-    background-image: url('../../assets/clubs/SS.jpg');
-}
-
 .cube {
     height: 200px;
     width: 275px;

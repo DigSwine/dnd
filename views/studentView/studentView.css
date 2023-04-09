@@ -503,24 +503,78 @@ td {
     margin: 0;
 }
 
-
-.myjob {
-    margin: 15px;
-    text-align: left;
+.jobs {
+    height: 150px;
+    width: 100%;
+    border-bottom: 2px solid black;
+    padding: 10px 0 10px 0;
 }
-    .myjob .jobdetails {
-        display: flex;
-        position: relative;
-        width: 100%;
+    .jobs h1 {
+        margin: 0;
     }
-        .myjob .jobdetails h3 {
-            margin: 0;
+    .jobs .myjob {
+        margin: 0;
+        height: calc(100% - 20px);
+        text-align: left;
+    }
+        .jobs .myjob .jobdetails {
+            display: flex;
+            position: relative;
+            padding: 0 0 0 0;
+            margin: 15px 0 0 0;
+            height: calc(100% - 30px);
+            width: 100%;
         }
-        .myjob .jobdetails p {
-            margin: 0;
-            flex: 1;
+            .jobs .myjob .jobdetails h3,
+            .jobs .myjob .jobdetails .location,
+            .jobs .myjob .jobdetails .wage,
+            .jobs .myjob .jobdetails .coworker {
+                margin: 30px 0 0 0;
+                flex: 1;
+                position: relative;
+            }
+                .jobs .myjob .jobdetails h3:before,
+                .jobs .myjob .jobdetails .location:before,
+                .jobs .myjob .jobdetails .wage:before,
+                .jobs .myjob .jobdetails .coworker:before {
+                    position: absolute;
+                    left: 0;
+                    top: -35px;
+                }
+                .jobs .myjob .jobdetails h3:before {
+                    content: "Job Title";
+                }
+                .jobs .myjob .jobdetails .location:before {
+                    content: "Location";
+                }
+                .jobs .myjob .jobdetails .wage:before {
+                    content: "Wage";
+                }
+                .jobs .myjob .jobdetails .coworker:before {
+                    content: "Coworker";
+                }                
+            .jobs .myjob .jobdetails button {
+                margin: 30px 0 0 0;
+                flex: 1;
+                height: 20px;
+            }
+
+.activities {
+    height: calc(100% - 150px - 50px);
+    width: 100%;
+    padding: 10px 0 10px 0;
+    position: relative;
+    background-color: red;
+}
+    .activities .club {
+        display: flex;
+        border-bottom: 2px solid black;
+        padding: 0 5px 10px 10px;
+        height: calc(100% / 3 - 20px);
+    }
+        .activities .club + .club {
+            margin: 5px 0 0 0;
         }
-        .myjob .jobdetails button {
+        .activities .club h3 {
             margin: 0;
-            flex: 1;
         }

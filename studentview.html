@@ -93,7 +93,7 @@
                     <div class="control" id="one"><p>Course Listings</p></div>
                     <div class="control" id="two"><p>Exam Report Card</p></div>
                     <div class="control" id="three"><p>Relationships</p></div>
-                    <div class="control" id="four"><p>Extracurriculas</p></div>
+                    <div class="control" id="four"><p>Job and Extracurriculas</p></div>
                 </div>
                 <div class="mainslider" id="mainslider">
                     <div class="slide" id="S1">
@@ -142,8 +142,11 @@
                         </div>
                     </div>
                     <div class="slide">
-                        <div id="currentJob">
-
+                        <div class="jobs" id="currentJob">
+                            <h1>Job</h1>
+                        </div>
+                        <div class="activities" id="activities">
+                            <h1>Extracurriculas</h1>
                         </div>
                     </div>
                 </div>
@@ -187,7 +190,6 @@
             saveStudentData(inputs);            
         }
     });
-
     $('.left .control').click(function () {
         if (this.id == "details") {
             document.getElementById("info").style.opacity = 0;
@@ -205,7 +207,6 @@
             }, 500);
         }
     });
-
     $('.sub').click(function () {
         document.getElementById('yrCLASSESone').setAttribute('hidden', true);
         document.getElementById('yrCLASSEStwo').setAttribute('hidden', true);
@@ -309,49 +310,86 @@
                             headertitle.innerText = "Welcome " + name;
                         }, 5000);
                     }
-                } else {
-                    console.log(response.data);
                 }
             }
         })
         _supabase.from('Job<>Student').select('Job (id, Title, Location, Pay)').eq('Student', sid).then(response => {
+                if (response.data.length > 0) {
+                    for (var x = 0; x < response.data.length; x++) {
+                        var data = response.data[x];
+                        var job = data['Job'];
+
+                        var currentJob = document.getElementById('currentJob');
+
+                        const theJob = document.createElement('div');
+                        const theJobDetails = document.createElement('div');
+                        const theTitle = document.createElement('h3');
+                        const theLocation = document.createElement('p');
+                        const theWage = document.createElement('p');
+                        const theCoworker = document.createElement('p');
+                        const QuitButton = document.createElement('button');
+
+                        theJob.classList = "myjob";
+                        theJob.id = "myjob";
+                        QuitButton.classList = "quit";
+                        QuitButton.id = job['id'];
+                        QuitButton.innerText = "Resign";
+                        QuitButton.addEventListener('click', quitJob, false);
+
+                        theTitle.innerText = job['Title'];
+
+                        theJobDetails.classList = "jobdetails";
+
+                        theLocation.innerText = job['Location'];
+                        theLocation.classList = "location";
+
+                        theWage.innerText = job['Pay'];
+                        theWage.classList = "wage";
+
+                        _supabase.from('Job<>Student').select('Student (id, character_name, character_player)').eq('Job', job['id']).then(response => {
+                            var allworkers = response.data;
+                            for (var y = 0; y < allworkers.length; y++) {
+                                var worker = allworkers[y]['Student'];
+                                if (!worker['character_player']) {
+                                    theCoworker.innerText = worker['character_name'];
+                                }
+                            }
+                            theCoworker.classList = "coworker";
+
+                            theJobDetails.appendChild(theTitle);
+                            theJobDetails.appendChild(theLocation);
+                            theJobDetails.appendChild(theWage);
+                            theJobDetails.appendChild(theCoworker);
+                            theJobDetails.appendChild(QuitButton);
+
+                            theJob.appendChild(theJobDetails);
+                            currentJob.appendChild(theJob);
+                        })
+                }
+            }
+        })
+        _supabase.from('Club<>Student').select('club (id, name)').eq('student', sid).then(response => {
             if (response.data.length > 0) {
+                var activites = document.getElementById('activities');
                 for (var x = 0; x < response.data.length; x++) {
                     var data = response.data[x];
-                    var job = data['Job'];
+                    var club = data['club'];
 
-                    var currentJob = document.getElementById('currentJob');
+                    var clubid = club['id'];
+                    var clubname = club['name'];
 
-                    const theJob = document.createElement('div');
-                    const theJobDetails = document.createElement('div');
-                    const theTitle = document.createElement('h3');
-                    const theLocation = document.createElement('p');
-                    const theWage = document.createElement('p');
-                    const QuitButton = document.createElement('button');
+                    const theClub = document.createElement('div');
+                    const theClubName = document.createElement('h3');
+                    const leaveBtn = document.createElement('button');
 
-                    theJob.classList = "myjob";
-                    theJob.id = "myjob";
-                    QuitButton.classList = "quit";
-                    QuitButton.id = job['id'];
-                    QuitButton.innerText = "resign";
+                    theClub.classList = "club";
+                    theClubName.innerText = clubname;
+                    leaveBtn.innerText = "Leave Club";
 
-                    theTitle.innerText = job['Title'];
+                    theClub.appendChild(theClubName);
+                    theClub.appendChild(leaveBtn);
 
-                    theJobDetails.classList = "jobdetails";
-
-                    theLocation.innerText = job['Location'];
-                    theWage.innerText = job['Pay'];
-
-                    theJobDetails.appendChild(theLocation);
-                    theJobDetails.appendChild(theWage);
-                    theJobDetails.appendChild(QuitButton);
-
-
-                    theJob.appendChild(theTitle);
-                    theJob.appendChild(theJobDetails);
-                    currentJob.appendChild(theJob);
-
-                    document.getElementById(job['id']).addEventListener('click', quitJob, false);
+                    activites.appendChild(theClub);
                 }
             }
         })
