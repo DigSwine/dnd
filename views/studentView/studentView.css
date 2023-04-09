@@ -419,22 +419,34 @@ textarea:read-only {
         height: calc(100% - 55%);
     }
 
+/* All */
 .right {
     margin-left: 5px;
     position: relative;
     height: 100%;
     width: 100%;
+    border-left: 2px solid black;
     overflow: hidden;
 }
+
 .mainslider {
     color: white;
     height: 100%;
-    width: 400%;
+    width: calc(100% * 4);
     transition: all 1s;
     display: flex;
 }
+    .mainslider .slide {
+        margin: 0 0 0 0;
+        width: 100%;
+        height: calc(100% - 100px);
+    }
 
-/* All */
+.right h1 {
+    padding: 0;
+    margin: 0;
+}
+
 table {
 }
 tr {
@@ -447,6 +459,7 @@ td {
     td img {
         height: 50px;
     }
+
 
 /* Classes */
 .subnav {
@@ -493,39 +506,25 @@ td {
         width: 100px;
     }
 
-
     /* Extracurriculas */
-.slide {
-    margin: 0 0 0 0;
-    width: 100%;
-    height: calc(100% - 100px);
-}
-.right h1{
-    padding: 0;
-    margin: 0;
-}
-
 .jobs {
     height: 150px;
-    width: 100%;
-    border-bottom: 2px solid black;
+    width: auto;
     padding: 10px 0 10px 0;
 }
-    .jobs h1 {
-        margin: 0;
-    }
     .jobs .myjob {
         margin: 0;
         height: calc(100% - 20px);
         text-align: left;
+        position: relative;
     }
         .jobs .myjob .jobdetails {
             display: flex;
             position: relative;
-            padding: 0 0 0 0;
+            padding: 0 0 0 10px;
             margin: 15px 0 0 0;
             height: calc(100% - 30px);
-            width: 100%;
+            width: auto;
         }
             .jobs .myjob .jobdetails h3,
             .jobs .myjob .jobdetails .location,
@@ -565,13 +564,11 @@ td {
                 flex: 1;
                 height: 20px;
             }
-
 .activities {
     height: calc(100% - 150px - 50px);
     width: 100%;
     padding: 10px 0 10px 0;
     position: relative;
-    background-color: red;
 }
     .activities .club {
         display: flex;
@@ -592,7 +589,10 @@ td {
             flex: 1;
             height: 20px;
         }
-            .activities .club .members{
+        .activities .club .quit {
+            text-align: center;
+        }
+            .activities .club .members {
                 height: auto;
             }
             .activities .club .members .member {

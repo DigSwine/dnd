@@ -426,6 +426,7 @@
                     theClubQuit.classList = "quit";
                     theClubQuit.innerText = "Quit Club";
                     theClubQuit.id = clubid;
+                    theClubQuit.addEventListener('click', quitClub, false);
 
                     theClub.appendChild(theClubName);
                     theClub.appendChild(theClubSkill);
@@ -463,6 +464,15 @@
         })
         alert("You have now resigned");
         document.getElementById('myjob').style.display = "none";
+    }
+    function quitClub() {
+        var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
+        var cid = this.id;
+        _supabase.from('Club<>Student').delete().eq('club', cid).eq('student', sid).then(response => {
+            alert("you have left the club");
+            var parent = this.parentNode;
+            parent.style.display = "none";
+        })        
     }
 
 var x;
