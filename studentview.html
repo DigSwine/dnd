@@ -379,19 +379,45 @@
                     var clubname = club['name'];
 
                     const theClub = document.createElement('div');
-                    const theClubName = document.createElement('h3');
-                    const leaveBtn = document.createElement('button');
+                    const theClubName = document.createElement('p');
+                    const theClubSkill = document.createElement('p');
+                    const theClubDice = document.createElement('p');
+                    const theClubMembers = document.createElement('div');
+                    const theClubMember = document.createElement('p');
+                    const theClubQuit = document.createElement('button');
 
                     theClub.classList = "club";
 
-                    theClubName.innerText = clubname;
                     theClubName.classList = "clubname";
+                    theClubName.innerText = clubname;
 
-                    leaveBtn.innerText = "Leave Club";
-                    leaveBtn.id = clubid;
+                    theClubSkill.classList = "clubskill";
+                    theClubSkill.innerText = clubname;
 
+                    theClubDice.classList = "dice";
+                    theClubDice.innerText = "1d4";
+
+                    theClubMembers.classList = "members";
+
+                    theClubMember.classList = "member";
+                    var members = ['Eliza 0', 'Eliza 1', 'Eliza 2', 'Eliza 3', 'Eliza 4'];
+                    for (var y = 0; y < members.length; y++) {
+                        theClubMember.innerText = members[y];
+                        console.log(members[y]);
+                        theClubMembers.appendChild(theClubMember);
+                    }
+
+                    theClubQuit.innerText = "Leave Club";
+                    theClubQuit.id = clubid;
+
+                    
+                    
                     theClub.appendChild(theClubName);
-                    theClub.appendChild(leaveBtn);
+                    theClub.appendChild(theClubSkill);
+                    theClub.appendChild(theClubDice);
+                    theClub.appendChild(theClubMembers);
+
+                    theClub.appendChild(theClubQuit);
 
                     activites.appendChild(theClub);
                 }

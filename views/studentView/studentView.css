@@ -576,7 +576,32 @@ td {
         .activities .club + .club {
             margin: 5px 0 0 0;
         }
+
         .activities .club .clubname {
+            margin: 0;
+            flex: 1;
+        }
+
+        .activities .club .clubskill {
+            margin: 0;
+            flex: 1;
+        }
+
+        .activities .club .dice {
+            margin: 0;
+            flex: 1;
+        }
+
+        .activities .club .members {
+            margin: 0;
+            flex: 1;
+        }
+
+            .activities .club .members .member {
+                margin: 0;
+            }
+
+        .activities .club .quit {
             margin: 0;
             flex: 1;
         }
