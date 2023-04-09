@@ -532,6 +532,7 @@ td {
                 margin: 30px 0 0 0;
                 flex: 1;
                 position: relative;
+                text-align: left;
             }
                 .jobs .myjob .jobdetails h3:before,
                 .jobs .myjob .jobdetails .location:before,
@@ -575,6 +576,7 @@ td {
         .activities .club + .club {
             margin: 5px 0 0 0;
         }
-        .activities .club h3 {
+        .activities .club .clubname {
             margin: 0;
+            flex: 1;
         }

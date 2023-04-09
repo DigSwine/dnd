@@ -383,8 +383,12 @@
                     const leaveBtn = document.createElement('button');
 
                     theClub.classList = "club";
+
                     theClubName.innerText = clubname;
+                    theClubName.classList = "clubname";
+
                     leaveBtn.innerText = "Leave Club";
+                    leaveBtn.id = clubid;
 
                     theClub.appendChild(theClubName);
                     theClub.appendChild(leaveBtn);
