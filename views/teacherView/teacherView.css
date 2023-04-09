@@ -335,10 +335,15 @@ textarea, input {
             height: 100%;
             width: 40%;
             background-color: gray;
+            overflow: hidden;
+            position: relative;
         }
             .Playerprofile .PPtop .PPLeft img {
                 height: 100%;
                 margin: 0;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
             }
         .Playerprofile .PPtop .PPRight {
             width: 60%;
@@ -360,12 +365,6 @@ textarea, input {
                 height: calc(100%/9);
                 text-align: center;
             }
-            
-
-
-
-
-
     .Playerprofile .PPbot {
         height: 60%;
         width: 100%;

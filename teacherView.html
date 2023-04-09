@@ -183,7 +183,6 @@
             if (PPCplayer[x] == this.innerText) {
                 var page = document.getElementById("S1");
                 var profile = page.querySelector(".Playerprofile");
-
                 profile.querySelector('#PPimg').src = PPCimg[x];
                 profile.querySelector('#name').value = PPCname[x];
                 profile.querySelector('#age').value = PPCage[x];
@@ -194,7 +193,6 @@
                 profile.querySelector('#eyecolour').value = PPCeyecolor[x];
                 profile.querySelector('#height').value = PPCheight[x];
                 profile.querySelector('#weight').value = PPCweight[x];
-
                 var elems = ['#name', '#age', '#gender', '#race', '#alignment', '#haircolour', '#eyecolour', '#height', '#weight'];
                 for (var y = 0; y < elems.length; y++) {
                     profile.querySelector(elems[y]).setAttribute("disabled", true);
@@ -434,19 +432,15 @@
                     NPCeyecolor.push(person['Eye Colour']);
                     NPCweight.push(person['Weight']);
                     NPCheight.push(person['Height']);
-                    console.log(NPCname.length);
                 }
             }
             // CREATE NPC LIST
             var page = document.getElementById('S3');
-            console.log(NPCname.length);
             for (var x = 0; x < NPCname.length; x++) {
                 var newOption = document.createElement('option');
 
                 newOption.value = x;
                 newOption.innerText = NPCname[x];
-
-                console.log(newOption);
 
                 page.querySelector('#NPClist').appendChild(newOption);
             }

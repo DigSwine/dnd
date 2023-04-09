@@ -102,7 +102,7 @@ body {
         display: inline-block;
         margin: 10px 0 5px 0;
         font-size: 1.7rem;
-
+        line-height: .9;
     }
     .content p {
         position: absolute;
@@ -112,10 +112,28 @@ body {
         text-align: center;
         margin: 5px 0 10px 0;
         color: #fff;
-        width: 90%;
+        width: 80%;
         font-size: 1rem;
         display: inline-block;
         font-family: 'El Fonte Angelia', sans-serif;
+    }
+    .content .heartcont {
+        width: auto;
+        height: auto;
+        position: absolute;
+        padding: 5px;
+        font-size: 1.6rem;
+        bottom: 0;
+        right: 0;
+        color: white;
+    }
+        .content .heartcont:hover {
+            color: darkgoldenrod;
+            text-shadow: 0 0 2px darkgoldenrod;
+            cursor: pointer;
+        }
+        .content .heartcont i {
+        
     }
     .content:hover {
         opacity: 1;
