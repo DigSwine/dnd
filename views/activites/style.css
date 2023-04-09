@@ -113,12 +113,13 @@ body {
         margin: 5px 0 10px 0;
         color: #fff;
         width: 90%;
-        font-size: 0.95rem;
+        font-size: 1rem;
         display: inline-block;
+        font-family: 'El Fonte Angelia', sans-serif;
     }
     .content:hover {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.9);
     }
 
 @media only screen and (max-width: 1540px) {

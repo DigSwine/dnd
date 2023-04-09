@@ -8,7 +8,7 @@ body {
 :root {
     --headerht: 17%;
     --footerht: 5%;
-    --mainht: 77.5%;/* 100-17-5-0.25-0.25 */
+    --mainht: 82%; /* 100-17-0.25-0.25 */
     --gaps: 0.25%;
     --headersides: 10%;
 }
