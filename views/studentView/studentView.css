@@ -1,7 +1,3 @@
-body {
-    background-color: darkslategrey;
-}
-
 #bg1 {
     position: fixed;
     top: 0;
@@ -17,36 +13,22 @@ body {
     height: 0;
 }
 
-header .pagetitle {
-    font-family: 'posting', sans-serif;
-    font-size: 6rem;
-    text-shadow: none;
-    -webkit-text-stroke: 0px black;
+header {
+    height: 100px;
 }
-header .thenavigation .hamburger {
-    color: white;
-}
+    header #unilogo {
+        display: none;
+    }
+    header .pagetitle {
+        font-family: 'posting', sans-serif;
+        font-size: 3rem;
+        text-shadow: none;
+        -webkit-text-stroke: 0px black;
+    }
+    header .thenavigation .hamburger {
+        color: white;
+    }
 
-.logout {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    padding: 5px;
-    font-size: 3vh;
-    z-index: 50;
-    opacity: 1;
-    font-size: 18px;
-    font-family: "Helvetica";
-    text-align: center;
-    color: darkgoldenrod;
-    padding: 18px 60px;
-    border-radius: 16px;
-    border: solid 2px;
-    border-color: darkgoldenrod;
-    background-color: rgba(0, 0, 0, 0.1);
-    -webkit-transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
-    transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
-}
 .particle {
     opacity: 0;
     position: absolute;
@@ -85,516 +67,326 @@ header .thenavigation .hamburger {
     }
 }
 
-.firstyear {
-    content: url(../../assets/strix_logo.png);
-    height: 100%;
-}
-.lorehold {
-    content: url(../../assets/maps/lorehold.png);
-    height: 100%;
-}
-.silverquill {
-    content: url(../../assets/maps/silverquill.png);
-    height: 100%;
-}
-.quandrix {
-    content: url(../../assets/maps/quandrix.png);
-    height: 100%;
-}
-.witherbloom {
-    content: url(../../assets/maps/witherbloom.png);
-    height: 100%;
-}
-.prismari {
-    content: url(../../assets/maps/prismari.png);
-    height: 100%;
+/**/
+main {
+    margin: 0;
+    height: calc(100% - 100px);
+    display: flex;
 }
 
 :root {
+    --titleheight: 45px;
+    --mainbodyheight: calc(100% - var(--titleheight));
     --color1: rgb(0, 231, 255);
-    --color2: rgb(255, 0, 231); 
+    --color2: rgb(255, 0, 231);
     --speed: 7s;
 }
-
-main {
-    position: relative;
-    height: 80%;
+::placeholder {
+    color: white;
+    opacity: 1;
 }
 
-.card {
-    height: 325px;
-    margin: 15px;
-    width: 50%;
-    overflow: hidden;
-    z-index: 10;
-    border-radius: 5%;
-    box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-    background-color: #040712;
-    position: relative;
-}
-    .card img {
-        max-height: 100%;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 100%;
-    }
-    .card:hover {
-        box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-    }
-    .card:before, .card:after {
-        content: "";
-        background-repeat: no-repeat;
-        opacity: .5;
-        mix-blend-mode: color-dodge;
-        transition: all .33s ease;
-    }
-    .card:before {
-        background-position: 50% 50%;
-        background-size: 300% 300%;
-        background-image: linear-gradient( 115deg, transparent 0%, var(--color1) 25%, transparent 47%, transparent 53%, var(--color2) 75%, transparent 100% );
-        opacity: .5;
-        filter: brightness(.5) contrast(1);
-        z-index: 1;
-    }
-    .card:after {
-        opacity: 1;
-        background-image: url("https://assets.codepen.io/13471/sparkles.gif"), url(https://assets.codepen.io/13471/holo.png), linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
-        background-position: 50% 50%;
-        background-size: 160%;
-        background-blend-mode: overlay;
-        z-index: 2;
-        filter: brightness(1) contrast(1);
-        transition: all .33s ease;
-        mix-blend-mode: color-dodge;
-        opacity: .75;
-    }
-    .card.active:after, .card:hover:after {
-        filter: brightness(1) contrast(1);
-        opacity: 1;
-    }
-    .card.active, .card:hover {
-        transition: box-shadow 0.1s ease-out;
-    }
-        .card.active:before, .card:hover:before {
-            background-position: 50% 50%;
-            background-size: 250% 250%;
-            opacity: .88;
-            filter: brightness(.66) contrast(1.33);
-            transition: none;
-        }
-    .card .animated {
-        transition: none;
-    }
-        .card .animated:after {
-            background-image: url(../../assets/sparkles.gif);
-        }
-
-@keyframes holoSparkle {
-    0%, 100% {
-        opacity: .75;
-        background-position: 50% 50%;
-        filter: brightness(1.2) contrast(1.25);
-    }
-
-    5%, 8% {
-        opacity: 1;
-        background-position: 40% 40%;
-        filter: brightness(.8) contrast(1.2);
-    }
-
-    13%, 16% {
-        opacity: .5;
-        background-position: 50% 50%;
-        filter: brightness(1.2) contrast(.8);
-    }
-
-    35%, 38% {
-        opacity: 1;
-        background-position: 60% 60%;
-        filter: brightness(1) contrast(1);
-    }
-
-    55% {
-        opacity: .33;
-        background-position: 45% 45%;
-        filter: brightness(1.2) contrast(1.25);
-    }
-}
-
-.container{
-    height: 100%;
-    display: flex;
-    position: relative; 
-    padding: 5px;
-}
-
-.controls {
-    position: absolute;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    z-index: 15;
-    display: flex;
-}
-.control {
+.leftnav {
     background-color: white;
-    height: 80%;
-    width: 100%;
-    margin: 10px;
-    position: relative;
-    border-radius: 3px;
-}
-    .control p {
-        position: absolute;
-        margin:0;
-        text-align: center;
-        top: 50%;
-        width: 100%;
-        transform: translateY(-50%);
-        font-size: 24px;
-    }
-    .control:hover {
-        background-color: darkgoldenrod;
-        color: white;
-        cursor: pointer;
-    }
-
-.subControls {
+    width: 350px;
+    height: calc(100% + 100px);
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 25px;
-    display: flex;
+    top: -100px;
+    position: relative;
 }
-    .subControls .subControl {
-        width: calc(100% - 50% - 2.5px);
-        height: 100%;
-        color: black;
-        background-color: white;
-        position: relative;
-        border-radius: 3px;
+    .leftnav .block {
+        width: 100%;
+        height: 150px;
     }
-        .subControls .subControl p{
+    .leftnav .block img {
+        height: calc(100% - 30px);
+        margin: 15px
+    }
+    .leftnav .choices {
+        width: 100%;
+    }
+        .leftnav .choices .choice {
+            text-align: center;
             margin: 0;
-            padding: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
+            padding: 20px;
         }
-        .subControls .subControl + .subControl {
-            margin: 0 0 0 5px;
+            .leftnav .choices .choice:hover {
+                background-color: rgb(227,28,121, 0.2);
+                color: rgb(227,28,121);
+            }
+        .leftnav .choices .selected {
+            border-left: 5px solid hotpink;
+            border-right: 5px solid hotpink;
+            background-color: rgb(227,28,121, 0.2);
+            color: rgb(227,28,121);
         }
-        .subControls .subControl:hover {
-            background-color: darkgoldenrod;
+
+.mainpage {
+    height: var(--mainbodyheight);
+    width: calc(100% - 350px);
+    position: relative;
+}
+    .mainpage div {
+        width: auto;
+        height: auto;
+    }
+    .mainpage h2 {
+        height: var(--titleheight);
+        margin: 10px 0 0 0;
+        font-size: 2rem;
+    }
+    .mainpage .page {
+        color: white;
+        height: auto;
+    }
+    .mainpage .top {
+        display: flex;
+        height: 340px;
+        width: 100%;
+        position: relative;
+    }
+    .mainpage .bottom {
+        display: flex;
+        height: calc(100% - 360px);
+        width: 100%;
+        position: relative;
+    }
+    .mainpage input, .mainpage textarea {
+        background-color: transparent;
+        border: none;
+        text-align: center;
+        color: white;
+    }
+    .mainpage input {
+        text-align: left;
+        width: 450px;
+        padding: 5px 0 5px 10px;
+    }
+        .mainpage input:enabled {
+            border: 2px solid white;
+        }
+    .mainpage textarea {
+        border: 2px solid white;
+    }
+        .mainpage textarea:read-only {
+            border: none;
+        }
+
+    .mainpage .controls {
+        position: absolute;
+        top: -10px;
+        right: 0;
+        padding: 5px;
+        display: flex;
+    }
+        .mainpage .controls button {
+            font-size: 2rem;
+            padding: 5px;
+            background-color: transparent;
             color: white;
+            border: none;
+        }
+        .mainpage .controls .control:hover {
+            color: darkgoldenrod;
             cursor: pointer;
         }
-
-label {
-    color: white;
-    font-family: 'Valneck';
-    display: block;
-}
-input, textarea:read-only, textarea {
-    color: white;
-    margin: 5px 5px 5px 0;
-    text-align: center;
-    padding: 5px;
-    height: auto;
-    width: 250px;
-    background-color: transparent;
-    border: none;
-    font-family: Arial;
-}
-textarea:read-only {
-    cursor: url(http://cur.cursors-4u.net/user/use-1/use160.cur), progress !important;
-}
-    input:enabled, textarea {
-        border: 1px solid white;
-        border-radius: 6px;
-        margin: 4px 5px 4px 0;
-    }
-    label, input:disabled, textarea:disabled {
-        pointer-events: none;
-        cursor: url(http://cur.cursors-4u.net/user/use-1/use160.cur), progress !important;
-    }
-        .left {
-            position: relative;
-            height: 100%;
-            width: 1000px;
+        .mainpage .controls button + button {
+            margin-left: 5px;
         }
-    .left h1 {
-        font-family: 'Valneck';
-        letter-spacing: 3px;
-    }
-.left .lefttopcontainer{
-    display: flex;
-    position: relative;
-    width: 100%;
-    height: 46%;
-}
-.left .profile {
-    margin: 15px 15px 0 0;
-    width: 100%;
-    text-align: right;
-    position: relative;
-}
-    .left .info {
-        transition: all 0.5s;
-        opacity: 1;
-    }
-    .left .personality {
-        width: 100%;
-        height: calc(100% - 46% - 100px);
-        margin-top: 5px;
-        padding-top: 10px;
-        text-align: right;
-    }
-    .left .personality .personalityprofile{
-        margin: 0 15px 0 0;
-    }
-        .left .personality .personalityprofile input {
-            width: 400px;
-            height: 50px
+        .mainpage .controls .activecontrol {
+            color: hotpink;
         }
-.personal{
-    text-align: right;
-    display: flex;  
-}
-    .personal p {
-        color: white;
-        max-width: 20%;
-        padding: 5px;
-        margin: 5px 15px 5px 5px;
-        flex: 2;
-    }
-    .personal textarea {
-        width: 475px;
-        height: auto;
-        margin: 0 0 10px 0;
-        resize: none;
-        color: white;
-        text-align: center;
-        background-color: transparent;
-    }
-    .personal textarea:focus {
-        height: 225px;
-    }
-    .personal input {
-        padding: 0;
-        width: 500px;
-    }
-.left .story {
-    width: 100%;
-    transition: all 0.5s;
-    opacity: 0;
-}
+            .mainpage .controls .activecontrol:hover {
+                cursor: pointer;
+            }
 
-.left .story h1{
-    margin: 0;
-    padding: 0;
-    height: 30px;
-}
-    .left .story textarea {
-        width: calc(100% - 30px);
-        height: calc(100% - 30px - 30px);
-        max-width: calc(100% - 30px);
-        max-height: calc(100% - 30px - 30px);
-        min-width: calc(100% - 30px);
-        min-height: calc(100% - 30px - 30px);
-        margin: 15px;
-        resize: none;
-    }
-    .left .story .backstory {
-        color: white;
-        width: 100%;
-        height: calc(100% - 60%);
-    }
-    .left .story .extrainfo {
-        color: white;
-        width: 100%;
-        height: calc(100% - 55%);
-    }
-
-/* All */
-.right {
-    margin-left: 5px;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    border-left: 2px solid black;
-    overflow: hidden;
-}
-
-.mainslider {
-    color: white;
-    height: 100%;
-    width: calc(100% * 4);
-    transition: all 1s;
-    display: flex;
-}
-    .mainslider .slide {
-        margin: 0 0 0 0;
-        width: 100%;
-        height: calc(100% - 100px);
-    }
-
-.right h1 {
-    padding: 0;
-    margin: 0;
-}
-
-table {
-}
-tr {
-}
-th {
-}
-td {
-    text-align: left;
-}
-    td img {
-        height: 50px;
-    }
-
-
-/* Classes */
-.subnav {
-    display: flex;
-    width: 100%;
-    align-content: center;
-    align-items: center;
-}
-.sub {
-    flex: 1;
-}
-    .sub:hover {
-        cursor: pointer;
-        color: darkgoldenrod;
-    }
-.one {
-    background-color: red;
-}
-.two {
-    background-color: hotpink;
-}
-.three {
-    background-color: purple;
-}
-.four {
-    background-color: blue;
-}
-
-/* Exam Report */
-
-
-/* Relationships */
-.relation{
-    display: flex;
-    text-align: left;
-    color: black;
-    padding: 15px;
-}
-    .relation img {
-        width: 100px;
-    }
-    .relation p {
-        margin: 10px;
-        width: 100px;
-    }
-
-    /* Extracurriculas */
-.jobs {
-    height: 150px;
-    width: auto;
-    padding: 10px 0 10px 0;
-}
-    .jobs .myjob {
-        margin: 0;
-        height: calc(100% - 20px);
-        text-align: left;
+    .mainpage #profile {
         position: relative;
     }
-        .jobs .myjob .jobdetails {
-            display: flex;
-            position: relative;
-            padding: 0 0 0 10px;
-            margin: 15px 0 0 0;
-            height: calc(100% - 30px);
-            width: auto;
+        .mainpage #profile .card {
+            height: 325px;
+            max-width: 225px;
+            margin: 0px 0 0 50px;
+            flex: 1;
         }
-            .jobs .myjob .jobdetails h3,
-            .jobs .myjob .jobdetails .location,
-            .jobs .myjob .jobdetails .wage,
-            .jobs .myjob .jobdetails .coworker {
-                margin: 30px 0 0 0;
-                padding: 0 20px 0 0;
+            .mainpage #profile .card img {
+                height: 100%;
+                border-radius: 5%;
+                box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+            }
+                .mainpage #profile .card img:hover {
+                    box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+                    transition: box-shadow 0.1s ease-out;
+                }
+        .mainpage #profile form {
+            flex: 2;
+            text-align: right;
+        }
+            .mainpage #profile form label {
+                display: block;
+                margin: 10px;
+            }
+
+            .mainpage #profile form .formfield {
+                display: flex;
+                height: 239px;
+            }
+                .mainpage #profile form .formfield label {
+                    flex: 1;
+                    margin: 0 5px 0 20px;
+                }
+                .mainpage #profile form .formfield textarea {
+                    flex: 2.7;
+                    height: 225px;
+                    width: 450px;
+                    resize: none;
+                    margin: 0 10px 0 0;
+                }
+            .mainpage #profile form label textarea {
+                height: 225px;
+            }
+        .mainpage #profile .personality {
+            width: 100%;
+            height: calc(100% - 15px);
+            margin-top: 5px;
+            text-align: right;
+            flex: 1;
+        }
+            .mainpage #profile .personality .personal {
+                text-align: right;
+                display: flex;
+                width: calc(100% - 50px);
+                padding: 0 0 0 50px;
+                height: calc(100% / 5);
+            }
+                .mainpage #profile .personality .personal p, .mainpage #profile .personality .personal textarea {
+                    height: calc(100% / 5);
+                }
+                .mainpage #profile .personality .personal p {
+                    color: white;
+                    max-width: 20%;
+                    padding: 0 5px 5px 5px;
+                    margin: 0 15px 5px 5px;
+                    flex: 1;
+                }
+                .mainpage #profile .personality .personal textarea {
+                    width: calc(100% - 20%);
+                    height: calc(100% - 10px);
+                    min-height: calc(100% - 10px);
+                    margin: 5px 10px 0 10px;
+                    resize: none;
+                    flex: 1;
+                    color: white;
+                    text-align: center;
+                    background-color: transparent;
+                }
+        .mainpage #profile .right {
+            flex: 1;
+        }
+            .mainpage #profile .right .formfield {
+                height: 50%;
+                display: flex;
+            }
+                .mainpage #profile .right .formfield label {
+                    flex: 1;
+                }
+                .mainpage #profile .right .formfield textarea {
+                    flex: 1;
+                    margin: 0 10px 0 0;
+                    height: calc(100% - 10px);
+                    resize: none;
+                }
+
+    .mainpage #details {
+        position: relative;
+    }
+        .mainpage #details .splitbody {
+            display: flex;
+            height: calc(100% - 45px);
+        }
+            .mainpage #details .splitbody .split {
                 flex: 1;
-                position: relative;
+                height: 100%;
+                margin: 0 50px 0 50px;
+                padding-bottom: 50px;
+            }
+                .mainpage #details .splitbody .split p {
+                    margin: 0;
+                    text-align: center;
+                    font-size: 1.5rem;
+                }
+                .mainpage #details .splitbody .split textarea {
+                    resize: none;
+                    height: calc(100% - 30px);
+                    width: 100%;
+                }
+
+    .mainpage #courses {
+    }
+
+    .mainpage #exams {
+    }
+
+    .mainpage #relationships {
+    }
+
+    .mainpage #jobandextra {
+    }
+        .mainpage #jobandextra #jobs {
+            min-height: 130px;
+        }
+        .mainpage #jobandextra #jobs .job {
+            display: flex;
+            padding: 50px 50px 20px 50px;
+            position: relative;
+        }
+            .mainpage #jobandextra #jobs .job p, .mainpage #jobandextra #jobs .job h3 {
+                flex: 1;
                 text-align: left;
             }
-                .jobs .myjob .jobdetails .coworker{
-                    flex: 2;                    
-                }
-                .jobs .myjob .jobdetails h3:before,
-                .jobs .myjob .jobdetails .location:before,
-                .jobs .myjob .jobdetails .wage:before,
-                .jobs .myjob .jobdetails .coworker:before {
-                    position: absolute;
-                    left: 0;
-                    top: -35px;
-                }
-                .jobs .myjob .jobdetails h3:before {
+                .mainpage #jobandextra #jobs .job h3:before {
                     content: "Job Title";
+                    position: absolute;
+                    top: 20px;
                 }
-                .jobs .myjob .jobdetails .location:before {
-                    content: "Location";
+            .mainpage #jobandextra #jobs .job .location:before {
+                content: "Job Location";
+                position: absolute;
+                top: 20px;
+            }
+            .mainpage #jobandextra #jobs .job .coworker:before {
+                content: "Job Coworker";
+                position: absolute;
+                top: 20px;
+            }
+            .mainpage #jobandextra #jobs .job .wage:before {
+                content: "Job Wage";
+                position: absolute;
+                top: 20px;
+            }
+        .mainpage #jobandextra #clubs {
+        }
+            .mainpage #jobandextra #clubs .club {
+                display: flex;
+                padding: 20px 50px 20px 50px
+            }
+                .mainpage #jobandextra #clubs .club + .club {
+                    border-top: 2px solid black;
                 }
-                .jobs .myjob .jobdetails .wage:before {
-                    content: "Wage";
+                .mainpage #jobandextra #clubs .club .members {
+                    flex: 1;
                 }
-                .jobs .myjob .jobdetails .coworker:before {
-                    content: "Coworker";
-                }                
-            .jobs .myjob .jobdetails button {
-                margin: 30px 0 0 0;
-                flex: 1;
-                height: 20px;
-            }
-.activities {
-    height: calc(100% - 150px - 50px);
-    width: 100%;
-    padding: 10px 0 10px 0;
-    position: relative;
-}
-    .activities .club {
-        display: flex;
-        border-bottom: 2px solid black;
-        padding: 0 5px 10px 10px;
-        height: calc(100% / 3 - 24px);
-    }
-        .activities .club + .club {
-            margin: 5px 0 0 0;
+                .mainpage #jobandextra #clubs .club p {
+                    flex: 1;
+                    text-align: left;
+                }
+        .mainpage #jobandextra button {
+            flex: 0.5;
+            background-color: transparent;
+            border: 2px solid darkgoldenrod;
+            color: white;
+            height: 50px;
         }
-        .activities .club .clubname,
-        .activities .club .clubskill,
-        .activities .club .dice,
-        .activities .club .members,
-        .activities .club .quit {
-            text-align: left;
-            margin: 0;
-            flex: 1;
-            height: 20px;
+
+        .mainpage #account {
         }
-        .activities .club .quit {
-            text-align: center;
-        }
-            .activities .club .members {
-                height: auto;
-            }
-            .activities .club .members .member {
-                margin: 0;
-            }

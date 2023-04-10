@@ -6,454 +6,274 @@ div, footer, nav {
 /* Layout // All pages */
 body{
     position: relative;
-    background-color: gray;
-}
-
-:root {
-    --hsize: 20vh;
-    --wsize: 10vw;
+    background-color: black;
+    overflow: auto;
 }
 
 /* Page */
+header{
+    background-color: darkviolet;
+    height: 100px;
+}
+    header .pagetitle {
+        font-size: 3rem;
+    }
+    main{
+        margin: 0;
+        height: calc(100% - 100px);
+        display: flex;
+    }
+
+.leftnav {
+    background-color: white;
+    width: 350px;
+    height: 100%;
+    position: relative;
+}
+    .leftnav .block {
+        width: 100%;
+        height: 100px;
+    }
+    .leftnav .choices {
+        width: 100%;
+    }
+        .leftnav .choices .choice {
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+            .leftnav .choices .choice:hover {
+                background-color: rgb(227,28,121, 0.2);
+                color: rgb(227,28,121);
+            }
+        .leftnav .choices .selected {
+            border-left: 5px solid hotpink;
+            border-right: 5px solid hotpink;
+            background-color: rgb(227,28,121, 0.2);
+            color: rgb(227,28,121);
+        }
+
+:root {
+    --titleheight: 45px;
+    --mainbodyheight: calc(100% - var(--titleheight));
+}
 :root {
     --color1: rgb(0, 231, 255);
     --color2: rgb(255, 0, 231);
-    --back: url(https://cdn2.bulbagarden.net/upload/1/17/Cardback.jpg);
-    --shine1: #fac;
-    --shine2: #ddccaa;
-    --charizardfront: url(https://i.pinimg.com/564x/05/e2/ac/05e2ac5fa7974a4b411a230d883b139c.jpg);
-    --pika1: #fac;
-    --pika2: #ddccaa;
-    --pikafront: url(https://i.pinimg.com/564x/2b/59/00/2b5900b6d1765d4611744be0a8b0b823.jpg);
-    --eevee1: #fac;
-    --eevee2: #ddccaa;
-    --eeveefront: url(https://i.pinimg.com/564x/5b/f8/d3/5bf8d3c353872d59858875a11f344bb1.jpg);
-    --mewtwo1: #fac;
-    --mewtwo2: #ddccaa;
-    --mewtwofront: url(../assets/teachers/Jadzi_the_Oracle.png);
+    --speed: 7s;
 }
-
-
-
-.card {
-    width: var(--wsize);
-    height: var(--hsize);
-    position: relative;
-    overflow: hidden;
-    border-radius: 5%;
-    box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.5s ease, box-shadow 0.2s ease;
-    will-change: transform, filter;
-    background-color: #040712;
-    background-image: var(--front);
-    background-size: cover;
-    background-repeat: no-repeat;
-    transform-origin: center;
-    --color1: var(--shine1);
-    --color2: var(--shine2);
-}
-
-    .card:hover {
-        box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-    }
-
-    .card.charizard {
-        --front: var(--charizardfront);
-    }
-
-    .card.pika {
-        --front: var(--pikafront);
-    }
-
-    .card.mewtwo {
-        --front: var(--mewtwofront);
-    }
-
-    .card.eevee {
-        --front: var(--eeveefront);
-    }
-
-    .card:before,
-    .card:after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        background-repeat: no-repeat;
-        opacity: .5;
-        mix-blend-mode: color-dodge;
-        transition: all .33s ease;
-        background-image: url("https://assets.codepen.io/13471/sparkles.gif"), url(https://assets.codepen.io/13471/holo.png), linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
-    }
-
-    .card:before {
-        background-position: 50% 50%;
-        background-size: 300% 300%;
-        background-image: linear-gradient( 115deg, transparent 0%, var(--color1) 25%, transparent 47%, transparent 53%, var(--color2) 75%, transparent 100% );
-        opacity: .5;
-        filter: brightness(.5) contrast(1);
-        z-index: 1;
-    }
-
-    .card:after {
-        opacity: 1;
-        background-position: 50% 50%;
-        background-size: 160%;
-        background-blend-mode: overlay;
-        z-index: 2;
-        filter: brightness(1) contrast(1);
-        transition: all .33s ease;
-        mix-blend-mode: color-dodge;
-        opacity: .75;
-    }
-
-    .card.active:after,
-    .card:hover:after {
-        filter: brightness(1) contrast(1);
-        opacity: 1;
-    }
-
-    .card.active,
-    .card:hover {
-        animation: none;
-        transition: box-shadow 0.1s ease-out;
-    }
-
-        .card.active:before,
-        .card:hover:before {
-            animation: none;
-            background-image: linear-gradient( 110deg, transparent 25%, var(--color1) 48%, var(--color2) 52%, transparent 75% );
-            background-position: 50% 50%;
-            background-size: 250% 250%;
-            opacity: .88;
-            filter: brightness(.66) contrast(1.33);
-            transition: none;
-        }
-
-        .card.active:before,
-        .card:hover:before,
-        .card.active:after,
-        .card:hover:after {
-            animation: none;
-            transition: none;
-        }
-
-    .card .animated {
-        transition: none;
-        animation: holoCard 12s ease 0s 1;
-    }
-        .card .animated:before {
-            transition: none;
-            animation: holoGradient 12s ease 0s 1;
-        }
-
-        .card .animated:after {
-            transition: none;
-            animation: holoSparkle 12s ease 0s 1;
-        }
-.pos-top {
-    background-position: top;
-}
-.pos-right {
-    background-position: right;
-}
-
-.pos-left {
-    background-position: left;
-}
-
-.pos-bot {
-    background-position: bottom;
-}
-
-.pos-center {
-    background-position: center;
-}
-
-
-
-
-@keyframes holoSparkle {
-    0%, 100% {
-        opacity: .75;
-        background-position: 50% 50%;
-        filter: brightness(1.2) contrast(1.25);
-    }
-
-    5%, 8% {
-        opacity: 1;
-        background-position: 40% 40%;
-        filter: brightness(.8) contrast(1.2);
-    }
-
-    13%, 16% {
-        opacity: .5;
-        background-position: 50% 50%;
-        filter: brightness(1.2) contrast(.8);
-    }
-
-    35%, 38% {
-        opacity: 1;
-        background-position: 60% 60%;
-        filter: brightness(1) contrast(1);
-    }
-
-    55% {
-        opacity: .33;
-        background-position: 45% 45%;
-        filter: brightness(1.2) contrast(1.25);
-    }
-}
-
-@keyframes holoGradient {
-    0%, 100% {
-        opacity: 0.5;
-        background-position: 50% 50%;
-        filter: brightness(.5) contrast(1);
-    }
-
-    5%, 9% {
-        background-position: 100% 100%;
-        opacity: 1;
-        filter: brightness(.75) contrast(1.25);
-    }
-
-    13%, 17% {
-        background-position: 0% 0%;
-        opacity: .88;
-    }
-
-    35%, 39% {
-        background-position: 100% 100%;
-        opacity: 1;
-        filter: brightness(.5) contrast(1);
-    }
-
-    55% {
-        background-position: 0% 0%;
-        opacity: 1;
-        filter: brightness(.75) contrast(1.25);
-    }
-}
-
-@keyframes holoCard {
-    0%, 100% {
-        transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
-    }
-
-    5%, 8% {
-        transform: rotateZ(0deg) rotateX(6deg) rotateY(-20deg);
-    }
-
-    13%, 16% {
-        transform: rotateZ(0deg) rotateX(-9deg) rotateY(32deg);
-    }
-
-    35%, 38% {
-        transform: rotateZ(3deg) rotateX(12deg) rotateY(20deg);
-    }
-
-    55% {
-        transform: rotateZ(-3deg) rotateX(-12deg) rotateY(-27deg);
-    }
-}
-
-
-
-.card.eevee:hover {
-    box-shadow: 0 0 30px -5px white, 0 0 10px -2px white, 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-}
-
-    .card.eevee:hover:before,
-    .card.eevee.active:before {
-        background-image: linear-gradient( 115deg, transparent 20%, var(--color1) 36%, var(--color2) 43%, var(--color3) 50%, var(--color4) 57%, var(--color5) 64%, transparent 80% );
-    }
-
-
-
-
-.demo .card {
-    background-image: var(--back);
-    font-size: 2vh
-}
-
-    .demo .card > span {
-        position: relative;
-        top: 45%;
-    }
-
-    .demo .card:nth-of-type(1),
-    .demo .card:nth-of-type(2),
-    .demo .card:nth-of-type(3) {
-        width: 20vh;
-        height: 27.5vh;
-        box-shadow: inset 0 0 0 1px rgba(white,0.4), 0 25px 15px -10px rgba(0, 0, 0, 0.5);
-        animation: none;
-    }
-
-    .demo .card:nth-of-type(1),
-    .demo .card:nth-of-type(2),
-    .demo .card:nth-of-type(3) {
-        &:before, &:after
-
-{
-    animation: none;
-    // opacity: 1;
-}
-
-}
-
-.demo .card:nth-of-type(1) {
-    &:before, &:after
-
-{
-    display: none;
-}
-
-}
-
-.demo .card:nth-of-type(2) {
-    background: none;
-    &:before
-
-{
-    display: none;
-}
-
-}
-
-.demo .card:nth-of-type(3) {
-    background: none;
-    &:after
-
-{
-    display: none;
-}
-
-}
-
-.operator {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 6vh;
-}
-
-
-
-
-
-
-html, body {
-    height: 100%;
-    background-color: #333844;
-    padding: 0;
-    z-index: 1;
-    transform: translate3d(0,0,0.1px);
-}
-
-body {
+::placeholder {
     color: white;
-    background-color: #333844;
-    font-family: "Heebo", sans-serif;
-    text-align: center;
+    opacity: 1;
 }
 
-h1 {
-    display: block;
-    margin: 30px 0;
-}
-
-p {
-    margin-top: 5px;
-    font-weight: 200;
-}
-
-#app {
+.mainpage {
+    height: var(--mainbodyheight);
+    width: calc(100% - 350px);
     position: relative;
 }
-
-.demo,
-.cards {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    perspective: 2000px;
-    position: relative;
-    z-index: 1;
-    transform: translate3d(0.1px, 0.1px, 0.1px )
-}
-
-.demo {
-    flex-direction: row;
-    justify-content: center;
-}
-
-@media screen and (min-width: 600px) {
-    .cards {
-        flex-direction: row;
+    .mainpage div {
+        width: auto;
+        height: auto;
     }
-}
+    .mainpage h2 {
+        height: var(--titleheight);
+        margin: 10px 0 0 0;
+        font-size: 2rem;
+    }
+    .mainpage .page {
+        color: white;
+        height: auto;
+    }
+    .mainpage .top {
+        display: flex;
+        height: 340px;
+        width: 100%;
+        position: relative;
+    }
+    .mainpage .bottom {
+        display: flex;
+        height: calc(100% - 360px);
+        width: 100%;
+        position: relative;
+    }
+    .mainpage input, .mainpage textarea {
+        background-color: transparent;
+        border: none;
+        text-align: center;
+        color: white;
+    }
+    .mainpage input {
+        text-align: left;
+        width: 450px;
+        padding: 5px 0 5px 10px;
+    }
+        .mainpage input:enabled {
+            border: 2px solid white;
+        }
+    .mainpage textarea {
+        border: 2px solid white;
+    }
+    .mainpage textarea:read-only {
+        border: none;
+    }
+        
 
 
-
-
-
-
-.cards .card {
-    &:nth-child(2)
-
-{
-    &, &:before, &:after
-
-{
-    animation-delay: 0.25s;
-}
-
-}
-
-&:nth-child(3) {
-    &, &:before, &:after
-
-{
-    animation-delay: 0.5s;
-}
-
-}
-
-&:nth-child(4) {
-    &, &:before, &:after
-
-{
-    animation-delay: 0.75s;
-}
-
-}
-}
-
-
-p {
-    font-weight: 400;
-    font-size: 18px;
-    padding: 1em;
-    background: rgba(0,0,0,0.3);
-    margin-top: 0;
-}
-
-    p.bottom {
+    .mainpage .controls  {
         position: absolute;
-        bottom: 0;
-        left: 0;
+        top: -10px;
         right: 0;
-        margin-bottom: 0;
+        padding: 5px;
+        display: flex;
     }
+        .mainpage .controls button {
+            font-size: 2rem;
+            padding: 5px;
+            background-color: transparent;
+            color: white;
+            border: none;
+        }
+        .mainpage .controls .control:hover {
+            color: darkgoldenrod;
+            cursor: pointer;
+        }
+            .mainpage .controls button + button {
+                margin-left: 5px;
+            }
+        .mainpage .controls .activecontrol {
+            color: hotpink;
+        }
+            .mainpage .controls .activecontrol:hover {
+                cursor: pointer;
+            }
 
-    p a {
-        color: cyan;
+    .mainpage #profile {
+        position: relative;
     }
+        .mainpage #profile .card {
+            height: 325px;
+            max-width: 225px;
+            margin: 0px 0 0 50px;
+            flex: 1;
+        }
+            .mainpage #profile .card img {
+                height: 100%;
+                border-radius: 5%;
+                box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+            }
+                .mainpage #profile .card img:hover {
+                    box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+                    transition: box-shadow 0.1s ease-out;
+                }
+            .mainpage #profile form {
+                flex: 2;
+                text-align: right;
+            }
+                .mainpage #profile form label {
+                    display: block;
+                    margin: 10px;
+                }
 
-html, body, main {
-    min-height: 100%;
+
+                .mainpage #profile form .formfield {
+                    display: flex;
+                    height: 239px;
+                }
+                    .mainpage #profile form .formfield label {
+                        flex: 1;
+                        margin: 0 5px 0 20px;
+                    }
+                    .mainpage #profile form .formfield textarea {
+                        flex: 2.7;
+                        height: 225px;
+                        width: 450px;
+                        resize: none;
+                        margin: 0 10px 0 0;
+                    }
+        .mainpage #profile form label textarea {
+            height: 225px;
+        }
+        .mainpage #profile .personality {
+            width: 100%;
+            height: calc(100% - 15px);
+            margin-top: 5px;
+            text-align: right;
+            flex: 1;
+        }
+            .mainpage #profile .personality .personal {
+                text-align: right;
+                display: flex;
+                width: calc(100% - 50px);
+                padding: 0 0 0 50px;
+                height: calc(100% / 5);
+            }
+                .mainpage #profile .personality .personal p, .mainpage #profile .personality .personal textarea {
+                    height: calc(100% / 5);
+                }
+                .mainpage #profile .personality .personal p {
+                    color: white;
+                    max-width: 20%;
+                    padding: 0 5px 5px 5px;
+                    margin: 0 15px 5px 5px;
+                    flex: 1;
+                }
+                .mainpage #profile .personality .personal textarea {
+                    width: calc(100% - 20%);
+                    height: calc(100% - 10px);
+                    margin: 5px 10px 0 10px;
+                    resize: none;
+                    flex: 1;
+                    color: white;
+                    text-align: center;
+                    background-color: transparent;
+                }
+                .mainpage #profile .right {
+                    flex: 1;
+                }
+                    .mainpage #profile .right .formfield {
+                        height: 50%;
+                        display: flex;
+                    }
+                        .mainpage #profile .right .formfield label {
+                            flex: 1;
+                        }
+                        .mainpage #profile .right .formfield textarea {
+                            flex: 1;
+                            margin: 0 10px 0 0;
+                            resize: none;
+                        }
+
+.mainpage #details {
+    position: relative;
 }
+        .mainpage #details .mainpage {
+            display: flex;
+        }
+            .mainpage #details .mainpage .split {
+                flex: 1;
+                display: flex;
+                height: calc(100% - 50px);
+                margin: 0 50px 0 50px;
+                padding-bottom: 50px;
+            }
+                .mainpage #details .mainpage .split p {
+                    margin: 0;
+                    flex: 0.5;
+                }
+                .mainpage #details .mainpage .split textarea {
+                    flex: 1;
+                    resize: none;
+                }
+
+
+        .mainpage #courses {
+        }
+    .mainpage #exams {
+    }
+    .mainpage #relationships {
+    }
+    .mainpage #jobandextra {
+    }
+    .mainpage #account {
+    }

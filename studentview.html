@@ -24,136 +24,130 @@
 
     <!-- Main -->
     <main>
-        <div class="container">
-            <div class="left">
-                <div class="personcontainer">
-                    <div class="info" id="info">
-                        <div class="lefttopcontainer">
-                            <div class="card">
-                                <img id="profilepicture" />
-                            </div>
-                            <form id="profileform" class="profile">
-                                <label>Name: <input id="name" placeholder="Name" disabled /></label>
-                                <label>Age: <input id="age" placeholder="Age" disabled /></label>
-                                <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
-                                <label>Race: <input id="race" placeholder="Race" disabled /></label>
-                                <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
-                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
-                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
-                                <label>Height: <input id="height" placeholder="Height" disabled /></label>
-                                <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
-                                <div class="subControls">
-                                    <div class="subControl" id="edit"><p>Edit</p></div>
-                                    <div class="subControl" id="save"><p>Save</p></div>
-                                </div>
-                            </form>
+        <div class="leftnav">
+            <div class="block">
+                <a href="about.html">
+                    <img src="assets/strix_logo.png" />
+                </a>
+            </div>
+            <div id="subnavchoices" class="choices">
+                <p class="choice selected">Profile</p>
+                <p class="choice">Details</p>
+                <p class="choice">Courses</p>
+                <p class="choice">Exams</p>
+                <p class="choice">Relationships</p>
+                <p class="choice">Job and Extra</p>
+                <p class="choice" hidden>Coming Soon</p>
+                <p class="choice">Account Details</p>
+                <p class="choice">Logout</p>
+            </div>
+        </div>
+        <div id="pages" class="mainpage">
+            <div class="page" id="profile">
+                <div class="controls">
+                    <button id="edit" class="control fa fa-pencil-square-o"></button>
+                    <button id="save" class="control fa fa-floppy-o"></button>
+                </div>
+                <h2>Profile</h2>
+                <div class="mainbody">
+                    <div class="top">
+                        <div class="card">
+                            <img id="profilepicture" />
                         </div>
+                        <form id="profileform1">
+                            <label>Name: <input id="name" placeholder="Name" disabled /></label>
+                            <label>Age: <input id="age" placeholder="Age" disabled /></label>
+                            <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
+                            <label>Race: <input id="race" placeholder="Race" disabled /></label>
+                            <label>Subrace: <input id="subrace" placeholder="Subrace" disabled /></label>
+                            <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
+                            <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
+                            <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
+                        </form>
+                        <form id="profileform2">
+                            <label>Height: <input id="height" placeholder="Height" disabled /></label>
+                            <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
+                            <label>Level: <input id="level" placeholder="Level" disabled /></label>
+                            <label>Class: <input id="class" placeholder="Class" disabled /></label>
+                            <label>Subclass: <input id="subclass" placeholder="Subclass" disabled /></label>
+                            <label>Background: <input id="background" placeholder="Background" disabled /></label>
+                        </form>
+                    </div>
+                    <div class="bottom">
                         <div class="personality scrollbar">
                             <div class="personal">
                                 <p>Personality Traits:</p>
-                                <textarea id="personalitytraits" placeholder="Personality Traits" readonly></textarea>
+                                <textarea id="personalitytraits" class="scrollbar" placeholder="Personality Traits" readonly></textarea>
                             </div>
                             <div class="personal">
                                 <p>Ideals:</p>
-                                <textarea id="ideals" placeholder="Ideals" readonly></textarea>
+                                <textarea id="ideals" class="scrollbar" placeholder="Ideals" readonly></textarea>
                             </div>
                             <div class="personal">
                                 <p>Bonds:</p>
-                                <textarea id="bonds" placeholder="Bonds" readonly></textarea>
+                                <textarea id="bonds" class="scrollbar" placeholder="Bonds" readonly></textarea>
                             </div>
                             <div class="personal">
                                 <p>Flaws:</p>
-                                <textarea id="flaws" placeholder="Flaws" readonly></textarea>
+                                <textarea id="flaws" class="scrollbar" placeholder="Flaws" readonly></textarea>
                             </div>
                             <div class="personal">
                                 <p>Goals:</p>
-                                <textarea id="goals" placeholder="Your life time desire" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Homebrew:</p>
-                                <textarea id="homebrew" placeholder="Anything that has been homebrewed for you" readonly></textarea>
+                                <textarea id="goals" class="scrollbar" placeholder="Your life time desire" readonly></textarea>
                             </div>
                         </div>
-                    </div>
-                    <div class="story" id="story">
-                        <div class="backstory">
-                            <h1>Backstory</h1>
-                            <textarea id="backstory" class="scrollbar" placeholder="Backstory" readonly></textarea>
-                        </div>
-                        <div class="extrainfo">
-                            <h1>Extra Notes</h1>
-                            <textarea id="extrainfo" class="scrollbar" placeholder="Info about you" readonly></textarea>
+                        <div class="right">
+                            <div class="formfield">
+                                <label>Background Features:</label>
+                                <textarea id="backgroundfeatures" class="scrollbar" placeholder="Background Features" readonly></textarea>
+                            </div>
+                            <div class="formfield">
+                                <label>Additional Character Appearance:</label>
+                                <textarea id="appearance" class="scrollbar" placeholder="Additional Character Appearance" readonly></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="page" id="details" hidden>
                 <div class="controls">
-                    <div class="control" id="profile"><p>Profile</p></div>
-                    <div class="control" id="details"><p>Details</p></div>
+                    <button id="edit" class="control fa fa-pencil-square-o"></button>
+                    <button id="save" class="control fa fa-floppy-o"></button>
+                </div>
+                <h2>Details</h2>
+                <div class="splitbody">
+                    <div class="split">
+                        <p>Backstory:</p>
+                        <textarea id="backstory" class="scrollbar" placeholder="Backstory" readonly></textarea>
+                    </div>
+                    <div class="split">
+                        <p>Extras:</p>
+                        <textarea id="extranotes" class="scrollbar" placeholder="Extra notes" readonly></textarea>
+                    </div>
                 </div>
             </div>
 
-            <div class="right">
-                <div class="controls">
-                    <div class="control" id="one"><p>Course Listings</p></div>
-                    <div class="control" id="two"><p>Exam Report Card</p></div>
-                    <div class="control" id="three"><p>Relationships</p></div>
-                    <div class="control" id="four"><p>Job and Extracurriculas</p></div>
+            <div class="page" id="courses" hidden>
+                <h2>courses</h2>
+            </div>
+            <div class="page" id="exams" hidden>
+                <h2>exams</h2>
+            </div>
+            <div class="page" id="relationships" hidden>
+                <h2>relationships</h2>
+            </div>
+
+            <div class="page" id="jobandextra" hidden>
+                <h2>Job</h2>
+                <div id="jobs">
                 </div>
-                <div class="mainslider" id="mainslider">
-                    <div class="slide" id="S1">
-                        <h1 class="slideTitle"> Courses </h1>
-                        <div class="subnav">
-                            <div id="one" class="sub">First Years</div>
-                            <div id="two" class="sub">Second Years</div>
-                            <div id="three" class="sub">Thrid Years</div>
-                            <div id="four" class="sub">Fourth Years</div>
-                        </div>
-                        <div id="yrCLASSESone" class="yr one">
-                            <h2>Enrolled in</h2>
-                            <table id="enrolledCLASSES">
-                                <tr>
-                                    <th>Class Title</th>
-                                    <th>Teacher Name</th>
-                                    <th>Teacher Image</th>
-                                </tr>
-                                <tr>
-                                    <td>Class 1</td>
-                                    <td>Jeff Dunham</td>
-                                    <td><img src="" /></td>
-                                </tr>
-                            </table>
-
-                        </div>
-                        <div id="yrCLASSEStwo" class="yr two" hidden>
-
-                        </div>
-                        <div id="yrCLASSESthree" class="yr three" hidden>
-
-                        </div>
-                        <div id="yrCLASSESfour" class="yr four" hidden>
-
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <h1 class="slideTitle"> Page 2 </h1>
-                    </div>
-                    <div class="slide" style="background-color: antiquewhite">
-                        <h1 class="slideTitle"> Relationships </h1>
-                        <div class="relation">
-                            <img src="" />
-                            <p class="name">Eliza</p>
-                            <p class="name">Archenemy</p>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="jobs" id="currentJob">
-                            <h1>Job</h1>
-                        </div>
-                        <div class="activities" id="activities">
-                            <h1>Extracurriculas</h1>
-                        </div>
-                    </div>
+                <h2>Extracurricular</h2>
+                <div id="clubs">
                 </div>
+            </div>
+
+            <div class="page" id="account" hidden>
+                <h2>account</h2>
             </div>
         </div>
     </main>
@@ -173,59 +167,93 @@
         }) 
     })
 
-    $(' .subControls .subControl').click(function () {
-        var inputs = ['name', 'age', 'gender', 'race', 'alignment', 'haircolour', 'eyecolour', 'height', 'weight', 'personalitytraits', 'ideals', 'bonds', 'flaws', 'backstory', 'extrainfo', 'goals'];
+    $('.choice').click(function () {
+        var sidenav = document.getElementById('subnavchoices');
+        var choices = sidenav.querySelectorAll('p');
+        for (var x = 0; x < choices.length; x++) {
+            choices[x].classList = "choice";
+        }
+        this.classList = "choice selected";
+
+        var mainpage = document.getElementById('pages');
+        var pages = mainpage.querySelectorAll('.page');
+        for (var x = 0; x < pages.length; x++) {
+            if (pages[x]) {
+                pages[x].setAttribute("hidden", "true");
+            }
+        }
+        var toshow = this.innerText.toLowerCase();
+        if (toshow == "job and extra") {
+            toshow = "jobandextra";
+        }
+        if (toshow == "account details") {
+            toshow = "account";
+        }
+        if (toshow == "logout") {
+            logot();
+            toshow = "profile";
+        }
+        document.getElementById(toshow).toggleAttribute("hidden");
+    })
+    $('.control').click(function () {
         if (this.id == "edit") {
-            for (var x = 0; x < inputs.length; x++) {
-                var elem = document.getElementById(inputs[x]);
-                
-                if (elem.tagName.toLowerCase() == "textarea") {
-                    elem.toggleAttribute("readonly", false);
-                } else {
-                    elem.toggleAttribute("disabled", false);
-                }
+            if (this.classList != "fa fa-pencil-square-o activecontrol") {
+                this.classList = "fa fa-pencil-square-o activecontrol";
+                togglecurrent();
+            } else {
+                this.classList = "control fa fa-pencil-square-o";
+                togglecurrent();
             }
         }
         if (this.id == "save") {
-            for (var x = 0; x < inputs.length; x++) {
-                var elem = document.getElementById(inputs[x]);
-                elem.toggleAttribute("disabled", false);
-            }
-            saveStudentData(inputs);            
+            var mainpage = document.getElementById('pages');
+            var pages = mainpage.querySelectorAll('.page');
+            for (var x = 0; x < pages.length; x++) {
+                if (pages[x]) {
+                    if (window.getComputedStyle(pages[x]).display != "none") {
+                        var editbtn = pages[x].querySelector('#edit');
+                        if (editbtn.classList != "control fa fa-pencil-square-o") {
+                            togglecurrent();
+                            editbtn.classList = "control fa fa-pencil-square-o";
+                        }
+                        var inputs = pages[x].querySelectorAll('input');
+                        var textareas = pages[x].querySelectorAll('textarea');
+                        var allinputs = [];
+                        for (var y = 0; y < inputs.length; y++) {
+                            if (inputs[y].id) {
+                                allinputs.push(inputs[y]);
+                            }
+                        }
+                        for (var y = 0; y < textareas.length; y++) {
+                            if (textareas[y].id) {
+                                allinputs.push(textareas[y]);
+                            }
+                        }
+                        saveStudentData(allinputs);
+                    }
+                }
+            }            
         }
-    });
-    $('.left .control').click(function () {
-        if (this.id == "details") {
-            document.getElementById("info").style.opacity = 0;
-            setTimeout(() => {
-                document.getElementById("info").style.display = "none";
-                document.getElementById("story").style.display = "block";
-                document.getElementById("story").style.opacity = 1;
-            }, 500);
-        } else {
-            document.getElementById("story").style.opacity = 0;
-            setTimeout(() => {
-                document.getElementById("story").style.display = "none";
-                document.getElementById("info").style.display = "block";
-                document.getElementById("info").style.opacity = 1;
-            }, 500);
-        }
-    });
-    $('.sub').click(function () {
-        document.getElementById('yrCLASSESone').setAttribute('hidden', true);
-        document.getElementById('yrCLASSEStwo').setAttribute('hidden', true);
-        document.getElementById('yrCLASSESthree').setAttribute('hidden', true);
-        document.getElementById('yrCLASSESfour').setAttribute('hidden', true);
-        document.getElementById('yrCLASSES' + this.id).removeAttribute('hidden');
     })
 
-    var showing = 0;
-    $('.right .control').click(function () {
-        var MS = document.getElementById('mainslider');
-        showing = toshow(this.id);
-        var distance = "-" + $("#S1").width() * showing + "px";
-        MS.style.transform = "translateX(" + distance + ")";
-    });
+    function togglecurrent() {
+        var mainpage = document.getElementById('pages');
+        var pages = mainpage.querySelectorAll('.page');
+        for (var x = 0; x < pages.length; x++) {
+            if (pages[x]) {
+                if (window.getComputedStyle(pages[x]).display != "none") {
+                    var inputs = pages[x].querySelectorAll('input');
+                    var textareas = pages[x].querySelectorAll('textarea');
+                    for (var y = 0; y < inputs.length; y++) {
+                        inputs[y].toggleAttribute("disabled");
+                    }
+                    for (var y = 0; y < textareas.length; y++) {
+                        textareas[y].toggleAttribute("readonly");
+                    }
+                }
+            }
+        }
+    }
     function toshow(id) {
         var send = 0;
         if (id == "one") {
@@ -254,55 +282,70 @@
     })
 
     function getStudentDataByID(sid) {
-        /* Student Data */
         _supabase.from('_tblStudents').select('*').eq('id', sid).order('id', { ascending: true }).then(response => {
             for (var x = 0; x < response.data.length; x++) {
-                var student = response.data[x];
-                var alignment = student['Alignment'];
-                var eyes = student['Eye Colour'];
-                var hair = student['Hair Colour'];
-                var height = student['Height'];
-                var img = student['Profile Picture'];
-                var weight = student['Weight'];
-                var age = student['character_age'];
-                var gender = student['character_gender'];
-                var name = student['character_name'];
-                var race = student['character_race'];
-                var personal = student['Personality'];
-                var ideal = student['Ideals'];
-                var bond = student['Bonds'];
-                var flaw = student['Flaws'];
-                var story = student['Backstory'];
-                var notes = student['Notes'];
-                var goal = student['Goals'];
+                var student = response.data[x];  
 
-                var info = document.getElementById('info');
-                info.querySelector('#profilepicture').src = "assets/students/players/" + img;
-                info.querySelector('#name').value = name;
-                info.querySelector('#age').value = age;
-                info.querySelector('#gender').value = gender;
-                info.querySelector('#race').value = race;
-                info.querySelector('#alignment').value = alignment;
-                info.querySelector('#haircolour').value = hair;
-                info.querySelector('#eyecolour').value = eyes;
-                info.querySelector('#height').value = height;
-                info.querySelector('#weight').value = weight;
+                var img = student['picture'];
+                var name = student['name'];
+                var age = student['age'];
+                var gender = student['gender'];
+                var race = student['race'];
+                var subrace = student['subrace'];
+                var alignment = student['alignment'];
+                var hair = student['haircolour'];
+                var eyes = student['eyecolour'];
+                var height = student['height'];
+                var weight = student['weight'];
+                var level = student['level'];
+                var cclass = student['class'];
+                var subclass = student['subclass'];
+                var background = student['background'];
+                var personal = student['personalitytraits'];
+                var ideal = student['ideals'];
+                var bond = student['bonds'];
+                var flaw = student['flaws'];
+                var goal = student['goals'];
+                var bgf = student['backgroundfeatures'];
+                var appearance = student['appearance'];
 
-                info.querySelector('#personalitytraits').value = personal;
-                info.querySelector('#ideals').value = ideal;
-                info.querySelector('#bonds').value = bond;
-                info.querySelector('#flaws').value = flaw;
-                info.querySelector('#goals').value = goal;
+                var story = student['backstory'];
+                var notes = student['extranotes'];
 
-                info.querySelector('#personalitytraits').style.height = info.querySelector('#personalitytraits').scrollHeight + 'px';
-                info.querySelector('#ideals').style.height = info.querySelector('#ideals').scrollHeight + 'px';
-                info.querySelector('#bonds').style.height = info.querySelector('#bonds').scrollHeight + 'px';
-                info.querySelector('#flaws').style.height = info.querySelector('#flaws').scrollHeight + 'px';
-                info.querySelector('#goals').style.height = info.querySelector('#goals').scrollHeight + 'px';
+                var profile = document.getElementById('profile');
+                profile.querySelector('#profilepicture').src = "assets/students/players/" + img;
+                profile.querySelector('#name').value = name;
+                profile.querySelector('#age').value = age;
+                profile.querySelector('#gender').value = gender;
+                profile.querySelector('#race').value = race;
+                profile.querySelector('#subrace').value = subrace;
+                profile.querySelector('#alignment').value = alignment;
+                profile.querySelector('#haircolour').value = hair;
+                profile.querySelector('#eyecolour').value = eyes;
+                profile.querySelector('#height').value = height;
+                profile.querySelector('#weight').value = weight;
+                profile.querySelector('#level').value = level;
+                profile.querySelector('#class').value = cclass;
+                profile.querySelector('#subclass').value = subclass;
+                profile.querySelector('#background').value = background;
+                profile.querySelector('#personalitytraits').value = personal;
+                profile.querySelector('#personalitytraits').style.height = profile.querySelector('#personalitytraits').scrollHeight + 'px';
+                profile.querySelector('#ideals').value = ideal;
+                profile.querySelector('#ideals').style.height = profile.querySelector('#ideals').scrollHeight + 'px';
+                profile.querySelector('#bonds').value = bond;
+                profile.querySelector('#bonds').style.height = profile.querySelector('#bonds').scrollHeight + 'px';
+                profile.querySelector('#flaws').value = flaw;
+                profile.querySelector('#flaws').style.height = profile.querySelector('#flaws').scrollHeight + 'px';
+                profile.querySelector('#goals').value = goal;
+                profile.querySelector('#goals').style.height = profile.querySelector('#goals').scrollHeight + 'px';
+                profile.querySelector('#backgroundfeatures').value = bgf;
+                profile.querySelector('#backgroundfeatures').style.height = profile.querySelector('#backgroundfeatures').scrollHeight + 'px';
+                profile.querySelector('#appearance').value = appearance;
+                profile.querySelector('#appearance').style.height = profile.querySelector('#appearance').scrollHeight + 'px';
 
-                var storyloc = document.getElementById('story');
-                storyloc.querySelector('#backstory').value = story;
-                storyloc.querySelector('#extrainfo').value = notes;
+                var details = document.getElementById('details');
+                details.querySelector('#backstory').value = story;
+                details.querySelector('#extranotes').value = notes;
 
                 if (name) {
                     var headertitle = document.getElementById('pagename');
@@ -323,26 +366,23 @@
                         var data = response.data[x];
                         var job = data['Job'];
 
-                        var currentJob = document.getElementById('currentJob');
+                        var currentJob = document.getElementById('jobs');
 
                         const theJob = document.createElement('div');
-                        const theJobDetails = document.createElement('div');
                         const theTitle = document.createElement('h3');
                         const theLocation = document.createElement('p');
                         const theWage = document.createElement('p');
                         const theCoworker = document.createElement('p');
                         const QuitButton = document.createElement('button');
 
-                        theJob.classList = "myjob";
-                        theJob.id = "myjob";
+                        theJob.classList = "job";
+                        theJob.id = "job";
                         QuitButton.classList = "quit";
                         QuitButton.id = job['id'];
                         QuitButton.innerText = "Resign";
                         QuitButton.addEventListener('click', quitJob, false);
 
                         theTitle.innerText = job['Title'];
-
-                        theJobDetails.classList = "jobdetails";
 
                         theLocation.innerText = job['Location'];
                         theLocation.classList = "location";
@@ -352,29 +392,31 @@
 
                         _supabase.from('Job<>Student').select('Student (id, character_name, character_player)').eq('Job', job['id']).then(response => {
                             var allworkers = response.data;
+                            console.log(response.data);
                             var wcount = 0;
                             var coworkers = "";
-                            for (var y = 0; y < allworkers.length; y++) {
-                                var worker = allworkers[y]['Student'];
-                                if (sessionStorage.getItem('Student_Id') != worker['id']) {
-                                    if (wcount > 0) {
-                                        coworkers = coworkers + " & " + worker['character_name'];
-                                    } else {
-                                        coworkers = worker['character_name'];
+                            if (allworkers) {
+                                for (var y = 0; y < allworkers.length; y++) {
+                                    var worker = allworkers[y]['Student'];
+                                    if (sessionStorage.getItem('Student_Id') != worker['id']) {
+                                        if (wcount > 0) {
+                                            coworkers = coworkers + " & " + worker['character_name'];
+                                        } else {
+                                            coworkers = worker['character_name'];
+                                        }
+                                        wcount++;
                                     }
-                                    wcount++;
                                 }
                             }
                             theCoworker.innerText = coworkers;
                             theCoworker.classList = "coworker";
 
-                            theJobDetails.appendChild(theTitle);
-                            theJobDetails.appendChild(theLocation);
-                            theJobDetails.appendChild(theCoworker);
-                            theJobDetails.appendChild(theWage);
-                            theJobDetails.appendChild(QuitButton);
+                            theJob.appendChild(theTitle);
+                            theJob.appendChild(theLocation);
+                            theJob.appendChild(theCoworker);
+                            theJob.appendChild(theWage);
+                            theJob.appendChild(QuitButton);
 
-                            theJob.appendChild(theJobDetails);
                             currentJob.appendChild(theJob);
                         })
                 }
@@ -382,7 +424,7 @@
         })
         _supabase.from('Club<>Student').select('club (*)').eq('student', sid).then(response => {
             if (response.data.length > 0) {
-                var activites = document.getElementById('activities');
+                var clubs = document.getElementById('clubs');
                 for (var x = 0; x < response.data.length; x++) {
                     var data = response.data[x];
                     var club = data['club'];
@@ -412,12 +454,12 @@
 
                     theClubMembers.classList = "members";
 
-                    _supabase.from('Club<>Student').select('student (*)').eq('club', clubid).then(response => {
+                    _supabase.from('Club<>Student').select('student (id, name)').eq('club', clubid).then(response => {
                         for (var y = 0; y < response.data.length; y++) {
                             if (sessionStorage.getItem("Student_Id") != response.data[y]['student']['id']) {
                                 const theClubMember = document.createElement('p');
                                 theClubMember.classList = "member";
-                                theClubMember.innerText = response.data[y]['student']['character_name'];
+                                theClubMember.innerText = response.data[y]['student']['name'];
                                 theClubMembers.appendChild(theClubMember);
                             }
                         }
@@ -435,31 +477,24 @@
 
                     theClub.appendChild(theClubQuit);
 
-                    activites.appendChild(theClub);
+                    clubs.appendChild(theClub);
                 }
             }
         })
     }
     function saveStudentData(inputs) {
-        /* Eliza Belmont */
-        var data = [];
+        var updateobject = {};
         for (var x = 0; x < inputs.length; x++) {
-            var value = document.getElementById(inputs[x]).value;
-            if (value) {
-                data.push(value);
-            } else {
-                data.push("");
-            }            
+            updateobject[inputs[x].id] = inputs[x].value;
         }
-
-        _supabase.from('_tblStudents').update({ 'character_name': data[0], 'character_age': data[1], 'character_gender': data[2], 'character_race': data[3], 'Alignment': data[4], 'Hair Colour': data[5], 'Eye Colour': data[6], 'Height': data[7], 'Weight': data[8], 'Personality': data[9], 'Ideals': data[10], 'Bonds': data[11], 'Flaws': data[12], 'Backstory': data[13], 'Notes': data[14], 'Goals': data[15] }).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
+        _supabase.from('_tblStudents').update( updateobject ).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
             var currentpage = location.pathname;
             window.location = currentpage;
         })
     }
+
     function quitJob() {
         var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
-        var jid = this.id;
         _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
         })
         alert("You have now resigned");

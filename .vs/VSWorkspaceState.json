@@ -1,11 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\styles",
+    "\\assets",
+    "\\assets\\clubs",
     "\\views",
-    "\\views\\addons",
-    "\\views\\news"
+    "\\views\\activites"
   ],
-  "SelectedNode": "\\views\\news\\_page2.html",
+  "SelectedNode": "\\strixhavenstar.html",
   "PreviewInSolutionExplorer": false
 }
