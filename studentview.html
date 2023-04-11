@@ -128,8 +128,111 @@
             </div>
 
             <div class="page" id="courses" hidden>
-                <h2>courses</h2>
+                <h2>Courses</h2>
+                <div class="top">
+                    <div class="year">
+                        <h3>Year 1 courses</h3>
+                        <div class="coursechoices">
+                            <div class="coursechoice">
+                                <select>
+                                    <option>-- Select Course --</option>
+                                    <option>Option 1</option>
+                                    <option>Option 1</option>
+                                    <option>Option 1</option>
+                                </select>
+                                <div class="classTeacher">
+                                    <p>Teacher: Mr Flubber</p>
+                                </div>
+                            </div>
+                            <div class="coursechoice">
+                                <select>
+                                    <option>-- Select Course --</option>
+                                    <option>Option 1</option>
+                                    <option>Option 1</option>
+                                    <option>Option 1</option>
+                                </select>
+                                <div class="classTeacher">
+                                    <p>Teacher: Mr Flubber</p>
+                                </div>
+                            </div>
+                            <div class="coursechoice">
+                                <select>
+                                    <option>-- Select Course --</option>
+                                    <option>Option 1</option>
+                                    <option>Option 1</option>
+                                    <option>Option 1</option>
+                                </select>
+                                <div class="classTeacher">
+                                    <p>Teacher: Mr Flubber</p>
+                                </div>
+                            </div>
+                            <div class="coursechoice">
+                                <select>
+                                    <option>-- Select Course --</option>
+                                    <option>Option 1</option>
+                                    <option>Option 1</option>
+                                    <option>Option 1</option>
+                                </select>
+                                <div class="classTeacher">
+                                    <p>Teacher: Mr Flubber</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="year">
+                        <h3>Year 2 courses</h3>
+                        <div class="coursechoices">
+                            <select>
+                                <option>-- Select Course --</option>
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                                <option>Option 1</option>
+                            </select>
+                            <div class="classTeacher">
+                                <p>Teacher: Mr Flubber</p>
+                            </div>
+                            <div>
+                                <p>Exam link</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="year">
+                        <h3>Year 3 courses</h3>
+                        <select>
+                            <option>-- Select Course --</option>
+                            <option>Option 1</option>
+                            <option>Option 1</option>
+                            <option>Option 1</option>
+                        </select>
+                        <div class="classTeacher">
+                            <p>Teacher: </p>
+                            <p>Mr Flubber</p>
+                        </div>
+                        <div>
+                            <p>Exam link</p>
+                        </div>
+                    </div>
+                    <div class="year">
+                        <h3>Year 4 courses</h3>
+                        <select>
+                            <option>-- Select Course --</option>
+                            <option>Option 1</option>
+                            <option>Option 1</option>
+                            <option>Option 1</option>
+                        </select>
+                        <div class="classTeacher">
+                            <p>Teacher: </p>
+                            <p>Mr Flubber</p>
+                        </div>
+                        <div>
+                            <p>Exam link</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="page" id="exams" hidden>
                 <h2>exams</h2>
             </div>
@@ -498,6 +601,8 @@
         _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
         })
         alert("You have now resigned");
+        var parent = this.parentNode;
+        parent.style.display = "none";
         document.getElementById('myjob').style.display = "none";
     }
     function quitClub() {

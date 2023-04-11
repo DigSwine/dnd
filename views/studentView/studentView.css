@@ -14,6 +14,7 @@
 }
 
 header {
+    position: relative;
     height: 100px;
 }
     header #unilogo {
@@ -21,7 +22,7 @@ header {
     }
     header .pagetitle {
         font-family: 'posting', sans-serif;
-        font-size: 3rem;
+        font-size: 4rem;
         text-shadow: none;
         -webkit-text-stroke: 0px black;
     }
@@ -151,11 +152,17 @@ main {
         width: 100%;
         position: relative;
     }
+    .mainpage label, .mainpage p {
+        font-family: 'Valneck';
+        font-size: 1.1rem;
+    }
     .mainpage input, .mainpage textarea {
         background-color: transparent;
         border: none;
+        font-size: 1rem;
         text-align: center;
         color: white;
+        font-family: Arial;
     }
     .mainpage input {
         text-align: left;
@@ -288,7 +295,7 @@ main {
                 display: flex;
             }
                 .mainpage #profile .right .formfield label {
-                    flex: 1;
+                    flex: 0.7;
                 }
                 .mainpage #profile .right .formfield textarea {
                     flex: 1;
@@ -323,9 +330,46 @@ main {
 
     .mainpage #courses {
     }
-
-    .mainpage #exams {
+        .mainpage #courses .top, .mainpage #courses .bottom {
+            height: 49%;
+        }
+        .mainpage #courses .year {
+            flex: 1;
+            margin: 20px 50px 20px 50px;
+            height: calc(100% - 40px);
+            width: 200px;
+            background-color: darkcyan;
+        }
+            .mainpage #courses .year h3 {
+                margin: 0;
+                padding: 10px;
+                font-family: 'Valneck';
+            }
+            .mainpage #courses .year + .year {
+                margin: 20px 50px 20px 0;
+            }
+    .mainpage #courses .year .coursechoices {
+        position: relative;
+        height: calc(100% - 47px - 47px - 20px);
     }
+        .mainpage #courses .year .coursechoices .coursechoice {
+            margin: 10px;
+            display: flex;
+            height: calc(100% / 4);
+        }
+            .mainpage #courses .year .coursechoices .coursechoice select {
+                margin: 0 20px 0 0;
+                padding: 10px;
+                width: 25%;
+                height: 40px;
+            }
+            .mainpage #courses .year .coursechoices .coursechoice p {
+                padding: 10px;
+                margin: 0;
+            }
+     
+        .mainpage #exams {
+        }
 
     .mainpage #relationships {
     }
@@ -333,7 +377,7 @@ main {
     .mainpage #jobandextra {
     }
         .mainpage #jobandextra #jobs {
-            min-height: 130px;
+            min-height: 25%;
         }
         .mainpage #jobandextra #jobs .job {
             display: flex;
@@ -370,8 +414,11 @@ main {
                 display: flex;
                 padding: 20px 50px 20px 50px
             }
+                .mainpage #jobandextra #clubs .club:hover {
+                    box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+                    transition: box-shadow 0.1s ease-out;
+                }
                 .mainpage #jobandextra #clubs .club + .club {
-                    border-top: 2px solid black;
                 }
                 .mainpage #jobandextra #clubs .club .members {
                     flex: 1;
@@ -387,6 +434,11 @@ main {
             color: white;
             height: 50px;
         }
+            .mainpage #jobandextra button:hover {
+                cursor: pointer;
+                background-color: black;
+                color: darkgoldenrod;
+            }
 
         .mainpage #account {
         }

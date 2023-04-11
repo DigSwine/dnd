@@ -1,11 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\API",
     "\\assets",
-    "\\assets\\clubs",
+    "\\assets\\students",
+    "\\assets\\students\\players",
+    "\\javascript",
+    "\\test",
     "\\views",
-    "\\views\\activites"
+    "\\views\\activites",
+    "\\views\\studentView"
   ],
-  "SelectedNode": "\\strixhavenstar.html",
+  "SelectedNode": "\\API\\login.js",
   "PreviewInSolutionExplorer": false
 }
