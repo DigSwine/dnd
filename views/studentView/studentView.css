@@ -16,7 +16,11 @@
 header {
     position: relative;
     height: 100px;
+    width: 100%;
 }
+    header .logo {
+        width: 342px;
+    }
     header #unilogo {
         display: none;
     }
@@ -25,6 +29,11 @@ header {
         font-size: 4rem;
         text-shadow: none;
         -webkit-text-stroke: 0px black;
+        width: calc(100% - 342px - 74px);
+
+    }
+    header .thenavigation{
+        width:auto;
     }
     header .thenavigation .hamburger {
         color: white;
@@ -339,6 +348,7 @@ main {
             height: calc(100% - 40px);
             width: 200px;
             background-color: darkcyan;
+            position: relative;
         }
             .mainpage #courses .year h3 {
                 margin: 0;
@@ -358,9 +368,9 @@ main {
             height: calc(100% / 4);
         }
             .mainpage #courses .year .coursechoices .coursechoice select {
-                margin: 0 20px 0 0;
+                margin: 0 20px 0;
                 padding: 10px;
-                width: 25%;
+                width: calc(auto + 20px);
                 height: 40px;
             }
             .mainpage #courses .year .coursechoices .coursechoice p {
@@ -375,6 +385,7 @@ main {
     }
 
     .mainpage #jobandextra {
+        height: 100%;
     }
         .mainpage #jobandextra #jobs {
             min-height: 25%;
@@ -409,10 +420,12 @@ main {
                 top: 20px;
             }
         .mainpage #jobandextra #clubs {
+            height: calc(100% - 50px - 50px - 208px);
         }
             .mainpage #jobandextra #clubs .club {
                 display: flex;
-                padding: 20px 50px 20px 50px
+                padding: 20px 50px 20px 50px;
+                height: calc(100% / 3 - 40px);
             }
                 .mainpage #jobandextra #clubs .club:hover {
                     box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
@@ -422,6 +435,7 @@ main {
                 }
                 .mainpage #jobandextra #clubs .club .members {
                     flex: 1;
+                    margin-right: 10px;
                 }
                 .mainpage #jobandextra #clubs .club p {
                     flex: 1;
