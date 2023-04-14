@@ -117,7 +117,6 @@
             <div class="page" id="players">
                 <h2>Players</h2>
                 <div class="mainbody">
-
                     <div class="view" id="profile">
                         <div class="top">
                             <div class="card">
@@ -178,7 +177,18 @@
                         </div>
                     </div>
 
-                    <div class="view" id="details" hidden>details</div>
+                    <div class="view" id="details" hidden>
+                        <div class="splitbody">
+                            <div class="split">
+                                <p>Backstory:</p>
+                                <textarea id="backstory" class="scrollbar" placeholder="Backstory" readonly></textarea>
+                            </div>
+                            <div class="split">
+                                <p>Extras:</p>
+                                <textarea id="extranotes" class="scrollbar" placeholder="Extra notes" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="view" id="courses" hidden>courses</div>
 
@@ -408,6 +418,7 @@
         var page = document.getElementById('players');
         var header = page.querySelector('h2');
         var profile = page.querySelector('#profile');
+        var details = page.querySelector('#details');
 
         for (var x = 0; x < PPCplayer.length; x++) {
             if (toget == PPCplayer[x]) {
@@ -436,14 +447,16 @@
 
                 profile.querySelector('#backgroundfeatures').value = PPCbackgroundfeatures[x];
                 profile.querySelector('#appearance').value = PPCappearance[x];
+
+                details.querySelector('#backstory').value = PPCbackstory[x];
+                details.querySelector('#extranotes').value = PPCextranotes[x];
             }
         }
     }
 
+    /* Player */
     var PPCid = [];
-
     var PPCplayer = [];
-
     var PPCimg = [];
     var PPCname = [];
     var PPCage = [];
@@ -458,25 +471,17 @@
     var PPClevel = [];
     var PPCclasst = [];
     var PPCsubclass = [];
-    var PPCbackground = [];
-    
+    var PPCbackground = [];    
     var PPCpersonalitytraits = [];
     var PPCideals = [];
     var PPCbonds = [];
     var PPCflaws = [];
     var PPCgoals = [];
-
     var PPCbackgroundfeatures = [];
-    var PPCappearance = [];
-    
+    var PPCappearance = [];    
     var PPCbackstory = [];
     var PPCextranotes = [];
-
-    
-    
-    
-    
-
+    /* NPCs */
     var NPCid = [];
     var NPCimg = [];
     var NPCage = [];
