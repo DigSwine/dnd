@@ -1,7 +1,3 @@
-body {
-    background-color: darkslategrey;
-}
-
 #bg1 {
     position: fixed;
     top: 0;
@@ -19,42 +15,35 @@ body {
 }
 
 header {
-    height: var(--headerht);
-    width: 100%;
-    display: inline-flex;
-    z-index: 10;
     position: relative;
+    height: 100px;
+    width: 100%;
 }
-    header .logo img {
-        height: 100%;
+
+    header .logo {
+        width: 342px;
     }
-    header .pagetitle {
-        font-size: 5rem;
-        color: darkgoldenrod;
-    }
-    header .thenavigation .hamburger {
+
+    header #unilogo {
         display: none;
     }
-.logout {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    padding: 5px;
-    font-size: 3vh;
-    z-index: 50;
-    opacity: 1;
-    font-size: 18px;
-    font-family: "Helvetica";
-    text-align: center;
-    color: darkgoldenrod;
-    padding: 18px 60px;
-    border-radius: 16px;
-    border: solid 2px;
-    border-color: darkgoldenrod;
-    background-color: rgba(0, 0, 0, 0.1);
-    -webkit-transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
-    transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
-}
+
+    header .pagetitle {
+        font-family: 'posting', sans-serif;
+        font-size: 4rem;
+        text-shadow: none;
+        -webkit-text-stroke: 0px black;
+        width: calc(100% - 342px - 74px);
+    }
+
+    header .thenavigation {
+        width: auto;
+    }
+
+        header .thenavigation .hamburger {
+            color: white;
+        }
+
 .particle {
     opacity: 0;
     position: absolute;
@@ -78,6 +67,7 @@ header {
         transform: translateY(-1500%);
     }
 }
+
 @keyframes particleAnim {
     0% {
         opacity: 0;
@@ -94,278 +84,515 @@ header {
     }
 }
 
-.controls {
-    position: absolute;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    z-index: 15;
-    display: flex;
-}
-.control {
-    background-color: white;
-    height: 80%;
-    width: 100%;
-    margin: 10px;
-    position: relative;
-}
-    .control p {
-        position: absolute;
-        margin: 0;
-        text-align: center;
-        top: 50%;
-        width: 100%;
-        transform: translateY(-50%);
-        font-size: 24px;
-    }
-    .control:hover{
-        cursor: pointer;
-    }
-    .control ul {
-        position: absolute;
-        left: 50%;
-        top: calc(-30px * 5);
-        transform: translateX(-50%);
-        background-color: white;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: none;
-    }
-    .control ul li {
-        height: 30px;
-        background-color: white;
-    }
-        .control ul li .option {
-            height: 20px;
-            width: 100%;
-            padding: 5px 0 5px 0;
-        }
-        .control ul li .option:hover {
-            background-color: gray;
-        }
-        .control:hover ul {
-            display: block;
-        }
-
-.allContainer {
-    display: flex;
-    height: 100%;
-    width: 400%;
-    transition: all 0.5s;
-}
-.page {
-    position: relative;
+/**/
+main {
+    margin: 0;
     height: calc(100% - 100px);
-    width: 100%;
-    background-color: rebeccapurple;
-}
-    .page img {
-        margin: 50px;
-    }
-
-.subnav{
     display: flex;
-    width: 100%;
-    height: 50px;
-}
-    .subnav .sub {
-        color: white;
-        flex: 1;
-        padding: 15px;
-        transition: all 0.5s;
-    }
-    .subnav .sub:hover {
-        cursor: pointer;
-        color: darkgoldenrod;
-        background-color: darkslategrey;
-    }
-
-.SScontainer {
-    background-image: url(../../assets/star/paper_1.jpg);
-    background-size: cover;
-    height: calc(100% - 50px - 50px);
-    width: 100%;
 }
 
 :root {
-    --pg2colwidth: calc(100%/3);
-    --colpadding: 15px;
+    --titleheight: 45px;
+    --mainbodyheight: calc(100% - var(--titleheight));
+    --color1: rgb(0, 231, 255);
+    --color2: rgb(255, 0, 231);
+    --speed: 7s;
 }
 
-.pg1 {
-    height: calc(100% - 50px);
-    padding: 0 50px 0 50px;
-    text-align: left;
-}
-    .pg1 .Mainheadline {
-        text-align: center;
-        font-size: 2.75rem;
-        font-weight: bold;
-        height: 70px;
-        width: 100%;
-    }
-    .pg1 .secContainer {
-        position: relative;
-        height: calc(100% - 70px);
-        display: flex;
-    }
-        .pg1 .secContainer .leftcol {
-            position: relative;
-            height: 100%;
-            width: 30%;
-        }
-            .pg1 .secContainer .leftcol video {
-                max-height: 100%;
-                max-width: 100%;
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        .pg1 .secContainer .right {
-            margin-left: 15px;
-            padding: var(--colpadding);
-            border-left: 2px solid #2f2f2f;
-            height: 100%;
-            width: 70%;
-            column-count: 2;
-            white-space: pre-line;
-            font-size: 1.2rem;
-        }
-
-.pg2 {
-    height: calc(100% - 50px);
-    padding: 0 50px 0 50px;
-    text-align: left;
-    display: flex;
-}
-    .pg2 .left {
-        padding: var(--colpadding);
-        height: 100%;
-        width: var(--pg2colwidth);
-    }
-    .pg2 .midwrapper {
-        height: 100%;
-        width: var(--pg2colwidth);
-        border-left: 2px solid #2f2f2f;
-        border-right: 2px solid #2f2f2f;
-    }
-        .pg2 .midwrapper .top {
-            padding: var(--colpadding);
-            height: calc(100% / 2 - 15px);
-            width: calc(100% - 30px);
-        }
-        .pg2 .midwrapper .bot {
-            padding: var(--colpadding);
-            height: calc(100% / 2 - 15px);
-            width: calc(100% - 30px);
-        }
-            .pg2 .midwrapper .bot:before {
-                border-top: 2px solid #2f2f2f;
-                content: '';
-                display: block;
-                margin-left: 15px;
-                margin-right: 15px;
-            }
-    .pg2 .right {
-        padding: var(--colpadding);
-        height: 100%;
-        width: var(--pg2colwidth);
-    }
-    .pg2 input {
-        margin: 0 0 5px 0;
-        width: 100%;
-        height: 30px;
-        white-space: pre-line;
-        font-family: 'Valneck';
-        font-size: 1.2rem;
-        margin: 0;
-    }
-    .pg2 textarea {
-        width: 100%;
-        height: calc(100% - 30px);
-        text-align: justify;
-        font-family: 'Valneck';
-        font-size: 1rem;
-    }
-
-textarea, input {
-    background-color: transparent;
-    border: none;
-    resize: none;
-}
-    input[disabled] {
-        color: black;
-    }
-
-.footerSpace {
-    display: flex;
-}
-.baseSpacer {
-    width: 25%;
-    padding: 15px;
-}
-.save {
+::placeholder {
     color: white;
-    width: 50%;
-    padding: 15px;
-    transition: all 0.5s;
+    opacity: 1;
 }
-    .save:hover {
-        cursor: pointer;
-        color: darkgoldenrod;
-        background-color: darkslategrey;
-    }
 
-/* Players */
-.Playerprofile{
-    width: 30%;
-    height: 100%;
+.leftnav {
+    background-color: white;
+    width: 350px;
+    height: calc(100% + 100px);
+    position: absolute;
+    top: -100px;
     position: relative;
 }
-    .Playerprofile .PPtop {
-        height: 40%;
+
+    .leftnav .block {
         width: 100%;
-        display: flex;
-        background-color: darkcyan;
+        height: 150px;
     }
-        .Playerprofile .PPtop .PPLeft {
-            height: 100%;
-            width: 40%;
-            background-color: gray;
-            overflow: hidden;
-            position: relative;
+
+        .leftnav .block img {
+            height: calc(100% - 30px);
+            margin: 15px
         }
-            .Playerprofile .PPtop .PPLeft img {
-                height: 100%;
-                margin: 0;
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        .Playerprofile .PPtop .PPRight {
-            width: 60%;
+
+    .leftnav .choices {
+        width: 100%;
+    }
+
+        .leftnav .choices .choice {
+            background-color: white;
             position: relative;
-            text-align: right;
+            padding: 20px;
+            height: auto;
+            width: 300px;
         }
-            .Playerprofile .PPtop .PPRight form{
-                height: 100%;
-                width: 100%;
-                margin: 0;
+
+            .leftnav .choices .choice:hover {
+                background-color: rgb(227,28,121, 0.2);
+                color: rgb(227,28,121);
             }
-            .Playerprofile .PPtop .PPRight form label {
-                margin: 0 15px 0 0;
-                width: 100%;
+            .leftnav .choices .choice:hover ul {
                 display: block;
             }
-            .Playerprofile .PPtop .PPRight form label input {
-                width: 50%;
-                height: calc(100%/9);
-                text-align: center;
-            }
-    .Playerprofile .PPbot {
-        height: 60%;
+
+        .leftnav .choices .selected {
+            border-left: 5px solid hotpink;
+            border-right: 5px solid hotpink;
+            background-color: rgb(227,28,121, 0.2);
+            color: rgb(227,28,121);
+        }
+
+button {
+    padding: 0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: flex;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+    .subbtn {
+        flex: 1;
+        display: flex;
         width: 100%;
+        text-align: left;
+    }
+    .dropdown-btn i {
+        flex: 1;
+        margin: 16px 0 16px 0;
+        text-align: right;
+    }
+.active {
+    color: darkgoldenrod;
+}
+.dropdown-container {
+    display: none;
+    color: darkgoldenrod;
+}
+    .dropdown-container p {
+        flex: 1;
+        text-align: center;
+        margin: 0;
+    }
+    .dropdown-container p, .dropdown-container i {
+        padding: 10px 0 5px 0;
+    }
+        .dropdown-container p:hover, .dropdown-container p:hover i, .dropdown-container i:hover p, .dropdown-container i:hover {
+            color: hotpink;
+        }
+.sub {
+    display: none;
+    width: 100%;
+    color: black;
+}
+.sub p {
+    height: auto;
+    margin: 0;
+    text-align: right;
+    padding: 10px 20px 10px 20px;
+    vertical-align: middle;
+}
+    .sub p:hover {
+        background-color: rgb(227,28,121, 0.2);
+        color: rgb(227,28,121);
+        cursor: pointer;
+    }
+
+
+
+.mainpage {
+    height: var(--mainbodyheight);
+    width: calc(100% - 350px);
+    position: relative;
+}
+
+    .mainpage div {
+        width: auto;
+        height: auto;
+    }
+
+    .mainpage h2 {
+        height: var(--titleheight);
+        margin: 10px 0 0 0;
+        font-size: 2rem;
+    }
+
+    .mainpage .page {
+        color: white;
+        height: auto;
+    }
+
+    .mainpage .top {
+        display: flex;
+        height: 340px;
+        width: 100%;
+        position: relative;
+    }
+
+    .mainpage .bottom {
+        display: flex;
+        height: calc(100% - 360px);
+        width: 100%;
+        position: relative;
+    }
+
+    .mainpage label, .mainpage p {
+        font-family: 'Valneck';
+        font-size: 1.1rem;
+    }
+
+    .mainpage input, .mainpage textarea {
+        background-color: transparent;
+        border: none;
+        font-size: 1rem;
+        text-align: center;
+        color: white;
+        font-family: Arial;
+    }
+
+    .mainpage input {
+        text-align: left;
+        width: 450px;
+        padding: 5px 0 5px 10px;
+    }
+
+        .mainpage input:enabled {
+            border: 2px solid white;
+        }
+
+    .mainpage textarea {
+        border: 2px solid white;
+    }
+
+        .mainpage textarea:read-only {
+            border: none;
+        }
+
+    .mainpage .controls {
+        position: absolute;
+        top: -10px;
+        right: 0;
+        padding: 5px;
+        display: flex;
+    }
+
+        .mainpage .controls button {
+            font-size: 2rem;
+            padding: 5px;
+            background-color: transparent;
+            color: white;
+            border: none;
+        }
+
+        .mainpage .controls .control:hover {
+            color: darkgoldenrod;
+            cursor: pointer;
+        }
+
+        .mainpage .controls button + button {
+            margin-left: 5px;
+        }
+
+        .mainpage .controls .activecontrol {
+            color: hotpink;
+        }
+
+            .mainpage .controls .activecontrol:hover {
+                cursor: pointer;
+            }
+
+    .mainpage #profile {
+        position: relative;
+    }
+
+        .mainpage #profile .card {
+            height: 325px;
+            max-width: 225px;
+            margin: 0px 0 0 50px;
+            flex: 1;
+        }
+
+            .mainpage #profile .card img {
+                height: 100%;
+                border-radius: 5%;
+                box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+            }
+
+                .mainpage #profile .card img:hover {
+                    box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+                    transition: box-shadow 0.1s ease-out;
+                }
+
+        .mainpage #profile form {
+            flex: 2;
+            text-align: right;
+        }
+
+            .mainpage #profile form label {
+                display: block;
+                margin: 10px;
+            }
+
+            .mainpage #profile form .formfield {
+                display: flex;
+                height: 239px;
+            }
+
+                .mainpage #profile form .formfield label {
+                    flex: 1;
+                    margin: 0 5px 0 20px;
+                }
+
+                .mainpage #profile form .formfield textarea {
+                    flex: 2.7;
+                    height: 225px;
+                    width: 450px;
+                    resize: none;
+                    margin: 0 10px 0 0;
+                }
+
+            .mainpage #profile form label textarea {
+                height: 225px;
+            }
+
+        .mainpage #profile .personality {
+            width: 100%;
+            height: calc(100% - 15px);
+            margin-top: 5px;
+            text-align: right;
+            flex: 1;
+        }
+
+            .mainpage #profile .personality .personal {
+                text-align: right;
+                display: flex;
+                width: calc(100% - 50px);
+                padding: 0 0 0 50px;
+                height: calc(100% / 5);
+            }
+
+                .mainpage #profile .personality .personal p, .mainpage #profile .personality .personal textarea {
+                    height: calc(100% / 5);
+                }
+
+                .mainpage #profile .personality .personal p {
+                    color: white;
+                    max-width: 20%;
+                    padding: 0 5px 5px 5px;
+                    margin: 0 15px 5px 5px;
+                    flex: 1;
+                }
+
+                .mainpage #profile .personality .personal textarea {
+                    width: calc(100% - 20%);
+                    height: calc(100% - 10px);
+                    min-height: calc(100% - 10px);
+                    margin: 5px 10px 0 10px;
+                    resize: none;
+                    flex: 1;
+                    color: white;
+                    text-align: center;
+                    background-color: transparent;
+                }
+
+        .mainpage #profile .right {
+            flex: 1;
+        }
+
+            .mainpage #profile .right .formfield {
+                height: 50%;
+                display: flex;
+            }
+
+                .mainpage #profile .right .formfield label {
+                    flex: 0.7;
+                }
+
+                .mainpage #profile .right .formfield textarea {
+                    flex: 1;
+                    margin: 0 10px 0 0;
+                    height: calc(100% - 10px);
+                    resize: none;
+                }
+
+    .mainpage #details {
+        position: relative;
+    }
+
+        .mainpage #details .splitbody {
+            display: flex;
+            height: calc(100% - 45px);
+        }
+
+            .mainpage #details .splitbody .split {
+                flex: 1;
+                height: 100%;
+                margin: 0 50px 0 50px;
+                padding-bottom: 50px;
+            }
+
+                .mainpage #details .splitbody .split p {
+                    margin: 0;
+                    text-align: center;
+                    font-size: 1.5rem;
+                }
+
+                .mainpage #details .splitbody .split textarea {
+                    resize: none;
+                    height: calc(100% - 30px);
+                    width: 100%;
+                }
+
+    .mainpage #courses {
+    }
+
+        .mainpage #courses .top, .mainpage #courses .bottom {
+            height: 49%;
+        }
+
+        .mainpage #courses .year {
+            flex: 1;
+            margin: 20px 50px 20px 50px;
+            height: calc(100% - 40px);
+            width: 200px;
+            background-color: darkcyan;
+            position: relative;
+        }
+
+            .mainpage #courses .year h3 {
+                margin: 0;
+                padding: 10px;
+                font-family: 'Valneck';
+            }
+
+            .mainpage #courses .year + .year {
+                margin: 20px 50px 20px 0;
+            }
+
+            .mainpage #courses .year .coursechoices {
+                position: relative;
+                height: calc(100% - 47px - 47px - 20px);
+            }
+
+                .mainpage #courses .year .coursechoices .coursechoice {
+                    margin: 10px;
+                    display: flex;
+                    height: calc(100% / 4);
+                }
+
+                    .mainpage #courses .year .coursechoices .coursechoice select {
+                        margin: 0 20px 0;
+                        padding: 10px;
+                        width: calc(auto + 20px);
+                        height: 40px;
+                    }
+
+                    .mainpage #courses .year .coursechoices .coursechoice p {
+                        padding: 10px;
+                        margin: 0;
+                    }
+
+    .mainpage #exams {
+    }
+
+    .mainpage #relationships {
+    }
+
+    .mainpage #jobandextra {
+        height: 100%;
+    }
+
+        .mainpage #jobandextra #jobs {
+            min-height: 25%;
+        }
+
+            .mainpage #jobandextra #jobs .job {
+                display: flex;
+                padding: 50px 50px 20px 50px;
+                position: relative;
+            }
+
+                .mainpage #jobandextra #jobs .job p, .mainpage #jobandextra #jobs .job h3 {
+                    flex: 1;
+                    text-align: left;
+                }
+
+                    .mainpage #jobandextra #jobs .job h3:before {
+                        content: "Job Title";
+                        position: absolute;
+                        top: 20px;
+                    }
+
+                .mainpage #jobandextra #jobs .job .location:before {
+                    content: "Job Location";
+                    position: absolute;
+                    top: 20px;
+                }
+
+                .mainpage #jobandextra #jobs .job .coworker:before {
+                    content: "Job Coworker";
+                    position: absolute;
+                    top: 20px;
+                }
+
+                .mainpage #jobandextra #jobs .job .wage:before {
+                    content: "Job Wage";
+                    position: absolute;
+                    top: 20px;
+                }
+
+        .mainpage #jobandextra #clubs {
+            height: calc(100% - 50px - 50px - 208px);
+        }
+
+            .mainpage #jobandextra #clubs .club {
+                display: flex;
+                padding: 20px 50px 20px 50px;
+                height: calc(100% / 3 - 40px);
+            }
+
+                .mainpage #jobandextra #clubs .club:hover {
+                    box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+                    transition: box-shadow 0.1s ease-out;
+                }
+
+                .mainpage #jobandextra #clubs .club + .club {
+                }
+
+                .mainpage #jobandextra #clubs .club .members {
+                    flex: 1;
+                    margin-right: 10px;
+                }
+
+                .mainpage #jobandextra #clubs .club p {
+                    flex: 1;
+                    text-align: left;
+                }
+
+        .mainpage #jobandextra button {
+            flex: 0.5;
+            background-color: transparent;
+            border: 2px solid darkgoldenrod;
+            color: white;
+            height: 50px;
+        }
+
+            .mainpage #jobandextra button:hover {
+                cursor: pointer;
+                background-color: black;
+                color: darkgoldenrod;
+            }
+
+    .mainpage #account {
     }

@@ -6,14 +6,16 @@
 
     <link rel="stylesheet" type="text/css" href="/views/teacherView/teacherView.css">
 
+    <title>Teacher</title>
+    <link rel="icon" href="/assets/strix_logo.png">
 </head>
 <html>
 <body>
     <!-- Header -->
     <div data-include="header"></div>
 
-    <!-- Logout -->
-    <button class="logout" onclick="logout()">Logout</button>
+    <!-- Navigation -->
+    <div data-include="navigation"></div>
 
     <!-- BG -->
     <div id="bg1"></div>
@@ -21,104 +23,226 @@
 
     <!-- Main -->
     <main>
-        <div class="controls">
-            <div id="one" class="control">
-                <p>Players</p>
-                <ul>
-                    <li>
-                        <div class="option">Morgan</div>
-                    </li>
-                    <li>
-                        <div class="option">Sami</div>
-                    </li>
-                    <li>
-                        <div class="option">Will</div>
-                    </li>
-                    <li>
-                        <div class="option">Timo</div>
-                    </li>
-                    <li>
-                        <div class="option">Martin</div>
-                    </li>
-                </ul>
+        <div class="leftnav">
+            <div class="block">
+                <a href="about.html">
+                    <img src="assets/strix_logo.png" />
+                </a>
             </div>
-            <div id="two" class="control">
-                <p>Strixhaven Star</p>
-            </div>
-            <div id="three" class="control">
-                <p>NPCs</p>
-            </div>
-            <div id="four" class="control">
-                <p>COMING SOON</p>
+            <div id="subnavchoices" class="choices">
+                <div class="choice selected">
+                    <button class="dropdown-btn">
+                        <p>Players</p>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+
+                        <button class="subbtn">
+                            <p>Morgan</p>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="sub dropdown-container">
+                            <p class="subNavChoice">Profile</p>
+                            <p class="subNavChoice">Details</p>
+                            <p class="subNavChoice">Courses</p>
+                            <p class="subNavChoice">Exams</p>
+                            <p class="subNavChoice">Job and Extras</p>
+                        </div>
+
+                        <button class="subbtn">
+                            <p>Sami</p>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="sub dropdown-container">
+                            <p class="subNavChoice">Profile</p>
+                            <p class="subNavChoice">Details</p>
+                            <p class="subNavChoice">Courses</p>
+                            <p class="subNavChoice">Exams</p>
+                            <p class="subNavChoice">Job and Extras</p>
+                        </div>
+
+                        <button class="subbtn">
+                            <p>Timo</p>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="sub dropdown-container">
+                            <p class="subNavChoice">Profile</p>
+                            <p class="subNavChoice">Details</p>
+                            <p class="subNavChoice">Courses</p>
+                            <p class="subNavChoice">Exams</p>
+                            <p class="subNavChoice">Job and Extras</p>
+                        </div>
+
+                        <button class="subbtn">
+                            <p>Martin</p>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="sub dropdown-container">
+                            <p class="subNavChoice">Profile</p>
+                            <p class="subNavChoice">Details</p>
+                            <p class="subNavChoice">Courses</p>
+                            <p class="subNavChoice">Exams</p>
+                            <p class="subNavChoice">Job and Extras</p>
+                        </div>
+
+                        <button class="subbtn">
+                            <p>Will</p>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="sub dropdown-container">
+                            <p class="subNavChoice">Profile</p>
+                            <p class="subNavChoice">Details</p>
+                            <p class="subNavChoice">Courses</p>
+                            <p class="subNavChoice">Exams</p>
+                            <p class="subNavChoice">Job and Extras</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="choice">
+                    <p>Strixhaven Star</p>
+                </div>
+                <div class="choice">
+                    <p>NPCs</p>
+                </div>
+                <div class="choice">
+                    <p>Coming Soon</p>
+                </div>
+                <div class="choice">
+                    <p>Logout</p>
+                </div>
             </div>
         </div>
-        <div id="mainslider" class="allContainer">
-            <div id="S1" class="page">
-                <div class="Playerprofile">
-                    <div class="PPtop">
-                        <div class="PPLeft">
-                            <img id="PPimg" />
-                        </div>
-                        <div class="PPRight">
-                            <form id="profileform" class="profile">
-                                <label>Name: <input id="name" placeholder="Name" /></label>
-                                <label>Age: <input id="age" placeholder="Age" /></label>
-                                <label>Gender: <input id="gender" placeholder="Gender" /></label>
-                                <label>Race: <input id="race" placeholder="Race" /></label>
-                                <label>Alignment: <input id="alignment" placeholder="Alignment" /></label>
-                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" /></label>
-                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" /></label>
-                                <label>Height: <input id="height" placeholder="Height" /></label>
-                                <label>Weight: <input id="weight" placeholder="Weight" /></label>
+        <div id="pages" class="mainpage">
+            <div class="page" id="players">
+                <h2>Players</h2>
+                <div class="mainbody">
+
+                    <div class="view" id="profile">
+                        <div class="top">
+                            <div class="card">
+                                <img id="profilepicture" />
+                            </div>
+                            <form id="profileform1">
+                                <label>Name: <input id="name" placeholder="Name" disabled /></label>
+                                <label>Age: <input id="age" placeholder="Age" disabled /></label>
+                                <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
+                                <label>Race: <input id="race" placeholder="Race" disabled /></label>
+                                <label>Subrace: <input id="subrace" placeholder="Subrace" disabled /></label>
+                                <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
+                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
+                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
+                            </form>
+                            <form id="profileform2">
+                                <label>Height: <input id="height" placeholder="Height" disabled /></label>
+                                <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
+                                <label>Level: <input id="level" placeholder="Level" disabled /></label>
+                                <label>Class: <input id="class" placeholder="Class" disabled /></label>
+                                <label>Subclass: <input id="subclass" placeholder="Subclass" disabled /></label>
+                                <label>Background: <input id="background" placeholder="Background" disabled /></label>
                             </form>
                         </div>
+                        <div class="bottom">
+                            <div class="personality scrollbar">
+                                <div class="personal">
+                                    <p>Personality Traits:</p>
+                                    <textarea id="personalitytraits" class="scrollbar" placeholder="Personality Traits" readonly></textarea>
+                                </div>
+                                <div class="personal">
+                                    <p>Ideals:</p>
+                                    <textarea id="ideals" class="scrollbar" placeholder="Ideals" readonly></textarea>
+                                </div>
+                                <div class="personal">
+                                    <p>Bonds:</p>
+                                    <textarea id="bonds" class="scrollbar" placeholder="Bonds" readonly></textarea>
+                                </div>
+                                <div class="personal">
+                                    <p>Flaws:</p>
+                                    <textarea id="flaws" class="scrollbar" placeholder="Flaws" readonly></textarea>
+                                </div>
+                                <div class="personal">
+                                    <p>Goals:</p>
+                                    <textarea id="goals" class="scrollbar" placeholder="Your life time desire" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="formfield">
+                                    <label>Background Features:</label>
+                                    <textarea id="backgroundfeatures" class="scrollbar" placeholder="Background Features" readonly></textarea>
+                                </div>
+                                <div class="formfield">
+                                    <label>Additional Character Appearance:</label>
+                                    <textarea id="appearance" class="scrollbar" placeholder="Additional Character Appearance" readonly></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="PPbot scrollbar">
-                        
-                    </div>
-                </div>
-                <div class="PlayerprofileRight">
-                    <div class="PPjob"></div>
-                    <div class="PPcourses"></div>
-                    <div class="PPexmas"></div>
-                    <div class="PPrelationships"></div>
-                </div>
-            </div>
-            <div id="S2" class="page">
-                <div class="subnav">
-                    <div id="SSPage1" class="sub">Page 1</div>
-                    <div id="SSPage2" class="sub">Page 2</div>
-                </div>
-                <div class="SScontainer">
-                    <div id="page1" class="pg1">page 1</div>
-                    <div id="page2" class="pg2" style="display: none">page 2</div>
-                </div>
-                <div class="footerSpace">
-                    <div class="baseSpacer"></div>
-                    <div class="save" id="SSSave">Save</div>
-                    <div class="baseSpacer"></div>
+
+                    <div class="view" id="details" hidden>details</div>
+
+                    <div class="view" id="courses" hidden>courses</div>
+
+                    <div class="view" id="exams" hidden>exams</div>
+
+                    <div class="view" id="job and extras" hidden>job and extras</div>
+
                 </div>
             </div>
-            <div id="S3" class="page">
-                <h1>Page 1</h1>
-                <label>Students
-                    <select id="NPClist">
-                        <option>-- Please Select an NPC --</option>
-                    </select>
-                </label>
+            <div class="page" id="strixhaven star" hidden>
+                <h2>Strixhaven Star</h2>
             </div>
-            <div id="S4" class="page">
-                <img src="/assets/blackmarket.png" />
+
+            <div class="page" id="npcs" hidden>
+                <h2>NPCs</h2>
+            </div>
+
+            <div class="page" id="coming soon" hidden>
+                <h2>Coming Soon</h2>
             </div>
         </div>
-
     </main>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="/javascript/nav.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
-<script src="/API/api.js"></script>
+<script>
+    var dropdowns = [];
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var subdown = document.getElementsByClassName("subbtn");
+    for (var i = 0; i < dropdown.length; i++) {
+        dropdowns.push(dropdown[i]);
+    }
+    for (var i = 0; i < subdown.length; i++) {
+        dropdowns.push(subdown[i]);
+    }
+    for (var i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].addEventListener("click", openSubElements);
+    }
+    function openSubElements() {
+        var dropdownContent = this.nextElementSibling;
+        var subDrops = this.parentNode.querySelectorAll('.subbtn');
+
+        if (subDrops) {
+            for (var x = 0; x < subDrops.length; x++) {
+                if (subDrops[x].classList == 'subbtn active') {
+                    if (subDrops[x] != this) {
+                        subDrops[x].classList.toggle("active");
+                        subDrops[x].nextElementSibling.style.display = "none";
+                    }
+                }
+            }
+        }
+
+        this.classList.toggle("active");
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    }
+</script>
 <script>
     var pageid = 'Professor DM';
     $(function () {
@@ -127,17 +251,119 @@
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file)
         })
-        StrixhavenStar("get");
-        getPP();
     })
 
-    var showing = 0;
+    $('.choice').click(function () {
+        var subnav = document.getElementById('subnavchoices');
+        var choices = subnav.querySelectorAll('.choice');
+        for (var x = 0; x < choices.length; x++) {
+                choices[x].classList = "choice";
+        }
+        this.classList = "choice selected";
+
+        var choice = this.querySelector('p');
+        var toshow = choice.innerText.toLowerCase();
+
+        if (toshow == "logout") {
+            logot();
+        }
+
+
+        var mainpage = document.getElementById('pages');
+        var pages = mainpage.querySelectorAll('.page');
+        for (var x = 0; x < pages.length; x++) {
+            if (pages[x]) {
+                pages[x].setAttribute("hidden", "true");
+            }
+        }
+
+        
+        
+        
+        document.getElementById(toshow).toggleAttribute("hidden");
+        
+    })
     $('.control').click(function () {
-        var MS = document.getElementById('mainslider');
-        showing = toshow(this.id);
-        var distance = "-" + $("#S1").width() * showing + "px";
-        MS.style.transform = "translateX(" + distance + ")";
-    });
+        if (this.id == "edit") {
+            if (this.classList != "fa fa-pencil-square-o activecontrol") {
+                this.classList = "fa fa-pencil-square-o activecontrol";
+                togglecurrent();
+            } else {
+                this.classList = "control fa fa-pencil-square-o";
+                togglecurrent();
+            }
+        }
+        if (this.id == "save") {
+            var mainpage = document.getElementById('pages');
+            var pages = mainpage.querySelectorAll('.page');
+            for (var x = 0; x < pages.length; x++) {
+                if (pages[x]) {
+                    if (pages[x].id == "courses") {
+                        var courses = [];
+                        var year = this.parentNode.parentNode;
+                        var selects = year.querySelectorAll('select');
+                        for (var y = 0; y < selects.length; y++) {
+                            var select = selects[y];
+                            var options = select.querySelectorAll('option');
+                            for (var z = 0; z < options.length; z++) {
+                                var option = options[z];
+                                if (option.selected) {
+                                    if (option.value.includes(":")) {
+                                        var selected = option.value;
+                                        var split = selected.split(":");
+                                        courses.push(split[0]);
+                                    }
+                                }
+                            }
+                        }
+                        if (courses.length > 0) {
+                            saveCourseChoices(courses);
+                        }
+                    } else {
+                        if (window.getComputedStyle(pages[x]).display != "none") {
+                            var editbtn = pages[x].querySelector('#edit');
+                            if (editbtn.classList != "control fa fa-pencil-square-o") {
+                                togglecurrent();
+                                editbtn.classList = "control fa fa-pencil-square-o";
+                            }
+                            var inputs = pages[x].querySelectorAll('input');
+                            var textareas = pages[x].querySelectorAll('textarea');
+                            var allinputs = [];
+                            for (var y = 0; y < inputs.length; y++) {
+                                if (inputs[y].id) {
+                                    allinputs.push(inputs[y]);
+                                }
+                            }
+                            for (var y = 0; y < textareas.length; y++) {
+                                if (textareas[y].id) {
+                                    allinputs.push(textareas[y]);
+                                }
+                            }
+                            saveStudentData(allinputs);
+                        }
+                    }
+                }
+            }
+        }
+    })
+    function togglecurrent() {
+        var mainpage = document.getElementById('pages');
+        var pages = mainpage.querySelectorAll('.page');
+        for (var x = 0; x < pages.length; x++) {
+            if (pages[x]) {
+                if (window.getComputedStyle(pages[x]).display != "none") {
+                    var inputs = pages[x].querySelectorAll('input');
+                    var textareas = pages[x].querySelectorAll('textarea');
+                    for (var y = 0; y < inputs.length; y++) {
+                        inputs[y].toggleAttribute("disabled");
+                    }
+                    for (var y = 0; y < textareas.length; y++) {
+                        textareas[y].toggleAttribute("readonly");
+                    }
+                }
+            }
+        }
+    }
     function toshow(id) {
         var send = 0;
         if (id == "one") {
@@ -154,240 +380,102 @@
         }
         return send;
     }
-    var ids = [".pg1", ".pg2", ".pg3"];
-    var urls = ["views/news/_page1.html", "views/news/_page2.html", "views/news/_page3.html"];
-    $.get(urls[0], function (data) {
-        $(ids[0]).html(data);
-    });
-    $.get(urls[1], function (data) {
-        $(ids[1]).html(data);
-    });
-    $.get(urls[2], function (data) {
-        $(ids[2]).html(data);
-    });
-    $("#SSSave").click(function () {
-        StrixhavenStar("save");
+
+    $('.subbtn').click(function () {
+        var toget = this.innerText;
+        getPlayerData(toget);
     })
-    $(".sub").click(function () {
-        if (this.id == "SSPage1") {
-            document.getElementById("page1").style.display = "block";
-            document.getElementById("page2").style.display = "none";
-        }
-        if (this.id == "SSPage2") {
-            document.getElementById("page1").style.display = "none";
-            document.getElementById("page2").style.display = "flex";
+
+    $('.subNavChoice').click(function () {
+        var selectedView = this.innerText;
+        var Views = document.getElementById('players').querySelector('.mainbody').querySelectorAll('.view');
+        for (var x = 0; x < Views.length; x++) {
+            Views[x].setAttribute("hidden", "true");
+            if (Views[x].id == selectedView.toLowerCase()) {
+                Views[x].toggleAttribute("hidden");
+            }
         }
     })
-    $('.option').click(function () {
+</script>
+<script src="../../API/api.js"></script>
+<script src="/javascript/login.js"></script>
+<script>
+    $(document).ready(function () {
+        getPP();
+    })
+
+    function getPlayerData(toget) {
+        var page = document.getElementById('players');
+        var header = page.querySelector('h2');
+        var profile = page.querySelector('#profile');
+
         for (var x = 0; x < PPCplayer.length; x++) {
-            if (PPCplayer[x] == this.innerText) {
-                var page = document.getElementById("S1");
-                var profile = page.querySelector(".Playerprofile");
-                profile.querySelector('#PPimg').src = PPCimg[x];
+            if (toget == PPCplayer[x]) {
+                header.innerText = "Player: " + PPCplayer[x];
+                profile.querySelector('#profilepicture').src = PPCimg[x];
                 profile.querySelector('#name').value = PPCname[x];
                 profile.querySelector('#age').value = PPCage[x];
                 profile.querySelector('#gender').value = PPCgender[x];
                 profile.querySelector('#race').value = PPCrace[x];
+                profile.querySelector('#subrace').value = PPCsubrace[x];
                 profile.querySelector('#alignment').value = PPCalignment[x];
                 profile.querySelector('#haircolour').value = PPChaircolor[x];
                 profile.querySelector('#eyecolour').value = PPCeyecolor[x];
                 profile.querySelector('#height').value = PPCheight[x];
                 profile.querySelector('#weight').value = PPCweight[x];
-                var elems = ['#name', '#age', '#gender', '#race', '#alignment', '#haircolour', '#eyecolour', '#height', '#weight'];
-                for (var y = 0; y < elems.length; y++) {
-                    profile.querySelector(elems[y]).setAttribute("disabled", true);
-                }
+                profile.querySelector('#level').value = PPClevel[x];
+                profile.querySelector('#class').value = PPCclasst[x];
+                profile.querySelector('#subclass').value = PPCsubclass[x];
+                profile.querySelector('#background').value = PPCbackground[x];
+
+                profile.querySelector('#personalitytraits').value = PPCpersonalitytraits[x];
+                profile.querySelector('#ideals').value = PPCideals[x];
+                profile.querySelector('#bonds').value = PPCbonds[x];
+                profile.querySelector('#flaws').value = PPCflaws[x];
+                profile.querySelector('#goals').value = PPCgoals[x];
+
+                profile.querySelector('#backgroundfeatures').value = PPCbackgroundfeatures[x];
+                profile.querySelector('#appearance').value = PPCappearance[x];
             }
         }
-    })
-</script>
-<script>
-    function logout() {
-        sessionStorage.clear();
-        window.location = 'login.html';
     }
 
-    function StrixhavenStar(todo) {
-        if (todo == "get") {
-            _supabase.from('_tblStrixhavenStar').select('*').order('id', { ascending: true }).then(response => {
-                var alldata = response.data;
-                var runs = 0;
-                for (var x = 0; x < alldata.length; x++) {
-                    var data = alldata[x];
-
-                    var page = data['pageNo'];
-                    var location = data['location'];
-
-                    var title = data['title'];
-                    var content = data['content'];
-
-                    // Get correct page
-                    var togoPage = document.getElementById('page' + page);
-
-                    if (page == 1) {
-                        // Create Editable Boxs
-                        const newMainTitle = document.createElement("input");
-                        const newSection = document.createElement("div");
-                        const newLeft = document.createElement("div");
-                        const newLeftVid = document.createElement("video");
-                        const newRight = document.createElement("div");
-                        const newMainContent = document.createElement("textarea");
-
-                        togoPage.querySelector('.Mainheadline').remove();
-
-                        newMainTitle.classList = "Mainheadline";
-                        newMainTitle.id = "newMainHeaderPage1";
-                        newMainTitle.value = title;
-                        togoPage.appendChild(newMainTitle);
-
-                        togoPage.querySelector('.secContainer').remove();
-
-                        newSection.classList = "secContainer";
-
-                        newLeft.id = "pg1left";
-                        newLeft.classList = "leftcol";
-
-                        newLeftVid.src = "../assets/defSSvideo.mp4";
-                        newLeftVid.type = "video/mp4";
-                        newLeftVid.setAttribute("muted", true);
-                        newLeftVid.setAttribute("autoplay", true);
-                        newLeftVid.setAttribute("loop", true);
-
-                        newLeft.appendChild(newLeftVid);
-
-                        newSection.appendChild(newLeft);
-
-
-                        newRight.id = "one";
-                        newRight.classList = "right";
-
-
-                        newMainContent.style.width = "200%";
-                        newMainContent.style.height = "100%";
-                        newMainContent.style.marginLeft = "15px";
-                        newMainContent.value = content;
-                        newMainContent.id = "newMainContentPage1";
-
-
-                        newRight.appendChild(newMainContent);
-
-                        newSection.appendChild(newRight);
-
-                        togoPage.appendChild(newSection);
-
-
-
-                        // check if sec con is out of view.
-                        var contentContainer = togoPage.querySelector('.secContainer');
-                        var bounding = contentContainer.getBoundingClientRect();
-                        if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                            //get height of title
-                            var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
-                            var currentH = contentContainer.offsetHeight;
-                            contentContainer.style.height = currentH - headerH;
-                        }
-                    } else {
-                        // Create Editable Boxs
-                        const newleft = document.createElement("div");
-                        const newMTop = document.createElement("div");
-                        const newMBot = document.createElement("div");
-                        const newright = document.createElement("div");
-
-                        const newTitle = document.createElement("input");
-                        const newCONTENT = document.createElement("textarea");
-
-                        newTitle.value = title;
-                        newCONTENT.value = content;
-
-                        if (runs == 0) {
-                            togoPage.querySelector("#pg2left").remove();
-                            togoPage.querySelector("#pg2right").remove();
-                            togoPage.querySelector("#pg2Mtop").remove();
-                            togoPage.querySelector("#pg2Mbot").remove();
-                            runs++;
-                        }
-
-                        if (location == "right") {
-                            newright.id = "pg2right";
-                            newright.classList = "right";
-                            newTitle.id = 'newpg2rightTITLE';
-                            newCONTENT.id = 'newpg2rightCONTENT';
-                            newright.appendChild(newTitle);
-                            newright.appendChild(newCONTENT);
-                            togoPage.appendChild(newright);
-                        }
-                        if (location == "middle bottom") {
-                            newright.id = "pg2Mbot";
-                            newright.classList = "bot";
-                            newTitle.id = 'newpg2MBTITLE';
-                            newCONTENT.id = 'newpg2MBCONTENT';
-                            newright.appendChild(newTitle);
-                            newright.appendChild(newCONTENT);
-                            togoPage.querySelector('.midwrapper').appendChild(newright);
-                        }
-                        if (location == "middle top") {
-                            newright.id = "pg2Mtop";
-                            newright.classList = "top";
-                            newTitle.id = 'newpg2MTTITLE';
-                            newCONTENT.id = 'newpg2MTCONTENT';
-                            newright.appendChild(newTitle);
-                            newright.appendChild(newCONTENT);
-                            togoPage.querySelector('.midwrapper').appendChild(newright);
-                        }
-                        if (location == "left") {
-                            newleft.id = "pg2left";
-                            newleft.classList = "left";
-                            newTitle.id = 'newpg2leftTITLE';
-                            newCONTENT.id = 'newpg2leftCONTENT';
-                            newleft.appendChild(newTitle);
-                            newleft.appendChild(newCONTENT);
-                            togoPage.insertBefore(newleft, togoPage.querySelector('.midwrapper'));
-                        }
-                    }
-                }
-            })
-        }
-        if (todo == "save") {
-            // Page 1
-            var newPG1Title = document.getElementById("newMainHeaderPage1").value;
-            var newPG1Content = document.getElementById("newMainContentPage1").value;
-
-            // Page 2
-            var newPG2TitleL = document.getElementById("newpg2leftTITLE").value;
-            var newPG2ContentL = document.getElementById("newpg2leftCONTENT").value;
-            var newPG2TitleMT = document.getElementById("newpg2MTTITLE").value;
-            var newPG2ContentMT = document.getElementById("newpg2MTCONTENT").value;
-            var newPG2TitleMB = document.getElementById("newpg2MBTITLE").value;
-            var newPG2ContentMB = document.getElementById("newpg2MBCONTENT").value;
-            var newPG2TitleR = document.getElementById("newpg2rightTITLE").value;
-            var newPG2ContentR = document.getElementById("newpg2rightCONTENT").value;
-
-            _supabase.from('_tblStrixhavenStar').update({ title: newPG1Title, content: newPG1Content }).eq('location', 'one').then(response => {
-            })
-            _supabase.from('_tblStrixhavenStar').update({ title: newPG2TitleL, content: newPG2ContentL }).eq('location', 'left').then(response => {
-            })
-            _supabase.from('_tblStrixhavenStar').update({ title: newPG2TitleMT, content: newPG2ContentMT }).eq('location', 'middle top').then(response => {
-            })
-            _supabase.from('_tblStrixhavenStar').update({ title: newPG2TitleMB, content: newPG2ContentMB }).eq('location', 'middle bottom').then(response => {
-            })
-            _supabase.from('_tblStrixhavenStar').update({ title: newPG2TitleR, content: newPG2ContentR }).eq('location', 'right').then(response => {
-            })
-
-            alert("This should of saved have a check on Strixhaven Star or reload the page");
-        }
-    }
+    var PPCid = [];
 
     var PPCplayer = [];
+
+    var PPCimg = [];
     var PPCname = [];
-    var PPCrace = [];
+    var PPCage = [];
     var PPCgender = [];
+    var PPCrace = [];
+    var PPCsubrace = [];
+    var PPCalignment = [];
     var PPChaircolor = [];
     var PPCeyecolor = [];
-    var PPCage = [];
     var PPCheight = [];
     var PPCweight = [];
-    var PPCalignment = [];
-    var PPCimg = [];
+    var PPClevel = [];
+    var PPCclasst = [];
+    var PPCsubclass = [];
+    var PPCbackground = [];
+    
+    var PPCpersonalitytraits = [];
+    var PPCideals = [];
+    var PPCbonds = [];
+    var PPCflaws = [];
+    var PPCgoals = [];
+
+    var PPCbackgroundfeatures = [];
+    var PPCappearance = [];
+    
+    var PPCbackstory = [];
+    var PPCextranotes = [];
+
+    
+    
+    
+    
 
     var NPCid = [];
     var NPCimg = [];
@@ -401,24 +489,41 @@
     var NPCweight = [];
     var NPCheight = [];
 
+
+
     function getPP() {
         _supabase.from('_tblStudents').select('*').order('id', { ascending: true }).then(response => {
             var data = response.data;
             for (var x = 0; x < data.length; x++) {
                 var person = data[x];
-                if (person['character_player']) {
+                if (person['player']) {
                     // Players
-                    PPCplayer.push(person['character_player']);
-                    PPCimg.push("assets/students/players/" + person['Profile Picture']);
-                    PPCage.push(person['character_age']);
-                    PPCgender.push(person['character_gender']);
-                    PPCname.push(person['character_name']);
-                    PPCrace.push(person['character_race']);
-                    PPCalignment.push(person['Alignment']);
-                    PPChaircolor.push(person['Hair Colour']); 
-                    PPCeyecolor.push(person['Eye Colour']); 
-                    PPCweight.push(person['Weight']);
-                    PPCheight.push(person['Height']);
+                    PPCid.push(person['id']);
+                    PPCplayer.push(person['player']);
+                    PPCimg.push("assets/students/players/" + person['picture']);
+                    PPCage.push(person['age']);
+                    PPCgender.push(person['gender']);
+                    PPCname.push(person['name']);
+                    PPCrace.push(person['race']);
+                    PPCalignment.push(person['alignment']);
+                    PPChaircolor.push(person['haircolour']);
+                    PPCeyecolor.push(person['eyecolour']);
+                    PPCweight.push(person['weight']);
+                    PPCheight.push(person['height']);
+                    PPCappearance.push(person['appearance']);
+                    PPCbackground.push(person['background']);
+                    PPCbackgroundfeatures.push(person['backgroundfeatures']);
+                    PPCbackstory.push(person['backstory']);
+                    PPCbonds.push(person['bonds']);
+                    PPCclasst.push(person['class']);
+                    PPCextranotes.push(person['extranotes']);
+                    PPCflaws.push(person['flaws']);
+                    PPCgoals.push(person['goals']);
+                    PPCideals.push(person['ideals']);
+                    PPClevel.push(person['level']);
+                    PPCpersonalitytraits.push(person['personalitytraits']);
+                    PPCsubclass.push(person['subclass']);
+                    PPCsubrace.push(person['subrace']);
                 } else {
                     // NPCs
                     NPCid.push(person['id']);
@@ -442,8 +547,10 @@
                 newOption.value = x;
                 newOption.innerText = NPCname[x];
 
-                page.querySelector('#NPClist').appendChild(newOption);
+                //  page.querySelector('#NPClist').appendChild(newOption);
             }
         })
     }
+
+   
 </script>
