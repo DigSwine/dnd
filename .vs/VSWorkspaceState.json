@@ -3,12 +3,10 @@
     "",
     "\\API",
     "\\assets",
-    "\\assets\\students\\players",
     "\\test",
     "\\views",
     "\\views\\activites",
     "\\views\\teacherView"
   ],
-  "SelectedNode": "\\assets\\blackmarket.png",
   "PreviewInSolutionExplorer": false
 }

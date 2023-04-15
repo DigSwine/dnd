@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div id="subnavchoices" class="choices">
-                <div class="choice selected">
+                <div class="choice">
                     <button class="dropdown-btn">
                         <p>Players</p>
                         <i class="fa fa-caret-down"></i>
@@ -123,6 +123,8 @@
                                 <img id="profilepicture" />
                             </div>
                             <form id="profileform1">
+                                <input id="pid" hidden />
+                                <input id="player" hidden />
                                 <label>Name: <input id="name" placeholder="Name" disabled /></label>
                                 <label>Age: <input id="age" placeholder="Age" disabled /></label>
                                 <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
@@ -190,12 +192,19 @@
                         </div>
                     </div>
 
-                    <div class="view" id="courses" hidden>courses</div>
+                    <div class="view" id="courses" hidden>
+                        
+                    </div>
 
                     <div class="view" id="exams" hidden>exams</div>
 
-                    <div class="view" id="job and extras" hidden>job and extras</div>
-
+                    <div class="view" id="jobandextras" hidden>
+                        <div id="jobs">
+                        </div>
+                        <h2>Extracurricular</h2>
+                        <div id="clubs">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="page" id="strixhaven star" hidden>
@@ -278,7 +287,6 @@
             logot();
         }
 
-
         var mainpage = document.getElementById('pages');
         var pages = mainpage.querySelectorAll('.page');
         for (var x = 0; x < pages.length; x++) {
@@ -286,15 +294,12 @@
                 pages[x].setAttribute("hidden", "true");
             }
         }
-
-        
-        
         
         document.getElementById(toshow).toggleAttribute("hidden");
-        
     })
     $('.control').click(function () {
         if (this.id == "edit") {
+            console.log(this.parentElement.parentElement);
             if (this.classList != "fa fa-pencil-square-o activecontrol") {
                 this.classList = "fa fa-pencil-square-o activecontrol";
                 togglecurrent();
@@ -393,15 +398,56 @@
 
     $('.subbtn').click(function () {
         var toget = this.innerText;
+        cleanPages();
         getPlayerData(toget);
     })
 
+    function cleanPages(){
+        var profile = document.getElementById('profile');
+        var detail = document.getElementById('details');
+        var courses = document.getElementById('courses');
+        var exams = document.getElementById('exams');
+        var job = document.getElementById('jobs');
+        var club = document.getElementById('clubs');
+
+        var courseYear = courses.querySelectorAll('.year');
+
+        for (var x = 0; x < courseYear.length; x++) {
+            var selectors = courseYear[x].querySelectorAll("select");
+            var text = courseYear[x].querySelectorAll("p");
+            var manditory = ['Y1S1', 'Y2S1', 'Y3S1', 'Y4S1'];
+            for (var z = 0; z < manditory.length; z++) {
+                for (var y = 0; y < selectors.length; y++) {
+                    if (selectors[y].parentElement.id != manditory[z]) {
+                        selectors[y].value = '0';
+                        selectors[y].disabled = false;
+                        text[y].innerHTML = "";
+                    }
+                }
+            }
+        }
+
+        job.innerHTML = "";
+        club.innerHTML = "";
+    }
+
     $('.subNavChoice').click(function () {
-        var selectedView = this.innerText;
+        var selectedView = this.innerText.toLowerCase();
+        if (selectedView == "job and extras") {
+            selectedView = 'jobandextras';
+        }
         var Views = document.getElementById('players').querySelector('.mainbody').querySelectorAll('.view');
+        var page = document.getElementById('players');
+        var profile = page.querySelector('#profile');
         for (var x = 0; x < Views.length; x++) {
             Views[x].setAttribute("hidden", "true");
-            if (Views[x].id == selectedView.toLowerCase()) {
+            if (Views[x].id == selectedView) {
+                if (selectedView == "Job and Extras") {
+                    page.querySelector('h2').innerText = "Job";
+                } else {
+                    var p = "Player: " + profile.querySelector('#player').value;
+                    page.querySelector('h2').innerHTML = p;
+                }
                 Views[x].toggleAttribute("hidden");
             }
         }
@@ -412,6 +458,7 @@
 <script>
     $(document).ready(function () {
         getPP();
+        getCourseData();
     })
 
     function getPlayerData(toget) {
@@ -423,6 +470,8 @@
         for (var x = 0; x < PPCplayer.length; x++) {
             if (toget == PPCplayer[x]) {
                 header.innerText = "Player: " + PPCplayer[x];
+                profile.querySelector('#pid').value = PPCid[x];
+                profile.querySelector('#player').value = PPCplayer[x];
                 profile.querySelector('#profilepicture').src = PPCimg[x];
                 profile.querySelector('#name').value = PPCname[x];
                 profile.querySelector('#age').value = PPCage[x];
@@ -450,6 +499,8 @@
 
                 details.querySelector('#backstory').value = PPCbackstory[x];
                 details.querySelector('#extranotes').value = PPCextranotes[x];
+
+                getStudentDataByID(PPCid[x]);
             }
         }
     }
@@ -493,8 +544,6 @@
     var NPCeyecolor = [];
     var NPCweight = [];
     var NPCheight = [];
-
-
 
     function getPP() {
         _supabase.from('_tblStudents').select('*').order('id', { ascending: true }).then(response => {
@@ -557,5 +606,284 @@
         })
     }
 
+    function getStudentDataByID(sid) {
+        _supabase.from('Job<>Student').select('Job (id, Title, Location, Pay)').eq('Student', sid).then(response => {
+            if (response.data.length > 0) {
+                for (var x = 0; x < response.data.length; x++) {
+                    var data = response.data[x];
+                    var job = data['Job'];
+
+                    var currentJob = document.getElementById('jobs');
+
+                    const theJob = document.createElement('div');
+                    const theTitle = document.createElement('p');
+                    const theLocation = document.createElement('p');
+                    const theWage = document.createElement('p');
+                    const theCoworker = document.createElement('p');
+                    const QuitButton = document.createElement('button');
+
+                    theJob.classList = "job";
+                    theJob.id = "job";
+                    QuitButton.classList = "quit";
+                    QuitButton.id = sid;
+                    QuitButton.innerText = "Fire";
+                    QuitButton.addEventListener('click', fireFromJob, false);
+
+                    theTitle.innerText = job['Title'];
+                    theTitle.classList = "title";
+
+                    theLocation.innerText = job['Location'];
+                    theLocation.classList = "location";
+
+                    theWage.innerText = job['Pay'];
+                    theWage.classList = "wage";
+
+                    _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
+                        var allworkers = response.data;
+                        var wcount = 0;
+                        var coworkers = "";
+                        if (allworkers) {
+                            for (var y = 0; y < allworkers.length; y++) {
+                                var worker = allworkers[y]['Student'];
+                                if (document.getElementById('profile').querySelector('#profileform1').querySelector('#pid').value != worker['id']) {
+                                    if (wcount > 0) {
+                                        coworkers = coworkers + " & " + worker['name'];
+                                    } else {
+                                        coworkers = worker['name'];
+                                    }
+                                    wcount++;
+                                }
+                            }
+                        }
+                        theCoworker.innerText = coworkers;
+                        theCoworker.classList = "coworker";
+
+                        theJob.appendChild(theTitle);
+                        theJob.appendChild(theLocation);
+                        theJob.appendChild(theCoworker);
+                        theJob.appendChild(theWage);
+                        theJob.appendChild(QuitButton);
+
+                        currentJob.appendChild(theJob);
+                    })
+                }
+            }
+        })
+        _supabase.from('Club<>Student').select('club (*)').eq('student', sid).then(response => {
+            if (response.data.length > 0) {
+                var clubs = document.getElementById('clubs');
+                for (var x = 0; x < response.data.length; x++) {
+                    var data = response.data[x];
+                    var club = data['club'];
+
+                    var clubid = club['id'];
+                    var clubname = club['name'];
+                    var clubskills = club['skills'];
+
+                    const theClub = document.createElement('div');
+                    const theClubName = document.createElement('p');
+                    const theClubSkill = document.createElement('p');
+                    const theClubDice = document.createElement('p');
+                    const theClubMembers = document.createElement('div');
+
+                    const theClubQuit = document.createElement('button');
+
+                    theClub.classList = "club";
+
+                    theClubName.classList = "clubname";
+                    theClubName.innerText = clubname;
+
+                    theClubSkill.classList = "clubskill";
+                    theClubSkill.innerText = clubskills;
+
+                    theClubDice.classList = "dice";
+                    theClubDice.innerText = "1d4";
+
+                    theClubMembers.classList = "members scrollbar";
+
+                    _supabase.from('Club<>Student').select('student (id, name)').eq('club', clubid).then(response => {
+                        for (var y = 0; y < response.data.length; y++) {
+                            if (sid != response.data[y]['student']['id']) {
+                                const theClubMember = document.createElement('p');
+                                theClubMember.classList = "member";
+                                theClubMember.innerText = response.data[y]['student']['name'];
+                                theClubMembers.appendChild(theClubMember);
+                            }
+                        }
+                    })
+
+                    theClubQuit.classList = "quit";
+                    theClubQuit.innerText = "Quit Club";
+                    theClubQuit.id = clubid;
+                   theClubQuit.addEventListener('click', kickFromClub, false);
+
+                    theClub.appendChild(theClubName);
+                    theClub.appendChild(theClubSkill);
+                    theClub.appendChild(theClubDice);
+                    theClub.appendChild(theClubMembers);
+
+                    theClub.appendChild(theClubQuit);
+
+                    clubs.appendChild(theClub);
+                }
+            }
+        })
+        _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').eq('student', sid).then(response => {
+            var data = response.data;
+            var Y1C = 1;
+            var Y2C = 1;
+            var Y3C = 1;
+            var Y4C = 1;
+
+            for (var x = 0; x < data.length; x++) {
+                var course = data[x]['class'];
+                var student = data[x]['student'];
+
+                if (course['year'] == 1) {
+                    var classChoice = "Y1S" + Y1C;
+                    Y1C++;
+                }
+                if (course['year'] == 2) {
+                    var classChoice = "Y2S" + Y2C;
+                    Y2C++;
+                }
+                if (course['year'] == 3) {
+                    var classChoice = "Y3S" + Y3C;
+                    Y3C++;
+                }
+                if (course['year'] == 4) {
+                    var classChoice = "Y4S" + Y4C;
+                    Y4C++;
+                }
+                $('#' + classChoice + ' select > option').each(function () {
+                    var split = $(this).val().split(":");
+                    var courseId = split[0];
+                    var teacher = split[1];
+
+                    if (courseId == course['id']) {
+                        $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
+                        $('#' + classChoice + ' select').attr("disabled", "true");
+                        $('#' + classChoice + ' p').text("Teacher: " + teacher);
+                    }
+                });
+            }
+        });
+    }
+    function getCourseData() {
+        _supabase.from('class<>teacher').select('class(id, name, year, required), teacher(id, teacher_name)').then(response => {
+            var data = response.data;
+            for (var x = 0; x < data.length; x++) {
+                var course = data[x]['class'];
+                var teacher = data[x]['teacher'];
+                if (course['year'] == 1) {
+                    $('#Y1S1 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y1S2 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y1S3 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y1S4 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    if (course['required'] == "yes") {
+                        $('#Y1S1 select').val(course['id'] + ":" + teacher['teacher_name']);
+                        $('#Y1S1 select').attr("disabled", "true");
+                        $('#Y1S1 p').text("Teacher: " + teacher['teacher_name']);
+                    }
+                }
+                if (course['year'] == 2) {
+                    $('#Y2S1 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y2S2 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y2S3 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y2S4 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    if (course['required'] == "yes") {
+                        $('#Y2S1 select').val(course['id'] + ":" + teacher['teacher_name']);
+                        $('#Y2S1 select').attr("disabled", "true");
+                        $('#Y2S1 p').text("Teacher: " + teacher['teacher_name']);
+                    }
+                }
+                if (course['year'] == 3) {
+                    $('#Y3S1 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y3S2 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y3S3 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y3S4 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    if (course['required'] == "yes") {
+                        $('#Y3S1 select').val(course['id'] + ":" + teacher['teacher_name']);
+                        $('#Y3S1 select').attr("disabled", "true");
+                        $('#Y3S1 p').text("Teacher: " + teacher['teacher_name']);
+                    }
+                }
+                if (course['year'] == 4) {
+                    $('#Y4S1 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y4S2 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y4S3 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    $('#Y4S4 select').append($('<option>', {
+                        value: course['id'] + ":" + teacher['teacher_name'],
+                        text: course['name']
+                    }))
+                    if (course['required'] == "yes") {
+                        $('#Y4S1 select').val(course['id'] + ":" + teacher['teacher_name']);
+                        $('#Y4S1 select').attr("disabled", "true");
+                        $('#Y4S1 p').text("Teacher: " + teacher['teacher_name']);
+                    }
+                }
+            }
+        });
+    }
+    function fireFromJob() {
+        var sid = document.getElementById('profile').querySelector('#profileform1').querySelector('#pid').value;
+        _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
+        })
+        var parent = this.parentNode;
+        parent.style.display = "none";
+    }
+    function kickFromClub() {
+        var sid = document.getElementById('profile').querySelector('#profileform1').querySelector('#pid').value;
+        var cid = this.id;
+        _supabase.from('Club<>Student').delete().eq('club', cid).eq('student', sid).then(response => {
+            var parent = this.parentNode;
+            parent.style.display = "none";
+        })  
+    }
    
 </script>

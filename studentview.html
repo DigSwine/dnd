@@ -581,8 +581,9 @@
                         theWage.innerText = job['Pay'];
                         theWage.classList = "wage";
 
-                        _supabase.from('Job<>Student').select('Student (id, character_name, character_player)').eq('Job', job['id']).then(response => {
+                        _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
                             var allworkers = response.data;
+                            console.log(allworkers);
                             var wcount = 0;
                             var coworkers = "";
                             if (allworkers) {
@@ -590,9 +591,9 @@
                                     var worker = allworkers[y]['Student'];
                                     if (sessionStorage.getItem('Student_Id') != worker['id']) {
                                         if (wcount > 0) {
-                                            coworkers = coworkers + " & " + worker['character_name'];
+                                            coworkers = coworkers + " & " + worker['name'];
                                         } else {
-                                            coworkers = worker['character_name'];
+                                            coworkers = worker['name'];
                                         }
                                         wcount++;
                                     }

@@ -19,15 +19,12 @@ header {
     height: 100px;
     width: 100%;
 }
-
     header .logo {
         width: 342px;
     }
-
     header #unilogo {
         display: none;
     }
-
     header .pagetitle {
         font-family: 'posting', sans-serif;
         font-size: 4rem;
@@ -35,11 +32,9 @@ header {
         -webkit-text-stroke: 0px black;
         width: calc(100% - 342px - 74px);
     }
-
     header .thenavigation {
         width: auto;
     }
-
         header .thenavigation .hamburger {
             color: white;
         }
@@ -209,49 +204,40 @@ button {
         cursor: pointer;
     }
 
-
-
 .mainpage {
     height: var(--mainbodyheight);
     width: calc(100% - 350px);
     position: relative;
 }
-
     .mainpage div {
         width: auto;
         height: auto;
     }
-
     .mainpage h2 {
         height: var(--titleheight);
         margin: 10px 0 0 0;
         font-size: 2rem;
     }
-
     .mainpage .page {
         color: white;
         height: auto;
     }
-
     .mainpage .top {
         display: flex;
         height: 340px;
         width: 100%;
         position: relative;
     }
-
     .mainpage .bottom {
         display: flex;
         height: calc(100% - 360px);
         width: 100%;
         position: relative;
     }
-
     .mainpage label, .mainpage p {
         font-family: 'Valneck';
         font-size: 1.1rem;
     }
-
     .mainpage input, .mainpage textarea {
         background-color: transparent;
         border: none;
@@ -260,25 +246,20 @@ button {
         color: white;
         font-family: Arial;
     }
-
     .mainpage input {
         text-align: left;
         width: 450px;
         padding: 5px 0 5px 10px;
     }
-
         .mainpage input:enabled {
             border: 2px solid white;
         }
-
     .mainpage textarea {
         border: 2px solid white;
     }
-
         .mainpage textarea:read-only {
             border: none;
         }
-
     .mainpage .controls {
         position: absolute;
         top: -10px;
@@ -286,7 +267,6 @@ button {
         padding: 5px;
         display: flex;
     }
-
         .mainpage .controls button {
             font-size: 2rem;
             padding: 5px;
@@ -294,20 +274,16 @@ button {
             color: white;
             border: none;
         }
-
         .mainpage .controls .control:hover {
             color: darkgoldenrod;
             cursor: pointer;
         }
-
         .mainpage .controls button + button {
             margin-left: 5px;
         }
-
         .mainpage .controls .activecontrol {
             color: hotpink;
         }
-
             .mainpage .controls .activecontrol:hover {
                 cursor: pointer;
             }
@@ -315,45 +291,37 @@ button {
     .mainpage #profile {
         position: relative;
     }
-
         .mainpage #profile .card {
             height: 325px;
             max-width: 225px;
             margin: 0px 0 0 50px;
             flex: 1;
         }
-
             .mainpage #profile .card img {
                 height: 100%;
                 border-radius: 5%;
                 box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
             }
-
                 .mainpage #profile .card img:hover {
                     box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
                     transition: box-shadow 0.1s ease-out;
                 }
-
         .mainpage #profile form {
             flex: 2;
             text-align: right;
         }
-
             .mainpage #profile form label {
                 display: block;
                 margin: 10px;
             }
-
             .mainpage #profile form .formfield {
                 display: flex;
                 height: 239px;
             }
-
                 .mainpage #profile form .formfield label {
                     flex: 1;
                     margin: 0 5px 0 20px;
                 }
-
                 .mainpage #profile form .formfield textarea {
                     flex: 2.7;
                     height: 225px;
@@ -361,11 +329,9 @@ button {
                     resize: none;
                     margin: 0 10px 0 0;
                 }
-
             .mainpage #profile form label textarea {
                 height: 225px;
             }
-
         .mainpage #profile .personality {
             width: 100%;
             height: calc(100% - 15px);
@@ -373,7 +339,6 @@ button {
             text-align: right;
             flex: 1;
         }
-
             .mainpage #profile .personality .personal {
                 text-align: right;
                 display: flex;
@@ -381,11 +346,9 @@ button {
                 padding: 0 0 0 50px;
                 height: calc(100% / 5);
             }
-
                 .mainpage #profile .personality .personal p, .mainpage #profile .personality .personal textarea {
                     height: calc(100% / 5);
                 }
-
                 .mainpage #profile .personality .personal p {
                     color: white;
                     max-width: 20%;
@@ -393,7 +356,6 @@ button {
                     margin: 0 15px 5px 5px;
                     flex: 1;
                 }
-
                 .mainpage #profile .personality .personal textarea {
                     width: calc(100% - 20%);
                     height: calc(100% - 10px);
@@ -405,20 +367,16 @@ button {
                     text-align: center;
                     background-color: transparent;
                 }
-
         .mainpage #profile .right {
             flex: 1;
         }
-
             .mainpage #profile .right .formfield {
                 height: 50%;
                 display: flex;
             }
-
                 .mainpage #profile .right .formfield label {
                     flex: 0.7;
                 }
-
                 .mainpage #profile .right .formfield textarea {
                     flex: 1;
                     margin: 0 10px 0 0;
@@ -429,25 +387,21 @@ button {
     .mainpage #details {
         position: relative;
     }
-
         .mainpage #details .splitbody {
             display: flex;
             height: calc(100% - 45px);
         }
-
             .mainpage #details .splitbody .split {
                 flex: 1;
                 height: 100%;
                 margin: 0 50px 0 50px;
                 padding-bottom: 50px;
             }
-
                 .mainpage #details .splitbody .split p {
                     margin: 0;
                     text-align: center;
                     font-size: 1.5rem;
                 }
-
                 .mainpage #details .splitbody .split textarea {
                     resize: none;
                     height: calc(100% - 30px);
@@ -456,11 +410,9 @@ button {
 
     .mainpage #courses {
     }
-
         .mainpage #courses .top, .mainpage #courses .bottom {
             height: 49%;
         }
-
         .mainpage #courses .year {
             flex: 1;
             margin: 20px 50px 20px 50px;
@@ -469,35 +421,29 @@ button {
             background-color: darkcyan;
             position: relative;
         }
-
             .mainpage #courses .year h3 {
                 margin: 0;
                 padding: 10px;
                 font-family: 'Valneck';
             }
-
             .mainpage #courses .year + .year {
                 margin: 20px 50px 20px 0;
             }
-
             .mainpage #courses .year .coursechoices {
                 position: relative;
                 height: calc(100% - 47px - 47px - 20px);
             }
-
                 .mainpage #courses .year .coursechoices .coursechoice {
                     margin: 10px;
                     display: flex;
                     height: calc(100% / 4);
                 }
-
                     .mainpage #courses .year .coursechoices .coursechoice select {
                         margin: 0 20px 0;
                         padding: 10px;
                         width: calc(auto + 20px);
                         height: 40px;
                     }
-
                     .mainpage #courses .year .coursechoices .coursechoice p {
                         padding: 10px;
                         margin: 0;
@@ -509,86 +455,74 @@ button {
     .mainpage #relationships {
     }
 
-    .mainpage #jobandextra {
+    .mainpage #jobandextras {
         height: 100%;
     }
-
-        .mainpage #jobandextra #jobs {
+        .mainpage #jobandextras #jobs {
             min-height: 25%;
         }
-
-            .mainpage #jobandextra #jobs .job {
+            .mainpage #jobandextras #jobs .job {
                 display: flex;
                 padding: 50px 50px 20px 50px;
                 position: relative;
             }
-
-                .mainpage #jobandextra #jobs .job p, .mainpage #jobandextra #jobs .job h3 {
+                .mainpage #jobandextras #jobs .job p {
                     flex: 1;
                     text-align: left;
+                } 
+                .mainpage #jobandextras #jobs .job .title:before {
+                    content: "Job Title";
+                    position: absolute;
+                    top: 20px;
                 }
-
-                    .mainpage #jobandextra #jobs .job h3:before {
-                        content: "Job Title";
-                        position: absolute;
-                        top: 20px;
-                    }
-
-                .mainpage #jobandextra #jobs .job .location:before {
+                .mainpage #jobandextras #jobs .job .location:before {
                     content: "Job Location";
                     position: absolute;
                     top: 20px;
                 }
-
-                .mainpage #jobandextra #jobs .job .coworker:before {
+                .mainpage #jobandextras #jobs .job .coworker:before {
                     content: "Job Coworker";
                     position: absolute;
                     top: 20px;
                 }
-
-                .mainpage #jobandextra #jobs .job .wage:before {
+                .mainpage #jobandextras #jobs .job .wage:before {
                     content: "Job Wage";
                     position: absolute;
                     top: 20px;
                 }
 
-        .mainpage #jobandextra #clubs {
+        .mainpage #jobandextras #clubs {
             height: calc(100% - 50px - 50px - 208px);
         }
-
-            .mainpage #jobandextra #clubs .club {
+            .mainpage #jobandextras #clubs .club {
                 display: flex;
                 padding: 20px 50px 20px 50px;
                 height: calc(100% / 3 - 40px);
             }
-
-                .mainpage #jobandextra #clubs .club:hover {
+                .mainpage #jobandextras #clubs .club:hover {
                     box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
                     transition: box-shadow 0.1s ease-out;
                 }
-
-                .mainpage #jobandextra #clubs .club + .club {
+                .mainpage #jobandextras #clubs .club + .club {
                 }
-
-                .mainpage #jobandextra #clubs .club .members {
+                .mainpage #jobandextras #clubs .club .members {
                     flex: 1;
                     margin-right: 10px;
                 }
-
-                .mainpage #jobandextra #clubs .club p {
+                .mainpage #jobandextras #clubs .club p {
                     flex: 1;
                     text-align: left;
                 }
-
-        .mainpage #jobandextra button {
+        .mainpage #jobandextras button {
             flex: 0.5;
+            display: block;
+            text-align: center;
             background-color: transparent;
             border: 2px solid darkgoldenrod;
             color: white;
             height: 50px;
         }
-
-            .mainpage #jobandextra button:hover {
+            .mainpage #jobandextras button:hover {
                 cursor: pointer;
                 background-color: black;
                 color: darkgoldenrod;
