@@ -538,6 +538,7 @@
                 details.querySelector('#backstory').value = story;
                 details.querySelector('#extranotes').value = notes;
 
+                // Header
                 if (name) {
                     var headertitle = document.getElementById('pagename');
                     if (headertitle) {
@@ -547,6 +548,18 @@
                             headertitle = document.getElementById('pagename');
                             headertitle.innerText = "Welcome " + name;
                         }, 5000);
+                    }
+                }
+
+                // Courses
+                if (student['year']) {
+                    var coursesPage = document.getElementById('courses');
+                    var courseYears = coursesPage.querySelectorAll('.year');
+                    for (var y = 0; y < courseYears.length; y++) {
+                        if (y > student['year']) {
+                            courseYears[y];
+                            courseYears[y].style.display = "none";
+                        }
                     }
                 }
             }
@@ -583,7 +596,6 @@
 
                         _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
                             var allworkers = response.data;
-                            console.log(allworkers);
                             var wcount = 0;
                             var coworkers = "";
                             if (allworkers) {

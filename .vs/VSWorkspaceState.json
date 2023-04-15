@@ -4,9 +4,8 @@
     "\\API",
     "\\assets",
     "\\test",
-    "\\views",
-    "\\views\\activites",
-    "\\views\\teacherView"
+    "\\views"
   ],
+  "SelectedNode": "\\views\\index.css",
   "PreviewInSolutionExplorer": false
 }
