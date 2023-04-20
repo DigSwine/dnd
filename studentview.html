@@ -64,6 +64,7 @@
                             <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
                         </form>
                         <form id="profileform2">
+                            <input id="year" hidden />
                             <label>Height: <input id="height" placeholder="Height" disabled /></label>
                             <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
                             <label>Level: <input id="level" placeholder="Level" disabled /></label>
@@ -295,7 +296,36 @@
             </div>
 
             <div class="page" id="exams" hidden>
-                <h2>exams</h2>
+                <h2>Exams and Results</h2>
+                <button onclick="su2all()">Sign up to all</button>
+                <div class="top">
+                    <div class="year">
+                        <h3>Year 1 Results</h3>
+                        <div class="exams">
+                            
+                        </div>
+                    </div>
+                    <div class="year">
+                        <h3>Year 2 Results</h3>
+                        <div class="exams">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="year">
+                        <h3>Year 3 Results</h3>
+                        <div class="exams">
+
+                        </div>
+                    </div>
+                    <div class="year">
+                        <h3>Year 4 Results</h3>
+                        <div class="exams">
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="page" id="relationships" hidden>
                 <h2>relationships</h2>
@@ -359,6 +389,9 @@
         }
         if (toshow == "courses") {
             getStudentCourseByID(sessionStorage.getItem("Student_Id"));
+        }
+        if (toshow == "exams") {
+            getStudentExamByID(sessionStorage.getItem("Student_Id"));
         }
         document.getElementById(toshow).toggleAttribute("hidden");
     })
@@ -475,7 +508,7 @@
     function getStudentDataByID(sid) {
         _supabase.from('_tblStudents').select('*').eq('id', sid).order('id', { ascending: true }).then(response => {
             for (var x = 0; x < response.data.length; x++) {
-                var student = response.data[x];  
+                var student = response.data[x];
 
                 var img = student['picture'];
                 var name = student['name'];
@@ -513,6 +546,7 @@
                 profile.querySelector('#alignment').value = alignment;
                 profile.querySelector('#haircolour').value = hair;
                 profile.querySelector('#eyecolour').value = eyes;
+                profile.querySelector('#year').value = student['year'];
                 profile.querySelector('#height').value = height;
                 profile.querySelector('#weight').value = weight;
                 profile.querySelector('#level').value = level;
@@ -548,18 +582,6 @@
                             headertitle = document.getElementById('pagename');
                             headertitle.innerText = "Welcome " + name;
                         }, 5000);
-                    }
-                }
-
-                // Courses
-                if (student['year']) {
-                    var coursesPage = document.getElementById('courses');
-                    var courseYears = coursesPage.querySelectorAll('.year');
-                    for (var y = 0; y < courseYears.length; y++) {
-                        if (y > student['year']) {
-                            courseYears[y];
-                            courseYears[y].style.display = "none";
-                        }
                     }
                 }
             }
@@ -828,6 +850,51 @@
                     });
                 }
             }
+            // Courses
+            var theyear = document.getElementById('profile').querySelector('#year').value;
+            if (theyear) {
+                var coursesPage = document.getElementById('courses');
+                var courseYears = coursesPage.querySelectorAll('.year');
+                for (var y = 0; y < courseYears.length; y++) {
+                    var year = courseYears[y];
+                    var saveBtn = year.querySelector('.controls');
+                    if (y <= theyear - 1) {
+                        var coursesSelected = year.querySelectorAll('select');
+                        var number = 0;
+                        for (var z = 0; z < coursesSelected.length; z++) {
+                            if (coursesSelected[z].disabled) {
+                                number++;
+                            }
+                        }
+                        if (number == 4) {
+                            saveBtn.style.display = "none";
+                        }
+                    } else {
+                        year.innerHTML = "";
+                    }
+                }
+            }
+        });
+    }
+    function getStudentExamByID(sid) {
+        var examsPage = document.getElementById('exams');
+        var examExams = examsPage.querySelectorAll('.exams');
+        examExams.innerHTML = "";
+        _supabase.from('exam<>student').select('exam(*), score, studied, cheated').eq('student', sid).then(response => {
+            var exams = response.data;
+            for (var x = 0; x < exams.length; x++) {
+                var exam = exams[x];
+                for (var y = 0; y < examExams.length; y++) {
+                    var newExam = document.createElement("div");
+                    var newTitle = document.createElement("p");
+                    if (y + 1 == exam['exam']['year']) {
+                        newTitle.innerText = exam['exam']['name'];
+                        newExam.appendChild(newTitle);
+                        examExams[y].appendChild(newExam);
+                    }
+                    console.log("EX yr >> " + exam['exam']['name'] + " >> " + exam['exam']['year'])
+                }
+            }
         });
     }
 
@@ -903,11 +970,9 @@
     }
     function saveCourseChoices(choices) {
         _supabase.from('class<>student').select('class(id, year, name, required)').eq('student', sessionStorage.getItem("Student_Id")).then(response => {
-            // Check if course is already signed up
             var uniqueCourses = [];
             for (var x = 0; x < response.data.length; x++) {
                 var existingCourse = response.data[x]['class'];
-
                 for (var y = 0; y < choices.length; y++) {
                     if (existingCourse['id'] == choices[y]) {
                         delete choices[y];
@@ -917,21 +982,17 @@
             var filtered = choices.filter(function (el) {
                 return el != null;
             });
-
             $.each(filtered, function (i, el) {
                 if ($.inArray(el, uniqueCourses) === -1) uniqueCourses.push(el);
             });
-            console.log(uniqueCourses);
             if (uniqueCourses.length > 0) {
                 for (var x = 0; x < uniqueCourses.length; x++) {
                     _supabase.from('class<>student').insert({ 'class': uniqueCourses[x], 'student': sessionStorage.getItem("Student_Id") }).then(response => {
-                        window.location = window.location;
                     });
                 }
             }
         });
     }
-
     function quitJob() {
         var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
         _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
@@ -950,6 +1011,17 @@
             parent.style.display = "none";
         })        
     }
+
+    function su2all() {
+        _supabase.from('_tblExams').select('id').then(response => {
+            var exams = response.data;
+            for (var x = 0; x < exams.length; x++) {
+                _supabase.from('exam<>student').insert({ 'exam': exams[x]['id'], 'student': sessionStorage.getItem("Student_Id") }).then(response => {
+                });
+            }
+        });
+    }
+
 
 var x;
 var $cards = $(".card");

@@ -451,9 +451,48 @@ button {
 
     .mainpage #exams {
     }
+        .mainpage #exams .top, .mainpage #courses .bottom {
+            height: 49%;
+        }
+        .mainpage #exams .year {
+            flex: 1;
+            margin: 20px 50px 20px 50px;
+            height: 367.672px;
+            width: 200px;
+            border: 2px solid white;
+            border-radius: 10px;
+            position: relative;
+        }
+            .mainpage #exams .year h3 {
+                margin: 0;
+                padding: 10px;
+                font-family: 'Valneck';
+            }
+            .mainpage #exams .year + .year {
+                margin: 20px 50px 20px 0;
+            }
+            .mainpage #exams .year .exams {
+                position: relative;
+                height: calc(100% - 27px - 20px);
+            }
+                .mainpage #exams .year .exams div {
+                    display: flex;
+                    width: calc(100% - 20px);
+                    padding: 10px;
+                    height: calc(100% / 3 - 20px);
+                }
+                    .mainpage #exams .year .exams div p, .mainpage #exams .year .exams div select {
+                        flex: 1;
+                        text-align: left;
+                        margin: 0 0 0 15px;
+                        padding: 0;
+                    }
+                    .mainpage #exams .year .exams div select {
+                        height: 50px;
+                    }
 
-    .mainpage #relationships {
-    }
+                .mainpage #relationships {
+                }
 
     .mainpage #jobandextras {
         height: 100%;

@@ -347,8 +347,16 @@ main {
             margin: 20px 50px 20px 50px;
             height: calc(100% - 40px);
             width: 200px;
-            background-color: darkcyan;
+            border: 2px solid white;
+            border-radius: 10px;
             position: relative;
+        }
+        select:disabled{
+            opacity: 1;
+            color: white;
+            border: none;
+            background-color: transparent;
+
         }
             .mainpage #courses .year h3 {
                 margin: 0;
@@ -380,6 +388,30 @@ main {
      
         .mainpage #exams {
         }
+            .mainpage #exams .top, .mainpage #courses .bottom {
+                height: 49%;
+            }
+            .mainpage #exams .year {
+                flex: 1;
+                margin: 20px 50px 20px 50px;
+                height: 367.672px;
+                width: 200px;
+                border: 2px solid white;
+                border-radius: 10px;
+                position: relative;
+            }
+                .mainpage #exams .year h3 {
+                    margin: 0;
+                    padding: 10px;
+                    font-family: 'Valneck';
+                }
+                .mainpage #exams .year + .year {
+                    margin: 20px 50px 20px 0;
+                }
+                .mainpage #exams .year .exams {
+                    position: relative;
+                    height: calc(100% - 47px - 47px - 20px);
+                }
 
     .mainpage #relationships {
     }
