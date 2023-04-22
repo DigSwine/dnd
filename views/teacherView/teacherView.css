@@ -238,7 +238,7 @@ button {
         font-family: 'Valneck';
         font-size: 1.1rem;
     }
-    .mainpage input, .mainpage textarea {
+    .mainpage input, .mainpage textarea, .mainpage #npcs form label select {
         background-color: transparent;
         border: none;
         font-size: 1rem;
@@ -246,11 +246,25 @@ button {
         color: white;
         font-family: Arial;
     }
-    .mainpage input {
-        text-align: left;
-        width: 450px;
-        padding: 5px 0 5px 10px;
+        .mainpage #npcs form label select{
+            text-align: left;
+            flex: 1;
+            padding: 5px 0 5px 5px;
+            border: 2px solid white;
+        }
+    .mainpage #npcs form label select:disabled {
+        opacity: 1;
+        border: none;
     }
+        .mainpage #npcs form label option {
+            color: black;
+        }
+
+        .mainpage input {
+            text-align: left;
+            width: 450px;
+            padding: 5px 0 5px 10px;
+        }
         .mainpage input:enabled {
             border: 2px solid white;
         }
@@ -586,60 +600,50 @@ button {
 
     .mainpage #npcs {
     }
+        .mainpage #npcs .npcProfile{
+            display: flex;
+        }
+            .mainpage #npcs .npcProfile .student, .mainpage #npcs .npcProfile .teacher {
+                flex: 1;
+            }
+                .mainpage #npcs .npcProfile .student .npcSelector h3,
+                .mainpage #npcs .npcProfile .teacher .npcSelector h3,
+                .mainpage #npcs .npcProfile .student .npcSelector,
+                .mainpage #npcs .npcProfile .teacher .npcSelector {
+                    text-align: center;
+                }
         .mainpage #npcs form {
             flex: 1;
-            text-align: right;
-        }
-        .mainpage #npcs form label {
-            display: block;
-            margin: 10px;
-        }
-        .mainpage #npcs form .formfield {
             display: flex;
-            height: 239px;
+            flex-direction: column;
+            padding: 0 50px 0 20px;
         }
-            .mainpage #npcs form .formfield label {
-                flex: 1;
-                margin: 0 5px 0 20px;
+            .mainpage #npcs form label {
+                display: flex;
             }
-            .mainpage #npcs form .formfield textarea {
-                flex: 2.7;
-                height: 225px;
-                width: 450px;
-                resize: none;
-                margin: 0 10px 0 0;
+                .mainpage #npcs form label p, .mainpage #npcs form .note p {
+                    flex: 0.5;
+                }
+                .mainpage #npcs form label input, .mainpage #npcs form .note textarea {
+                    flex: 1;
+                }
+                .mainpage #npcs form label p {
+                    text-align: right;
+                    margin: 10px 10px 0 0;
+                }
+                .mainpage #npcs form label input, .mainpage #npcs form label select {
+                    margin: 10px 0 0 0;
+                }
+            .mainpage #npcs form .note {
+                display: flex;
             }
-        .mainpage #npcs form label textarea {
-            height: 225px;
-        }
-        .mainpage #npcs .personality {
-            flex: 1;
-        }
-        .mainpage #npcs .personality .personal {
-            text-align: right;
-            display: flex;
-            width: calc(100% - 50px);
-            padding: 0 0 0 50px;
-            height: calc(100% - 20px);
-        }
-            .mainpage #npcs .personality .personal p, .mainpage #profile .personality .personal textarea {
-                height: calc(100% / 5);
-            }
-            .mainpage #npcs .personality .personal p {
-                color: white;
-                max-width: 20%;
-                padding: 0 5px 5px 5px;
-                margin: 0 15px 5px 5px;
-                flex: 1;
-            }
-            .mainpage #npcs .personality .personal textarea {
-                width: calc(100% - 20%);
-                height: calc(100% - 10px);
-                min-height: calc(100% - 10px);
-                margin: 5px 10px 0 10px;
-                resize: none;
-                flex: 1;
-                color: white;
-                text-align: center;
-                background-color: transparent;
-            }
+                .mainpage #npcs form .note p {
+                    text-align: right;
+                    margin: 10px 10px 0 0;
+                }
+                .mainpage #npcs form .note textarea {
+                    margin: 10px 0 0 0;
+                    padding: 0 10px 0 0;
+                    resize: none;
+                    height: 150px;
+                }

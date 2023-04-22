@@ -133,6 +133,13 @@ strong {
     }
 }
 
+select:disabled:hover {
+    cursor: url(http://cur.cursors-4u.net/user/use-1/use160.cur), progress !important;
+}
+select:hover {
+    cursor: pointer;
+}
+
 /* Black Market Stuff
             footer .bmlogo {
         height: 100%;
