@@ -647,3 +647,29 @@ button {
                     resize: none;
                     height: 150px;
                 }
+
+    .mainpage .extranotes {
+        padding: 0 50px 0 50px;
+    }
+        .mainpage .extranotes .top, .mainpage .extranotes .bottom {
+            height: 360px;
+        }
+        .mainpage .extranotes .notearea {
+            height: calc(100%);
+            flex: 1;
+        }
+        .mainpage .extranotes .top {
+            margin: 0 0 50px 0; 
+        }
+        .mainpage .extranotes .notearea + .notearea {
+            margin: 0 0 0 50px;
+        }
+        .mainpage .extranotes textarea {
+            margin: 0;
+            padding: 10px;
+            width: 90%;
+            height: calc(90% - 22px - 30px);
+            text-align: left;
+            resize: none;
+            cursor: pointer;
+        }

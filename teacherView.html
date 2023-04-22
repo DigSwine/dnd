@@ -111,6 +111,9 @@
                     <p>NPCs</p>
                 </div>
                 <div class="choice">
+                    <p>Extra Notes</p>
+                </div>
+                <div class="choice">
                     <p>Coming Soon</p>
                 </div>
                 <div class="choice">
@@ -508,6 +511,33 @@
                 </div>
             </div>
 
+            <div class="page extranotes" id="extra notes" hidden>
+                <div class="controls">
+                    <button id="save" class="control fa fa-floppy-o"></button>
+                </div>
+                <h2>Notes</h2>
+                <div class="top">
+                    <div class="notearea">
+                        <h3>Year 1 Note</h3>
+                        <textarea id="note"></textarea>
+                    </div>
+                    <div class="notearea">
+                        <h3>Year 2 Note</h3>
+                        <textarea id="note"></textarea>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="notearea">
+                        <h3>Year 3 Note</h3>
+                        <textarea id="note"></textarea>
+                    </div>
+                    <div class="notearea">
+                        <h3>Year 4 Note</h3>
+                        <textarea id="note"></textarea>
+                    </div>
+                </div>
+            </div>
+
             <div class="page" id="coming soon" hidden>
                 <h2>Coming Soon</h2>
             </div>
@@ -655,7 +685,7 @@
                     togglecurrent();
                     editbtn.classList = "control fa fa-plus";
                     active = "add";
-                }                
+                }
                 var allinputs = [];
                 var SorT = "";
                 if (this.parentElement.parentElement.querySelector('#nid').value) {
@@ -706,6 +736,15 @@
                         // createNewStudentData(allinputs);
                     }
                 }
+            } else if (saveloc == "extra notes") {
+                var textareas = page.querySelectorAll('textarea');
+                var allinputs = [];
+                for (var y = 0; y < textareas.length; y++) {
+                    if (textareas[y].id) {
+                        allinputs.push(textareas[y]);
+                    }
+                }
+                saveNotes(allinputs);
             }
         }
         if (this.id == "add") {
@@ -864,6 +903,7 @@
     $(document).ready(function () {
         getPP();
         getCourseData();
+        getNotes();
     })
 
     /* Player */
@@ -1488,6 +1528,27 @@
             }
         }
     }
+    function getNotes() {
+        _supabase.from('notes').select('*').order('id', { ascending: true }).then(response => {
+            var page = document.getElementById('extra notes');
+            var notes = page.querySelectorAll('textarea');
+            for (var x = 0; x < response.data.length; x++) {
+                var note = response.data[x];
+                if (note['year'] == 1) {
+                    notes[0].value = note['note'];
+                }
+                if (note['year'] == 2) {
+                    notes[1].value = note['note'];
+                }
+                if (note['year'] == 3) {
+                    notes[2].value = note['note'];
+                }
+                if (note['year'] == 4) {
+                    notes[3].value = note['note'];
+                }
+            }
+        });
+    }
 
     // Setters
     function saveExamScores(exams, results) {
@@ -1534,11 +1595,21 @@
                 updateobject[inputs[x].id] = inputs[x].value;
             }
         }
-        console.log(updateobject);
         _supabase.from('_tblTeachers').update(updateobject).eq('id', tid).then(response => {
             var currentpage = location.pathname;
             window.location = currentpage;
         })
+    }
+    function saveNotes(inputs) {
+        var updateobject = {};
+        var noteid = "";
+        for (var x = 0; x < inputs.length; x++) {
+            noteid = x + 1;
+            updateobject[inputs[x].id] = inputs[x].value;
+            _supabase.from('notes').update(updateobject).eq('id', noteid).then(response => {
+
+            })
+        }
     }
      
     // Creators
