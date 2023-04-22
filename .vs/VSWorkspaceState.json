@@ -5,8 +5,8 @@
     "\\assets",
     "\\test",
     "\\views",
-    "\\views\\admin"
+    "\\views\\admin",
+    "\\views\\teacherView"
   ],
-  "SelectedNode": "\\views\\admin\\style.css",
   "PreviewInSolutionExplorer": false
 }

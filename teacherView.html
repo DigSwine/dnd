@@ -47,6 +47,7 @@
                             <p class="subNavChoice">Courses</p>
                             <p class="subNavChoice">Exams</p>
                             <p class="subNavChoice">Job and Extras</p>
+                            <p class="subNavChoice">Relationships</p>
                         </div>
 
                         <button class="subbtn">
@@ -59,6 +60,7 @@
                             <p class="subNavChoice">Courses</p>
                             <p class="subNavChoice">Exams</p>
                             <p class="subNavChoice">Job and Extras</p>
+                            <p class="subNavChoice">Relationships</p>
                         </div>
 
                         <button class="subbtn">
@@ -71,6 +73,7 @@
                             <p class="subNavChoice">Courses</p>
                             <p class="subNavChoice">Exams</p>
                             <p class="subNavChoice">Job and Extras</p>
+                            <p class="subNavChoice">Relationships</p>
                         </div>
 
                         <button class="subbtn">
@@ -83,6 +86,7 @@
                             <p class="subNavChoice">Courses</p>
                             <p class="subNavChoice">Exams</p>
                             <p class="subNavChoice">Job and Extras</p>
+                            <p class="subNavChoice">Relationships</p>
                         </div>
 
                         <button class="subbtn">
@@ -95,6 +99,7 @@
                             <p class="subNavChoice">Courses</p>
                             <p class="subNavChoice">Exams</p>
                             <p class="subNavChoice">Job and Extras</p>
+                            <p class="subNavChoice">Relationships</p>
                         </div>
 
                     </div>
@@ -400,6 +405,26 @@
                         <div id="clubs">
                         </div>
                     </div>
+
+                    <div class="view" id="relationships" hidden>
+                        <div class="controls">
+                            <button id="edit" class="control fa fa-pencil-square-o"></button>
+                            <button id="save" class="control fa fa-floppy-o"></button>
+                        </div>
+                        <select id="npcList">
+                            <option value="0">-- Please Select a NPC --</option>
+                        </select>
+                        <div class="NPCinfo">
+                            <input type="text" id="npcid" hidden />
+                            <label>Year: <input type="text" id="npcyr" placeholder="NPC Year" disabled /></label>
+                        </div>
+                        <div class="relationshipInputs">
+                            <label>Relationship Score: <input id="rscore" type="text" placeholder="Score Number" disabled /></label>
+                            <label>Relationship: <input id="rrelationship" type="text" placeholder="Relationship" disabled /></label>
+                            <label>Boon: <input id="rboon" type="text" placeholder="Boon" disabled /></label>
+                            <label>Bane: <input id="rbane" type="text" placeholder="Bane" disabled /></label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="page" id="strixhaven star" hidden>
@@ -408,6 +433,49 @@
 
             <div class="page" id="npcs" hidden>
                 <h2>NPCs</h2>
+                <div class="controls">
+                    <button id="add" class="control fa fa-plus"></button>
+                    <button id="edit" class="control fa fa-pencil-square-o"></button>
+                    <button id="save" class="control fa fa-floppy-o"></button>
+                </div>
+                <div class="npcSelector">
+                    <select id="npcList2">
+                        <option value="0">-- Please Select a NPC --</option>
+                    </select>
+                </div>
+                <div class="npcProfile">
+                    <div class="top">
+                        <form id="profileform1">
+                            <input id="nid" hidden />
+                            <label>Name: <input id="name" placeholder="Name" disabled /></label>
+                            <label>Age: <input id="age" placeholder="Age" disabled /></label>
+                            <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
+                            <label>Race: <input id="race" placeholder="Race" disabled /></label>
+                            <label>Subrace: <input id="subrace" placeholder="Subrace" disabled /></label>
+                            <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
+                            <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
+                            <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
+                        </form>
+                        <form id="profileform2">
+                            <label>Height: <input id="height" placeholder="Height" disabled /></label>
+                            <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
+                            <label>Boon: <input id="boon" placeholder="Boon" disabled /></label>
+                            <label>Bane: <input id="bane" placeholder="Bane" disabled /></label>
+                        </form>
+                    </div>
+                    <div class="bottom">
+                        <div class="personality scrollbar">
+                            <div class="personal">
+                                <p>Extra Notes:</p>
+                                <textarea id="extranotes" class="scrollbar" placeholder="Extra Information" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="right">
+
+                        </div>
+                    </div>
+                </div>
+                <button onclick="createAllRelationships()" style="background-color: red; border: 2px solid black; width: 200px;"> All NPCs have been uploaded </button>
             </div>
 
             <div class="page" id="coming soon" hidden>
@@ -493,26 +561,41 @@
         document.getElementById(toshow).toggleAttribute("hidden");
     })
     $('.control').click(function () {
+        var page = this.parentNode.parentNode;
         if (this.id == "edit") {
-            console.log(this.parentElement.parentElement);
+            var editloc = this.parentElement.parentElement.id;
             if (this.classList != "fa fa-pencil-square-o activecontrol") {
                 this.classList = "fa fa-pencil-square-o activecontrol";
-                togglecurrent();
+                if (editloc == 'relationships') {
+                    this.parentElement.parentElement.querySelector('#rscore').toggleAttribute("disabled");
+                } else {
+                    togglecurrent();
+                }
             } else {
                 this.classList = "control fa fa-pencil-square-o";
-                togglecurrent();
+                if (editloc == 'relationships') {
+                    this.parentElement.parentElement.querySelector('#rscore').toggleAttribute("disabled");
+                } else {
+                    togglecurrent();
+                }
             }
         }
         if (this.id == "save") {
-            var mainpage = document.getElementById('pages');
-            var pages = mainpage.querySelectorAll('.page');
             var saveloc = this.parentElement.parentElement.id;
+
             if (saveloc == "courses") {
 
+            } else if (saveloc == "relationships") {
+                var nid = this.parentElement.parentElement.querySelector('.NPCinfo').querySelector('#npcid').value;
+                var sid = document.getElementById("profile").querySelector('#pid').value;
+                if (sid) {
+                    if (nid) {
+                        saveRelationship(nid, sid);
+                    }
+                }
             } else if (saveloc == "exams") {
                 var exams = [];
                 var results = [];
-                var page = this.parentNode.parentNode;
                 var selects = page.querySelectorAll('select');
                 for (var y = 0; y < selects.length; y++) {
                     var select = selects[y];
@@ -529,7 +612,49 @@
                     }
                 }
                 saveExamScores(exams, results);
+            } else if (saveloc == "npcs") {
+                var editbtn = page.querySelector('#edit');
+                var addbtn = page.querySelector('#add');
+                var active = "";
+                if (editbtn.classList != "control fa fa-pencil-square-o") {
+                    togglecurrent();
+                    editbtn.classList = "control fa fa-pencil-square-o";
+                    active = "edit";
+                }
+                if (addbtn.classList != "control fa fa-plus") {
+                    togglecurrent();
+                    editbtn.classList = "control fa fa-plus";
+                    active = "add";
+                }
+                var inputs = page.querySelectorAll('input');
+                var textareas = page.querySelectorAll('textarea');
+                var allinputs = [];
+                for (var y = 0; y < inputs.length; y++) {
+                    if (inputs[y].id) {
+                        allinputs.push(inputs[y]);
+                    }
+                }
+                for (var y = 0; y < textareas.length; y++) {
+                    if (textareas[y].id) {
+                        allinputs.push(textareas[y]);
+                    }
+                }
+                if (active == "edit") {
+                    saveStudentData(allinputs);
+                }
+                if (active == "add") {
+                    createNewStudentData(allinputs);
+                }
             }
+        }
+        if (this.id == "add") {
+            var addloc = this.parentElement.parentElement.id;
+            if (this.classList != "fa fa-plus activecontrol") {
+                this.classList = "fa fa-plus activecontrol";
+            } else {
+                this.classList = "control fa fa-plus";
+            }
+            togglecurrent();
         }
     })
     function togglecurrent() {
@@ -572,6 +697,15 @@
         cleanPages();
         getPlayerData(toget);
     })
+
+    $('#npcList').change(function () {
+        getNPCRelationshipDataByID(this.value);
+
+    })
+    $('#npcList2').change(function () {
+        getNPCDataByID(this.value);
+    })
+
 
     function cleanPages(){
         var profile = document.getElementById('profile');
@@ -663,8 +797,11 @@
     var PPCappearance = [];    
     var PPCbackstory = [];
     var PPCextranotes = [];
+    var PPCyear = [];
+    var PPCcollege = [];
     /* NPCs */
     var NPCid = [];
+    var NPCplayer = [];
     var NPCimg = [];
     var NPCage = [];
     var NPCgender = [];
@@ -675,6 +812,26 @@
     var NPCeyecolor = [];
     var NPCweight = [];
     var NPCheight = [];
+    var NPCappearance = [];
+    var NPCbackground = [];
+    var NPCbackgroundfeatures = [];
+    var NPCbackstory = [];
+    var NPCbonds = [];
+    var NPCclasst = [];
+    var NPCextranotes = [];
+    var NPCflaws = [];
+    var NPCgoals = [];
+    var NPCideals = [];
+    var NPClevel = [];
+    var NPCpersonalitytraits = [];
+    var NPCsubclass = [];
+    var NPCsubrace = [];
+    var NPCyear = [];
+    var NPCcollege = [];
+    var NPCextranotes = [];
+    var NPCboon = [];
+    var NPCbane = [];
+    var NPCrScore = [];
 
     // Getters
     function getPP() {
@@ -710,30 +867,60 @@
                     PPCpersonalitytraits.push(person['personalitytraits']);
                     PPCsubclass.push(person['subclass']);
                     PPCsubrace.push(person['subrace']);
+                    PPCyear.push(person['year']);
+                    PPCcollege.push(person['college']);
                 } else {
                     // NPCs
                     NPCid.push(person['id']);
-                    NPCimg.push("assets/students/npcs/" + person['Profile Picture']);
-                    NPCage.push(person['character_age']);
-                    NPCgender.push(person['character_gender']);
-                    NPCname.push(person['character_name']);
-                    NPCrace.push(person['character_race']);
-                    NPCalignment.push(person['Alignment']);
-                    NPChaircolor.push(person['Hair Colour']);
-                    NPCeyecolor.push(person['Eye Colour']);
-                    NPCweight.push(person['Weight']);
-                    NPCheight.push(person['Height']);
+                    NPCplayer.push(person['player']);
+                    NPCimg.push("assets/students/players/" + person['picture']);
+                    NPCage.push(person['age']);
+                    NPCgender.push(person['gender']);
+                    NPCname.push(person['name']);
+                    NPCrace.push(person['race']);
+                    NPCalignment.push(person['alignment']);
+                    NPChaircolor.push(person['haircolour']);
+                    NPCeyecolor.push(person['eyecolour']);
+                    NPCweight.push(person['weight']);
+                    NPCheight.push(person['height']);
+                    NPCappearance.push(person['appearance']);
+                    NPCbackground.push(person['background']);
+                    NPCbackgroundfeatures.push(person['backgroundfeatures']);
+                    NPCbackstory.push(person['backstory']);
+                    NPCbonds.push(person['bonds']);
+                    NPCclasst.push(person['class']);
+                    NPCextranotes.push(person['extranotes']);
+                    NPCflaws.push(person['flaws']);
+                    NPCgoals.push(person['goals']);
+                    NPCideals.push(person['ideals']);
+                    NPClevel.push(person['level']);
+                    NPCpersonalitytraits.push(person['personalitytraits']);
+                    NPCsubclass.push(person['subclass']);
+                    NPCsubrace.push(person['subrace']);
+                    NPCyear.push(person['year']);
+                    NPCcollege.push(person['college']);
+                    NPCextranotes.push(person['extranotes']);
+                    NPCboon.push(person['boon']);
+                    NPCbane.push(person['bane']);
                 }
             }
-            // CREATE NPC LIST
-            var page = document.getElementById('S3');
-            for (var x = 0; x < NPCname.length; x++) {
-                var newOption = document.createElement('option');
+            // CREATE NPC LISTs
+            var relationshipPage = document.getElementById('relationships');
+            var npcPage = document.getElementById('npcs');
+            for (var y = 0; y < 2; y++) {
+                for (var x = 0; x < NPCname.length; x++) {
+                    var newOption = document.createElement('option');
 
-                newOption.value = x;
-                newOption.innerText = NPCname[x];
+                    newOption.value = NPCid[x];
+                    newOption.innerText = NPCname[x];
 
-                //  page.querySelector('#NPClist').appendChild(newOption);
+                    if (y == 0) {
+                        relationshipPage.querySelector('#npcList').appendChild(newOption);
+                    } else
+                        if (y == 1) {
+                            npcPage.querySelector('#npcList2').appendChild(newOption);
+                        }
+                }
             }
         })
     }
@@ -1096,6 +1283,70 @@
             }
         });
     }
+    function getNPCRelationshipDataByID(nid) {
+        var page = document.getElementById('relationships');
+        var npcInfo = page.querySelector('.NPCinfo');
+        var npcRelationshipDetails = page.querySelector('.relationshipInputs');
+
+        for (var x = 0; x < NPCid.length; x++) {
+            if (NPCid[x] == nid) {
+                npcInfo.querySelector('#npcid').value = nid;
+                npcInfo.querySelector('#npcyr').value = NPCyear[x];
+                var players = document.getElementById('players');
+                var profile = players.querySelector('#profile');
+                var sid = profile.querySelector('#pid').value;
+
+
+                _supabase.from('npc<>student').select('npc(boon, bane), relationship').eq('npc', nid).eq('student', sid).then(response => {
+                    var data = response.data;
+                    for (var y = 0; y < data.length; y++) {
+                        var value = response.data[y]['relationship'];
+
+                        npcRelationshipDetails.querySelector('#rscore').value = value;
+                        npcRelationshipDetails.querySelector('#rboon').value = response.data[y]['boon'];
+                        npcRelationshipDetails.querySelector('#rbane').value = response.data[y]['bane'];
+                        
+                        if (value <= -2) {
+                            npcRelationshipDetails.querySelector('#rrelationship').value = "rival";
+                        } else {
+                            if (value >= "-1") {
+                                if (value >= 8) {
+                                    npcRelationshipDetails.querySelector('#rrelationship').value = "Lover";
+                                } else if (value >= "3") {
+                                    npcRelationshipDetails.querySelector('#rrelationship').value = "Friend";
+                                } else {
+                                    npcRelationshipDetails.querySelector('#rrelationship').value = "Netural";
+                                }
+                            }
+                        }
+
+                    }
+                });
+            }
+        }
+    }
+    function getNPCDataByID(nid) {
+        for (var x = 0; x < NPCid.length; x++) {
+            if (NPCid[x] == nid) {
+                var page = document.getElementById('npcs');
+                var NPCprofile = page.querySelector('.npcProfile');
+                NPCprofile.querySelector('#nid').value = NPCid[x];
+                NPCprofile.querySelector('#name').value = NPCname[x];
+                NPCprofile.querySelector('#age').value = NPCage[x];
+                NPCprofile.querySelector('#gender').value = NPCgender[x];
+                NPCprofile.querySelector('#race').value = NPCrace[x];
+                NPCprofile.querySelector('#subrace').value = NPCsubrace[x];
+                NPCprofile.querySelector('#alignment').value = NPCalignment[x];
+                NPCprofile.querySelector('#haircolour').value = NPChaircolor[x];
+                NPCprofile.querySelector('#eyecolour').value = NPCeyecolor[x];
+                NPCprofile.querySelector('#height').value = NPCheight[x];
+                NPCprofile.querySelector('#weight').value = NPCweight[x];
+                NPCprofile.querySelector('#boon').value = NPCboon[x];
+                NPCprofile.querySelector('#bane').value = NPCbane[x];
+                NPCprofile.querySelector('#extranotes').value = NPCextranotes[x]
+            }
+        }
+    }
 
     // Setters
     function saveExamScores(exams, results) {
@@ -1106,6 +1357,43 @@
                 window.location = window.location;
             })
         }
+    }
+    function saveRelationship(nid, sid) {
+        console.log(nid + " >> " + sid);
+    }
+    function saveStudentData(inputs) {
+        var updateobject = {};
+        var sid = "";
+        for (var x = 0; x < inputs.length; x++) {
+            if (inputs[x].id == "nid" || inputs[x].id == "sid") {
+                sid = inputs[x].value;
+            } else {
+                updateobject[inputs[x].id] = inputs[x].value;
+            }
+        }
+        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
+            var currentpage = location.pathname;
+            window.location = currentpage;
+        })
+    }
+     
+    // Creators
+    function createAllRelationships() {
+        alert('fuck this fucking fuckety fuck! FUCK!');
+    }
+    function createNewStudentData(inputs) {
+        var updateobject = {};
+        for (var x = 0; x < inputs.length; x++) {
+            if (inputs[x].id == "nid" || inputs[x].id == "sid") {
+
+            } else {
+                updateobject[inputs[x].id] = inputs[x].value;
+            }
+        }
+        _supabase.from('_tblStudents').insert(updateobject).then(response => {
+            var currentpage = location.pathname;
+            window.location = currentpage;
+        })
     }
 
     // Removers
