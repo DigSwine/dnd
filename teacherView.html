@@ -116,6 +116,9 @@
                 <div class="choice">
                     <p>Coming Soon</p>
                 </div>
+                <div class=choice>
+                    <p>Account</p>
+                </div>
                 <div class="choice">
                     <p>Logout</p>
                 </div>
@@ -430,8 +433,26 @@
                     </div>
                 </div>
             </div>
-            <div class="page" id="strixhaven star" hidden>
+
+            <div class="page ss" id="strixhaven star" hidden>
+                <div class="controls">
+                    <button id="edit" class="control fa fa-pencil-square-o"></button>
+                    <button id="save" class="control fa fa-floppy-o"></button>
+                </div>
                 <h2>Strixhaven Star</h2>
+                <div class="topcontainer">
+                    <div class="issue">2098423</div>
+                    <div class="slogan">the only paper around</div>
+                    <div class="paperdate">Monday, 1st November, 2022</div>
+                </div>
+                <div class="bodycontainer">
+                    <div id="leftc" class="LCorn" style="display: none" onclick="previouspg()"></div>
+                    <div id="rightc" class="RCorn" style="display: block" onclick="nextpg()"></div>
+
+                    <div id="page1" class="pg1" style="display: block">page 1</div>
+                    <div id="page2" class="pg2" style="display: none">page 2</div>
+                    <div id="page3" class="pg3" style="display: none">page 3</div>
+                </div>
             </div>
 
             <div class="page" id="npcs" hidden>
@@ -440,6 +461,7 @@
                     <button id="add" class="control fa fa-plus"></button>
                     <button id="edit" class="control fa fa-pencil-square-o"></button>
                     <button id="save" class="control fa fa-floppy-o"></button>
+                    <button id="delete" class="control fa fa-trash"></button>
                 </div>
                 <div class="npcProfile">
                     <div class="student">
@@ -540,6 +562,10 @@
 
             <div class="page" id="coming soon" hidden>
                 <h2>Coming Soon</h2>
+            </div>
+
+            <div class="page" id="account" hidden>
+                <h2>Account Details</h2>
             </div>
         </div>
     </main>
@@ -745,6 +771,19 @@
                     }
                 }
                 saveNotes(allinputs);
+            } else if (saveloc == "strixhaven star") {
+                var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
+                var pgHeader = [];
+                var pgContent = [];
+                for (var x = 0; x < pages.length; x++) {
+                    var pg = page.querySelector(pages[x]);
+                    pgHeader.push(pg.querySelector('input'));
+                    pgContent.push(pg.querySelector('textarea'));
+                }
+                saveSS(pages, pgHeader, pgContent);
+
+                var jobs = page.querySelector('.pg3').querySelector('.jobs').querySelectorAll('.job');
+                saveJobs(jobs);
             }
         }
         if (this.id == "add") {
@@ -754,7 +793,61 @@
             } else {
                 this.classList = "control fa fa-plus";
             }
+            if (addloc == "npcs") {
+                var allinputs = [];
+                var SorT = "";
+                if (this.parentElement.parentElement.querySelector('#nid').value) {
+                    page = page.querySelector('.student');
+                    SorT = "s";
+                }
+                if (this.parentElement.parentElement.querySelector('#tid').value) {
+                    page = page.querySelector('.teacher');
+                    SorT = "t";
+                }
+
+                var inputs = page.querySelectorAll('input');
+                var textareas = page.querySelectorAll('textarea');
+                var selects = page.querySelectorAll('select');
+
+
+                for (var y = 0; y < inputs.length; y++) {
+                    if (inputs[y].id) {
+                        allinputs.push(inputs[y]);
+                    }
+                }
+                for (var y = 0; y < textareas.length; y++) {
+                    if (textareas[y].id) {
+                        allinputs.push(textareas[y]);
+                    }
+                }
+                for (var y = 0; y < selects.length; y++) {
+                    if (selects[y].id) {
+                        allinputs.push(selects[y]);
+                    }
+                }
+
+                if (SorT == "s") {
+                    createNewStudentData(allinputs);
+                }
+                if (SorT == "t") {
+                    // createNewStudentData(allinputs);
+                }
+            }
             togglecurrent();
+        }
+        if (this.id == "delete") {
+            var editbtn = page.querySelector('#edit');
+            var addbtn = page.querySelector('#add');
+            var active = "";
+
+            var nid = this.parentElement.parentElement.querySelector('#nid').value;
+            if (nid) {
+                SorT = "s";
+            }
+
+            if (SorT == "s") {
+                deleteStudent(nid);
+            }
         }
     })
     function togglecurrent() {
@@ -874,7 +967,6 @@
         }
     }
 
-
     $('.subNavChoice').click(function () {
         var selectedView = this.innerText.toLowerCase();
         if (selectedView == "job and extras") {
@@ -896,6 +988,60 @@
             }
         }
     })
+
+    var showing = 0;
+    var pages = ["page1", "page2", "page3"];
+    function toggleshow(el) {
+        var element = document.getElementById(el);
+        element.style.display = "none";
+    }
+    function nextpg() {
+        if (showing < 2) {
+            for (var x = 0; x < pages.length; x++) {
+                toggleshow(pages[x]);
+            }
+            showing++;
+            var toshow = document.getElementById(pages[showing]);
+            var preBtn = document.getElementById('leftc');
+            var nexBtn = document.getElementById('rightc');
+            if (showing == 2) {
+                toshow.style.display = "flex";
+                nexBtn.style.display = "none";
+            }
+            preBtn.style.display = "block";
+            toshow.style.display = "flex";
+        }
+    }
+    function previouspg() {
+        if (showing > 0) {
+            for (var x = 0; x < pages.length; x++) {
+                toggleshow(pages[x]);
+            }
+            showing--;
+            var toshow = document.getElementById(pages[showing]);
+            var preBtn = document.getElementById('leftc');
+            var nexBtn = document.getElementById('rightc');
+            if (showing == 0) {
+                toshow.style.display = "block";
+                preBtn.style.display = "none";
+            } else {
+                toshow.style.display = "flex";
+                nexBtn.style.display = "block";
+            }
+        }
+    }
+
+    var ids = [".pg1", ".pg2", ".pg3"];
+    var urls = ["views/news/_page1.html", "views/news/_page2.html", "views/news/_page3.html"];
+    $.get(urls[0], function (data) {
+        $(ids[0]).html(data);
+    });
+    $.get(urls[1], function (data) {
+        $(ids[1]).html(data);
+    });
+    $.get(urls[2], function (data) {
+        $(ids[2]).html(data);
+    });
 </script>
 <script src="../../API/api.js"></script>
 <script src="/javascript/login.js"></script>
@@ -904,6 +1050,7 @@
         getPP();
         getCourseData();
         getNotes();
+        getpapercontent();
     })
 
     /* Player */
@@ -1549,6 +1696,111 @@
             }
         });
     }
+    function getpapercontent() {
+        _supabase.from('_tblStrixhavenStar').select('*').then(response => {
+            for (var x = 0; x < response.data.length; x++) {
+                var story = response.data[x];
+                var page = story['pageNo'];
+                var location = story['location'];
+
+                var title = story['title'];
+                var content = story['content'];
+
+                var id = "";
+                if (location == "left") {
+                    id = 'pg2left';
+                }
+                if (location == "middle top") {
+                    id = 'pg2Mtop';
+                }
+                if (location == "middle bottom") {
+                    id = 'pg2Mbot';
+                }
+                if (location == "right") {
+                    id = 'pg2right';
+                }
+
+                const newTitle = document.createElement("input");
+                newTitle.value = title;
+                newTitle.disabled = "true";
+
+                const newContent = document.createElement("textarea");
+                newContent.value = content;
+                newContent.readOnly = "true";
+
+                // Get correct page
+                var togoPage = document.getElementById('page' + page);
+
+                if (page == 1) {
+                    togoPage.querySelector('.Mainheadline').appendChild(newTitle);
+                    togoPage.querySelector('#' + location).appendChild(newContent);
+
+                    // check if sec con is out of view.
+                    var contentContainer = togoPage.querySelector('.secContainer');
+                    var bounding = contentContainer.getBoundingClientRect();
+                    if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                        //get height of title
+                        var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                        var currentH = contentContainer.offsetHeight;
+                        contentContainer.style.height = currentH - headerH;
+                    }
+                } else {
+                    if (id) {
+                        var col = togoPage.querySelector('#' + id);
+
+                        newTitle.classList = "colTitle";
+
+                        // Append Title to Col
+                        col.appendChild(newTitle);
+                        // Append Content to Col
+                        col.appendChild(newContent);
+                    } else {
+                        console.log(story);
+                    }
+                }
+            }
+        })
+        _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
+            for (var x = 0; x < response.data.length; x++) {
+                var job = response.data[x];
+                var jloc = job["Location"];
+                var jpay = job["Pay"];
+                var jtit = job["Title"];
+                var jid = job["id"];
+                const newjob = document.createElement("div");
+                const newtitle = document.createElement("input");
+                const newdetails = document.createElement("div");
+                const newlocation = document.createElement("input");
+                const newpay = document.createElement("input");
+
+                newtitle.value = jtit;
+                newlocation.value = jloc;
+                newpay.value = jpay;
+
+                newtitle.disabled = "true";
+                newlocation.disabled = "true";
+                newpay.disabled = "true";
+
+                newtitle.classList = "jtitle";
+                newlocation.id = "jlocation";
+                newpay.id = "jwage";
+
+                newdetails.classList = "details";
+
+                newdetails.appendChild(newlocation);
+                newdetails.appendChild(newpay);
+
+                newjob.appendChild(newtitle);
+                newjob.appendChild(newdetails);
+
+                newjob.classList = "job";
+                newjob.id = jid;
+
+                var page = document.querySelector(".pg3");
+                page.querySelector('#joblisting').appendChild(newjob);
+            }
+        })
+    }
 
     // Setters
     function saveExamScores(exams, results) {
@@ -1611,7 +1863,49 @@
             })
         }
     }
-     
+    function saveSS(locations, headers, contents) {
+        var updateobject = {};
+        var id = "";
+        for (var x = 0; x < headers.length; x++) {
+            if (locations[x] == '#page1') {
+                id = 1;
+            }
+            if (locations[x] == '#pg2left') {
+                id = 2;
+            }
+            if (locations[x] == '#pg2Mtop') {
+                id = 3;
+            }
+            if (locations[x] == '#pg2Mbot') {
+                id = 4;
+            }
+            if (locations[x] == '#pg2right') {
+                id = 5;
+            }
+            updateobject['title'] = headers[x].value;
+            updateobject['content'] = contents[x].value;
+            _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
+
+            })
+        }
+    }
+    function saveJobs(jobs) {
+        var updateobject = {};
+        var id = "";
+        for (var x = 0; x < jobs.length; x++) {
+            var job = jobs[x];
+            id = job.id;
+
+            updateobject['Title'] = job.querySelector('.jtitle').value;
+            updateobject['Location'] = job.querySelector('#jlocation').value; 
+            updateobject['Pay'] = job.querySelector('#jwage').value;
+
+            _supabase.from('_tblJobs').update(updateobject).eq('id', id).then(response => {
+
+            })
+        }
+    }
+    
     // Creators
     function createAllRelationships() {
         alert('fuck this fucking fuckety fuck! FUCK!');
@@ -1645,6 +1939,23 @@
         _supabase.from('Club<>Student').delete().eq('club', cid).eq('student', sid).then(response => {
             var parent = this.parentNode;
             parent.style.display = "none";
+        })
+    }
+    function deleteStudent(nid) {
+        alert("Please send me a message saying 'I have tried to delete student " + nid + " can you see if it worked'");
+
+        
+        _supabase.from('npc<>student').select('*').eq({ id: nid }).then(response => {
+            for (var x = 0; x < response.data.length; x++) {
+                _supabase.from('npc<>student').delete().match({ npc: nid }).then(response => {
+                })
+                _supabase.from('Job<>Student').delete().match({ Student: nid }).then(response => {
+                })
+                _supabase.from('Club<>Student').delete().match({ student: nid }).then(response => {
+                })
+            }
+            _supabase.from('_tblStudents').delete().match({ id: nid }).then(response => {
+            })
         })
     }
 </script>
