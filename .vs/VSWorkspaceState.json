@@ -1,12 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\API",
     "\\assets",
-    "\\test",
+    "\\assets\\maps",
     "\\views",
-    "\\views\\admin",
-    "\\views\\teacherView"
+    "\\views\\admin"
   ],
+  "SelectedNode": "\\views\\admin\\style.css",
   "PreviewInSolutionExplorer": false
 }

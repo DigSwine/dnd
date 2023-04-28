@@ -505,8 +505,36 @@ button {
                         height: 50px;
                     }
 
-                .mainpage #relationships {
+    .mainpage #relationships {
+    }
+        .mainpage #relationships .cubeWrapper {
+        }
+        .mainpage #relationships .cubeWrapper #cubes {
+            padding: 0 50px 0 50px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+            .mainpage #relationships .cubeWrapper #cubes .cube {
+                flex: 1 1 30%;
+                height: 45px;
+                width: 200px;
+                border: 2px solid #fff;
+                box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.1);
+                position: relative;
+                margin: 0 5px 15px 5px;
+                transition: 0.2s ease;
+                overflow: hidden;
+            }
+                .mainpage #relationships .cubeWrapper #cubes .cube:hover {
+                    height: 220px;
+                    width: 200px;
                 }
+                .mainpage #relationships .cubeWrapper #cubes .cube p {
+                    margin: 10px;
+                    width: 450px;
+                }
+
+
                     .mainpage #relationships .relationshipInputs {
                         display: flex;
                         flex-direction:column;
@@ -557,7 +585,6 @@ button {
                     position: absolute;
                     top: 20px;
                 }
-
         .mainpage #jobandextras #clubs {
             height: calc(100% - 50px - 50px - 208px);
         }
@@ -993,3 +1020,33 @@ button {
     text-align: justify;
     font-size: 1rem;
 }
+
+.mainpage #account {
+    height: 100%;
+    width: 100%;
+    display: relitive;
+}
+    .mainpage #account button {
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        transform: translateX(-50%);
+    }
+    .mainpage #account .model {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+        .mainpage #account .model form {
+            display: relitive;
+        }
+            .mainpage #account .model form button {
+                position: center;
+            }
+        .mainpage #account button {
+            color: white;
+            border: 2px solid white;
+            padding: 20px;
+            width: 300px;
+        }

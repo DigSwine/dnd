@@ -417,6 +417,14 @@
                             <button id="edit" class="control fa fa-pencil-square-o"></button>
                             <button id="save" class="control fa fa-floppy-o"></button>
                         </div>
+                        <div class="cubeWrapper">
+                            <div id="cubes">
+
+                            </div>
+                        </div>
+
+
+
                         <select id="npcList">
                             <option value="0">-- Please Select a NPC --</option>
                         </select>
@@ -430,6 +438,10 @@
                             <label>Boon: <input id="rboon" type="text" placeholder="Boon" disabled /></label>
                             <label>Bane: <input id="rbane" type="text" placeholder="Bane" disabled /></label>
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -566,6 +578,15 @@
 
             <div class="page" id="account" hidden>
                 <h2>Account Details</h2>
+                <button>Reset username and/or password</button>
+                <div id="confirmation" class="model" hidden>
+                    <form>
+                        <h3>Confirm username and password</h3>
+                        <input placeholder="Username" />
+                        <input placeholder="Password" />
+                        <button>Submitt</button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
@@ -745,7 +766,7 @@
                 }
 
                 if (SorT == "s") {
-                    console.log("hit 1");
+                    console.log(allinputs);
                     if (active == "edit") {
                         saveStudentData(allinputs);
                     }
@@ -1195,22 +1216,14 @@
                 }
             }
             // CREATE NPC LISTs
-            var relationshipPage = document.getElementById('relationships');
             var npcPage = document.getElementById('npcs');
-            for (var y = 0; y < 2; y++) {
-                for (var x = 0; x < NPCname.length; x++) {
-                    var newOption = document.createElement('option');
+            for (var x = 0; x < NPCname.length; x++) {
+                var newOption = document.createElement('option');
 
-                    newOption.value = NPCid[x];
-                    newOption.innerText = NPCname[x];
+                newOption.value = NPCid[x];
+                newOption.innerText = NPCname[x];
 
-                    if (y == 0) {
-                        relationshipPage.querySelector('#npcList').appendChild(newOption);
-                    } else
-                        if (y == 1) {
-                            npcPage.querySelector('#npcList2').appendChild(newOption);
-                        }
-                }
+                npcPage.querySelector('#npcList2').appendChild(newOption);
             }
         })
         _supabase.from('_tblTeachers').select('*').order('id', { ascending: true }).then(response => {
@@ -1494,6 +1507,57 @@
                 }
             }
         });
+        _supabase.from('npc<>student').select('npc(name, year, bane, boon), student, relationship').eq('student', sid).then(response => {
+            var relationshipPage = document.getElementById('relationships');
+            var page = relationshipPage.querySelector('#cubes');
+            for (var x = 0; x < response.data.length; x++) {               
+                var data = response.data[x];
+                const newCube = document.createElement("div");
+                const newName = document.createElement("p");
+                const newScore = document.createElement("input");
+                const newRelationship = document.createElement("p");
+                const newBoon = document.createElement("p");
+                const newBane = document.createElement("p");
+
+                const newBaneSpan = document.createElement("span");
+
+                newName.innerText = data['npc']['name'];
+                newScore.value = data['relationship'];
+                var text = "";
+                if (data['relationship'] >= "-100") {
+                    if (data['relationship'] >= 8) {
+                        text = "Lover";
+                    } else if (data['relationship'] >= "3") {
+                        text = "Friend";
+                    } else if (data['relationship'] >= "0") {
+                        text = "Netural";
+                    } else {
+                        text = "Rival";
+                    }
+                }
+                newRelationship.innerText = "Relationship: " + text;
+                newBoon.innerText = "Boon: " + data['npc']['boon'];
+
+                newBaneSpan.innerText = "Bane: ";
+                newBane.appendChild(newBaneSpan);
+                newBane.value = data['npc']['bane'];
+
+                newCube.classList = "cube";
+                newName.classList = "cName";
+
+
+
+
+
+                newCube.appendChild(newName);
+                newCube.appendChild(newScore);
+                newCube.appendChild(newRelationship);
+                newCube.appendChild(newBoon);
+                newCube.appendChild(newBane);
+
+                page.appendChild(newCube);
+            }
+        });
     }
     function getCourseData() {
         _supabase.from('class<>teacher').select('class(id, name, year, required), teacher(id, teacher_name)').then(response => {
@@ -1596,6 +1660,7 @@
             }
         });
     }
+
     function getNPCRelationshipDataByID(nid) {
         var page = document.getElementById('relationships');
         var npcInfo = page.querySelector('.NPCinfo');
@@ -1635,9 +1700,12 @@
 
                     }
                 });
+
+               
             }
         }
     }
+
     function getNPCStudentDataByID(nid) {
         for (var x = 0; x < NPCid.length; x++) {
             if (NPCid[x] == nid) {
@@ -1821,13 +1889,14 @@
         for (var x = 0; x < inputs.length; x++) {
             if (inputs[x].id == "nid" || inputs[x].id == "sid") {
                 sid = inputs[x].value;
+                console.log(sid);
             } else {
                 updateobject[inputs[x].id] = inputs[x].value;
             }
         }
+        console.log(updateobject);
         _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
-            var currentpage = location.pathname;
-            window.location = currentpage;
+            // window.location = location.pathname;
         })
     }
     function saveTeacherData(inputs) {

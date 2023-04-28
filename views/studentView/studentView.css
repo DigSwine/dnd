@@ -165,13 +165,29 @@ main {
         font-family: 'Valneck';
         font-size: 1.1rem;
     }
-    .mainpage input, .mainpage textarea {
+    .mainpage input, .mainpage textarea, .mainpage select {
         background-color: transparent;
         border: none;
-        font-size: 1rem;
+        font-size: 0.9rem;
         text-align: center;
         color: white;
         font-family: Arial;
+    }
+    .mainpage select {
+        text-align: left;
+        width: 450px;
+        opacity: 1;
+        color: white;
+        border: none;
+        background-color: transparent;
+        padding: 5px 0 5px 10px;
+    }
+    .mainpage .selected:disabled {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+    .mainpage option{
+        color: black;
     }
     .mainpage input {
         text-align: left;
@@ -332,6 +348,7 @@ main {
                     font-size: 1.5rem;
                 }
                 .mainpage #details .splitbody .split textarea {
+                    margin: 10px 0 0 0;
                     resize: none;
                     height: calc(100% - 30px);
                     width: 100%;
@@ -347,28 +364,36 @@ main {
             margin: 20px 50px 20px 50px;
             height: calc(100% - 40px);
             width: 200px;
-            border: 2px solid white;
             border-radius: 10px;
             position: relative;
+            min-width: 320px;
+            box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            background-image: linear-gradient(to right, transparent 10%, black 90%);
         }
-        select:disabled{
+        .mainpage #courses select:disabled {
             opacity: 1;
             color: white;
             border: none;
             background-color: transparent;
-
         }
-            .mainpage #courses .year h3 {
-                margin: 0;
-                padding: 10px;
-                font-family: 'Valneck';
-            }
+        .mainpage #courses .year h3 {
+            margin: 0;
+            padding: 10px;
+            font-family: 'Valneck';
+            position: absolute;
+            top: -10px;
+            right: 30px;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.1);
+        }
             .mainpage #courses .year + .year {
                 margin: 20px 50px 20px 0;
             }
     .mainpage #courses .year .coursechoices {
         position: relative;
-        height: calc(100% - 47px - 47px - 20px);
+        margin-top: 40px;
+        height: calc(100% - 47px - 20px);
     }
         .mainpage #courses .year .coursechoices .coursechoice {
             margin: 10px;
@@ -380,10 +405,26 @@ main {
                 padding: 10px;
                 width: calc(auto + 20px);
                 height: 40px;
+                flex: 1;
+                font-family: Arial;
+                font-size: 0.9rem;
             }
-            .mainpage #courses .year .coursechoices .coursechoice p {
+            .mainpage #courses .year .coursechoices .coursechoice span {
+                flex: 1;
+                font-family: Arial;
+                font-size: 0.9rem;
                 padding: 10px;
                 margin: 0;
+                text-align: left;
+                font-weight: bold;
+            }
+            .mainpage #courses .year .coursechoices .coursechoice p {
+                flex: 1;
+                font-family: Arial;
+                font-size: 0.9rem;
+                padding: 10px;
+                margin: 0;
+                text-align: left;
             }
      
         .mainpage #exams {
@@ -396,14 +437,22 @@ main {
                 margin: 20px 50px 20px 50px;
                 height: 367.672px;
                 width: 200px;
-                border: 2px solid white;
                 border-radius: 10px;
                 position: relative;
+                min-width: 320px;
+                box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                background-image: linear-gradient(to right, transparent 10%, black 90%);
             }
                 .mainpage #exams .year h3 {
                     margin: 0;
                     padding: 10px;
                     font-family: 'Valneck';
+                    position: absolute;
+                    top: -10px;
+                    right: 30px;
+                    font-size: 8rem;
+                    color: rgba(255, 255, 255, 0.1);
                 }
                 .mainpage #exams .year + .year {
                     margin: 20px 50px 20px 0;
@@ -412,6 +461,18 @@ main {
                     position: relative;
                     height: calc(100% - 47px - 47px - 20px);
                 }
+                .mainpage #exams .year .exams .exam {
+                    display: flex;
+                }
+                    .mainpage #exams .year .exams .exam p{
+                        flex: 1;
+                        text-align: left;
+                        padding: 20px;
+                        margin: 0;
+                    }
+                    .mainpage #exams .year .exams .exam .edice {
+                        flex: 0.2;
+                    }
 
     .mainpage #relationships {
     }
