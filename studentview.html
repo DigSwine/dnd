@@ -334,6 +334,7 @@
     })
 
     $('.choice').click(function () {
+        clearpages();
         var sidenav = document.getElementById('subnavchoices');
         var choices = sidenav.querySelectorAll('p');
         for (var x = 0; x < choices.length; x++) {
@@ -474,6 +475,20 @@
             send = 3;
         }
         return send;
+    }
+
+    function clearpages() {
+        // course selectors and teachers
+        var page = document.getElementById('courses');
+        var selects = page.querySelectorAll('select');
+        var ps = page.querySelectorAll('p');
+        for (var x = 0; x < selects.length; x++) {
+            if (selects[x].value == 0) {
+                selects[x].value = 0;
+            }
+            ps[x].innerHTML = "";
+        }
+
     }
 </script>
 <script src="../../API/api.js"></script>
@@ -844,47 +859,46 @@
     function getStudentCourseByID(sid) {
         _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').eq('student', sid).then(response => {
             var data = response.data;
-            var Y1C = 2;
-            var Y2C = 2;
-            var Y3C = 2;
-            var Y4C = 2;
+            var Y1C = 1;
+            var Y2C = 1;
+            var Y3C = 1;
+            var Y4C = 1;
 
             for (var x = 0; x < data.length; x++) {
                 var course = data[x]['class'];
                 var student = data[x]['student'];
 
-                if (course['required'] != "yes") {
-                    if (course['year'] == 1) {
-                        var classChoice = "Y1S" + Y1C;
-                        Y1C++;
-                    }
-                    if (course['year'] == 2) {
-                        var classChoice = "Y2S" + Y2C;
-                        Y2C++;
-                    }
-                    if (course['year'] == 3) {
-                        var classChoice = "Y3S" + Y3C;
-                        Y3C++;
-                    }
-                    if (course['year'] == 4) {
-                        var classChoice = "Y4S" + Y4C;
-                        Y4C++;
-                    }
-                    $('#' + classChoice + ' select > option').each(function () {
-                        var split = $(this).val().split(":");
-                        var courseId = split[0];
-                        var teacher = split[1];
-
-                        if (courseId == course['id']) {
-                            $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
-                            $('#' + classChoice + ' select').attr("disabled", "true");
-                            var newTeacher = document.createElement('span');
-                            newTeacher.innerText = "Teacher: ";
-                            $('#' + classChoice + ' p').append(newTeacher);
-                            $('#' + classChoice + ' p').append(teacher);
-                        }
-                    });
+                if (course['year'] == 1) {
+                    var classChoice = "Y1S" + Y1C;
+                    Y1C++;
                 }
+                if (course['year'] == 2) {
+                    var classChoice = "Y2S" + Y2C;
+                    Y2C++;
+                }
+                if (course['year'] == 3) {
+                    var classChoice = "Y3S" + Y3C;
+                    Y3C++;
+                }
+                if (course['year'] == 4) {
+                    var classChoice = "Y4S" + Y4C;
+                    Y4C++;
+                }
+                $('#' + classChoice + ' select > option').each(function () {
+                    var split = $(this).val().split(":");
+                    var courseId = split[0];
+                    var teacher = split[1];
+
+                    if (courseId == course['id']) {
+                        $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
+                        $('#' + classChoice + ' select').attr("disabled", "true");
+
+                        var newTeacher = document.createElement('span');
+                        newTeacher.innerText = "Teacher: ";
+                        // $('#' + classChoice + ' p').append(newTeacher);
+                        // $('#' + classChoice + ' p').append(teacher);
+                    }
+                });
             }
             // Courses
             var theyear = document.getElementById('profile').querySelector('#year').value;
