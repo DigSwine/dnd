@@ -526,15 +526,33 @@ button {
                 overflow: hidden;
             }
                 .mainpage #relationships .cubeWrapper #cubes .cube:hover {
-                    height: 220px;
+                    height: auto;
                     width: 200px;
                 }
-                .mainpage #relationships .cubeWrapper #cubes .cube p {
+                .mainpage #relationships .cubeWrapper #cubes .cube div {
+                    display:flex;
                     margin: 10px;
-                    width: 450px;
                 }
-
-
+                    .mainpage #relationships .cubeWrapper #cubes .cube .cname,
+                    .mainpage #relationships .cubeWrapper #cubes .cube div span {
+                        font-family: 'Valneck';
+                        text-align: left;
+                    }
+                .mainpage #relationships .cubeWrapper #cubes .cube .cname {
+                    margin: 10px;
+                }
+                        .mainpage #relationships .cubeWrapper #cubes .cube div p {
+                            margin: 1px 0 0 10px;
+                            font-family: Arial;
+                            font-size: 1rem;
+                        }
+                .mainpage #relationships .cubeWrapper #cubes .cube div input {
+                    width: auto;
+                    margin: 1px 0 0 10px;
+                }
+                .mainpage #relationships .cubeWrapper #cubes .cube div .scoreTitle {
+                    margin: 5px 0 0 0;
+                }
                     .mainpage #relationships .relationshipInputs {
                         display: flex;
                         flex-direction:column;
@@ -549,10 +567,22 @@ button {
                             .mainpage #relationships .relationshipInputs label input{
                                 margin-left: 20px;
                             }
-
-                            .mainpage #jobandextras {
-                                height: 100%;
+                            .mainpage #relationships #addModel {
+                                border: 2px white solid;
+                                text-align: center;
+                                height: 50%;
+                                width: 1366px;
+                                position: absolute;
+                                top: 50px;
+                                left: 50px;
+                                background-color: black;
+                                color: white;
+                                padding: 50px;
                             }
+
+    .mainpage #jobandextras {
+        height: 100%;
+    }
         .mainpage #jobandextras #jobs {
             min-height: 25%;
         }

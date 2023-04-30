@@ -125,7 +125,7 @@
             </div>
         </div>
         <div id="pages" class="mainpage">
-            <div class="page" id="players">
+            <div class="page" id="players" hidden>
                 <h2>Players</h2>
                 <div class="mainbody">
                     <div class="view" id="profile">
@@ -414,34 +414,21 @@
 
                     <div class="view" id="relationships" hidden>
                         <div class="controls">
+                            <button id="add" class="control fa fa-plus"></button>
                             <button id="edit" class="control fa fa-pencil-square-o"></button>
                             <button id="save" class="control fa fa-floppy-o"></button>
                         </div>
                         <div class="cubeWrapper">
                             <div id="cubes">
-
                             </div>
                         </div>
-
-
-
-                        <select id="npcList">
-                            <option value="0">-- Please Select a NPC --</option>
-                        </select>
-                        <div class="NPCinfo">
-                            <input type="text" id="npcid" hidden />
-                            <label>Year: <input type="text" id="npcyr" placeholder="NPC Year" disabled /></label>
+                        <div class="model" id="addModel" hidden>
+                            <h1>Add new relationship</h1>
+                            <select id="addRelationNPCs">
+                                <option>-- Please select a Student --</option>
+                            </select>
+                            <input id="relationship" value="0"/>
                         </div>
-                        <div class="relationshipInputs">
-                            <label>Relationship Score: <input id="rscore" type="text" placeholder="Score Number" disabled /></label>
-                            <label>Relationship: <input id="rrelationship" type="text" placeholder="Relationship" disabled /></label>
-                            <label>Boon: <input id="rboon" type="text" placeholder="Boon" disabled /></label>
-                            <label>Bane: <input id="rbane" type="text" placeholder="Bane" disabled /></label>
-                        </div>
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -670,35 +657,48 @@
     $('.control').click(function () {
         var page = this.parentNode.parentNode;
         if (this.id == "edit") {
-            var editloc = this.parentElement.parentElement.id;
             if (this.classList != "fa fa-pencil-square-o activecontrol") {
                 this.classList = "fa fa-pencil-square-o activecontrol";
-                if (editloc == 'relationships') {
-                    this.parentElement.parentElement.querySelector('#rscore').toggleAttribute("disabled");
-                } else {
-                    togglecurrent();
-                }
+                togglecurrent();
             } else {
                 this.classList = "control fa fa-pencil-square-o";
-                if (editloc == 'relationships') {
-                    this.parentElement.parentElement.querySelector('#rscore').toggleAttribute("disabled");
-                } else {
-                    togglecurrent();
-                }
+                togglecurrent();
             }
         }
         if (this.id == "save") {
             var saveloc = this.parentElement.parentElement.id;
-
+            var editbtn = page.querySelector('#edit');
+            var addbtn = page.querySelector('#add');
+            var active = "";
+            if (editbtn) {
+                if (editbtn.classList != "control fa fa-pencil-square-o") {
+                    togglecurrent();
+                    editbtn.classList = "control fa fa-pencil-square-o";
+                    active = "edit";
+                }
+            }
+            if (addbtn) {
+                if (addbtn.classList != "control fa fa-plus") {
+                    togglecurrent();
+                    addbtn.classList = "control fa fa-plus";
+                    active = "add";
+                }
+            }
             if (saveloc == "courses") {
 
             } else if (saveloc == "relationships") {
-                var nid = this.parentElement.parentElement.querySelector('.NPCinfo').querySelector('#npcid').value;
-                var sid = document.getElementById("profile").querySelector('#pid').value;
-                if (sid) {
-                    if (nid) {
-                        saveRelationship(nid, sid);
+                var cubeList = page.querySelector('#cubes');
+                var cubes = cubeList.querySelectorAll('.cube');
+                if (active == "edit") {
+                    for (var x = 0; x < cubes.length; x++) {
+                        saveRelationship(cubes[x]);
                     }
+                }
+                if (active == "add") {
+                    togglecurrent();
+                    var page = this.parentElement.parentElement;
+                    page.querySelector('#addModel').toggleAttribute('hidden');
+                    console.log('hit');
                 }
             } else if (saveloc == "exams") {
                 var exams = [];
@@ -720,19 +720,6 @@
                 }
                 saveExamScores(exams, results);
             } else if (saveloc == "npcs") {
-                var editbtn = page.querySelector('#edit');
-                var addbtn = page.querySelector('#add');
-                var active = "";
-                if (editbtn.classList != "control fa fa-pencil-square-o") {
-                    togglecurrent();
-                    editbtn.classList = "control fa fa-pencil-square-o";
-                    active = "edit";
-                }
-                if (addbtn.classList != "control fa fa-plus") {
-                    togglecurrent();
-                    editbtn.classList = "control fa fa-plus";
-                    active = "add";
-                }
                 var allinputs = [];
                 var SorT = "";
                 if (this.parentElement.parentElement.querySelector('#nid').value) {
@@ -808,11 +795,16 @@
         }
         if (this.id == "add") {
             var addloc = this.parentElement.parentElement.id;
+
+            console.log(this.parentElement.parentElement.querySelector('#edit'));
+            this.parentElement.parentElement.querySelector('#edit').toggleAttribute('disabled');
+
             if (this.classList != "fa fa-plus activecontrol") {
                 this.classList = "fa fa-plus activecontrol";
             } else {
                 this.classList = "control fa fa-plus";
             }
+
             if (addloc == "npcs") {
                 var allinputs = [];
                 var SorT = "";
@@ -828,7 +820,6 @@
                 var inputs = page.querySelectorAll('input');
                 var textareas = page.querySelectorAll('textarea');
                 var selects = page.querySelectorAll('select');
-
 
                 for (var y = 0; y < inputs.length; y++) {
                     if (inputs[y].id) {
@@ -852,8 +843,12 @@
                 if (SorT == "t") {
                     // createNewStudentData(allinputs);
                 }
+                togglecurrent();
             }
-            togglecurrent();
+            if (addloc == "relationships") {
+                var page = this.parentElement.parentElement;
+                page.querySelector('#addModel').toggleAttribute('hidden');
+            }
         }
         if (this.id == "delete") {
             var editbtn = page.querySelector('#edit');
@@ -1216,6 +1211,7 @@
             }
             // CREATE NPC LISTs
             var npcPage = document.getElementById('npcs');
+            var relationPage = document.getElementById('relationships');
             for (var x = 0; x < NPCname.length; x++) {
                 var newOption = document.createElement('option');
 
@@ -1223,6 +1219,14 @@
                 newOption.innerText = NPCname[x];
 
                 npcPage.querySelector('#npcList2').appendChild(newOption);
+            }
+            for (var x = 0; x < NPCname.length; x++) {
+                var newOption = document.createElement('option');
+
+                newOption.value = NPCid[x];
+                newOption.innerText = NPCname[x];
+
+                relationPage.querySelector('#addRelationNPCs').appendChild(newOption);
             }
         })
         _supabase.from('_tblTeachers').select('*').order('id', { ascending: true }).then(response => {
@@ -1506,22 +1510,34 @@
                 }
             }
         });
-        _supabase.from('npc<>student').select('npc(name, year, bane, boon), student, relationship').eq('student', sid).then(response => {
+        _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student, relationship').eq('student', sid).order('npc', { ascending: true }).then(response => {
             var relationshipPage = document.getElementById('relationships');
             var page = relationshipPage.querySelector('#cubes');
             for (var x = 0; x < response.data.length; x++) {               
                 var data = response.data[x];
                 const newCube = document.createElement("div");
                 const newName = document.createElement("p");
-                const newScore = document.createElement("input");
-                const newRelationship = document.createElement("p");
-                const newBoon = document.createElement("p");
-                const newBane = document.createElement("p");
 
+                const newScore = document.createElement("div");
+                const newRelationship = document.createElement("div");
+                const newBoon = document.createElement("div");
+                const newBane = document.createElement("div");
+
+                const newScoreSpan = document.createElement("span");
+                const newRelationshipSpan = document.createElement("span");
+                const newBoonSpan = document.createElement("span");
                 const newBaneSpan = document.createElement("span");
 
                 newName.innerText = data['npc']['name'];
-                newScore.value = data['relationship'];
+
+                newScoreSpan.innerText = "Relationship Score: ";
+                newScoreSpan.classList = "scoreTitle";
+                newScore.appendChild(newScoreSpan);
+                const newInput = document.createElement("input");
+                newInput.value = data['relationship'];
+                newInput.disabled = "true";
+                newScore.appendChild(newInput);
+
                 var text = "";
                 if (data['relationship'] >= "-100") {
                     if (data['relationship'] >= 8) {
@@ -1534,19 +1550,28 @@
                         text = "Rival";
                     }
                 }
-                newRelationship.innerText = "Relationship: " + text;
-                newBoon.innerText = "Boon: " + data['npc']['boon'];
+                newRelationshipSpan.innerText = "Relationship: ";
+                newRelationship.appendChild(newRelationshipSpan);
+                var newTextRelationship = document.createElement('p');
+                newTextRelationship.innerText = " " + text;
+                newRelationship.appendChild(newTextRelationship);
+
+                newBoonSpan.innerText = "Boon: ";
+                newBoon.appendChild(newBoonSpan);
+                var newTextBoon = document.createElement('p');
+                newTextBoon.innerText = " " + data['npc']['boon'];
+                newBoon.appendChild(newTextBoon);
 
                 newBaneSpan.innerText = "Bane: ";
                 newBane.appendChild(newBaneSpan);
-                newBane.value = data['npc']['bane'];
+                var newTextBane = document.createElement('p');
+                newTextBane.innerText = " " + data['npc']['bane'];
+                newBane.appendChild(newTextBane);
 
                 newCube.classList = "cube";
+                newCube.id = data['npc']['id'];
+
                 newName.classList = "cName";
-
-
-
-
 
                 newCube.appendChild(newName);
                 newCube.appendChild(newScore);
@@ -1698,9 +1723,7 @@
                         }
 
                     }
-                });
-
-               
+                });               
             }
         }
     }
@@ -1879,8 +1902,17 @@
             })
         }
     }
-    function saveRelationship(nid, sid) {
-        console.log(nid + " >> " + sid);
+    function saveRelationship(cube) {
+        var sid = document.getElementById("profile").querySelector('#pid').value;
+        var nid = cube.id
+        var score = cube.querySelector('input').value;
+
+        var updateobject = {};
+        updateobject['relationship'] = score;
+
+        _supabase.from('npc<>student').update(updateobject).eq('student', sid).eq('npc', nid).then(response => {
+            // window.location = location.pathname;
+        })
     }
     function saveStudentData(inputs) {
         var updateobject = {};
@@ -1894,8 +1926,6 @@
                 }
             }
         }
-        console.log(updateobject);
-        console.log(sid);
         _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
             window.location = location.pathname;
         })
