@@ -427,7 +427,8 @@
                             <select id="addRelationNPCs">
                                 <option>-- Please select a Student --</option>
                             </select>
-                            <input id="relationship" value="0"/>
+                            <button id="confirmRelation">Add relationship</button>
+                            <button id="cancleRelation">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -670,135 +671,142 @@
             var editbtn = page.querySelector('#edit');
             var addbtn = page.querySelector('#add');
             var active = "";
-            if (editbtn) {
-                if (editbtn.classList != "control fa fa-pencil-square-o") {
-                    togglecurrent();
-                    editbtn.classList = "control fa fa-pencil-square-o";
-                    active = "edit";
+            var bothselected = "no";
+            if (editbtn && addbtn) {
+                if (addbtn.classList != "control fa fa-plus" && editbtn.classList != "control fa fa-pencil-square-o") {
+                    bothselected = "yes";
                 }
             }
-            if (addbtn) {
-                if (addbtn.classList != "control fa fa-plus") {
-                    togglecurrent();
-                    addbtn.classList = "control fa fa-plus";
-                    active = "add";
-                }
-            }
-            if (saveloc == "courses") {
-
-            } else if (saveloc == "relationships") {
-                var cubeList = page.querySelector('#cubes');
-                var cubes = cubeList.querySelectorAll('.cube');
-                if (active == "edit") {
-                    for (var x = 0; x < cubes.length; x++) {
-                        saveRelationship(cubes[x]);
+            if (bothselected == "no") {
+                if (editbtn) {
+                    if (editbtn.classList != "control fa fa-pencil-square-o") {
+                        togglecurrent();
+                        editbtn.classList = "control fa fa-pencil-square-o";
+                        active = "edit";
                     }
                 }
-                if (active == "add") {
-                    togglecurrent();
-                    var page = this.parentElement.parentElement;
-                    page.querySelector('#addModel').toggleAttribute('hidden');
-                    console.log('hit');
+                if (addbtn) {
+                    if (addbtn.classList != "control fa fa-plus") {
+                        togglecurrent();
+                        addbtn.classList = "control fa fa-plus";
+                        active = "add";
+                    }
                 }
-            } else if (saveloc == "exams") {
-                var exams = [];
-                var results = [];
-                var selects = page.querySelectorAll('select');
-                for (var y = 0; y < selects.length; y++) {
-                    var select = selects[y];
-                    var options = select.querySelectorAll('option');
-                    for (var z = 0; z < options.length; z++) {
-                        var option = options[z];
-                        if (option.selected) {
-                            if (option.value != 0) {
-                                var sec = select.parentElement.id.split('exam');
-                                exams.push(sec[1]);
-                                results.push(option.value);
+
+                if (saveloc == "courses") {
+
+                } else if (saveloc == "relationships") {
+                    var cubeList = page.querySelector('#cubes');
+                    var cubes = cubeList.querySelectorAll('.cube');
+                    if (active == "edit") {
+                        for (var x = 0; x < cubes.length; x++) {
+                            saveRelationship(cubes[x]);
+                        }
+                    }
+                    if (active == "add") {
+                        togglecurrent();
+                        var page = this.parentElement.parentElement;
+                        page.querySelector('#addModel').toggleAttribute('hidden');
+                        console.log('hit');
+                    }
+                } else if (saveloc == "exams") {
+                    var exams = [];
+                    var results = [];
+                    var selects = page.querySelectorAll('select');
+                    for (var y = 0; y < selects.length; y++) {
+                        var select = selects[y];
+                        var options = select.querySelectorAll('option');
+                        for (var z = 0; z < options.length; z++) {
+                            var option = options[z];
+                            if (option.selected) {
+                                if (option.value != 0) {
+                                    var sec = select.parentElement.id.split('exam');
+                                    exams.push(sec[1]);
+                                    results.push(option.value);
+                                }
                             }
                         }
                     }
-                }
-                saveExamScores(exams, results);
-            } else if (saveloc == "npcs") {
-                var allinputs = [];
-                var SorT = "";
-                if (this.parentElement.parentElement.querySelector('#nid').value) {
-                    page = page.querySelector('.student');
-                    SorT = "s";
-                }
-                if (this.parentElement.parentElement.querySelector('#tid').value) {
-                    page = page.querySelector('.teacher');
-                    SorT = "t";
-                }
+                    saveExamScores(exams, results);
+                } else if (saveloc == "npcs") {
+                    var allinputs = [];
+                    var SorT = "";
+                    if (this.parentElement.parentElement.querySelector('#nid').value) {
+                        page = page.querySelector('.student');
+                        SorT = "s";
+                    }
+                    if (this.parentElement.parentElement.querySelector('#tid').value) {
+                        page = page.querySelector('.teacher');
+                        SorT = "t";
+                    }
 
-                var inputs = page.querySelectorAll('input');
-                var textareas = page.querySelectorAll('textarea');
-                var selects = page.querySelectorAll('select');
+                    var inputs = page.querySelectorAll('input');
+                    var textareas = page.querySelectorAll('textarea');
+                    var selects = page.querySelectorAll('select');
 
 
-                for (var y = 0; y < inputs.length; y++) {
-                    if (inputs[y].id) {
-                        allinputs.push(inputs[y]);
+                    for (var y = 0; y < inputs.length; y++) {
+                        if (inputs[y].id) {
+                            allinputs.push(inputs[y]);
+                        }
                     }
-                }
-                for (var y = 0; y < textareas.length; y++) {
-                    if (textareas[y].id) {
-                        allinputs.push(textareas[y]);
+                    for (var y = 0; y < textareas.length; y++) {
+                        if (textareas[y].id) {
+                            allinputs.push(textareas[y]);
+                        }
                     }
-                }
-                for (var y = 0; y < selects.length; y++) {
-                    if (selects[y].id) {
-                        allinputs.push(selects[y]);
+                    for (var y = 0; y < selects.length; y++) {
+                        if (selects[y].id) {
+                            allinputs.push(selects[y]);
+                        }
                     }
-                }
 
-                if (SorT == "s") {
-                    if (active == "edit") {
-                        saveStudentData(allinputs);
+                    if (SorT == "s") {
+                        if (active == "edit") {
+                            saveStudentData(allinputs);
+                        }
+                        if (active == "add") {
+                            createNewStudentData(allinputs);
+                        }
                     }
-                    if (active == "add") {
-                        createNewStudentData(allinputs);
+                    if (SorT == "t") {
+                        if (active == "edit") {
+                            saveTeacherData(allinputs);
+                        }
+                        if (active == "add") {
+                            alert("new teachers require an image. Send me the info for the teacher");
+                            // createNewStudentData(allinputs);
+                        }
                     }
-                }
-                if (SorT == "t") {
-                    if (active == "edit") {
-                        saveTeacherData(allinputs);
+                } else if (saveloc == "extra notes") {
+                    var textareas = page.querySelectorAll('textarea');
+                    var allinputs = [];
+                    for (var y = 0; y < textareas.length; y++) {
+                        if (textareas[y].id) {
+                            allinputs.push(textareas[y]);
+                        }
                     }
-                    if (active == "add") {
-                        alert("new teachers require an image. Send me the info for the teacher");
-                        // createNewStudentData(allinputs);
+                    saveNotes(allinputs);
+                } else if (saveloc == "strixhaven star") {
+                    var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
+                    var pgHeader = [];
+                    var pgContent = [];
+                    for (var x = 0; x < pages.length; x++) {
+                        var pg = page.querySelector(pages[x]);
+                        pgHeader.push(pg.querySelector('input'));
+                        pgContent.push(pg.querySelector('textarea'));
                     }
-                }
-            } else if (saveloc == "extra notes") {
-                var textareas = page.querySelectorAll('textarea');
-                var allinputs = [];
-                for (var y = 0; y < textareas.length; y++) {
-                    if (textareas[y].id) {
-                        allinputs.push(textareas[y]);
-                    }
-                }
-                saveNotes(allinputs);
-            } else if (saveloc == "strixhaven star") {
-                var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
-                var pgHeader = [];
-                var pgContent = [];
-                for (var x = 0; x < pages.length; x++) {
-                    var pg = page.querySelector(pages[x]);
-                    pgHeader.push(pg.querySelector('input'));
-                    pgContent.push(pg.querySelector('textarea'));
-                }
-                saveSS(pages, pgHeader, pgContent);
+                    saveSS(pages, pgHeader, pgContent);
 
-                var jobs = page.querySelector('.pg3').querySelector('.jobs').querySelectorAll('.job');
-                saveJobs(jobs);
+                    var jobs = page.querySelector('.pg3').querySelector('.jobs').querySelectorAll('.job');
+                    saveJobs(jobs);
+                }
+            } else {
+                alert("Please make a choice if you want to edit or add");
             }
         }
         if (this.id == "add") {
             var addloc = this.parentElement.parentElement.id;
-
-            console.log(this.parentElement.parentElement.querySelector('#edit'));
-            this.parentElement.parentElement.querySelector('#edit').toggleAttribute('disabled');
-
             if (this.classList != "fa fa-plus activecontrol") {
                 this.classList = "fa fa-plus activecontrol";
             } else {
@@ -921,6 +929,16 @@
     $('#teacherList').change(function () {
         cleanNPC('student');
         getNPCTeacherDataByID(this.value);
+    })
+
+    $('#confirmRelation').click(function () {
+        alert("working on it"); 
+    })
+    $('#cancleRelation').click(function () {
+        var page = this.parentElement.parentElement;
+        page.querySelector('#addModel').toggleAttribute('hidden');
+        var addloc = page.querySelector('.controls').querySelector('#add');
+        addloc.classList = "fa fa-plus";
     })
 
     function cleanPages(){
@@ -1512,8 +1530,11 @@
         });
         _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student, relationship').eq('student', sid).order('npc', { ascending: true }).then(response => {
             var relationshipPage = document.getElementById('relationships');
+            var addSelected = relationshipPage.querySelector('select');
+            
             var page = relationshipPage.querySelector('#cubes');
-            for (var x = 0; x < response.data.length; x++) {               
+            page.innerHTML = "";
+            for (var x = 0; x < response.data.length; x++) {
                 var data = response.data[x];
                 const newCube = document.createElement("div");
                 const newName = document.createElement("p");
@@ -1580,6 +1601,13 @@
                 newCube.appendChild(newBane);
 
                 page.appendChild(newCube);
+
+                var options = addSelected.querySelectorAll("option");
+                for (var y = 0; y < options.length; y++) {
+                    if (options[y].value == data['npc']['id']) {
+                        options[y].setAttribute('hidden', 'true');
+                    }
+                }
             }
         });
     }
