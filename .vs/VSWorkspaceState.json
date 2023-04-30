@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\assets",
-    "\\assets\\maps",
     "\\views",
-    "\\views\\admin"
+    "\\views\\admin",
+    "\\views\\studentView"
   ],
   "PreviewInSolutionExplorer": false
 }
