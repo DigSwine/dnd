@@ -1896,9 +1896,8 @@
     function saveExamScores(exams, results) {
         var sid = document.getElementById("players").querySelector('#profile').querySelector('#pid').value;
         for (var x = 0; x < exams.length; x++) {
-            console.log(results);
             _supabase.from('exam<>student').update({ 'score': results[x] }).eq('exam', exams[x]).eq('student', sid).then(response => {
-                window.location = window.location;
+                // window.location = window.location;
             })
         }
     }
@@ -1927,7 +1926,7 @@
             }
         }
         _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
-            window.location = location.pathname;
+            // window.location = location.pathname;
         })
     }
     function saveTeacherData(inputs) {
@@ -1948,8 +1947,7 @@
             }
         }
         _supabase.from('_tblTeachers').update(updateobject).eq('id', tid).then(response => {
-            var currentpage = location.pathname;
-            window.location = currentpage;
+            // window.location = window.location;
         })
     }
     function saveNotes(inputs) {
@@ -2020,8 +2018,7 @@
             }
         }
         _supabase.from('_tblStudents').insert(updateobject).then(response => {
-            var currentpage = location.pathname;
-            window.location = currentpage;
+            // window.location = window.location;
         })
     }
 
