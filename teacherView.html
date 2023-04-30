@@ -23,7 +23,7 @@
 
     <!-- Main -->
     <main>
-        <div class="leftnav">
+        <div class="leftnav Vscrollbar">
             <div class="block">
                 <a href="about.html">
                     <img src="assets/strix_logo.png" />
@@ -766,7 +766,6 @@
                 }
 
                 if (SorT == "s") {
-                    console.log(allinputs);
                     if (active == "edit") {
                         saveStudentData(allinputs);
                     }
@@ -1889,12 +1888,14 @@
         for (var x = 0; x < inputs.length; x++) {
             if (inputs[x].id == "nid" || inputs[x].id == "sid") {
                 sid = inputs[x].value;
-                console.log(sid);
             } else {
-                updateobject[inputs[x].id] = inputs[x].value;
+                if (inputs[x].id != "npcList2") {
+                    updateobject[inputs[x].id] = inputs[x].value;
+                }
             }
         }
         console.log(updateobject);
+        console.log(sid);
         _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
             // window.location = location.pathname;
         })
