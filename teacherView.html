@@ -1897,7 +1897,7 @@
         console.log(updateobject);
         console.log(sid);
         _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
-            // window.location = location.pathname;
+            window.location = location.pathname;
         })
     }
     function saveTeacherData(inputs) {
