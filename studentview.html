@@ -765,20 +765,16 @@
                 const newCube = document.createElement("div");
                 const newName = document.createElement("p");
 
-                const newScore = document.createElement("div");
                 const newRelationship = document.createElement("div");
                 const newBoon = document.createElement("div");
                 const newBane = document.createElement("div");
 
+                const newScoreSpan = document.createElement("span");
+                const newRelationshipSpan = document.createElement("span");
                 const newBoonSpan = document.createElement("span");
                 const newBaneSpan = document.createElement("span");
 
                 newName.innerText = data['npc']['name'];
-
-                const newInput = document.createElement("input");
-                newInput.value = data['relationship'];
-                newInput.disabled = "true";
-                newScore.appendChild(newInput);
 
                 var text = "";
                 if (data['relationship'] >= "-100") {
@@ -792,6 +788,8 @@
                         text = "Rival";
                     }
                 }
+                newRelationshipSpan.innerText = "Relationship: ";
+                newRelationship.appendChild(newRelationshipSpan);
                 var newTextRelationship = document.createElement('p');
                 newTextRelationship.innerText = " " + text;
                 newRelationship.appendChild(newTextRelationship);
@@ -814,7 +812,6 @@
                 newName.classList = "cName";
 
                 newCube.appendChild(newName);
-                newCube.appendChild(newScore);
                 newCube.appendChild(newRelationship);
 
                 if (data['relationship'] >= "-100") {
