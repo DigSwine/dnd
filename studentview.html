@@ -300,7 +300,10 @@
             </div>
 
             <div class="page" id="relationships" hidden>
-                <h2>relationships</h2>
+                <div class="cubeWrapper">
+                    <div id="cubes">
+                    </div>
+                </div>
             </div>
 
             <div class="page" id="jobandextra" hidden>
@@ -750,6 +753,89 @@
                 }
             }
         })
+        _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student, relationship').eq('student', sid).order('npc', { ascending: true }).then(response => {
+            console.log(response.data);
+            var relationshipPage = document.getElementById('relationships');
+            var addSelected = relationshipPage.querySelector('select');
+            var page = relationshipPage.querySelector('#cubes');
+            page.innerHTML = "";
+            for (var x = 0; x < response.data.length; x++) {
+                var data = response.data[x];
+                const newCube = document.createElement("div");
+                const newName = document.createElement("p");
+
+                const newScore = document.createElement("div");
+                const newRelationship = document.createElement("div");
+                const newBoon = document.createElement("div");
+                const newBane = document.createElement("div");
+
+                const newScoreSpan = document.createElement("span");
+                const newRelationshipSpan = document.createElement("span");
+                const newBoonSpan = document.createElement("span");
+                const newBaneSpan = document.createElement("span");
+
+                newName.innerText = data['npc']['name'];
+
+                newScoreSpan.innerText = "Relationship Score: ";
+                newScoreSpan.classList = "scoreTitle";
+                newScore.appendChild(newScoreSpan);
+                const newInput = document.createElement("input");
+                newInput.value = data['relationship'];
+                newInput.disabled = "true";
+                newScore.appendChild(newInput);
+
+                var text = "";
+                if (data['relationship'] >= "-100") {
+                    if (data['relationship'] >= 8) {
+                        text = "Lover";
+                    } else if (data['relationship'] >= "3") {
+                        text = "Friend";
+                    } else if (data['relationship'] >= "0") {
+                        text = "Netural";
+                    } else {
+                        text = "Rival";
+                    }
+                }
+                newRelationshipSpan.innerText = "Relationship: ";
+                newRelationship.appendChild(newRelationshipSpan);
+                var newTextRelationship = document.createElement('p');
+                newTextRelationship.innerText = " " + text;
+                newRelationship.appendChild(newTextRelationship);
+
+                newBoonSpan.innerText = "Boon: ";
+                newBoon.appendChild(newBoonSpan);
+                var newTextBoon = document.createElement('p');
+                newTextBoon.innerText = " " + data['npc']['boon'];
+                newBoon.appendChild(newTextBoon);
+
+                newBaneSpan.innerText = "Bane: ";
+                newBane.appendChild(newBaneSpan);
+                var newTextBane = document.createElement('p');
+                newTextBane.innerText = " " + data['npc']['bane'];
+                newBane.appendChild(newTextBane);
+
+                newCube.classList = "cube";
+                newCube.id = data['npc']['id'];
+
+                newName.classList = "cName";
+
+                newCube.appendChild(newName);
+                newCube.appendChild(newScore);
+                newCube.appendChild(newRelationship);
+
+                if (data['relationship'] >= "-100") {
+                    if (data['relationship'] >= "3") {
+                        newCube.appendChild(newBoon);
+                    } else if (data['relationship'] >= "0") {
+                        text = "Netural";
+                    } else {
+                        newCube.appendChild(newBane);
+                    }
+                }
+
+                page.appendChild(newCube);
+            }
+        });
     }
     function getCourseData() {
         _supabase.from('class<>teacher').select('class(id, name, year, required), teacher(id, teacher_name)').then(response => {

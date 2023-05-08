@@ -476,6 +476,64 @@ main {
 
     .mainpage #relationships {
     }
+        .mainpage #relationships .cubeWrapper {
+        }
+            .mainpage #relationships .cubeWrapper #cubes {
+                padding: 0 50px 0 50px;
+                display: flex;
+                flex-wrap: wrap;
+            }
+                .mainpage #relationships .cubeWrapper #cubes .cube {
+                    flex: 1 1 30%;
+                    height: 45px;
+                    width: 200px;
+                    border: 2px solid #fff;
+                    box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.1);
+                    position: relative;
+                    margin: 0 5px 15px 5px;
+                    transition: 0.2s ease;
+                    overflow: hidden;
+                }
+                    .mainpage #relationships .cubeWrapper #cubes .cube:hover {
+                        height: auto;
+                        width: 200px;
+                    }
+                    .mainpage #relationships .cubeWrapper #cubes .cube div {
+                        display: flex;
+                        margin: 10px;
+                    }
+                        .mainpage #relationships .cubeWrapper #cubes .cube .cname,
+                        .mainpage #relationships .cubeWrapper #cubes .cube div span {
+                            font-family: 'Valneck';
+                            text-align: left;
+                        }
+                    .mainpage #relationships .cubeWrapper #cubes .cube .cname {
+                        margin: 10px;
+                    }
+                    .mainpage #relationships .cubeWrapper #cubes .cube div p {
+                        margin: 1px 0 0 10px;
+                        font-family: Arial;
+                        font-size: 1rem;
+                    }
+                    .mainpage #relationships .cubeWrapper #cubes .cube div input {
+                        width: auto;
+                        margin: 1px 0 0 10px;
+                    }
+                    .mainpage #relationships .cubeWrapper #cubes .cube div .scoreTitle {
+                        margin: 5px 0 0 0;
+                    }
+                    .mainpage #relationships .cubeWrapper #cubes .cube button {
+                        color: white;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        display: block;
+                        width: auto;
+                        padding: 0 10px 0 10px;
+                        height: 45px;
+                        text-align: center;
+                        font-size: 1.2rem;
+                    }
 
     .mainpage #jobandextra {
         height: 100%;
