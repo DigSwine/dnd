@@ -934,10 +934,8 @@
         for (var y = 0; y < examExams.length; y++) {
             examExams[y].innerHTML = "";
         }
-
-        _supabase.from('exam<>student').select('exam(*), score, studied, cheated, student(year)').eq('student', sid).order('exam(id)', { ascending: true }).then(response => {
+        _supabase.from('exam<>student').select('exam(*), score, studied, cheated, student(year)').eq('student', sid).order('exam', { ascending: true }).then(response => {
             var exams = response.data;
-            console.log(exams);
             for (var x = 0; x < exams.length; x++) {
                 var exam = exams[x];
                 for (var y = 0; y < examExams.length; y++) {
@@ -950,7 +948,6 @@
                     if (y + 1 == exam['exam']['year']) {
 
                         newTitle.innerText = exam['exam']['name'];
-
                         if (exam['score']) {
                             newScore.innerText = exam['score'];
                             if (exam['score'] == "ace") {
@@ -962,6 +959,7 @@
                             if (exam['score'] == "fail") {
                                 newDice.innerText = "0d4";
                             }
+                            
                             newSkills.innerText = exam['exam']['skill'];
 
                             newTitle.classList = "etitle"
@@ -977,8 +975,9 @@
                             newExam.appendChild(newSkills);
 
                             if (exam['exam']['year'] <= exam['student']['year']) {
-                                console.log('hit');
-                                examExams[y].appendChild(newExam);
+                                if (exam['score'] != "null") {
+                                    examExams[y].appendChild(newExam);
+                                }
                             }
                         }
                     }
