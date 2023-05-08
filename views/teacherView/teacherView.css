@@ -280,6 +280,7 @@ button {
         right: 0;
         padding: 5px;
         display: flex;
+        z-index: 5;
     }
         .mainpage .controls button {
             font-size: 2rem;
@@ -453,6 +454,11 @@ button {
                 margin: 0;
                 padding: 10px;
                 font-family: 'Valneck';
+                position: absolute;
+                top: -10px;
+                right: 30px;
+                font-size: 8rem;
+                color: rgba(255, 255, 255, 0.1);
             }
             .mainpage #courses .year + .year {
                 margin: 20px 50px 20px 0;
@@ -465,6 +471,7 @@ button {
                     margin: 10px;
                     display: flex;
                     height: calc(100% / 4);
+                    z-index: 0;
                 }
                     .mainpage #courses .year .coursechoices .coursechoice select {
                         margin: 0 20px 0;
@@ -1001,12 +1008,9 @@ button {
         margin-top: 10px;
     }
         .mainpage .ss .pg3 .jobs .job {
-            height: 40px;
-            padding: 5px;
+            height: auto;
             border: solid 1px black;
-            width: 24.5%;
             margin: 5px 5px 5px 0;
-            position: relative;
         }
             .mainpage .ss .pg3 .jobs .job .jtitle {
                 padding: 0;
@@ -1016,9 +1020,7 @@ button {
                 width: 100%;
                 height: 20px;
             }
-
             .mainpage .ss .pg3 .jobs .job .details input {
-                
                 padding: 0;
                 text-align: left;
                 margin: 0;

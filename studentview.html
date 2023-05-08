@@ -1141,7 +1141,6 @@
         for (var x = 0; x < inputs.length; x++) {
             updateobject[inputs[x].id] = inputs[x].value;
         }
-        console.log(updateobject);
         _supabase.from('_tblStudents').update( updateobject ).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
             window.location = location.pathname;
         })

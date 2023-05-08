@@ -217,7 +217,7 @@
                                     <button id="edit" class="control fa fa-pencil-square-o"></button>
                                     <button id="save" class="control fa fa-floppy-o"></button>
                                 </div>
-                                <h3>Year 1 courses</h3>
+                                <h3>Yr 1</h3>
                                 <div class="coursechoices">
                                     <div id="Y1S1" class="coursechoice">
                                         <select>
@@ -258,7 +258,7 @@
                                     <button id="edit" class="control fa fa-pencil-square-o"></button>
                                     <button id="save" class="control fa fa-floppy-o"></button>
                                 </div>
-                                <h3>Year 2 courses</h3>
+                                <h3>Yr 2</h3>
                                 <div class="coursechoices">
                                     <div id="Y2S1" class="coursechoice">
                                         <select>
@@ -301,7 +301,7 @@
                                     <button id="edit" class="control fa fa-pencil-square-o"></button>
                                     <button id="save" class="control fa fa-floppy-o"></button>
                                 </div>
-                                <h3>Year 3 courses</h3>
+                                <h3>Yr 3</h3>
                                 <div class="coursechoices">
                                     <div id="Y3S1" class="coursechoice">
                                         <select>
@@ -342,7 +342,7 @@
                                     <button id="edit" class="control fa fa-pencil-square-o"></button>
                                     <button id="save" class="control fa fa-floppy-o"></button>
                                 </div>
-                                <h3>Year 4 courses</h3>
+                                <h3>Yr 4</h3>
                                 <div class="coursechoices">
                                     <div id="Y4S1" class="coursechoice">
                                         <select>
@@ -1488,7 +1488,7 @@
                 }
             }
         })
-        _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').eq('student', sid).then(response => {
+        _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').order('class', { ascending: false }).eq('student', sid).then(response => {
             var data = response.data;
             var Y1C = 1;
             var Y2C = 1;
@@ -2065,22 +2065,26 @@
     }
     function saveCourseChoices(inputs) {
         var sid = document.getElementById('profile').querySelector('#pid').value;
-        var allClasses = [];
-        for (var y = 0; y < inputs.length; y++) {
-            if (inputs[y].value) {
-                var split = inputs[y].value.split(':');
-                var selectedID = split[0];
 
-                _supabase.from('class<>student').select('class(id, name, year)').eq('class', selectedID).eq('student', sid).then(response => {
-                    if (response.data.length > 0) {
-                        allClasses.push(response.data[0]['class']['id']);
-                    } else {
-                        allClasses.push(' ');
-                    }
-                });
+        _supabase.from('class<>student').delete().eq('student', sid).then(response => {
+            var updateobject = {};
+
+            for (var x = 0; x < inputs.length; x++) {
+                var selectedID = "";
+                if (inputs[x].value) {
+                    console.log(inputs[x]);
+                    var split = inputs[x].value.split(':');
+                    console.log(split[0]);
+                    selectedID = split[0];                
+
+                    updateobject['class'] = selectedID;
+                    updateobject['student'] = sid;
+
+                    _supabase.from('class<>student').insert(updateobject).then(response => {
+                    })
+                }
             }
-        }
-        console.log(allClasses);
+        });
     }
     
     // Creators
