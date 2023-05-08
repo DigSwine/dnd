@@ -800,12 +800,6 @@
                 newTextBoon.innerText = " " + data['npc']['boon'];
                 newBoon.appendChild(newTextBoon);
 
-                newBaneSpan.innerText = "Bane: ";
-                newBane.appendChild(newBaneSpan);
-                var newTextBane = document.createElement('p');
-                newTextBane.innerText = " " + data['npc']['bane'];
-                newBane.appendChild(newTextBane);
-
                 newCube.classList = "cube";
                 newCube.id = data['npc']['id'];
 
@@ -817,10 +811,6 @@
                 if (data['relationship'] >= "-100") {
                     if (data['relationship'] >= "3") {
                         newCube.appendChild(newBoon);
-                    } else if (data['relationship'] >= "0") {
-                        text = "Netural";
-                    } else {
-                        newCube.appendChild(newBane);
                     }
                 }
 
