@@ -770,16 +770,11 @@
                 const newBoon = document.createElement("div");
                 const newBane = document.createElement("div");
 
-                const newScoreSpan = document.createElement("span");
-                const newRelationshipSpan = document.createElement("span");
                 const newBoonSpan = document.createElement("span");
                 const newBaneSpan = document.createElement("span");
 
                 newName.innerText = data['npc']['name'];
 
-                newScoreSpan.innerText = "Relationship Score: ";
-                newScoreSpan.classList = "scoreTitle";
-                newScore.appendChild(newScoreSpan);
                 const newInput = document.createElement("input");
                 newInput.value = data['relationship'];
                 newInput.disabled = "true";
@@ -797,8 +792,6 @@
                         text = "Rival";
                     }
                 }
-                newRelationshipSpan.innerText = "Relationship: ";
-                newRelationship.appendChild(newRelationshipSpan);
                 var newTextRelationship = document.createElement('p');
                 newTextRelationship.innerText = " " + text;
                 newRelationship.appendChild(newTextRelationship);
