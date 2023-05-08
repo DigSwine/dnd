@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
     "\\views",
-    "\\views\\admin",
     "\\views\\studentView"
   ],
   "PreviewInSolutionExplorer": false

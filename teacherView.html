@@ -26,11 +26,11 @@
         <div class="leftnav Vscrollbar">
             <div class="block">
                 <a href="about.html">
-                    <img src="assets/strix_logo.png" />
+                    <img id="collegeLogo" src="assets/strix_logo.png" />
                 </a>
             </div>
             <div id="subnavchoices" class="choices">
-                <div class="choice">
+                <div class="choice" id="ppp">
                     <button class="dropdown-btn">
                         <p>Players</p>
                         <i class="fa fa-caret-down"></i>
@@ -141,17 +141,24 @@
                                 <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
                                 <label>Race: <input id="race" placeholder="Race" disabled /></label>
                                 <label>Subrace: <input id="subrace" placeholder="Subrace" disabled /></label>
-                                <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
-                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
-                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
-                            </form>
-                            <form id="profileform2">
-                                <label>Height: <input id="height" placeholder="Height" disabled /></label>
-                                <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
-                                <label>Level: <input id="level" placeholder="Level" disabled /></label>
                                 <label>Class: <input id="class" placeholder="Class" disabled /></label>
                                 <label>Subclass: <input id="subclass" placeholder="Subclass" disabled /></label>
+                                <label>Level: <input id="level" placeholder="Level" disabled /></label>
+                            </form>
+                            <form id="profileform2">
+                                <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
+                                <label>Height: <input id="height" placeholder="Height" disabled /></label>
+                                <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
+                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
+                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
                                 <label>Background: <input id="background" placeholder="Background" disabled /></label>
+                                <label>Year: <input id="year" placeholder="Year" disabled /></label>
+                                <label>
+                                    College:
+                                    <select id="college" disabled>
+                                        <option value="0">-- Please Select College Choice --</option>
+                                    </select>
+                                </label>
                             </form>
                         </div>
                         <div class="bottom">
@@ -207,6 +214,7 @@
                         <div class="top">
                             <div class="year">
                                 <div class="controls">
+                                    <button id="edit" class="control fa fa-pencil-square-o"></button>
                                     <button id="save" class="control fa fa-floppy-o"></button>
                                 </div>
                                 <h3>Year 1 courses</h3>
@@ -247,6 +255,7 @@
                             </div>
                             <div class="year">
                                 <div class="controls">
+                                    <button id="edit" class="control fa fa-pencil-square-o"></button>
                                     <button id="save" class="control fa fa-floppy-o"></button>
                                 </div>
                                 <h3>Year 2 courses</h3>
@@ -289,6 +298,7 @@
                         <div class="bottom">
                             <div class="year">
                                 <div class="controls">
+                                    <button id="edit" class="control fa fa-pencil-square-o"></button>
                                     <button id="save" class="control fa fa-floppy-o"></button>
                                 </div>
                                 <h3>Year 3 courses</h3>
@@ -329,6 +339,7 @@
                             </div>
                             <div class="year">
                                 <div class="controls">
+                                    <button id="edit" class="control fa fa-pencil-square-o"></button>
                                     <button id="save" class="control fa fa-floppy-o"></button>
                                 </div>
                                 <h3>Year 4 courses</h3>
@@ -425,7 +436,7 @@
                         <div class="model" id="addModel" hidden>
                             <h1>Add new relationship</h1>
                             <select id="addRelationNPCs">
-                                <option>-- Please select a Student --</option>
+                                <option value="0">-- Please select a Student --</option>
                             </select>
                             <button id="confirmRelation">Add relationship</button>
                             <button id="cancleRelation">Cancel</button>
@@ -652,7 +663,10 @@
                 pages[x].setAttribute("hidden", "true");
             }
         }
-        
+        if (this.id != "ppp") {
+            var cLogo = document.getElementById('collegeLogo');
+            cLogo.src = "assets/strix_logo.png";
+        }
         document.getElementById(toshow).toggleAttribute("hidden");
     })
     $('.control').click(function () {
@@ -668,12 +682,16 @@
         }
         if (this.id == "save") {
             var saveloc = this.parentElement.parentElement.id;
+            if (!saveloc) {
+                saveloc = this.parentElement.parentElement.parentElement.parentElement.id;
+            }
             var editbtn = page.querySelector('#edit');
             var addbtn = page.querySelector('#add');
             var active = "";
             var bothselected = "no";
+            
             if (editbtn && addbtn) {
-                if (addbtn.classList != "control fa fa-plus" && editbtn.classList != "control fa fa-pencil-square-o") {
+                if (addbtn.classList == "fa fa-plus activecontrol" && editbtn.classList == "fa fa-pencil-square-o activecontrol") {
                     bothselected = "yes";
                 }
             }
@@ -687,14 +705,15 @@
                 }
                 if (addbtn) {
                     if (addbtn.classList != "control fa fa-plus") {
-                        togglecurrent();
                         addbtn.classList = "control fa fa-plus";
                         active = "add";
                     }
                 }
 
                 if (saveloc == "courses") {
-
+                    var year = this.parentElement.parentElement;
+                    var inputs = year.querySelectorAll('select');
+                    saveCourseChoices(inputs);
                 } else if (saveloc == "relationships") {
                     var cubeList = page.querySelector('#cubes');
                     var cubes = cubeList.querySelectorAll('.cube');
@@ -878,7 +897,7 @@
         var pages = mainpage.querySelectorAll('.page');
         for (var x = 0; x < pages.length; x++) {
             if (pages[x]) {
-                if (window.getComputedStyle(pages[x]).display != "none") {
+                if (window.getComputedStyle(pages[x]).display != "none") {  
                     var inputs = pages[x].querySelectorAll('input');
                     var textareas = pages[x].querySelectorAll('textarea');
                     var selects = pages[x].querySelectorAll('select');
@@ -932,7 +951,14 @@
     })
 
     $('#confirmRelation').click(function () {
-        alert("working on it"); 
+        var nid = this.parentElement.querySelector('#addRelationNPCs').value;
+        var sid = document.getElementById('profile').querySelector('#pid').value;
+        createRelationship(nid, sid);
+        this.parentElement.querySelector('#addRelationNPCs').value = 0;
+        this.parentElement.toggleAttribute('hidden');
+        var addloc = this.parentElement.parentElement.querySelector('.controls').querySelector('#add');
+        addloc.classList = "fa fa-plus";
+        getNPCRelationshipDataByStudentID(sid);
     })
     $('#cancleRelation').click(function () {
         var page = this.parentElement.parentElement;
@@ -1238,14 +1264,6 @@
 
                 npcPage.querySelector('#npcList2').appendChild(newOption);
             }
-            for (var x = 0; x < NPCname.length; x++) {
-                var newOption = document.createElement('option');
-
-                newOption.value = NPCid[x];
-                newOption.innerText = NPCname[x];
-
-                relationPage.querySelector('#addRelationNPCs').appendChild(newOption);
-            }
         })
         _supabase.from('_tblTeachers').select('*').order('id', { ascending: true }).then(response => {
             for (var x = 0; x < response.data.length; x++) {
@@ -1268,6 +1286,17 @@
                 newOption.innerText = TPCname[x];
 
                 npcPage.querySelector('#teacherList').appendChild(newOption);
+            }
+        });
+        _supabase.from('_tblColleges').select('*').order('id', { ascending: false }).then(response => {
+            var page = document.getElementById('players');
+            var profile = page.querySelector('#profile');
+            for (var y = 0; y < response.data.length; y++) {
+                var col = response.data[y];
+                var newCollege = document.createElement('option');
+                newCollege.value = col['id'];
+                newCollege.innerText = col['college_name'];
+                profile.querySelector('#college').appendChild(newCollege);
             }
         });
     }
@@ -1297,6 +1326,29 @@
                 profile.querySelector('#class').value = PPCclasst[x];
                 profile.querySelector('#subclass').value = PPCsubclass[x];
                 profile.querySelector('#background').value = PPCbackground[x];
+                profile.querySelector('#year').value = PPCyear[x];
+
+                var college = PPCcollege[x];
+                profile.querySelector('#college').value = college;
+                var cLogo = document.getElementById('collegeLogo');
+                if (college == 6) {
+                    cLogo.src = "assets/strix_logo.png";
+                }
+                if (college == 5) {
+                    cLogo.src = "assets/maps/witherbloom.png";
+                }
+                if (college == 4) {
+                    cLogo.src = "assets/maps/silverquill.png";
+                }
+                if (college == 3) {
+                    cLogo.src = "assets/maps/quandrix.png";
+                }
+                if (college == 2) {
+                    cLogo.src = "assets/maps/prismari.png";
+                }
+                if (college == 1) {
+                    cLogo.src = "assets/maps/lorehold.png";
+                }
 
                 profile.querySelector('#personalitytraits').value = PPCpersonalitytraits[x];
                 profile.querySelector('#ideals').value = PPCideals[x];
@@ -1528,88 +1580,23 @@
                 }
             }
         });
-        _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student, relationship').eq('student', sid).order('npc', { ascending: true }).then(response => {
-            var relationshipPage = document.getElementById('relationships');
-            var addSelected = relationshipPage.querySelector('select');
-            
-            var page = relationshipPage.querySelector('#cubes');
-            page.innerHTML = "";
-            for (var x = 0; x < response.data.length; x++) {
-                var data = response.data[x];
-                const newCube = document.createElement("div");
-                const newName = document.createElement("p");
-
-                const newScore = document.createElement("div");
-                const newRelationship = document.createElement("div");
-                const newBoon = document.createElement("div");
-                const newBane = document.createElement("div");
-
-                const newScoreSpan = document.createElement("span");
-                const newRelationshipSpan = document.createElement("span");
-                const newBoonSpan = document.createElement("span");
-                const newBaneSpan = document.createElement("span");
-
-                newName.innerText = data['npc']['name'];
-
-                newScoreSpan.innerText = "Relationship Score: ";
-                newScoreSpan.classList = "scoreTitle";
-                newScore.appendChild(newScoreSpan);
-                const newInput = document.createElement("input");
-                newInput.value = data['relationship'];
-                newInput.disabled = "true";
-                newScore.appendChild(newInput);
-
-                var text = "";
-                if (data['relationship'] >= "-100") {
-                    if (data['relationship'] >= 8) {
-                        text = "Lover";
-                    } else if (data['relationship'] >= "3") {
-                        text = "Friend";
-                    } else if (data['relationship'] >= "0") {
-                        text = "Netural";
-                    } else {
-                        text = "Rival";
-                    }
-                }
-                newRelationshipSpan.innerText = "Relationship: ";
-                newRelationship.appendChild(newRelationshipSpan);
-                var newTextRelationship = document.createElement('p');
-                newTextRelationship.innerText = " " + text;
-                newRelationship.appendChild(newTextRelationship);
-
-                newBoonSpan.innerText = "Boon: ";
-                newBoon.appendChild(newBoonSpan);
-                var newTextBoon = document.createElement('p');
-                newTextBoon.innerText = " " + data['npc']['boon'];
-                newBoon.appendChild(newTextBoon);
-
-                newBaneSpan.innerText = "Bane: ";
-                newBane.appendChild(newBaneSpan);
-                var newTextBane = document.createElement('p');
-                newTextBane.innerText = " " + data['npc']['bane'];
-                newBane.appendChild(newTextBane);
-
-                newCube.classList = "cube";
-                newCube.id = data['npc']['id'];
-
-                newName.classList = "cName";
-
-                newCube.appendChild(newName);
-                newCube.appendChild(newScore);
-                newCube.appendChild(newRelationship);
-                newCube.appendChild(newBoon);
-                newCube.appendChild(newBane);
-
-                page.appendChild(newCube);
-
-                var options = addSelected.querySelectorAll("option");
-                for (var y = 0; y < options.length; y++) {
-                    if (options[y].value == data['npc']['id']) {
-                        options[y].setAttribute('hidden', 'true');
-                    }
-                }
+        var relationshipPage = document.getElementById('relationships');
+        var addSelected = relationshipPage.querySelector('select');
+        var options = addSelected.querySelectorAll("option");
+        for (var y = 0; y < options.length; y++) {
+            if (options[y].value != 0) {
+                options[y].remove();
             }
-        });
+        }
+        for (var x = 0; x < NPCname.length; x++) {
+            var newOption = document.createElement('option');
+
+            newOption.value = NPCid[x];
+            newOption.innerText = NPCname[x];
+
+            relationshipPage.querySelector('#addRelationNPCs').appendChild(newOption);
+        }
+        getNPCRelationshipDataByStudentID(sid);
     }
     function getCourseData() {
         _supabase.from('class<>teacher').select('class(id, name, year, required), teacher(id, teacher_name)').then(response => {
@@ -1712,50 +1699,95 @@
             }
         });
     }
+    function getNPCRelationshipDataByStudentID(sid) {
+        _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student, relationship').eq('student', sid).order('npc', { ascending: true }).then(response => {
+            var relationshipPage = document.getElementById('relationships');
+            var addSelected = relationshipPage.querySelector('select');
+            var page = relationshipPage.querySelector('#cubes');
+            page.innerHTML = "";
+            for (var x = 0; x < response.data.length; x++) {
+                var data = response.data[x];
+                const newCube = document.createElement("div");
+                const newName = document.createElement("p");
 
-    function getNPCRelationshipDataByID(nid) {
-        var page = document.getElementById('relationships');
-        var npcInfo = page.querySelector('.NPCinfo');
-        var npcRelationshipDetails = page.querySelector('.relationshipInputs');
+                const newScore = document.createElement("div");
+                const newRelationship = document.createElement("div");
+                const newBoon = document.createElement("div");
+                const newBane = document.createElement("div");
 
-        for (var x = 0; x < NPCid.length; x++) {
-            if (NPCid[x] == nid) {
-                npcInfo.querySelector('#npcid').value = nid;
-                npcInfo.querySelector('#npcyr').value = NPCyear[x];
-                var players = document.getElementById('players');
-                var profile = players.querySelector('#profile');
-                var sid = profile.querySelector('#pid').value;
+                const newDeleteBtn = document.createElement("button");
 
+                const newScoreSpan = document.createElement("span");
+                const newRelationshipSpan = document.createElement("span");
+                const newBoonSpan = document.createElement("span");
+                const newBaneSpan = document.createElement("span");
 
-                _supabase.from('npc<>student').select('npc(boon, bane), relationship').eq('npc', nid).eq('student', sid).then(response => {
-                    var data = response.data;
-                    for (var y = 0; y < data.length; y++) {
-                        var value = response.data[y]['relationship'];
+                newName.innerText = data['npc']['name'];
 
-                        npcRelationshipDetails.querySelector('#rscore').value = value;
-                        npcRelationshipDetails.querySelector('#rboon').value = response.data[y]['boon'];
-                        npcRelationshipDetails.querySelector('#rbane').value = response.data[y]['bane'];
-                        
-                        if (value <= -2) {
-                            npcRelationshipDetails.querySelector('#rrelationship').value = "rival";
-                        } else {
-                            if (value >= "-1") {
-                                if (value >= 8) {
-                                    npcRelationshipDetails.querySelector('#rrelationship').value = "Lover";
-                                } else if (value >= "3") {
-                                    npcRelationshipDetails.querySelector('#rrelationship').value = "Friend";
-                                } else {
-                                    npcRelationshipDetails.querySelector('#rrelationship').value = "Netural";
-                                }
-                            }
-                        }
+                newScoreSpan.innerText = "Relationship Score: ";
+                newScoreSpan.classList = "scoreTitle";
+                newScore.appendChild(newScoreSpan);
+                const newInput = document.createElement("input");
+                newInput.value = data['relationship'];
+                newInput.disabled = "true";
+                newScore.appendChild(newInput);
 
+                var text = "";
+                if (data['relationship'] >= "-100") {
+                    if (data['relationship'] >= 8) {
+                        text = "Lover";
+                    } else if (data['relationship'] >= "3") {
+                        text = "Friend";
+                    } else if (data['relationship'] >= "0") {
+                        text = "Netural";
+                    } else {
+                        text = "Rival";
                     }
-                });               
-            }
-        }
-    }
+                }
+                newRelationshipSpan.innerText = "Relationship: ";
+                newRelationship.appendChild(newRelationshipSpan);
+                var newTextRelationship = document.createElement('p');
+                newTextRelationship.innerText = " " + text;
+                newRelationship.appendChild(newTextRelationship);
 
+                newBoonSpan.innerText = "Boon: ";
+                newBoon.appendChild(newBoonSpan);
+                var newTextBoon = document.createElement('p');
+                newTextBoon.innerText = " " + data['npc']['boon'];
+                newBoon.appendChild(newTextBoon);
+
+                newBaneSpan.innerText = "Bane: ";
+                newBane.appendChild(newBaneSpan);
+                var newTextBane = document.createElement('p');
+                newTextBane.innerText = " " + data['npc']['bane'];
+                newBane.appendChild(newTextBane);
+
+                newDeleteBtn.classList = "fa fa-trash";
+                newDeleteBtn.addEventListener('click', removeRelationship, false);
+
+                newCube.classList = "cube";
+                newCube.id = data['npc']['id'];
+
+                newName.classList = "cName";
+
+                newCube.appendChild(newName);
+                newCube.appendChild(newScore);
+                newCube.appendChild(newRelationship);
+                newCube.appendChild(newBoon);
+                newCube.appendChild(newBane);
+                newCube.appendChild(newDeleteBtn);
+
+                page.appendChild(newCube);
+
+                var options = addSelected.querySelectorAll("option");
+                for (var y = 0; y < options.length; y++) {
+                    if (options[y].value == data['npc']['id']) {
+                        options[y].remove();
+                    }
+                }
+            }
+        });
+    }
     function getNPCStudentDataByID(nid) {
         for (var x = 0; x < NPCid.length; x++) {
             if (NPCid[x] == nid) {
@@ -2031,6 +2063,25 @@
             })
         }
     }
+    function saveCourseChoices(inputs) {
+        var sid = document.getElementById('profile').querySelector('#pid').value;
+        var allClasses = [];
+        for (var y = 0; y < inputs.length; y++) {
+            if (inputs[y].value) {
+                var split = inputs[y].value.split(':');
+                var selectedID = split[0];
+
+                _supabase.from('class<>student').select('class(id, name, year)').eq('class', selectedID).eq('student', sid).then(response => {
+                    if (response.data.length > 0) {
+                        allClasses.push(response.data[0]['class']['id']);
+                    } else {
+                        allClasses.push(' ');
+                    }
+                });
+            }
+        }
+        console.log(allClasses);
+    }
     
     // Creators
     function createAllRelationships() {
@@ -2046,7 +2097,15 @@
             }
         }
         _supabase.from('_tblStudents').insert(updateobject).then(response => {
-            // window.location = window.location;
+        })
+    }
+    function createRelationship(nid, sid) {
+        var updateobject = {};
+        updateobject['npc'] = nid;
+        updateobject['student'] = sid;
+        updateobject['relationship'] = 0;
+        
+        _supabase.from('npc<>student').insert(updateobject).then(response => {
         })
     }
 
@@ -2070,7 +2129,7 @@
         alert("Please send me a message saying 'I have tried to delete student " + nid + " can you see if it worked'");
 
         
-        _supabase.from('npc<>student').select('*').eq({ id: nid }).then(response => {
+        /* _supabase.from('npc<>student').select('*').eq({ id: nid }).then(response => {
             for (var x = 0; x < response.data.length; x++) {
                 _supabase.from('npc<>student').delete().match({ npc: nid }).then(response => {
                 })
@@ -2081,6 +2140,13 @@
             }
             _supabase.from('_tblStudents').delete().match({ id: nid }).then(response => {
             })
+        }) */
+    }
+    function removeRelationship() {
+        var nid = this.parentElement.id;
+        var sid = document.getElementById('profile').querySelector('#pid').value;
+        _supabase.from('npc<>student').delete().match({ npc: nid, student: sid }).then(response => {
+            getNPCRelationshipDataByStudentID(sid);
         })
     }
 </script>

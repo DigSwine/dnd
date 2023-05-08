@@ -397,6 +397,19 @@ button {
                     height: calc(100% - 10px);
                     resize: none;
                 }
+        .mainpage #profile select {
+            text-align: left;
+            width: 450px;
+            opacity: 1;
+            color: white;
+            border: none;
+            background-color: transparent;
+            padding: 5px 0 5px 10px;
+        }
+            .mainpage #profile .selected:disabled {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
 
     .mainpage #details {
         position: relative;
@@ -432,7 +445,8 @@ button {
             margin: 20px 50px 20px 50px;
             height: calc(100% - 40px);
             width: 200px;
-            background-color: darkcyan;
+            border: 2px solid white;
+            border-radius: 10px;
             position: relative;
         }
             .mainpage #courses .year h3 {
@@ -553,11 +567,23 @@ button {
                 .mainpage #relationships .cubeWrapper #cubes .cube div .scoreTitle {
                     margin: 5px 0 0 0;
                 }
-                    .mainpage #relationships .relationshipInputs {
-                        display: flex;
-                        flex-direction:column;
-                        margin: 0 100px 0 100px;
-                    }
+                .mainpage #relationships .cubeWrapper #cubes .cube button {
+                    color: white;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    display: block;
+                    width: auto;
+                    padding: 0 10px 0 10px;
+                    height: 45px;
+                    text-align: center;
+                    font-size: 1.2rem;
+                }
+                .mainpage #relationships .relationshipInputs {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 100px 0 100px;
+                }
                     .mainpage #relationships .relationshipInputs label{
                         display: flex;
                     }
