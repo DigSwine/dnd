@@ -477,6 +477,7 @@ main {
     .mainpage #relationships {
     }
         .mainpage #relationships .cubeWrapper {
+            margin: 20px 0 20px 0;
         }
             .mainpage #relationships .cubeWrapper #cubes {
                 padding: 0 50px 0 50px;
