@@ -300,6 +300,7 @@
             </div>
 
             <div class="page" id="relationships" hidden>
+                <h2>Relationships</h2>
                 <div class="cubeWrapper">
                     <div id="cubes">
                     </div>
@@ -791,7 +792,7 @@
                     } else if (data['relationship'] >= "3") {
                         text = "Friend";
                     } else if (data['relationship'] >= "0") {
-                        text = "Netural";
+                        text = "Neutral";
                     } else {
                         text = "Rival";
                     }
@@ -943,7 +944,7 @@
         });       
     }
     function getStudentCourseByID(sid) {
-        _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').eq('student', sid).then(response => {
+        _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').eq('student', sid).order('class', { ascending: false }).then(response => {
             var data = response.data;
             var Y1C = 1;
             var Y2C = 1;

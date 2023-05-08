@@ -8,7 +8,7 @@ function swapnav(type) {
     } else {
         //open
         if (type == 'open') {
-            if (sessionStorage.getItem('Student_Id')) {
+            if (sessionStorage.getItem('Student_Id') || sessionStorage.getItem('Teacher_Id')) {
                 
                 var logout = subNav.querySelector('#logout');
                 if (!logout) {

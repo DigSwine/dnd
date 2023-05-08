@@ -1739,7 +1739,7 @@
                     } else if (data['relationship'] >= "3") {
                         text = "Friend";
                     } else if (data['relationship'] >= "0") {
-                        text = "Netural";
+                        text = "Neutral";
                     } else {
                         text = "Rival";
                     }
@@ -2017,9 +2017,9 @@
             noteid = x + 1;
             updateobject[inputs[x].id] = inputs[x].value;
             _supabase.from('notes').update(updateobject).eq('id', noteid).then(response => {
-
             })
         }
+        alert("Notes have been saved");
     }
     function saveSS(locations, headers, contents) {
         var updateobject = {};

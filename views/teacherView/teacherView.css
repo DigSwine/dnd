@@ -107,21 +107,17 @@ main {
     top: -100px;
     position: relative;
 }
-
     .leftnav .block {
         width: 100%;
         height: 150px;
     }
-
         .leftnav .block img {
             height: calc(100% - 30px);
             margin: 15px
         }
-
     .leftnav .choices {
         width: 100%;
     }
-
         .leftnav .choices .choice {
             background-color: white;
             position: relative;
@@ -129,15 +125,15 @@ main {
             height: auto;
             width: 300px;
         }
-
             .leftnav .choices .choice:hover {
                 background-color: rgb(227,28,121, 0.2);
                 color: rgb(227,28,121);
+                border-left: 5px solid hotpink;
+                border-right: 5px solid hotpink;
             }
             .leftnav .choices .choice:hover ul {
                 display: block;
             }
-
         .leftnav .choices .selected {
             border-left: 5px solid hotpink;
             border-right: 5px solid hotpink;
@@ -260,11 +256,14 @@ button {
             color: black;
         }
 
-        .mainpage input {
-            text-align: left;
-            width: 450px;
-            padding: 5px 0 5px 10px;
-        }
+    .mainpage input, .mainpage textarea, .mainpage p{
+        font-size: 0.9rem;
+    }
+    .mainpage input {
+        text-align: left;
+        width: 450px;
+        padding: 5px 0 5px 10px;
+    }
         .mainpage input:enabled {
             border: 2px solid white;
         }

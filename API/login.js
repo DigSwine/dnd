@@ -21,6 +21,7 @@ function extractdata(array) {
             window.open('studentview.html', '_self');
         }
         if (per == 'Tch') {
+            sessionStorage.setItem("Teacher_Id", JSON.stringify(data['teacher_id']));
             window.open('teacherview.html', '_self');
         }
     }
