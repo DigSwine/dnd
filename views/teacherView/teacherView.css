@@ -445,27 +445,37 @@ button {
             margin: 20px 50px 20px 50px;
             height: calc(100% - 40px);
             width: 200px;
-            border: 2px solid white;
             border-radius: 10px;
             position: relative;
+            min-width: 320px;
+            box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            background-image: linear-gradient(to right, transparent 10%, black 90%);
         }
-            .mainpage #courses .year h3 {
-                margin: 0;
-                padding: 10px;
-                font-family: 'Valneck';
-                position: absolute;
-                top: -10px;
-                right: 30px;
-                font-size: 8rem;
-                color: rgba(255, 255, 255, 0.1);
-            }
+        .mainpage #courses select:disabled {
+            opacity: 1;
+            color: white;
+            border: none;
+            background-color: transparent;
+        }
+        .mainpage #courses .year h3 {
+            margin: 0;
+            padding: 10px;
+            font-family: 'Valneck';
+            position: absolute;
+            top: -10px;
+            right: 30px;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.1);
+        }
             .mainpage #courses .year + .year {
                 margin: 20px 50px 20px 0;
             }
-            .mainpage #courses .year .coursechoices {
-                position: relative;
-                height: calc(100% - 47px - 47px - 20px);
-            }
+        .mainpage #courses .year .coursechoices {
+            position: relative;
+            margin-top: 40px;
+            height: calc(100% - 47px - 20px);
+        }
                 .mainpage #courses .year .coursechoices .coursechoice {
                     margin: 10px;
                     display: flex;
@@ -493,28 +503,43 @@ button {
             margin: 20px 50px 20px 50px;
             height: 367.672px;
             width: 200px;
-            border: 2px solid white;
             border-radius: 10px;
             position: relative;
+            min-width: 320px;
+            box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            background-image: linear-gradient(to right, transparent 10%, black 90%);
         }
-            .mainpage #exams .year h3 {
-                margin: 0;
+        .mainpage #exams select:disabled {
+            opacity: 1;
+            color: white;
+            border: none;
+            background-color: transparent;
+        }
+        .mainpage #exams .year h3 {
+            margin: 0;
+            padding: 10px;
+            font-family: 'Valneck';
+            position: absolute;
+            top: -10px;
+            right: 30px;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.1);
+        }
+        .mainpage #exams .year + .year {
+            margin: 20px 50px 20px 0;
+        }
+        .mainpage #exams .year .exams {
+            position: relative;
+            margin-top: 40px;
+            height: calc(100% - 47px - 20px);
+        }
+            .mainpage #exams .year .exams div {
+                display: flex;
+                width: calc(100% - 20px);
                 padding: 10px;
-                font-family: 'Valneck';
+                height: calc(100% / 3 - 20px);
             }
-            .mainpage #exams .year + .year {
-                margin: 20px 50px 20px 0;
-            }
-            .mainpage #exams .year .exams {
-                position: relative;
-                height: calc(100% - 27px - 20px);
-            }
-                .mainpage #exams .year .exams div {
-                    display: flex;
-                    width: calc(100% - 20px);
-                    padding: 10px;
-                    height: calc(100% / 3 - 20px);
-                }
                     .mainpage #exams .year .exams div p, .mainpage #exams .year .exams div select {
                         flex: 1;
                         text-align: left;
