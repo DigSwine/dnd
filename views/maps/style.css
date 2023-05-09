@@ -29,27 +29,27 @@ main .locations {
     main .locations .silverquill {
         position: absolute;
         left: 48.5%;
-        top: 15%;
+        top: 10%;
     }
     main .locations .prismari {
         position: absolute;
         left: 22.5%;
-        bottom: 15%;
+        bottom: 20%;
     }
     main .locations .lorehold {
         position: absolute;
         left: 26%;
-        top: 34%;
+        top: 32%;
     }
     main .locations .qundrix {
         position: absolute;
         right: 19.75%;
-        top: 34%;
+        top: 32%;
     }
     main .locations .witherbloom {
         position: absolute;
         right: 24.75%;
-        bottom: 15%;
+        bottom: 20%;
     }
     main .locations .main_campus {
         position: absolute;

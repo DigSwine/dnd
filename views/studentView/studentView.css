@@ -409,6 +409,10 @@ main {
                 font-family: Arial;
                 font-size: 0.9rem;
             }
+                .mainpage #courses .year .coursechoices .coursechoice select:disabled {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                }
             .mainpage #courses .year .coursechoices .coursechoice span {
                 flex: 1;
                 font-family: Arial;
@@ -554,6 +558,8 @@ main {
             .mainpage #jobandextra #jobs .job p, .mainpage #jobandextra #jobs .job h3 {
                 flex: 1;
                 text-align: left;
+                font-size: 0.9rem;
+                font-family: 'Valneck';
             }
                 .mainpage #jobandextra #jobs .job h3:before {
                     content: "Job Title";
@@ -599,6 +605,10 @@ main {
                 }
         .mainpage #jobandextra button {
             flex: 0.5;
+            font-family: Arial;
+            font-size: 1.2rem;
+            display: block;
+            text-align: center;
             background-color: transparent;
             border: 2px solid darkgoldenrod;
             color: white;

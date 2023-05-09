@@ -129,6 +129,9 @@
                 <h2>Players</h2>
                 <div class="mainbody">
                     <div class="view" id="profile">
+                        <div class="controls">
+                            <button id="save" class="control fa fa-floppy-o"></button>
+                        </div>
                         <div class="top">
                             <div class="card">
                                 <img id="profilepicture" />
@@ -155,7 +158,7 @@
                                 <label>Year: <input id="year" placeholder="Year" disabled /></label>
                                 <label>
                                     College:
-                                    <select id="college" disabled>
+                                    <select id="college">
                                         <option value="0">-- Please Select College Choice --</option>
                                     </select>
                                 </label>
@@ -591,6 +594,10 @@
                 </form>
                 <button id="newpas">Submit</button>
             </div>
+
+            <div class="page" id="tea">
+                <img src="../assets/blackmarket.png"/>
+            </div>
         </div>
     </main>
 </body>
@@ -648,30 +655,43 @@
     $('.choice').click(function () {
         var subnav = document.getElementById('subnavchoices');
         var choices = subnav.querySelectorAll('.choice');
-        for (var x = 0; x < choices.length; x++) {
-                choices[x].classList = "choice";
+        var current = "no";
+        if (this.classList == "choice selected") {
+            current = "yes";
         }
-        this.classList = "choice selected";
-
+        for (var x = 0; x < choices.length; x++) {
+            choices[x].classList = "choice";
+        }
         var choice = this.querySelector('p');
         var toshow = choice.innerText.toLowerCase();
+        if (current == "no") {
+            this.classList = "choice selected";
 
-        if (toshow == "logout") {
-            logot();
-        }
+            if (toshow == "logout") {
+                logot();
+            }
 
-        var mainpage = document.getElementById('pages');
-        var pages = mainpage.querySelectorAll('.page');
-        for (var x = 0; x < pages.length; x++) {
-            if (pages[x]) {
-                pages[x].setAttribute("hidden", "true");
+            var mainpage = document.getElementById('pages');
+            var pages = mainpage.querySelectorAll('.page');
+            for (var x = 0; x < pages.length; x++) {
+                if (pages[x]) {
+                    pages[x].setAttribute("hidden", "true");
+                }
+            }
+            if (this.id != "ppp") {
+                var cLogo = document.getElementById('collegeLogo');
+                cLogo.src = "assets/strix_logo.png";
+            }
+            document.getElementById(toshow).toggleAttribute("hidden");
+        } else {
+            var pages = document.getElementById("pages").querySelectorAll(".page");
+            if (toshow != 'players') {
+                for (var x = 0; x < pages.length; x++) {
+                    pages[x].setAttribute("hidden", "true");
+                }
+                document.getElementById("tea").toggleAttribute("hidden");
             }
         }
-        if (this.id != "ppp") {
-            var cLogo = document.getElementById('collegeLogo');
-            cLogo.src = "assets/strix_logo.png";
-        }
-        document.getElementById(toshow).toggleAttribute("hidden");
     })
     $('.control').click(function () {
         var page = this.parentNode.parentNode;
@@ -714,11 +734,16 @@
                     }
                 }
 
+                if (saveloc == "profile") {
+                    var inputs = this.parentElement.parentElement.querySelectorAll('select');
+                    saveStudentSchool(inputs);
+                }
                 if (saveloc == "courses") {
                     var year = this.parentElement.parentElement;
                     var inputs = year.querySelectorAll('select');
                     saveCourseChoices(inputs);
-                } else if (saveloc == "relationships") {
+                }
+                if (saveloc == "relationships") {
                     var cubeList = page.querySelector('#cubes');
                     var cubes = cubeList.querySelectorAll('.cube');
                     if (active == "edit") {
@@ -732,7 +757,8 @@
                         page.querySelector('#addModel').toggleAttribute('hidden');
                         console.log('hit');
                     }
-                } else if (saveloc == "exams") {
+                }
+                if (saveloc == "exams") {
                     var exams = [];
                     var results = [];
                     var selects = page.querySelectorAll('select');
@@ -751,7 +777,8 @@
                         }
                     }
                     saveExamScores(exams, results);
-                } else if (saveloc == "npcs") {
+                }
+                if (saveloc == "npcs") {
                     var allinputs = [];
                     var SorT = "";
                     if (this.parentElement.parentElement.querySelector('#nid').value) {
@@ -801,7 +828,8 @@
                             // createNewStudentData(allinputs);
                         }
                     }
-                } else if (saveloc == "extra notes") {
+                }
+                if (saveloc == "extra notes") {
                     var textareas = page.querySelectorAll('textarea');
                     var allinputs = [];
                     for (var y = 0; y < textareas.length; y++) {
@@ -810,7 +838,8 @@
                         }
                     }
                     saveNotes(allinputs);
-                } else if (saveloc == "strixhaven star") {
+                }
+                if (saveloc == "strixhaven star") {
                     var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
                     var pgHeader = [];
                     var pgContent = [];
@@ -2189,6 +2218,14 @@
                 }
             }
         }
+    }
+    function saveStudentSchool(inputs) {
+        updateobject = {};
+        updateobject['college'] = inputs[0].value;
+        var id = document.getElementById('pid').value;
+        _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
+
+        })
     }
     
     // Creators

@@ -415,6 +415,9 @@ button {
                 -webkit-appearance: none;
                 -moz-appearance: none;
             }
+        .mainpage #profile option {
+            color: black;
+        }
 
     .mainpage #details {
         position: relative;
@@ -678,9 +681,11 @@ button {
                 padding: 50px 50px 20px 50px;
                 position: relative;
             }
-                .mainpage #jobandextras #jobs .job p {
+                .mainpage #jobandextras #jobs .job p, .mainpage #jobandextras #jobs .job h3 {
                     flex: 1;
                     text-align: left;
+                    font-size: 0.9rem;
+                    font-family: 'Valneck';
                 } 
                 .mainpage #jobandextras #jobs .job .title:before {
                     content: "Job Title";
@@ -728,6 +733,7 @@ button {
             flex: 0.5;
             display: block;
             text-align: center;
+            font-family: Arial;
             background-color: transparent;
             border: 2px solid darkgoldenrod;
             color: white;
