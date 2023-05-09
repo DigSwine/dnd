@@ -1149,9 +1149,15 @@ button {
     font-size: 1rem;
 }
 
-.mainpage #account {
+.mainpage #tea video{
+    position: absolute;
+    top: -110px;
+    left: 0;
+    height: calc(100% + 160px);
 }
 
+.mainpage #account {
+}
     .mainpage #account form {
         color: black;
         margin: 50px 0 0 0;
@@ -1163,7 +1169,6 @@ button {
         width: 100%;
         position: relative;
     }
-
     .mainpage #account label {
         margin-top: 15px;
         font-size: 18px;
@@ -1172,7 +1177,6 @@ button {
         width: 100%;
         color: white;
     }
-
     .mainpage #account form input {
         color: black;
         width: 350px;
@@ -1186,7 +1190,6 @@ button {
         -webkit-transition: border-width 0.25s, border-color 0.25s, background-color 0.5s, right 1s, opacity 1s;
         transition: border-width 0.25s, border-color 0.25s, background-color 0.5s, right 1s, opacity 1s;
     }
-
     .mainpage #account button {
         margin-top: 15px;
         opacity: 1;
@@ -1204,7 +1207,6 @@ button {
         -webkit-transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
         transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
     }
-
         .mainpage #account button:hover {
             cursor: pointer;
         }

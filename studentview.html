@@ -1269,36 +1269,56 @@
         var inputs = getAllInputs(toClear);
 
         for (var x = 0; x < inputs.length; x++) {
-            console.log(inputs[x].id);
-            if (inputs[x].id != "college" || inputs[x].id != "year") {
-                updateobject[inputs[x].id] = null;
-            } else {
-                console.log("hit");
-                if (inputs[x] == "college") {
-                    updateobject[inputs[x].id] = 6;
-                } 
-                if (inputs[x] == "year") {
-                    updateobject[inputs[x].id] = 1;
-                }
+            updateobject[inputs[x].id] = null;
+            if (inputs[x].id == "college") {
+                updateobject[inputs[x].id] = 6;
+            }
+            if (inputs[x].id == "year") {
+                updateobject[inputs[x].id] = 1;
             }
         }
-        console.log(updateobject);
-        // _supabase.from('_tblStudents').update(updateobject).eq('id', sessionStorage.getItem("Student_Id")).then(response => { 
-        // })
-        
+        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => { 
+        })     
 
         // Clear Details
+        var toClear = document.getElementById('details')
+        var updateobject = {};
+        var inputs = getAllInputs(toClear);
+
+        for (var x = 0; x < inputs.length; x++) {
+            updateobject[inputs[x].id] = null;
+        }
+        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
+        })
 
         // Reset Courses
+        _supabase.from('class<>student').delete().eq('student', sid).then(response => {
+        })
 
         // Reset Exams
+        var updateobject = {};
+        for (var x = 0; x < 11; x++) {
+            updateobject['score'] = null;
+            updateobject['cheated'] = null;
+            updateobject['studied'] = null;
+            _supabase.from('exam<>student').update(updateobject).eq('exam', x).eq('student', sid).then(response => {
+            })
+        }
 
         // Clear Relationships
+        _supabase.from('npc<>student').delete().eq('student', sid).then(response => {
+        })
 
         // Clear Job
+        _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
+        })
 
         // Clear Extras
+        _supabase.from('Club<>Student').delete().eq('student', sid).then(response => {
+        })
+
     }
+
     function getAllInputs(toClear) {
         var inputs = toClear.querySelectorAll('input');
         var textareas = toClear.querySelectorAll('textarea');
