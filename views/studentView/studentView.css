@@ -169,7 +169,7 @@ main {
         background-color: transparent;
         border: none;
         font-size: 0.9rem;
-        text-align: center;
+        text-align: left;
         color: white;
         font-family: Arial;
     }
@@ -309,7 +309,7 @@ main {
                     resize: none;
                     flex: 1;
                     color: white;
-                    text-align: center;
+                    text-align: left;
                     background-color: transparent;
                 }
         .mainpage #profile .right {

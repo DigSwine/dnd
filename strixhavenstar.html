@@ -21,7 +21,7 @@
 
     <!-- main -->
     <main>
-        <div class="topcontainer">
+        <div id="topcontainer" class="topcontainer">
             <div class="issue">2098423</div>
             <div class="slogan">the only paper around</div>
             <div class="paperdate">Monday, 1st November, 2022</div>
@@ -105,19 +105,40 @@
             // Get correct page
             var togoPage = document.getElementById('page' + page);
 
-            if (page == 1) {
-                togoPage.querySelector('.Mainheadline').innerText = title;
-                togoPage.querySelector('#' + location).innerText = content;
-
-                // check if sec con is out of view.
-                var contentContainer = togoPage.querySelector('.secContainer');
-                var bounding = contentContainer.getBoundingClientRect();
-                if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                    //get height of title
-                    var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
-                    var currentH = contentContainer.offsetHeight;
-                    contentContainer.style.height = currentH - headerH;
+            if (page == 0) {
+                var topc = document.getElementById('topcontainer');
+                if (location == "date") {
+                    var date = topc.querySelector('.paperdate');
+                    date.innerText = content;
                 }
+                if (location == "slogan") {
+                    var slo = topc.querySelector('.slogan');
+                    slo.innerText = content;
+                }
+                if (location == "issue") {
+                    var iss = topc.querySelector('.issue');
+                    iss.innerText = content;
+                }
+            } else if (page == 1) {
+                if (title) {
+                    togoPage.querySelector('.Mainheadline').innerText = title;
+                    togoPage.querySelector('#' + location).innerText = content;
+
+                        // check if sec con is out of view.
+                        var contentContainer = togoPage.querySelector('.secContainer');
+                        var bounding = contentContainer.getBoundingClientRect();
+                        if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                            //get height of title
+                            var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                            var currentH = contentContainer.offsetHeight;
+                            contentContainer.style.height = currentH - headerH;
+                        }
+                    } else {
+                        if (location == "dropdown") {
+                            togoPage.querySelector('video').src = "../assets/star/" + content;
+                        }
+                    }
+               
             } else {
                 var id = "";
                 if (location == "left") {

@@ -451,7 +451,7 @@
                     <button id="save" class="control fa fa-floppy-o"></button>
                 </div>
                 <h2>Strixhaven Star</h2>
-                <div class="topcontainer">
+                <div id="topcontainer" class="topcontainer">
                     <div class="issue">2098423</div>
                     <div class="slogan">the only paper around</div>
                     <div class="paperdate">Monday, 1st November, 2022</div>
@@ -460,6 +460,10 @@
                     <div id="leftc" class="LCorn" style="display: none" onclick="previouspg()"></div>
                     <div id="rightc" class="RCorn" style="display: block" onclick="nextpg()"></div>
 
+                    <select id="srcSelector" class="srcSelector">
+                        <option value="defSSvideo.mp4">Circle Time</option>
+                        <option value="strix_star_vid.mp4">Welcome to Strixhaven</option>
+                    </select>
                     <div id="page1" class="pg1" style="display: block">page 1</div>
                     <div id="page2" class="pg2" style="display: none">page 2</div>
                     <div id="page3" class="pg3" style="display: none">page 3</div>
@@ -810,12 +814,19 @@
                     var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
                     var pgHeader = [];
                     var pgContent = [];
+                    var MainOptions = [];
                     for (var x = 0; x < pages.length; x++) {
                         var pg = page.querySelector(pages[x]);
-                        pgHeader.push(pg.querySelector('input'));
-                        pgContent.push(pg.querySelector('textarea'));
+                        if (pages[x] != "#topcontainer") {
+                            pgHeader.push(pg.querySelector('input'));
+                            pgContent.push(pg.querySelector('textarea'));
+                        }
                     }
-                    saveSS(pages, pgHeader, pgContent);
+                    var pg = page.querySelector('#topcontainer');
+                    MainOptions.push(pg.querySelectorAll('input'));
+                    MainOptions.push(pg.parentElement.querySelector('select'));
+
+                    saveSS(pages, pgHeader, pgContent, MainOptions);
 
                     var jobs = page.querySelector('.pg3').querySelector('.jobs').querySelectorAll('.job');
                     saveJobs(jobs);
@@ -950,6 +961,10 @@
         getNPCTeacherDataByID(this.value);
     })
 
+    $('.srcSelector').change(function () {
+        this.parentElement.parentElement.querySelector('video').src = "../assets/star/" + this.value;
+    })
+
     $('#confirmRelation').click(function () {
         var nid = this.parentElement.querySelector('#addRelationNPCs').value;
         var sid = document.getElementById('profile').querySelector('#pid').value;
@@ -1062,12 +1077,14 @@
             showing++;
             var toshow = document.getElementById(pages[showing]);
             var preBtn = document.getElementById('leftc');
+            var dropdown = document.getElementById('srcSelector');
             var nexBtn = document.getElementById('rightc');
             if (showing == 2) {
                 toshow.style.display = "flex";
                 nexBtn.style.display = "none";
             }
             preBtn.style.display = "block";
+            dropdown.style.display = "none";
             toshow.style.display = "flex";
         }
     }
@@ -1079,8 +1096,10 @@
             showing--;
             var toshow = document.getElementById(pages[showing]);
             var preBtn = document.getElementById('leftc');
+            var dropdown = document.getElementById('srcSelector');
             var nexBtn = document.getElementById('rightc');
             if (showing == 0) {
+                dropdown.style.display = "block";
                 toshow.style.display = "block";
                 preBtn.style.display = "none";
             } else {
@@ -1869,6 +1888,9 @@
                 if (location == "right") {
                     id = 'pg2right';
                 }
+                if (location == "right") {
+                    id = 'pg2right';
+                }
 
                 const newTitle = document.createElement("input");
                 newTitle.value = title;
@@ -1881,18 +1903,49 @@
                 // Get correct page
                 var togoPage = document.getElementById('page' + page);
 
-                if (page == 1) {
-                    togoPage.querySelector('.Mainheadline').appendChild(newTitle);
-                    togoPage.querySelector('#' + location).appendChild(newContent);
+                if (page == 0) {
+                    var topc = document.getElementById('topcontainer');
+                    const newinput = document.createElement("input");
+                    newinput.value = content;
+                    newinput.classList = "topInputs";
+                    newinput.disabled = "true";
 
-                    // check if sec con is out of view.
-                    var contentContainer = togoPage.querySelector('.secContainer');
-                    var bounding = contentContainer.getBoundingClientRect();
-                    if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                        //get height of title
-                        var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
-                        var currentH = contentContainer.offsetHeight;
-                        contentContainer.style.height = currentH - headerH;
+                    if (location == "date") {
+                        var date = topc.querySelector('.paperdate');
+                        date.innerHTML = "";
+                        date.appendChild(newinput);
+                    }
+                    if (location == "slogan") {
+                        var slo = topc.querySelector('.slogan');
+                        slo.innerHTML = "";
+                        slo.appendChild(newinput);
+                    }
+                    if (location == "issue") {
+                        var iss = topc.querySelector('.issue');
+                        iss.innerHTML = "";
+                        iss.appendChild(newinput);
+                    }
+                } else if (page == 1) {
+                    if (title) {
+                        togoPage.querySelector('.Mainheadline').appendChild(newTitle);
+                        togoPage.querySelector('#' + location).appendChild(newContent);
+
+                        // check if sec con is out of view.
+                        var contentContainer = togoPage.querySelector('.secContainer');
+                        var bounding = contentContainer.getBoundingClientRect();
+                        if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                            //get height of title
+                            var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                            var currentH = contentContainer.offsetHeight;
+                            contentContainer.style.height = currentH - headerH;
+                        }
+                    } else {
+                        if (location == "dropdown") {
+                            var drop = togoPage.parentElement.querySelector('select');
+                            drop.value = content;
+                            drop.disabled = "true";
+                            togoPage.querySelector('video').src = "../assets/star/" + content;
+                        }
                     }
                 } else {
                     if (id) {
@@ -2021,9 +2074,10 @@
         }
         alert("Notes have been saved");
     }
-    function saveSS(locations, headers, contents) {
+    function saveSS(locations, headers, contents, options) {
         var updateobject = {};
         var id = "";
+        // Storys
         for (var x = 0; x < headers.length; x++) {
             if (locations[x] == '#page1') {
                 id = 1;
@@ -2042,10 +2096,37 @@
             }
             updateobject['title'] = headers[x].value;
             updateobject['content'] = contents[x].value;
+
             _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
 
             })
         }
+        // Header
+        for (var x = 0; x < options[0].length; x++) {
+            var loc = options[0][x].parentElement.classList;
+            if (loc == 'issue') {
+                id = 9;
+            }
+            if (loc == 'slogan') {
+                id = 8;
+            }
+            if (loc == 'paperdate') {
+                id = 7;
+            }
+
+            updateobject['title'] = null;
+            updateobject['content'] = options[0][x].value;
+            _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
+
+            })
+        }
+        // Image
+        id = 6;
+        updateobject['title'] = null;
+        updateobject['content'] = options[1].value;
+        _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
+
+        })
     }
     function saveJobs(jobs) {
         var updateobject = {};

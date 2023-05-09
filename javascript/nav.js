@@ -22,9 +22,16 @@ function swapnav(type) {
                     var newProfile = document.createElement('a');
                     newProfile.id = "profile";
                     newProfile.innerText = "Profile";
-                    newProfile.onclick = function () {
-                        gopage("profile");
-                    };
+                    if (sessionStorage.getItem('Student_Id')) {
+                        newProfile.onclick = function () {
+                            gopage("profile");
+                        };
+                    }
+                    if (sessionStorage.getItem('Teacher_Id')) {
+                        newProfile.onclick = function () {
+                            gopage("teacher");
+                        };
+                    }
 
                     subNav2.appendChild(newProfile);
                     subNav2.appendChild(newLogout);
@@ -62,6 +69,9 @@ function gopage(goto) {
     }
     if (goto == 'profile') {
         url = 'studentview.html';
+    }
+    if (goto == 'teacher') {
+        url = 'teacherview.html';
     }
 
     window.location = url;

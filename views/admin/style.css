@@ -27,6 +27,7 @@ body {
             font-size: 1.75rem;
             font-variant-caps: all-petite-caps;
             text-decoration: none;
+            font-family: 'Valneck';
         }
             .subnav .subnav-content a:hover {
                 background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
@@ -155,6 +156,7 @@ body {
             color: #fff;
             width: 95%;
             display: inline-block;
+            font-family: 'Valneck';
             margin: 0;
             font-size: 2rem;
         }
@@ -172,7 +174,7 @@ body {
             width: 95%;
             display: inline-block;
             margin: 5px 0 0 0;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
 
 .goaway{

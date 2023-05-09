@@ -242,6 +242,11 @@ button {
         color: white;
         font-family: Arial;
     }
+    .mainpage .srcSelector {
+        position: absolute;
+        top: 25px;
+        left: 225px;
+    }
         .mainpage #npcs form label select{
             text-align: left;
             flex: 1;
@@ -848,21 +853,25 @@ button {
 }
     .mainpage .ss .issue:before {
         content: "No. ";
+        position: absolute;
+        top: 13px;
+        left: 15px;
     }
 .mainpage .ss .slogan {
     text-transform: uppercase;
     text-align: center;
 }
-.mainpage .ss .paperdate {
-    text-transform: uppercase;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 1px solid #2f2f2f;
-    padding: 5px;
-    right: 5%;
-    text-align: right;
-}
+    .mainpage .ss .paperdate {
+        text-transform: uppercase;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 1px solid #2f2f2f;
+        padding: 0;
+        right: 5%;
+        text-align: right;
+        width: 300px;
+    }
     .mainpage .ss .bodycontainer {
         position: relative;
         padding: 0 15px 15px 15px;
@@ -902,6 +911,12 @@ button {
         width: 75px;
     }
 
+    .mainpage .ss .topInputs {
+        font-size: 0.8rem;
+        height: 18px;
+        padding: 0;
+        width: 300px;
+    }
     .mainpage .ss textarea {
         color: black;
         text-align: left;
