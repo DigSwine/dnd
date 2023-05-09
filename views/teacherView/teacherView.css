@@ -1129,31 +1129,61 @@ button {
 }
 
 .mainpage #account {
-    height: 100%;
-    width: 100%;
-    display: relitive;
 }
+
+    .mainpage #account form {
+        color: black;
+        margin: 50px 0 0 0;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-family: "Helvetica";
+        width: 100%;
+        position: relative;
+    }
+
+    .mainpage #account label {
+        margin-top: 15px;
+        font-size: 18px;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        color: white;
+    }
+
+    .mainpage #account form input {
+        color: black;
+        width: 350px;
+        display: block;
+        padding: 0.5%;
+        display: inline-block;
+        border-radius: 8px;
+        border: solid 2px;
+        border-color: darkgoldenrod;
+        background-color: white;
+        -webkit-transition: border-width 0.25s, border-color 0.25s, background-color 0.5s, right 1s, opacity 1s;
+        transition: border-width 0.25s, border-color 0.25s, background-color 0.5s, right 1s, opacity 1s;
+    }
+
     .mainpage #account button {
-        position: absolute;
-        left: 50%;
-        top: 100px;
-        transform: translateX(-50%);
+        margin-top: 15px;
+        opacity: 1;
+        width: 250px;
+        font-size: 18px;
+        font-family: "Helvetica";
+        text-align: center;
+        color: darkgoldenrod;
+        padding: 18px 60px;
+        border-radius: 16px;
+        border: solid 2px;
+        display: inline-block;
+        border-color: darkgoldenrod;
+        background-color: rgba(0, 0, 0, 0.1);
+        -webkit-transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
+        transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
     }
-    .mainpage #account .model {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translateX(-50%) translateY(-50%);
-    }
-        .mainpage #account .model form {
-            display: relitive;
-        }
-            .mainpage #account .model form button {
-                position: center;
-            }
-        .mainpage #account button {
-            color: white;
-            border: 2px solid white;
-            padding: 20px;
-            width: 300px;
+
+        .mainpage #account button:hover {
+            cursor: pointer;
         }

@@ -1,10 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\API",
+    "\\javascript",
     "\\views",
-    "\\views\\studentView",
-    "\\views\\teacherView"
+    "\\views\\login"
   ],
-  "SelectedNode": "\\API",
+  "SelectedNode": "\\views\\login\\login.css",
   "PreviewInSolutionExplorer": false
 }

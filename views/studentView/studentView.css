@@ -476,9 +476,13 @@ main {
 
     .mainpage #relationships {
     }
-        .mainpage #relationships .cubeWrapper {
-            margin: 20px 0 20px 0;
-        }
+    .mainpage #insporation {
+        padding: 0 65px 0 65px;
+        margin: 10px 0 10px 0;
+    }
+    .mainpage #relationships .cubeWrapper {
+        margin: 20px 0 20px 0;
+    }
             .mainpage #relationships .cubeWrapper #cubes {
                 padding: 0 50px 0 50px;
                 display: flex;
@@ -608,3 +612,54 @@ main {
 
         .mainpage #account {
         }
+            .mainpage #account form {
+                color: black;
+                margin: 50px 0 0 0;
+                text-align: center;
+                align-content: center;
+                align-items: center;
+                font-size: 14px;
+                font-family: "Helvetica";
+                width: 100%;
+                position: relative;
+            }
+            .mainpage #account label {
+                margin-top: 15px;
+                font-size: 18px;
+                text-align: center;
+                display: inline-block;
+                width: 100%;
+                color: darkgoldenrod;
+            }
+            .mainpage #account form input {
+                color: black;
+                width: 350px;
+                display: block;
+                padding: 0.5%;
+                display: inline-block;
+                border-radius: 8px;
+                border: solid 2px;
+                border-color: darkgoldenrod;
+                background-color: white;
+                -webkit-transition: border-width 0.25s, border-color 0.25s, background-color 0.5s, right 1s, opacity 1s;
+                transition: border-width 0.25s, border-color 0.25s, background-color 0.5s, right 1s, opacity 1s;
+            }
+            .mainpage #account button {
+                margin-top: 15px;
+                opacity: 1;
+                font-size: 18px;
+                font-family: "Helvetica";
+                text-align: center;
+                color: darkgoldenrod;
+                padding: 18px 60px;
+                border-radius: 16px;
+                border: solid 2px;
+                display: inline-block;
+                border-color: darkgoldenrod;
+                background-color: rgba(0, 0, 0, 0.1);
+                -webkit-transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
+                transition: color 0.5s, border-color 0.5s, background-color 0.5s, right 1s, opacity 1s;
+            }
+                .mainpage #account button:hover {
+                    cursor: pointer;
+                }

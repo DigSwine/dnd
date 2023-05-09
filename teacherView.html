@@ -577,15 +577,15 @@
 
             <div class="page" id="account" hidden>
                 <h2>Account Details</h2>
-                <button>Reset username and/or password</button>
-                <div id="confirmation" class="model" hidden>
-                    <form>
-                        <h3>Confirm username and password</h3>
-                        <input placeholder="Username" />
-                        <input placeholder="Password" />
-                        <button>Submitt</button>
-                    </form>
-                </div>
+                <form id="newPas">
+                    <label for="CPW">Current Password</label>
+                    <input id="CPW" placeholder="Current Password" type="password" />
+                    <label for="NPW">New Password</label>
+                    <input id="NPW" placeholder="New Password" type="password" />
+                    <label for="CNPW">Confirm Password</label>
+                    <input id="CNPW" placeholder="Confirm Password" type="password" />
+                </form>
+                <button id="newpas">Submit</button>
             </div>
         </div>
     </main>
@@ -2085,6 +2085,29 @@
                 }
             }
         });
+    }
+    function setNewPass() {
+        var Form = document.getElementById('newPas');
+        if (Form.querySelector('#NPW').value != "") {
+            // Check Confirm Password
+            if (Form.querySelector('#NPW').value == Form.querySelector('#CNPW').value) {
+                if (Form.querySelector('#NPW').value != "testing") {
+                    var id = "";
+                    if (sessionStorage.getItem("Teacher_Id")) {
+                        id = sessionStorage.getItem("Teacher_Id");
+                    }
+                    // Check Current Password is Correct
+                    _supabase.from('_tblLogin').select('log_use').eq('teacher_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
+                        if (response.data.length > 0) {
+                            // Update Password
+                            _supabase.from('_tblLogin').update({ log_pas: Form.querySelector('#NPW').value }).eq('teacher_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
+                                alert("Your password has been updated");
+                            })
+                        }
+                    });
+                }
+            }
+        }
     }
     
     // Creators
