@@ -673,3 +673,31 @@ main {
                 .mainpage #account button:hover {
                     cursor: pointer;
                 }
+            .mainpage #account #deleteUser{
+                position: absolute;
+                bottom: 0;
+                transform: translateX(-50%);
+                background-color: darkred;
+            }
+            .mainpage #account .clearConfirm{
+                background-color: black;
+                position: absolute;
+                top: 0;
+                left: 50px;
+                width: calc(100% - 100px);
+                height: 100%;
+            }
+            .mainpage #account .clearConfirm .subConfirm {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                width: 100%;
+                height: 150px;
+            }
+                .mainpage #account .clearConfirm .subConfirm h2 {
+                    margin: 0 0 25px 0;
+                }
+                .mainpage #account .clearConfirm .subConfirm button + button {
+                    margin: 0 0 0 25px;
+                }

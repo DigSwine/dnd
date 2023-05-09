@@ -326,8 +326,17 @@
                     <input id="NPW" placeholder="New Password" type="password" />
                     <label for="CNPW">Confirm Password</label>
                     <input id="CNPW" placeholder="Confirm Password" type="password" />
+                    <br />
+                    <button id="newpas">Submit</button>
                 </form>
-                <button id="newpas">Submit</button>
+                <button id="deleteUser">Clear Profile</button>
+                <div class="clearConfirm" hidden>
+                    <div class="subConfirm">
+                        <h2>This will clear all data about your character, are you sure?</h2>
+                        <button>Yes</button>
+                        <button>No</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -460,6 +469,18 @@
     })
     $('#newpas').click(function () {
         setNewPass();
+    })
+    $('#deleteUser').click(function () {
+        var doc = this.parentElement.querySelector('.clearConfirm');
+        doc.toggleAttribute("hidden");
+    })
+    $('.subConfirm button').click(function () {
+        if (this.innerText == "No") {
+            this.parentElement.parentElement.setAttribute("hidden", "true");
+        }
+        if (this.innerText == "Yes") {
+            clearStudentDataById(sessionStorage.getItem("Student_Id"));            
+        }
     })
 
     function togglecurrent() {
@@ -854,8 +875,9 @@
                     }
                 }
             }
-            
-            inspo.innerText = "Inspration: " + lovers + "/" + prof;
+            if (inspo) {
+                inspo.innerText = "Inspration: " + lovers + "/" + prof;
+            }
         });
     }
     function getCourseData() {
@@ -1220,6 +1242,8 @@
             }
         });
     }
+
+
     function quitJob() {
         var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
         _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
@@ -1227,7 +1251,7 @@
         alert("You have now resigned");
         var parent = this.parentNode;
         parent.style.display = "none";
-        document.getElementById('myjob').style.display = "none";
+        // document.getElementById('myjob').style.display = "none";
     }
     function quitClub() {
         var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
@@ -1237,6 +1261,69 @@
             var parent = this.parentNode;
             parent.style.display = "none";
         })        
+    }
+    function clearStudentDataById(sid) {
+        // Clear Profile
+        var toClear = document.getElementById('profile')
+        var updateobject = {};
+        var inputs = getAllInputs(toClear);
+
+        for (var x = 0; x < inputs.length; x++) {
+            console.log(inputs[x].id);
+            if (inputs[x].id != "college" || inputs[x].id != "year") {
+                updateobject[inputs[x].id] = null;
+            } else {
+                console.log("hit");
+                if (inputs[x] == "college") {
+                    updateobject[inputs[x].id] = 6;
+                } 
+                if (inputs[x] == "year") {
+                    updateobject[inputs[x].id] = 1;
+                }
+            }
+        }
+        console.log(updateobject);
+        // _supabase.from('_tblStudents').update(updateobject).eq('id', sessionStorage.getItem("Student_Id")).then(response => { 
+        // })
+        
+
+        // Clear Details
+
+        // Reset Courses
+
+        // Reset Exams
+
+        // Clear Relationships
+
+        // Clear Job
+
+        // Clear Extras
+    }
+    function getAllInputs(toClear) {
+        var inputs = toClear.querySelectorAll('input');
+        var textareas = toClear.querySelectorAll('textarea');
+        var selects = toClear.querySelectorAll('select');
+        var allinputs = [];
+        for (var y = 0; y < inputs.length; y++) {
+            if (inputs[y].id) {
+                allinputs.push(inputs[y]);
+            }
+        }
+        for (var y = 0; y < textareas.length; y++) {
+            if (textareas[y].id) {
+                allinputs.push(textareas[y]);
+            }
+        }
+        for (var y = 0; y < selects.length; y++) {
+            if (selects[y].id) {
+                if (selects[y].id == "college") {
+                    if (selects[y].value != 0) {
+                        allinputs.push(selects[y]);
+                    }
+                }
+            }
+        }
+        return allinputs;
     }
 
 var x;
