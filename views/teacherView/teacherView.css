@@ -1307,6 +1307,34 @@ button {
     .mainpage #npcs form .note textarea {
         height: 200px;
     }
-
-
+    /* Notes */
+    .mainpage .extranotes {
+        padding: 0 50px 0 50px;
+    }
+        .mainpage .extranotes .top, .mainpage .extranotes .bottom {
+            height: 360px;
+        }
+        .mainpage .extranotes .notearea {
+            height: 300px;
+            flex: 1;
+        }
+            .mainpage .extranotes .notearea h3{
+                margin: 0 0 15px 0;
+            }
+            .mainpage .extranotes .top {
+                height: 33vh;
+                margin: 0 0 0 0;
+            }
+        .mainpage .extranotes .notearea + .notearea {
+            margin: 0 0 0 0;
+        }
+        .mainpage .extranotes textarea {
+            margin: 0;
+            padding: 10px;
+            width: 90%;
+            height: calc(90% - 22px - 30px);
+            text-align: left;
+            resize: none;
+            cursor: pointer;
+        }
 }
