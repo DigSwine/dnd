@@ -1217,7 +1217,7 @@ button {
 
 @media only screen and (max-width: 1540px) {
     .mainpage #tea video {
-        height: 816.4px;
+        height: 103vh;
     }
     .leftnav {
         height: 100vh;
@@ -1225,9 +1225,6 @@ button {
     }
         .leftnav .block {
             height: 135px;
-        }
-        .leftnav .block img {
-            height: calc(100% - 30px);
         }
     .leftnav .choices .choice {
         padding: 13px;
