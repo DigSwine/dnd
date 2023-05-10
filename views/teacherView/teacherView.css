@@ -1258,21 +1258,32 @@ button {
         }
 
     /* Players */
-    .mainpage #profile .card {
+        /* Profile */
+        .mainpage #profile .card {
         height: 30vh;
     }
-    .mainpage #profile form {
+        .mainpage #profile form {
         height: 30vh;
     }
-        .mainpage #profile form label {
+            .mainpage #profile form label {
             display: flex;
             margin: 10px;
         }
-
+        /* Details*/
         .mainpage #details .splitbody {
             height: calc(80vh - 45px);
         }
-
+        /* Courses */
+        .mainpage #courses .year {
+            margin: 15px 50px 15px 50px;
+            height: calc(36vh - 40px);
+        }
+            .mainpage #courses .year + .year {
+                margin: 15px 50px 15px 0;
+            }
+        .mainpage #courses .year .coursechoices {
+            margin-top: 25px;
+        }
 
 
 
