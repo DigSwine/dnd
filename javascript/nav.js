@@ -85,3 +85,53 @@ function logot() {
         window.location = window.location.href;
     }
 }
+
+// Sparkles
+let MAX_SPEED = .009;
+let MAX_TIMESTEP = 70;
+let MAX_PARTICLES = 800;
+let MAX_PARTICLE_SIZE = 0.8;
+let START_ANGLE = 0;
+let END_ANGLE = Math.PI * 2;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let svg = d3.select("svg").attr("width", window.innerWidth).attr("height", window.innerHeight).on("mousemove", function () {
+    mouseX = d3.mouse(svg.node())[0];
+    mouseY = d3.mouse(svg.node())[1];
+});
+function tick(particleArray) {
+    particleArray.forEach(d => {
+        if (d.timeStep < MAX_TIMESTEP) {
+            updateParticle(d);
+        } else {
+            resetParticle(d, mouseX, mouseY);
+        }
+    });
+}
+function resetParticle(d, mouseX, mouseY) {
+    d.timeStep = Math.floor(Math.random() * MAX_TIMESTEP);
+    d.speed = Math.random() * MAX_SPEED;
+    d.angle = Math.random() * (END_ANGLE - START_ANGLE) + START_ANGLE;
+    d.x = mouseX;
+    d.y = mouseY;
+}
+function updateParticle(d) {
+    d.timeStep++;
+    d.x += Math.cos(d.angle) * d.timeStep * d.speed;
+    d.y += Math.sin(d.angle) * d.timeStep * d.speed;
+}
+let particles = [];
+for (let i = 0; i < MAX_PARTICLES; i++) {
+    let newParticle = {};
+    resetParticle(newParticle);
+    particles.push(newParticle);
+}
+function update(particleArray) {
+    let data = svg.selectAll(".particle").data(particles);
+    data.enter().append("rect").attr("width", MAX_PARTICLE_SIZE).attr("height", MAX_PARTICLE_SIZE).style("fill", d => Math.random() > .5 ? "gold" : "gold").classed("particle", true);
+    data.attr("x", d => d.x).attr("y", d => d.y);
+}
+setInterval(function () {
+    tick(particles);
+    update(particles);
+}, 10);
