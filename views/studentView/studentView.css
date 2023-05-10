@@ -701,3 +701,85 @@ main {
                 .mainpage #account .clearConfirm .subConfirm button + button {
                     margin: 0 0 0 25px;
                 }
+
+@media only screen and (max-width: 1540px) {
+    :root {
+        --titleheight: 45px;
+        --mainbodyheight: calc(80vh - var(--titleheight));
+    }
+    .mainpage #tea video {
+        height: 103vh;
+    }
+    .leftnav {
+        height: 100vh;
+        width: 335px;
+    }
+        .leftnav .block {
+            height: 135px;
+        }
+        .leftnav .choices .choice {
+            padding: 13px;
+        }
+    .mainpage .top {
+        height: 40vh;
+    }
+    .mainpage .bottom {
+        height: 40vh;
+    }
+    .mainpage input, .mainpage textarea, .mainpage #npcs form label select, .mainpage label, .mainpage p {
+        font-size: 0.8rem;
+    }
+    .mainpage label {
+        margin: 2px 0 0 0;
+    }
+        .mainpage label input {
+            margin: 0;
+        }
+    .mainpage input {
+        padding: 2px 0 5px 10px;
+    }
+    /* Players */
+    /* Profile */
+    .mainpage #profile .card {
+        height: 30vh;
+    }
+    .mainpage #profile form {
+        height: 30vh;
+    }
+        .mainpage #profile form label {
+            display: flex;
+            margin: 10px;
+        }
+    /* Details*/
+    .mainpage #details .splitbody {
+        height: calc(80vh - 45px);
+    }
+    /* Courses */
+    .mainpage #courses .year {
+        margin: 15px 50px 15px 50px;
+        height: calc(36vh - 40px);
+    }
+        .mainpage #courses .year + .year {
+            margin: 15px 50px 15px 0;
+        }
+        .mainpage #courses .year .coursechoices {
+            margin-top: 25px;
+        }
+    /* Exams */
+    .mainpage #exams .year {
+        margin: 15px 50px 15px 50px;
+        height: calc(36vh - 40px);
+    }
+        .mainpage #exams .year + .year {
+            margin: 15px 50px 15px 0;
+        }
+
+        .mainpage #exams .year .coursechoices {
+            margin-top: 25px;
+        }
+    /* Jobs and Extras - Nothing to fix */
+    /* Relationships */
+    .mainpage #relationships .cubeWrapper #cubes .cube div p {
+        font-size: 0.8rem;
+    }
+}
