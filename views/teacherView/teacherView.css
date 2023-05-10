@@ -233,6 +233,7 @@ button {
         width: 100%;
         position: relative;
     }
+
     .mainpage label, .mainpage p {
         font-family: 'Valneck';
         font-size: 1.1rem;
@@ -245,6 +246,7 @@ button {
         color: white;
         font-family: Arial;
     }
+
     .mainpage .srcSelector {
         position: absolute;
         top: 25px;
@@ -1242,11 +1244,23 @@ button {
         height: 40vh;
     }
 
+    .mainpage input, .mainpage textarea, .mainpage #npcs form label select, .mainpage label, .mainpage p {
+        font-size: 0.8rem;
+    }
+        .mainpage label {
+            margin: 2px 0 0 0;
+        }
+            .mainpage label input {
+                margin: 0;
+            }
+        .mainpage input {
+            padding: 2px 0 5px 10px;
+        }
+
     /* Players */
     .mainpage #profile .card {
         height: 30vh;
     }
-
     .mainpage #profile form {
         height: 30vh;
     }
@@ -1254,6 +1268,8 @@ button {
             display: flex;
             margin: 10px;
         }
+
+
 
 
 
