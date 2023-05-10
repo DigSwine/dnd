@@ -1222,4 +1222,14 @@ button {
     .leftnav .choices .choice {
         padding: 13px;
     }
+    /* Players */
+    .mainpage #profile .card {
+        height: 250px;
+        max-width: 200px;
+    }
+
+
+
+
+
 }
