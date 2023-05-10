@@ -1284,7 +1284,7 @@ button {
         .mainpage #courses .year .coursechoices {
             margin-top: 25px;
         }
-            /* Exams */
+        /* Exams */
         .mainpage #exams .year {
             margin: 15px 50px 15px 50px;
             height: calc(36vh - 40px);
@@ -1295,7 +1295,11 @@ button {
             .mainpage #exams .year .coursechoices {
                 margin-top: 25px;
             }
-
+        /* Jobs and Extras - Nothing to fix */
+        /* Relationships */
+        .mainpage #relationships .cubeWrapper #cubes .cube div p {
+            font-size: 0.8rem;
+        }
 
 
 
