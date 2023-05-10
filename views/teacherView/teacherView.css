@@ -1284,6 +1284,17 @@ button {
         .mainpage #courses .year .coursechoices {
             margin-top: 25px;
         }
+            /* Exams */
+        .mainpage #exams .year {
+            margin: 15px 50px 15px 50px;
+            height: calc(36vh - 40px);
+        }
+            .mainpage #exams .year + .year {
+                margin: 15px 50px 15px 0;
+            }
+            .mainpage #exams .year .coursechoices {
+                margin-top: 25px;
+            }
 
 
 
