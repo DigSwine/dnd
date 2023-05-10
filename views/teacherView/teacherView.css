@@ -18,6 +18,7 @@ header {
     position: relative;
     height: 100px;
     width: 100%;
+    z-index: 10;
 }
     header .logo {
         width: 342px;
@@ -34,9 +35,11 @@ header {
     }
     header .thenavigation {
         width: auto;
+        z-index: 10;
     }
         header .thenavigation .hamburger {
             color: white;
+            z-index: 10;
         }
 
 .particle {
@@ -1154,6 +1157,7 @@ button {
     top: -110px;
     left: 0;
     height: calc(100% + 160px);
+    z-index: 0;
 }
 
 .mainpage #account {
@@ -1214,5 +1218,8 @@ button {
 @media only screen and (max-width: 1540px) {
     .mainpage #tea video {
         height: 816.4px;
+    }
+    .leftnav .choices .choice {
+        padding: 13px;
     }
 }
