@@ -1269,6 +1269,9 @@ button {
             margin: 10px;
         }
 
+        .mainpage #details .splitbody {
+            height: calc(80vh - 45px);
+        }
 
 
 
