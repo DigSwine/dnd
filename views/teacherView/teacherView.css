@@ -1220,8 +1220,8 @@ button {
         height: 816.4px;
     }
     .leftnav {
-        height: auto;
-        width: 325px;
+        height: 100vh;
+        width: 335px;
     }
         .leftnav .block {
             height: 135px;
