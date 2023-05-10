@@ -241,7 +241,7 @@ button {
         background-color: transparent;
         border: none;
         font-size: 1rem;
-        text-align: center;
+        text-align: left;
         color: white;
         font-family: Arial;
     }
@@ -1216,6 +1216,11 @@ button {
         }
 
 @media only screen and (max-width: 1540px) {
+    :root {
+        --titleheight: 45px;
+        --mainbodyheight: calc(80vh - var(--titleheight));
+    }
+    
     .mainpage #tea video {
         height: 103vh;
     }
@@ -1229,6 +1234,14 @@ button {
     .leftnav .choices .choice {
         padding: 13px;
     }
+
+    .mainpage .top {
+        height: 40vh;
+    }
+    .mainpage .bottom {
+        height: 40vh;
+    }
+
     /* Players */
     .mainpage #profile .card {
         height: 30vh;
