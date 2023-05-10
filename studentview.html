@@ -353,9 +353,46 @@
         $.each(includes, function () {
             var file = 'views/addons/_' + $(this).data('include') + '.html'
             $(this).load(file)
-        }) 
+        })
     })
+    function loadPage() {
+        // Load last page saved on
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const toOpen = urlParams.get('page');
+        if (toOpen) {
+            var allPages = document.getElementById('pages').querySelectorAll(".page");
+            var allChoices = document.getElementById('subnavchoices').querySelectorAll(".choice");
+            for (var x = 0; x < allPages.length; x++) {
+                allPages[x].setAttribute("hidden", "true");
+            }
+            for (var x = 0; x < allChoices.length; x++) {
+                allChoices[x].classList = "choice";
+                if (allChoices[x].innerText.toLowerCase() == toOpen) {
+                    allChoices[x].classList = "choice selected";
+                }
+            }
+            // Check the data has been loaded for the page
 
+            // profile - Done on load
+            // details - Done on load
+            // courses
+            if (toOpen == "courses") {
+                getStudentCourseByID(sessionStorage.getItem("Student_Id"));
+            }
+            // exams - Nothing to save
+            // relationships - Nothing to save
+            // job and extras - Nothing to save
+
+            // Reset URL
+            window.history.pushState("object or string", "Title", "/studentview.html");
+
+            // Show Page
+            document.getElementById(toOpen).toggleAttribute("hidden");
+        }
+    }
+
+    // Non Data Base
     $('.choice').click(function () {
         clearpages();
         var sidenav = document.getElementById('subnavchoices');
@@ -425,7 +462,7 @@
                                         courses.push(split[0]);
                                     }
                                 }
-                            }                           
+                            }
                         }
                         if (courses.length > 0) {
                             saveCourseChoices(courses);
@@ -464,7 +501,7 @@
                         }
                     }
                 }
-            }            
+            }
         }
     })
     $('#newpas').click(function () {
@@ -479,7 +516,7 @@
             this.parentElement.parentElement.setAttribute("hidden", "true");
         }
         if (this.innerText == "Yes") {
-            clearStudentDataById(sessionStorage.getItem("Student_Id"));            
+            clearStudentDataById(sessionStorage.getItem("Student_Id"));
         }
     })
 
@@ -518,6 +555,107 @@
         return send;
     }
 
+    $('#Y1S1 select').change(function () {
+        setTeacherName('#Y1S1');
+    });
+    $('#Y1S2 select').change(function () {
+        setTeacherName('#Y1S2');
+    });
+    $('#Y1S3 select').change(function () {
+        setTeacherName('#Y1S3');
+    });
+    $('#Y1S4 select').change(function () {
+        setTeacherName('#Y1S4');
+    });
+    $('#Y2S1 select').change(function () {
+        setTeacherName('#Y2S1');
+    });
+    $('#Y2S2 select').change(function () {
+        setTeacherName('#Y2S2');
+    });
+    $('#Y2S3 select').change(function () {
+        setTeacherName('#Y2S3');
+    });
+    $('#Y2S4 select').change(function () {
+        setTeacherName('#Y2S4');
+    });
+    $('#Y3S1 select').change(function () {
+        setTeacherName('#Y3S1');
+    });
+    $('#Y3S2 select').change(function () {
+        setTeacherName('#Y3S2');
+    });
+    $('#Y3S3 select').change(function () {
+        setTeacherName('#Y3S3');
+    });
+    $('#Y3S4 select').change(function () {
+        setTeacherName('#Y3S4');
+    });
+    $('#Y4S1 select').change(function () {
+        setTeacherName('#Y4S1');
+    });
+    $('#Y4S2 select').change(function () {
+        setTeacherName('#Y4S2');
+    });
+    $('#Y4S3 select').change(function () {
+        setTeacherName('#Y4S3');
+    });
+    $('#Y4S4 select').change(function () {
+        setTeacherName('#Y4S4');
+    });
+
+    function setTeacherName(selector) {
+        var select = $(selector + ' select');
+        var selectedoption = select.find(":selected")[0];
+        var selectedValue = selectedoption.value;
+        var split = selectedValue.split(':');
+
+        var newTeacher = document.createElement('span');
+        newTeacher.innerText = "Teacher: ";
+        $(selector + ' p').append(newTeacher);
+        $(selector + ' p').append(split[1]);
+    }
+
+    function getAllInputs(toClear) {
+        var inputs = toClear.querySelectorAll('input');
+        var textareas = toClear.querySelectorAll('textarea');
+        var selects = toClear.querySelectorAll('select');
+        var allinputs = [];
+        for (var y = 0; y < inputs.length; y++) {
+            if (inputs[y].id) {
+                allinputs.push(inputs[y]);
+            }
+        }
+        for (var y = 0; y < textareas.length; y++) {
+            if (textareas[y].id) {
+                allinputs.push(textareas[y]);
+            }
+        }
+        for (var y = 0; y < selects.length; y++) {
+            if (selects[y].id) {
+                if (selects[y].id == "college") {
+                    if (selects[y].value != 0) {
+                        allinputs.push(selects[y]);
+                    }
+                }
+            }
+        }
+        return allinputs;
+    }
+
+    function reloadPage() {
+        var allPages = document.getElementById('pages').querySelectorAll(".page");
+
+        for (var x = 0; x < allPages.length; x++) {
+            if (allPages[x].checkVisibility()) {
+                var currentPage = allPages[x].id;
+                const urlParams = new URLSearchParams(window.location.search);
+                urlParams.set('page', currentPage);
+                window.location.search = urlParams;
+            }
+        }
+    }
+
     function clearpages() {
         // course selectors and teachers
         var page = document.getElementById('courses');
@@ -540,9 +678,10 @@
         if (data) {
             getStudentDataByID(data);
             getCourseData();
+            loadPage();
         }
     })
-
+    // Getters
     function getStudentDataByID(sid) {
         _supabase.from('_tblStudents').select('*').eq('id', sid).order('id', { ascending: true }).then(response => {
             for (var x = 0; x < response.data.length; x++) {
@@ -632,7 +771,7 @@
                             profile.querySelector('#college').toggleAttribute("disabled");
                             profile.querySelector('#college').style.border = "2px white solid";
                             profile.querySelector('#college').value = 0;
-                        }                        
+                        }
                     }
                 });
 
@@ -672,63 +811,63 @@
             }
         })
         _supabase.from('Job<>Student').select('Job (id, Title, Location, Pay)').eq('Student', sid).then(response => {
-                if (response.data.length > 0) {
-                    for (var x = 0; x < response.data.length; x++) {
-                        var data = response.data[x];
-                        var job = data['Job'];
+            if (response.data.length > 0) {
+                for (var x = 0; x < response.data.length; x++) {
+                    var data = response.data[x];
+                    var job = data['Job'];
 
-                        var currentJob = document.getElementById('jobs');
+                    var currentJob = document.getElementById('jobs');
 
-                        const theJob = document.createElement('div');
-                        const theTitle = document.createElement('h3');
-                        const theLocation = document.createElement('p');
-                        const theWage = document.createElement('p');
-                        const theCoworker = document.createElement('p');
-                        const QuitButton = document.createElement('button');
+                    const theJob = document.createElement('div');
+                    const theTitle = document.createElement('h3');
+                    const theLocation = document.createElement('p');
+                    const theWage = document.createElement('p');
+                    const theCoworker = document.createElement('p');
+                    const QuitButton = document.createElement('button');
 
-                        theJob.classList = "job";
-                        theJob.id = "job";
-                        QuitButton.classList = "quit";
-                        QuitButton.id = job['id'];
-                        QuitButton.innerText = "Resign";
-                        QuitButton.addEventListener('click', quitJob, false);
+                    theJob.classList = "job";
+                    theJob.id = "job";
+                    QuitButton.classList = "quit";
+                    QuitButton.id = job['id'];
+                    QuitButton.innerText = "Resign";
+                    QuitButton.addEventListener('click', quitJob, false);
 
-                        theTitle.innerText = job['Title'];
+                    theTitle.innerText = job['Title'];
 
-                        theLocation.innerText = job['Location'];
-                        theLocation.classList = "location";
+                    theLocation.innerText = job['Location'];
+                    theLocation.classList = "location";
 
-                        theWage.innerText = job['Pay'];
-                        theWage.classList = "wage";
+                    theWage.innerText = job['Pay'];
+                    theWage.classList = "wage";
 
-                        _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
-                            var allworkers = response.data;
-                            var wcount = 0;
-                            var coworkers = "";
-                            if (allworkers) {
-                                for (var y = 0; y < allworkers.length; y++) {
-                                    var worker = allworkers[y]['Student'];
-                                    if (sessionStorage.getItem('Student_Id') != worker['id']) {
-                                        if (wcount > 0) {
-                                            coworkers = coworkers + " & " + worker['name'];
-                                        } else {
-                                            coworkers = worker['name'];
-                                        }
-                                        wcount++;
+                    _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
+                        var allworkers = response.data;
+                        var wcount = 0;
+                        var coworkers = "";
+                        if (allworkers) {
+                            for (var y = 0; y < allworkers.length; y++) {
+                                var worker = allworkers[y]['Student'];
+                                if (sessionStorage.getItem('Student_Id') != worker['id']) {
+                                    if (wcount > 0) {
+                                        coworkers = coworkers + " & " + worker['name'];
+                                    } else {
+                                        coworkers = worker['name'];
                                     }
+                                    wcount++;
                                 }
                             }
-                            theCoworker.innerText = coworkers;
-                            theCoworker.classList = "coworker";
+                        }
+                        theCoworker.innerText = coworkers;
+                        theCoworker.classList = "coworker";
 
-                            theJob.appendChild(theTitle);
-                            theJob.appendChild(theLocation);
-                            theJob.appendChild(theCoworker);
-                            theJob.appendChild(theWage);
-                            theJob.appendChild(QuitButton);
+                        theJob.appendChild(theTitle);
+                        theJob.appendChild(theLocation);
+                        theJob.appendChild(theCoworker);
+                        theJob.appendChild(theWage);
+                        theJob.appendChild(QuitButton);
 
-                            currentJob.appendChild(theJob);
-                        })
+                        currentJob.appendChild(theJob);
+                    })
                 }
             }
         })
@@ -748,7 +887,7 @@
                     const theClubSkill = document.createElement('p');
                     const theClubDice = document.createElement('p');
                     const theClubMembers = document.createElement('div');
-                    
+
                     const theClubQuit = document.createElement('button');
 
                     theClub.classList = "club";
@@ -983,7 +1122,7 @@
                     }
                 }
             }
-        });       
+        });
     }
     function getStudentCourseByID(sid) {
         _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').eq('student', sid).order('class', { ascending: false }).then(response => {
@@ -1013,6 +1152,7 @@
                     var classChoice = "Y4S" + Y4C;
                     Y4C++;
                 }
+
                 $('#' + classChoice + ' select > option').each(function () {
                     var split = $(this).val().split(":");
                     var courseId = split[0];
@@ -1024,8 +1164,6 @@
 
                         var newTeacher = document.createElement('span');
                         newTeacher.innerText = "Teacher: ";
-                        // $('#' + classChoice + ' p').append(newTeacher);
-                        // $('#' + classChoice + ' p').append(teacher);
                     }
                 });
             }
@@ -1073,7 +1211,7 @@
                     var newScore = document.createElement("p");
                     var newDice = document.createElement("p");
                     var newSkills = document.createElement("p");
-                    
+
                     if (y + 1 == exam['exam']['year']) {
 
                         newTitle.innerText = exam['exam']['name'];
@@ -1088,7 +1226,7 @@
                             if (exam['score'] == "fail") {
                                 newDice.innerText = "0d4";
                             }
-                            
+
                             newSkills.innerText = exam['exam']['skill'];
 
                             newTitle.classList = "etitle"
@@ -1115,69 +1253,7 @@
         });
     }
 
-    $('#Y1S1 select').change(function () {
-        setTeacherName('#Y1S1');
-    });
-    $('#Y1S2 select').change(function () {
-        setTeacherName('#Y1S2');
-    });
-    $('#Y1S3 select').change(function () {
-        setTeacherName('#Y1S3');
-    });
-    $('#Y1S4 select').change(function () {
-        setTeacherName('#Y1S4');
-    });
-
-    $('#Y2S1 select').change(function () {
-        setTeacherName('#Y2S1');
-    });
-    $('#Y2S2 select').change(function () {
-        setTeacherName('#Y2S2');
-    });
-    $('#Y2S3 select').change(function () {
-        setTeacherName('#Y2S3');
-    });
-    $('#Y2S4 select').change(function () {
-        setTeacherName('#Y2S4');
-    });
-
-    $('#Y3S1 select').change(function () {
-        setTeacherName('#Y3S1');
-    });
-    $('#Y3S2 select').change(function () {
-        setTeacherName('#Y3S2');
-    });
-    $('#Y3S3 select').change(function () {
-        setTeacherName('#Y3S3');
-    });
-    $('#Y3S4 select').change(function () {
-        setTeacherName('#Y3S4');
-    });
-
-    $('#Y4S1 select').change(function () {
-        setTeacherName('#Y4S1');
-    });
-    $('#Y4S2 select').change(function () {
-        setTeacherName('#Y4S2');
-    });
-    $('#Y4S3 select').change(function () {
-        setTeacherName('#Y4S3');
-    });
-    $('#Y4S4 select').change(function () {
-        setTeacherName('#Y4S4');
-    });
-
-    function setTeacherName(selector) {
-        var select = $(selector + ' select');
-        var selectedoption = select.find(":selected")[0];
-        var selectedValue = selectedoption.value;
-        var split = selectedValue.split(':');
-        
-        var newTeacher = document.createElement('span');
-        newTeacher.innerText = "Teacher: ";
-        $(selector + ' p').append(newTeacher);
-        $(selector + ' p').append(split[1]);
-    }
+    // Setters
     function setNewPass() {
         var Form = document.getElementById('newPas');
         if (Form.querySelector('#NPW').value != "") {
@@ -1214,7 +1290,7 @@
             }
         }
         _supabase.from('_tblStudents').update(updateobject).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
-            window.location = window.location;
+            reloadPage();
         })
     }
     function saveCourseChoices(choices) {
@@ -1237,13 +1313,14 @@
             if (uniqueCourses.length > 0) {
                 for (var x = 0; x < uniqueCourses.length; x++) {
                     _supabase.from('class<>student').insert({ 'class': uniqueCourses[x], 'student': sessionStorage.getItem("Student_Id") }).then(response => {
+                        reloadPage();
                     });
                 }
             }
         });
     }
 
-
+    // Removers
     function quitJob() {
         var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
         _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
@@ -1260,7 +1337,7 @@
             alert("you have left the club");
             var parent = this.parentNode;
             parent.style.display = "none";
-        })        
+        })
     }
     function clearStudentDataById(sid) {
         // Clear Profile
@@ -1277,8 +1354,8 @@
                 updateobject[inputs[x].id] = 1;
             }
         }
-        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => { 
-        })     
+        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
+        })
 
         // Clear Details
         var toClear = document.getElementById('details')
@@ -1318,61 +1395,4 @@
         })
 
     }
-
-    function getAllInputs(toClear) {
-        var inputs = toClear.querySelectorAll('input');
-        var textareas = toClear.querySelectorAll('textarea');
-        var selects = toClear.querySelectorAll('select');
-        var allinputs = [];
-        for (var y = 0; y < inputs.length; y++) {
-            if (inputs[y].id) {
-                allinputs.push(inputs[y]);
-            }
-        }
-        for (var y = 0; y < textareas.length; y++) {
-            if (textareas[y].id) {
-                allinputs.push(textareas[y]);
-            }
-        }
-        for (var y = 0; y < selects.length; y++) {
-            if (selects[y].id) {
-                if (selects[y].id == "college") {
-                    if (selects[y].value != 0) {
-                        allinputs.push(selects[y]);
-                    }
-                }
-            }
-        }
-        return allinputs;
-    }
-
-var x;
-var $cards = $(".card");
-var $style = $(".hover");
-
-$cards
-  .on("mousemove touchmove", function(e) { 
-    // normalise touch/mouse
-    e.preventDefault();
-    var $card = $(this);
-    var h = $card.height();
-    var w = $card.width();
-    var px = Math.abs(Math.floor(100 / w * 0)-100);
-    var py = Math.abs(Math.floor(100 / h * 0)-100);
-    var pa = (50-px)+(50-py);
-    // set / apply css class and style
-    $cards.removeClass("active");
-    $card.removeClass("animated");
-    if ( e.type === "touchmove" ) {
-      return false; 
-    }
-    clearTimeout(x);
-  }).on("mouseout touchend touchcancel", function() {
-    // remove css, apply custom animation on end
-    var $card = $(this);
-    $style.html("");
-    x = setTimeout(function() {
-      $card.addClass("animated");
-    },1000);
-  });
 </script>
