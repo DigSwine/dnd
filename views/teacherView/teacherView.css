@@ -1220,8 +1220,15 @@ button {
         height: 816.4px;
     }
     .leftnav {
+        height: auto;
         width: 325px;
     }
+        .leftnav .block {
+            height: 135px;
+        }
+        .leftnav .block img {
+            height: calc(100% - 30px);
+        }
     .leftnav .choices .choice {
         padding: 13px;
     }
