@@ -1353,9 +1353,8 @@
         var header = page.querySelector('h2');
         var profile = page.querySelector('#profile');
         var details = page.querySelector('#details');
-
-        for (var x = 0; x < PPCplayer.length; x++) {
-            if (toget == PPCplayer[x]) {
+        for (var x = 0; x < PPCplayer.length; x++) {            
+            if (toget == PPCplayer[x]) {                
                 header.innerText = "Player: " + PPCplayer[x];
                 profile.querySelector('#pid').value = PPCid[x];
                 profile.querySelector('#player').value = PPCplayer[x];
@@ -2035,6 +2034,36 @@
     }
 
     // Setters
+    function saveStudentSchool(inputs) {
+        updateobject = {};
+        updateobject['college'] = inputs[0].value;
+        var id = document.getElementById('pid').value;
+        _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
+        })
+    }    
+    function saveCourseChoices(inputs) {
+        var sid = document.getElementById('profile').querySelector('#pid').value;
+
+        _supabase.from('class<>student').delete().eq('student', sid).then(response => {
+            var updateobject = {};
+
+            for (var x = 0; x < inputs.length; x++) {
+                var selectedID = "";
+                if (inputs[x].value) {
+                    console.log(inputs[x]);
+                    var split = inputs[x].value.split(':');
+                    console.log(split[0]);
+                    selectedID = split[0];
+
+                    updateobject['class'] = selectedID;
+                    updateobject['student'] = sid;
+
+                    _supabase.from('class<>student').insert(updateobject).then(response => {
+                    })
+                }
+            }
+        });
+    }
     function saveExamScores(exams, results) {
         var sid = document.getElementById("players").querySelector('#profile').querySelector('#pid').value;
         for (var x = 0; x < exams.length; x++) {
@@ -2052,22 +2081,6 @@
         updateobject['relationship'] = score;
 
         _supabase.from('npc<>student').update(updateobject).eq('student', sid).eq('npc', nid).then(response => {
-            // window.location = location.pathname;
-        })
-    }
-    function saveStudentData(inputs) {
-        var updateobject = {};
-        var sid = "";
-        for (var x = 0; x < inputs.length; x++) {
-            if (inputs[x].id == "nid" || inputs[x].id == "sid") {
-                sid = inputs[x].value;
-            } else {
-                if (inputs[x].id != "npcList2") {
-                    updateobject[inputs[x].id] = inputs[x].value;
-                }
-            }
-        }
-        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
             // window.location = location.pathname;
         })
     }
@@ -2173,28 +2186,21 @@
             })
         }
     }
-    function saveCourseChoices(inputs) {
-        var sid = document.getElementById('profile').querySelector('#pid').value;
-
-        _supabase.from('class<>student').delete().eq('student', sid).then(response => {
-            var updateobject = {};
-
-            for (var x = 0; x < inputs.length; x++) {
-                var selectedID = "";
-                if (inputs[x].value) {
-                    console.log(inputs[x]);
-                    var split = inputs[x].value.split(':');
-                    console.log(split[0]);
-                    selectedID = split[0];                
-
-                    updateobject['class'] = selectedID;
-                    updateobject['student'] = sid;
-
-                    _supabase.from('class<>student').insert(updateobject).then(response => {
-                    })
+    function saveStudentData(inputs) {
+        var updateobject = {};
+        var sid = "";
+        for (var x = 0; x < inputs.length; x++) {
+            if (inputs[x].id == "nid" || inputs[x].id == "sid") {
+                sid = inputs[x].value;
+            } else {
+                if (inputs[x].id != "npcList2") {
+                    updateobject[inputs[x].id] = inputs[x].value;
                 }
             }
-        });
+        }
+        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
+            // window.location = location.pathname;
+        })
     }
     function setNewPass() {
         var Form = document.getElementById('newPas');
@@ -2218,14 +2224,6 @@
                 }
             }
         }
-    }
-    function saveStudentSchool(inputs) {
-        updateobject = {};
-        updateobject['college'] = inputs[0].value;
-        var id = document.getElementById('pid').value;
-        _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
-
-        })
     }
     
     // Creators
