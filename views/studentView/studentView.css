@@ -463,9 +463,12 @@ main {
                 }
                 .mainpage #exams .year .exams {
                     position: relative;
-                    height: calc(100% - 47px - 47px - 20px);
+                    height: calc(100%);
+                    display: flex;
+                    flex-direction: column;
                 }
                 .mainpage #exams .year .exams .exam {
+                    flex: 1;
                     display: flex;
                 }
                     .mainpage #exams .year .exams .exam p{
@@ -779,6 +782,9 @@ main {
         }
     /* Jobs and Extras - Nothing to fix */
     /* Relationships */
+    .mainpage #relationships .cubeWrapper #cubes .cube p {
+        font-size: 1rem;
+    }
     .mainpage #relationships .cubeWrapper #cubes .cube div p {
         font-size: 0.8rem;
     }

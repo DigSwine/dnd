@@ -1297,6 +1297,9 @@ button {
             }
         /* Jobs and Extras - Nothing to fix */
         /* Relationships */
+        .mainpage #relationships .cubeWrapper #cubes .cube p {
+            font-size: 1rem;
+        }
         .mainpage #relationships .cubeWrapper #cubes .cube div p {
             font-size: 0.8rem;
         }

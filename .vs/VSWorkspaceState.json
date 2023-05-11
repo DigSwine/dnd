@@ -1,13 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\assets\\students\\players",
     "\\views",
-    "\\views\\admin",
+    "\\views\\about",
     "\\views\\studentView",
     "\\views\\teacherView"
   ],
-  "SelectedNode": "\\views\\teacherView\\teacherView.css",
+  "SelectedNode": "\\views\\studentView\\studentView.css",
   "PreviewInSolutionExplorer": false
 }
