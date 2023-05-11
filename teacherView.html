@@ -926,20 +926,41 @@
     function togglecurrent() {
         var mainpage = document.getElementById('pages');
         var pages = mainpage.querySelectorAll('.page');
+        
         for (var x = 0; x < pages.length; x++) {
             if (pages[x]) {
                 if (window.getComputedStyle(pages[x]).display != "none") {  
-                    var inputs = pages[x].querySelectorAll('input');
-                    var textareas = pages[x].querySelectorAll('textarea');
-                    var selects = pages[x].querySelectorAll('select');
-                    for (var y = 0; y < inputs.length; y++) {
-                        inputs[y].toggleAttribute("disabled");
-                    }
-                    for (var y = 0; y < textareas.length; y++) {
-                        textareas[y].toggleAttribute("readonly");
-                    }
-                    for (var y = 0; y < selects.length; y++) {
-                        selects[y].toggleAttribute("disabled");
+                    if (pages[x].id == "players") {
+                        var views = pages[x].querySelectorAll('.view');
+                        for (var y = 0; y < views.length; y++) {
+                            if (views[y].getAttribute('hidden') == null) {
+                                var inputs = views[y].querySelectorAll('input');
+                                var textareas = views[y].querySelectorAll('textarea');
+                                var selects = views[y].querySelectorAll('select');
+                                for (var z = 0; z < inputs.length; z++) {
+                                    inputs[z].toggleAttribute("disabled");
+                                }
+                                for (var z = 0; z < textareas.length; z++) {
+                                    textareas[z].toggleAttribute("readonly");
+                                }
+                                for (var z = 0; z < selects.length; z++) {
+                                    selects[z].toggleAttribute("disabled");
+                                }
+                            }
+                        }
+                    } else {
+                        var inputs = pages[x].querySelectorAll('input');
+                        var textareas = pages[x].querySelectorAll('textarea');
+                        var selects = pages[x].querySelectorAll('select');
+                        for (var y = 0; y < inputs.length; y++) {
+                            inputs[y].toggleAttribute("disabled");
+                        }
+                        for (var y = 0; y < textareas.length; y++) {
+                            textareas[y].toggleAttribute("readonly");
+                        }
+                        for (var y = 0; y < selects.length; y++) {
+                            selects[y].toggleAttribute("disabled");
+                        }
                     }
                 }
             }

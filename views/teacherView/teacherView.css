@@ -388,7 +388,7 @@ button {
                     resize: none;
                     flex: 1;
                     color: white;
-                    text-align: center;
+                    text-align: left;
                     background-color: transparent;
                 }
         .mainpage #profile .right {
@@ -760,6 +760,7 @@ button {
         }
             .mainpage #npcs .npcProfile .student, .mainpage #npcs .npcProfile .teacher {
                 flex: 1;
+                height: 100%;
             }
                 .mainpage #npcs .npcProfile .student .npcSelector h3,
                 .mainpage #npcs .npcProfile .teacher .npcSelector h3,
@@ -796,6 +797,9 @@ button {
                     text-align: right;
                     margin: 10px 10px 0 0;
                 }
+        .mainpage #npcs .teacher form .note textarea {
+            height: 350px;
+        }
                 .mainpage #npcs form .note textarea {
                     margin: 10px 0 0 0;
                     padding: 0 10px 0 0;
@@ -838,6 +842,7 @@ button {
     background-size: cover;
     background-color: black;
     color: black;
+    width: 100%;
 }
 .mainpage .ss .controls {
     top: 5px;
@@ -1156,7 +1161,7 @@ button {
 
 .mainpage #tea video{
     position: absolute;
-    top: -110px;
+    top: 0;
     left: 0;
     height: calc(100% + 160px);
     z-index: 0;
@@ -1303,6 +1308,10 @@ button {
         .mainpage #relationships .cubeWrapper #cubes .cube div p {
             font-size: 0.8rem;
         }
+    /* SS */
+    .mainpage .ss {
+        width: 101.5%;
+    }
     /* NPCs */
     .mainpage #npcs form{
         height: 80vh;

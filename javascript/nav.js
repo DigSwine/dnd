@@ -86,6 +86,7 @@ function logot() {
     }
 }
 
+/*
 // Sparkles
 let MAX_SPEED = .009;
 let MAX_TIMESTEP = 70;
@@ -135,3 +136,4 @@ setInterval(function () {
     tick(particles);
     update(particles);
 }, 10);
+*/
