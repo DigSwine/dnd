@@ -83,10 +83,14 @@
 
         _supabase.from('Job<>Student').select('*').eq('Student', id).then(response => {
             if (response.data.length == 0) {
-                _supabase.from('Job<>Student').insert({ 'Job': jid, 'Student': id }).then(response => {
+                // get job wage
+                _supabase.from('_tblJobs').select('Pay').eq('id', jid).then(response => {
+                    var wage = response.data[0]['Pay'];
+                    _supabase.from('Job<>Student').insert({ 'Job': jid, 'Student': id, 'wage': wage }).then(response => {
+                    })
 
+                    alert("You have applied for the role! CONGRDULATIONS");
                 })
-                alert("You have applied for the role! CONGRDULATIONS");
             } else {
                 alert("Unfortuantly, we can only allow you to have one job.");
             }
@@ -124,21 +128,20 @@
                     togoPage.querySelector('.Mainheadline').innerText = title;
                     togoPage.querySelector('#' + location).innerText = content;
 
-                        // check if sec con is out of view.
-                        var contentContainer = togoPage.querySelector('.secContainer');
-                        var bounding = contentContainer.getBoundingClientRect();
-                        if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                            //get height of title
-                            var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
-                            var currentH = contentContainer.offsetHeight;
-                            contentContainer.style.height = currentH - headerH;
-                        }
-                    } else {
-                        if (location == "dropdown") {
-                            togoPage.querySelector('video').src = "../assets/star/" + content;
-                        }
+                    // check if sec con is out of view.
+                    var contentContainer = togoPage.querySelector('.secContainer');
+                    var bounding = contentContainer.getBoundingClientRect();
+                    if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                        //get height of title
+                        var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                        var currentH = contentContainer.offsetHeight;
+                        contentContainer.style.height = currentH - headerH;
                     }
-               
+                } else {
+                    if (location == "dropdown") {
+                        togoPage.querySelector('video').src = "../assets/star/" + content;
+                    }
+                }
             } else {
                 var id = "";
                 if (location == "left") {
