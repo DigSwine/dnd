@@ -810,7 +810,7 @@
                 }
             }
         })
-        _supabase.from('Job<>Student').select('Job (id, Title, Location, Pay)').eq('Student', sid).then(response => {
+        _supabase.from('Job<>Student').select('Job (id, Title, Location), wage').eq('Student', sid).then(response => {
             if (response.data.length > 0) {
                 for (var x = 0; x < response.data.length; x++) {
                     var data = response.data[x];
@@ -837,7 +837,7 @@
                     theLocation.innerText = job['Location'];
                     theLocation.classList = "location";
 
-                    theWage.innerText = job['Pay'];
+                    theWage.innerText = data['wage'];
                     theWage.classList = "wage";
 
                     _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
