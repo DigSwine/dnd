@@ -105,7 +105,7 @@ main {
 .leftnav {
     background-color: white;
     width: 350px;
-    height: calc(100% + 100px);
+    height: 100vh;
     position: absolute;
     top: -100px;
     position: relative;
@@ -444,7 +444,7 @@ button {
                 }
                 .mainpage #details .splitbody .split textarea {
                     resize: none;
-                    height: calc(100% - 30px);
+                    height: calc(80vh - 30px);
                     width: 100%;
                 }
 
@@ -456,7 +456,7 @@ button {
         .mainpage #courses .year {
             flex: 1;
             margin: 20px 50px 20px 50px;
-            height: calc(100% - 40px);
+            height: 350px;
             width: 200px;
             border-radius: 10px;
             position: relative;
@@ -686,6 +686,15 @@ button {
                 padding: 50px 50px 20px 50px;
                 position: relative;
             }
+                .mainpage #jobandextras #jobs .job input {
+                    padding: 0 0 0 15px;
+                    height: 50px;
+                    flex: 1;
+                    text-align: left;
+                    font-size: 0.9rem;
+                    font-family: 'Valneck';
+                    margin-right: 15px;
+                }
                 .mainpage #jobandextras #jobs .job p, .mainpage #jobandextras #jobs .job h3 {
                     flex: 1;
                     text-align: left;
@@ -707,10 +716,13 @@ button {
                     position: absolute;
                     top: 20px;
                 }
-                .mainpage #jobandextras #jobs .job .wage:before {
+                .mainpage #jobandextras #jobs .job:before {
                     content: "Job Wage";
                     position: absolute;
                     top: 20px;
+                    right: 505px;
+                    font-family: 'Valneck';
+                    font-size: 0.9rem;
                 }
         .mainpage #jobandextras #clubs {
             height: calc(100% - 50px - 50px - 208px);
@@ -843,6 +855,7 @@ button {
     background-color: black;
     color: black;
     width: 100%;
+    height: 89vh;
 }
 .mainpage .ss .controls {
     top: 5px;
@@ -892,7 +905,7 @@ button {
         position: relative;
         padding: 0 15px 15px 15px;
         width: calc(100% - 30px - 30px);
-        height: 90%;
+        height: 700px;
         max-height: 90%;
         margin: 0 15px 0 15px;
     }
@@ -1163,7 +1176,7 @@ button {
     position: absolute;
     top: 0;
     left: 0;
-    height: calc(100% + 160px);
+    height: calc(95vh);
     z-index: 0;
 }
 

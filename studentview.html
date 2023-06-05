@@ -442,6 +442,7 @@
             }
         }
         if (this.id == "save") {
+            this.disabled;
             var mainpage = document.getElementById('pages');
             var pages = mainpage.querySelectorAll('.page');
             for (var x = 0; x < pages.length; x++) {
@@ -502,6 +503,9 @@
                     }
                 }
             }
+            setTimeout(function () {
+                this.enabled;
+            }, 1000);
         }
     })
     $('#newpas').click(function () {
@@ -612,8 +616,24 @@
 
         var newTeacher = document.createElement('span');
         newTeacher.innerText = "Teacher: ";
+
+        $(selector + ' p span').remove();
+        $(selector + ' p').text("");
+
         $(selector + ' p').append(newTeacher);
         $(selector + ' p').append(split[1]);
+
+        var selected = $(selector + ' select').val();
+
+        $("select option").each(function () {
+            $(this).show();
+        });
+
+        $("select option[value='" + selected + "']").each(function () {
+            if (this.parentElement.value != selected) {
+                $(this).hide();
+            }
+        });
     }
 
     function getAllInputs(toClear) {
@@ -1015,7 +1035,7 @@
                 }
             }
             if (inspo) {
-                inspo.innerText = "Inspration: " + lovers + "/" + prof;
+                inspo.innerText = "Inspiration: " + lovers + "/" + prof;
             }
         });
     }
@@ -1136,6 +1156,7 @@
                 var course = data[x]['class'];
                 var student = data[x]['student'];
 
+                // Create location of course option
                 if (course['year'] == 1) {
                     var classChoice = "Y1S" + Y1C;
                     Y1C++;
@@ -1153,17 +1174,22 @@
                     Y4C++;
                 }
 
+                // Select course option and lock dropdown
                 $('#' + classChoice + ' select > option').each(function () {
                     var split = $(this).val().split(":");
                     var courseId = split[0];
                     var teacher = split[1];
-
                     if (courseId == course['id']) {
                         $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
-                        $('#' + classChoice + ' select').attr("disabled", "true");
+                        $('#' + classChoice + ' select').attr("disabled", "true");                        
 
-                        var newTeacher = document.createElement('span');
-                        newTeacher.innerText = "Teacher: ";
+                        // Remove for other dropdowns
+                        var selected = this.value;
+                        $("select option[value='" + selected + "']").each(function () {
+                            if (this.parentElement.value != selected) {
+                                $(this).remove();
+                            }                             
+                        });
                     }
                 });
             }
@@ -1289,9 +1315,29 @@
                 updateobject.college = 6
             }
         }
-        _supabase.from('_tblStudents').update(updateobject).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
-            reloadPage();
-        })
+
+        // Validation
+        var canUpdate = "no";
+        var cleared = 0;
+        if (updateobject.year > 0 && updateobject.year < 5) {
+            cleared++;
+        } else {
+            alert("Year must be between 1 and 4");
+        }
+        if (updateobject.level > 0 && updateobject.level < 21) {
+            cleared++;
+        } else {
+            alert("Level must be between 1 and 20");
+        }
+
+        if (cleared == 2) {
+            canUpdate = "yes";
+        }
+        if (canUpdate == "yes") {
+            _supabase.from('_tblStudents').update(updateobject).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
+                reloadPage();
+            })
+        }
     }
     function saveCourseChoices(choices) {
         _supabase.from('class<>student').select('class(id, year, name, required)').eq('student', sessionStorage.getItem("Student_Id")).then(response => {

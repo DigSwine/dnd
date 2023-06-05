@@ -35,6 +35,17 @@ function swapnav(type) {
 
                     subNav2.appendChild(newProfile);
                     subNav2.appendChild(newLogout);
+
+                    var loc = window.location.pathname;
+                    var page = loc.split("/").pop().split(".");
+                    page = page[0];
+                    if (page == "studentview" || page == "teacherview") {
+                        var nav = document.getElementById('navigation');
+                        var navigationChoices = nav.querySelector('.NavSubContainer').querySelector('#profile');
+                        navigationChoices.style.textDecoration = "underline";
+                        navigationChoices.style.color = "darkgoldenrod";
+                    }
+
                 }
             }
             if (nav) {
@@ -53,7 +64,7 @@ function gopage(goto) {
         url = 'campusmap.html';
     }
     if (goto == 'libary') {
-        url = 'libary.html';
+        url = 'library.html';
     }
     if (goto == 'news') {
         url = 'strixhavenstar.html';
@@ -73,9 +84,37 @@ function gopage(goto) {
     if (goto == 'teacher') {
         url = 'teacherview.html';
     }
-
     window.location = url;
 }
+
+$(function highlightNav() {
+    var loc = window.location.pathname;
+    var page = loc.split("/").pop().split(".");
+    page = page[0];
+
+    var nav = document.getElementById('navigation');
+    if (nav) {
+        var navigationChoices = nav.querySelector('.NavSubContainer').querySelectorAll('a');
+        for (var x = 0; x < navigationChoices.length; x++) {
+            var listName = navigationChoices[x].innerText.toLowerCase();
+            if (page == "campusmap") {
+                page = "university information";
+            }
+            if (page == "strixhavenstar") {
+                page = "strixhaven star";
+            }
+            if (page == "extra") {
+                page = "extracurriculars";
+            }
+            if (page == listName) {
+                navigationChoices[x].style.textDecoration = "underline";
+                navigationChoices[x].style.color = "darkgoldenrod";
+            }
+        }
+    } else {
+        setTimeout(highlightNav, 500)
+    }
+})
 
 function logot() {
     sessionStorage.clear();

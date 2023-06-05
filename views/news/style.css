@@ -234,10 +234,12 @@ main, p, h2, Mainheadline {
                     width: 30px;
                     height: 100%;
                     margin: 0;
-                    padding: 0;
                     border: none;
                     font-size: 0.8rem;
                     border-left: 1px solid black;
+                    background-color: darkgoldenrod;
+                    color: white;
+                    padding: 0;
                 }
             .pg3 .jobs .job button:hover {
                 cursor: pointer;
@@ -246,17 +248,18 @@ main, p, h2, Mainheadline {
                 background-color: black;
                 color: darkgoldenrod;
             }
-            .pg3 .jobs .job button span {
-                display: block;
-                height: 30px;
-                position: absolute;
-                top: 5px;
-                right: 0;
-                width: auto;
-                transform: translateY(-50%);
-                margin: 0;
-                transform: rotate(90deg);
-            }
+                    .pg3 .jobs .job button span {
+                        display: block;
+                        height: 30px;
+                        position: absolute;
+                        top: 2px;
+                        right: 0;
+                        width: auto;
+                        transform: translateY(-50%);
+                        margin: 0;
+                        transform: rotate(90deg);
+                        padding: 9px 0 0 0;
+                    }
 
         .headline {
             text-align: center;

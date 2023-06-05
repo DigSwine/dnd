@@ -696,6 +696,7 @@
             }
         }
         if (this.id == "save") {
+            this.disabled;
             var saveloc = this.parentElement.parentElement.id;
             if (!saveloc) {
                 saveloc = this.parentElement.parentElement.parentElement.parentElement.id;
@@ -854,6 +855,9 @@
             } else {
                 alert("Please make a choice if you want to edit or add");
             }
+            setTimeout(function () {
+                this.enabled;
+            }, 1000);
         }
         if (this.id == "add") {
             var addloc = this.parentElement.parentElement.id;
@@ -1426,7 +1430,7 @@
         }
     }   
     function getStudentDataByID(sid) {
-        _supabase.from('Job<>Student').select('Job (id, Title, Location, Pay)').eq('Student', sid).then(response => {
+        _supabase.from('Job<>Student').select('Job (id, Title, Location), wage').eq('Student', sid).then(response => {
             if (response.data.length > 0) {
                 for (var x = 0; x < response.data.length; x++) {
                     var data = response.data[x];
@@ -1437,7 +1441,7 @@
                     const theJob = document.createElement('div');
                     const theTitle = document.createElement('p');
                     const theLocation = document.createElement('p');
-                    const theWage = document.createElement('p');
+                    const theWage = document.createElement('input');
                     const theCoworker = document.createElement('p');
                     const QuitButton = document.createElement('button');
 
@@ -1454,8 +1458,9 @@
                     theLocation.innerText = job['Location'];
                     theLocation.classList = "location";
 
-                    theWage.innerText = job['Pay'];
+                    theWage.value = data['wage'];
                     theWage.classList = "wage";
+                    theWage.addEventListener('change', saveWage, false);
 
                     _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
                         var allworkers = response.data;
@@ -1482,7 +1487,6 @@
                         theJob.appendChild(theCoworker);
                         theJob.appendChild(theWage);
                         theJob.appendChild(QuitButton);
-
                         currentJob.appendChild(theJob);
                     })
                 }
@@ -2236,6 +2240,13 @@
                 }
             }
         }
+    }
+    function saveWage() {
+        var sid = document.getElementById('profile').querySelector('#pid').value;
+        var newWage = this.value;
+
+        _supabase.from('Job<>Student').update({ 'wage': newWage }).eq('Student', sid).then(response => {
+        })
     }
     
     // Creators
