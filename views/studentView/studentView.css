@@ -328,6 +328,11 @@ main {
                     height: calc(100% - 10px);
                     resize: none;
                 }
+    .mainpage select:disabled {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
 
     .mainpage #details {
         position: relative;

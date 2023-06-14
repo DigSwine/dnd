@@ -1165,6 +1165,73 @@
     $.get(urls[2], function (data) {
         $(ids[2]).html(data);
     });
+
+    function loadPage() {
+        // Load last page saved on
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const toOpen = urlParams.get('page');
+        if (toOpen) {
+            var allPages = document.getElementById('pages').querySelectorAll(".page");
+            var allChoices = document.getElementById('subnavchoices').querySelectorAll(".choice");
+            for (var x = 0; x < allPages.length; x++) {
+                allPages[x].setAttribute("hidden", "true");
+            }
+            for (var x = 0; x < allChoices.length; x++) {
+                allChoices[x].classList = "choice";
+                if (allChoices[x].innerText.toLowerCase() == toOpen) {
+                    allChoices[x].classList = "choice selected";
+                }
+            }
+            if (toOpen == "players") {
+                const subOpen = urlParams.get('subpage');
+                const player = urlParams.get('p');
+                var views = document.getElementById('players').querySelectorAll('.view');
+                for (var y = 0; y < views.length; y++) {
+                    views[y].setAttribute("hidden", "true");
+                    if (views[y].id == subOpen) {
+                        views[y].toggleAttribute("hidden");
+                    }
+                }
+                getPlayerData(player);
+            }
+            // Check the data has been loaded for the page
+
+            // Players
+            // Strixhaven Star
+            // NPCs
+            // Extra Notes - Done on load
+            // Coming Soon - No data
+            // Account - No data
+
+            // Reset URL
+            window.history.pushState("object or string", "Title", "/teacherview.html");
+
+            // Show Page
+            document.getElementById(toOpen).toggleAttribute("hidden");
+        }
+    }
+
+    function reloadPage() {
+        var allPages = document.getElementById('pages').querySelectorAll(".page");
+        for (var x = 0; x < allPages.length; x++) {
+            if (allPages[x].checkVisibility()) {
+                var currentPage = allPages[x].id;
+                const urlParams = new URLSearchParams(window.location.search);
+                urlParams.set('page', currentPage);
+                if (currentPage == "players") {
+                    var views = document.getElementById('players').querySelectorAll('.view');
+                    for (var y = 0; y < views.length; y++) {
+                        if (!views[y].hidden) {
+                            urlParams.set('subpage', views[y].id);
+                        }
+                    }                    
+                    urlParams.set('p', document.getElementById('profile').querySelector('#pid').value)
+                }
+                window.location.search = urlParams;
+            }
+        }
+    }
 </script>
 <script src="../../API/api.js"></script>
 <script src="/javascript/login.js"></script>
@@ -1174,6 +1241,7 @@
         getCourseData();
         getNotes();
         getpapercontent();
+        loadPage();
     })
 
     /* Player */
@@ -1246,7 +1314,7 @@
     var TPCtype = [];
     var TPCdescription = [];
 
-    // Getters
+    // Getters - Need to remove array
     function getPP() {
         _supabase.from('_tblStudents').select('*').order('id', { ascending: true }).then(response => {
             var data = response.data;
@@ -2049,14 +2117,37 @@
         })
     }
 
-    // Setters
+    // Setters - Done
+    // Main
+    function saveNotes(inputs) {
+        var updateobject = {};
+        var noteid = "";
+        for (var x = 0; x < inputs.length; x++) {
+            noteid = x + 1;
+            updateobject[inputs[x].id] = inputs[x].value;
+            _supabase.from('notes').update(updateobject).eq('id', noteid).then(response => {
+                if (x == inputs.length) {
+                    reloadPage();
+                } else {
+                    setTimeout(reloadPage, 1000);
+                }
+            })
+        }
+    }
+
+    // Player Data
     function saveStudentSchool(inputs) {
         updateobject = {};
         updateobject['college'] = inputs[0].value;
         var id = document.getElementById('pid').value;
         _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
+            reloadPage();
         })
-    }    
+    }
+
+    // Setters - Need to do
+    
+
     function saveCourseChoices(inputs) {
         var sid = document.getElementById('profile').querySelector('#pid').value;
 
@@ -2100,6 +2191,7 @@
             // window.location = location.pathname;
         })
     }
+
     function saveTeacherData(inputs) {
         var updateobject = {};
         var tid = "";
@@ -2118,20 +2210,10 @@
             }
         }
         _supabase.from('_tblTeachers').update(updateobject).eq('id', tid).then(response => {
-            // window.location = window.location;
+            reloadPage();
         })
     }
-    function saveNotes(inputs) {
-        var updateobject = {};
-        var noteid = "";
-        for (var x = 0; x < inputs.length; x++) {
-            noteid = x + 1;
-            updateobject[inputs[x].id] = inputs[x].value;
-            _supabase.from('notes').update(updateobject).eq('id', noteid).then(response => {
-            })
-        }
-        alert("Notes have been saved");
-    }
+
     function saveSS(locations, headers, contents, options) {
         var updateobject = {};
         var id = "";
@@ -2156,7 +2238,6 @@
             updateobject['content'] = contents[x].value;
 
             _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
-
             })
         }
         // Header
@@ -2194,14 +2275,14 @@
             id = job.id;
 
             updateobject['Title'] = job.querySelector('.jtitle').value;
-            updateobject['Location'] = job.querySelector('#jlocation').value; 
+            updateobject['Location'] = job.querySelector('#jlocation').value;
             updateobject['Pay'] = job.querySelector('#jwage').value;
 
             _supabase.from('_tblJobs').update(updateobject).eq('id', id).then(response => {
-
             })
         }
     }
+   
     function saveStudentData(inputs) {
         var updateobject = {};
         var sid = "";
@@ -2215,7 +2296,7 @@
             }
         }
         _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
-            // window.location = location.pathname;
+            reloadPage();
         })
     }
     function setNewPass() {
