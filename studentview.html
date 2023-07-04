@@ -327,7 +327,7 @@
                     <label for="CNPW">Confirm Password</label>
                     <input id="CNPW" placeholder="Confirm Password" type="password" />
                     <br />
-                    <button id="newpas">Submit</button>
+                    <button id="newpas" type="button">Submit</button>
                 </form>
                 <button id="deleteUser">Clear Profile</button>
                 <div class="clearConfirm" hidden>
@@ -498,7 +498,12 @@
                                     }
                                 }
                             }
-                            saveStudentData(allinputs);
+                            if (pages[x].id == "profile") {
+                                saveStudentProfileData(allinputs);
+                            }
+                            if (pages[x].id == "details") {
+                                saveStudentDetailsData(allinputs);
+                            }
                         }
                     }
                 }
@@ -508,13 +513,16 @@
             }, 1000);
         }
     })
+
     $('#newpas').click(function () {
         setNewPass();
     })
+
     $('#deleteUser').click(function () {
         var doc = this.parentElement.querySelector('.clearConfirm');
         doc.toggleAttribute("hidden");
     })
+
     $('.subConfirm button').click(function () {
         if (this.innerText == "No") {
             this.parentElement.parentElement.setAttribute("hidden", "true");
@@ -900,87 +908,91 @@
         details.querySelector('#extranotes').value = studentData.extranotes;
         //// Job ////
         var studentJob = await getStudentJobByStudentID(sid);
-        // Assign Job Data
-        var currentJob = document.getElementById('jobs');
-        const theJob = document.createElement('div');
-        const theTitle = document.createElement('h3');
-        const theLocation = document.createElement('p');
-        const theWage = document.createElement('p');
-        const theCoworker = document.createElement('p');
-        const QuitButton = document.createElement('button');
-        theJob.classList = "job";
-        theJob.id = "job";
-        QuitButton.classList = "quit";
-        QuitButton.id = studentJob.id;
-        QuitButton.innerText = "Resign";
-        QuitButton.addEventListener('click', quitJob, false);
-        theTitle.innerText = studentJob.Job.Title;
-        theLocation.innerText = studentJob.Job.Location;
-        theLocation.classList = "location";
-        theWage.innerText = studentJob.wage;
-        theWage.classList = "wage";
-        var coworkers = await getJobCoworkers(studentJob.Job.id);
-        var theCoworkers = "";
-        var wcount = 0;
-        for (var x = 0; x < coworkers.length; x++) {
-            var worker = coworkers[x]['Student'];
-            if (sessionStorage.getItem('Student_Id') != worker.id) {
-                if (worker.name) {
-                    if (wcount > 0) {
-                        theCoworkers = theCoworkers + " & " + worker.name;
-                    } else {
-                        theCoworkers = worker.name;
+        if (studentJob) {
+            // Assign Job Data
+            var currentJob = document.getElementById('jobs');
+            const theJob = document.createElement('div');
+            const theTitle = document.createElement('h3');
+            const theLocation = document.createElement('p');
+            const theWage = document.createElement('p');
+            const theCoworker = document.createElement('p');
+            const QuitButton = document.createElement('button');
+            theJob.classList = "job";
+            theJob.id = "job";
+            QuitButton.classList = "quit";
+            QuitButton.id = studentJob.id;
+            QuitButton.innerText = "Resign";
+            QuitButton.addEventListener('click', quitJob, false);
+            theTitle.innerText = studentJob.Job.Title;
+            theLocation.innerText = studentJob.Job.Location;
+            theLocation.classList = "location";
+            theWage.innerText = studentJob.wage;
+            theWage.classList = "wage";
+            var coworkers = await getJobCoworkers(studentJob.Job.id);
+            var theCoworkers = "";
+            var wcount = 0;
+            for (var x = 0; x < coworkers.length; x++) {
+                var worker = coworkers[x]['Student'];
+                if (sessionStorage.getItem('Student_Id') != worker.id) {
+                    if (worker.name) {
+                        if (wcount > 0) {
+                            theCoworkers = theCoworkers + " & " + worker.name;
+                        } else {
+                            theCoworkers = worker.name;
+                        }
+                        wcount++;
                     }
-                    wcount++;
                 }
             }
+            theCoworker.innerText = theCoworkers;
+            theCoworker.classList = "coworker";
+            theJob.appendChild(theTitle);
+            theJob.appendChild(theLocation);
+            theJob.appendChild(theCoworker);
+            theJob.appendChild(theWage);
+            theJob.appendChild(QuitButton);
+            currentJob.appendChild(theJob);
         }
-        theCoworker.innerText = theCoworkers;
-        theCoworker.classList = "coworker";
-        theJob.appendChild(theTitle);
-        theJob.appendChild(theLocation);
-        theJob.appendChild(theCoworker);
-        theJob.appendChild(theWage);
-        theJob.appendChild(QuitButton);
-        currentJob.appendChild(theJob);
         //// Clubs ////
         var clubs = await getClubByStudentID(sid);
-        var clubList = document.getElementById('clubs');
-        for (var x = 0; x < clubs.length; x++) {
-            var club = clubs[x].club;
-            const theClub = document.createElement('div');
-            const theClubName = document.createElement('p');
-            const theClubSkill = document.createElement('p');
-            const theClubDice = document.createElement('p');
-            const theClubMembers = document.createElement('div');
-            const theClubQuit = document.createElement('button');
-            theClub.classList = "club";
-            theClubName.classList = "clubname";
-            theClubName.innerText = club.name;
-            theClubSkill.classList = "clubskill";
-            theClubSkill.innerText = club.skills;
-            theClubDice.classList = "dice";
-            theClubDice.innerText = "1d4";
-            theClubMembers.classList = "members scrollbar";
-            var clubMembers = await getClubMembersByClubID(club.id);
-            for (var y = 0; y < clubMembers.length; y++) {
-                if (sessionStorage.getItem("Student_Id") != clubMembers[y].student.id) {
-                    const theClubMember = document.createElement('p');
-                    theClubMember.classList = "member";
-                    theClubMember.innerText = clubMembers[y].student.name;
-                    theClubMembers.appendChild(theClubMember);
+        if (clubs) {
+            var clubList = document.getElementById('clubs');
+            for (var x = 0; x < clubs.length; x++) {
+                var club = clubs[x].club;
+                const theClub = document.createElement('div');
+                const theClubName = document.createElement('p');
+                const theClubSkill = document.createElement('p');
+                const theClubDice = document.createElement('p');
+                const theClubMembers = document.createElement('div');
+                const theClubQuit = document.createElement('button');
+                theClub.classList = "club";
+                theClubName.classList = "clubname";
+                theClubName.innerText = club.name;
+                theClubSkill.classList = "clubskill";
+                theClubSkill.innerText = club.skills;
+                theClubDice.classList = "dice";
+                theClubDice.innerText = "1d4";
+                theClubMembers.classList = "members scrollbar";
+                var clubMembers = await getClubMembersByClubID(club.id);
+                for (var y = 0; y < clubMembers.length; y++) {
+                    if (sessionStorage.getItem("Student_Id") != clubMembers[y].student.id) {
+                        const theClubMember = document.createElement('p');
+                        theClubMember.classList = "member";
+                        theClubMember.innerText = clubMembers[y].student.name;
+                        theClubMembers.appendChild(theClubMember);
+                    }
                 }
+                theClubQuit.classList = "quit";
+                theClubQuit.innerText = "Quit Club";
+                theClubQuit.id = club.id;
+                theClubQuit.addEventListener('click', quitClub, false);
+                theClub.appendChild(theClubName);
+                theClub.appendChild(theClubSkill);
+                theClub.appendChild(theClubDice);
+                theClub.appendChild(theClubMembers);
+                theClub.appendChild(theClubQuit);
+                clubList.appendChild(theClub);
             }
-            theClubQuit.classList = "quit";
-            theClubQuit.innerText = "Quit Club";
-            theClubQuit.id = club.id;
-            theClubQuit.addEventListener('click', quitClub, false);
-            theClub.appendChild(theClubName);
-            theClub.appendChild(theClubSkill);
-            theClub.appendChild(theClubDice);
-            theClub.appendChild(theClubMembers);
-            theClub.appendChild(theClubQuit);
-            clubList.appendChild(theClub);
         }
     }
 
@@ -1223,13 +1235,14 @@
                         // Update Password
                         _supabase.from('_tblLogin').update({ log_pas: Form.querySelector('#NPW').value }).eq('student_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
                             alert("Your password has been updated");
+                            reloadPage();
                         })
                     }
                 });
             }
         }
     }
-    function saveStudentData(inputs) {
+    function saveStudentProfileData(inputs) {
         var updateobject = {};
         var yr = 0;
         for (var x = 0; x < inputs.length; x++) {
@@ -1266,6 +1279,25 @@
                 reloadPage();
             })
         }
+    }
+    function saveStudentDetailsData(inputs) {
+        var updateobject = {};
+        var yr = 0;
+        for (var x = 0; x < inputs.length; x++) {
+            updateobject[inputs[x].id] = inputs[x].value;
+            if (inputs[x].id == "year") {
+                yr = inputs[x].value;
+            }
+        }
+        if (yr == 1) {
+            if (updateobject.college != 6) {
+                updateobject.college = 6
+            }
+        }
+
+        _supabase.from('_tblStudents').update(updateobject).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
+            reloadPage();
+        })
     }
     function saveCourseChoices(choices) {
         _supabase.from('class<>student').select('class(id, year, name, required)').eq('student', sessionStorage.getItem("Student_Id")).then(response => {

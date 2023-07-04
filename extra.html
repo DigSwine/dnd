@@ -103,13 +103,27 @@
             /* check number of signed up for clubs */
             _supabase.from('Club<>Student').select('*').eq('student', sid).then(response => {
                 if (response.data.length < 3) {
-                    _supabase.from('Club<>Student').insert({ 'club': cid, 'student': sid }).then(response => {
-                        alert("You have signed up");
-                        var heart = $(this).find('i');
-                        heart = heart[0];
-                        heart.classList = "fa fa-heart";
-                        heart.style.color = "darkgoldenrod";
-                    })
+                    // Check if club is already subscribed to
+                    var prev = "no";
+                    for (var x = 0; x < response.data.length; x++) {
+                        if (cid == response.data[x].club) {
+                            prev = "yes";
+                        }
+                    }
+                    if (prev == "no") {
+                        _supabase.from('Club<>Student').insert({ 'club': cid, 'student': sid }).then(response => {
+                            alert("You have signed up");
+                            var heart = $(this).find('i');
+                            heart = heart[0];
+                            heart.classList = "fa fa-heart";
+                            heart.style.color = "darkgoldenrod";
+                        })
+                    } else {
+                        alert("You are already a member of the club");
+                    }
+                    
+
+
                 } else {
                     alert("you can only sign up to 3 at maximum");
                 }
