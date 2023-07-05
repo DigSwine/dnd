@@ -1013,12 +1013,11 @@
     $('#confirmRelation').click(function () {
         var nid = this.parentElement.querySelector('#addRelationNPCs').value;
         var sid = document.getElementById('profile').querySelector('#pid').value;
-        createRelationship(nid, sid);
         this.parentElement.querySelector('#addRelationNPCs').value = 0;
         this.parentElement.toggleAttribute('hidden');
         var addloc = this.parentElement.parentElement.querySelector('.controls').querySelector('#add');
         addloc.classList = "fa fa-plus";
-        getNPCRelationshipDataByStudentID(sid);
+        createRelationship(nid, sid);        
     })
     $('#cancleRelation').click(function () {
         var page = this.parentElement.parentElement;
@@ -1166,6 +1165,24 @@
         $(ids[2]).html(data);
     });
 
+    function sortSelect(selElem) {
+        var tmpAry = new Array();
+        for (var i = 0; i < selElem.options.length; i++) {
+            tmpAry[i] = new Array();
+            tmpAry[i][0] = selElem.options[i].text;
+            tmpAry[i][1] = selElem.options[i].value;
+        }
+        tmpAry.sort();
+        while (selElem.options.length > 0) {
+            selElem.options[0] = null;
+        }
+        for (var i = 0; i < tmpAry.length; i++) {
+            var op = new Option(tmpAry[i][0], tmpAry[i][1]);
+            selElem.options[i] = op;
+        }
+        return;
+    }
+
     function loadPage() {
         // Load last page saved on
         const queryString = window.location.search;
@@ -1193,11 +1210,14 @@
                         views[y].toggleAttribute("hidden");
                     }
                 }
-                getPlayerData(player);
+                _supabase.from('_tblStudents').select('player').eq("id", player).then(response => {
+                    var p = response.data[0]['player'];
+                    getPlayerData(p);
+                })                
             }
             // Check the data has been loaded for the page
 
-            // Players
+            // Players - Done on load
             // Strixhaven Star
             // NPCs
             // Extra Notes - Done on load
@@ -1205,13 +1225,12 @@
             // Account - No data
 
             // Reset URL
-            window.history.pushState("object or string", "Title", "/teacherview.html");
+            //window.history.pushState("object or string", "Title", "/teacherview.html");
 
             // Show Page
             document.getElementById(toOpen).toggleAttribute("hidden");
         }
     }
-
     function reloadPage() {
         var allPages = document.getElementById('pages').querySelectorAll(".page");
         for (var x = 0; x < allPages.length; x++) {
@@ -1225,13 +1244,14 @@
                         if (!views[y].hidden) {
                             urlParams.set('subpage', views[y].id);
                         }
-                    }                    
+                    }
                     urlParams.set('p', document.getElementById('profile').querySelector('#pid').value)
                 }
                 window.location.search = urlParams;
             }
         }
     }
+    
 </script>
 <script src="../../API/api.js"></script>
 <script src="/javascript/login.js"></script>
@@ -1244,35 +1264,6 @@
         loadPage();
     })
 
-    /* Player */
-    var PPCid = [];
-    var PPCplayer = [];
-    var PPCimg = [];
-    var PPCname = [];
-    var PPCage = [];
-    var PPCgender = [];
-    var PPCrace = [];
-    var PPCsubrace = [];
-    var PPCalignment = [];
-    var PPChaircolor = [];
-    var PPCeyecolor = [];
-    var PPCheight = [];
-    var PPCweight = [];
-    var PPClevel = [];
-    var PPCclasst = [];
-    var PPCsubclass = [];
-    var PPCbackground = [];    
-    var PPCpersonalitytraits = [];
-    var PPCideals = [];
-    var PPCbonds = [];
-    var PPCflaws = [];
-    var PPCgoals = [];
-    var PPCbackgroundfeatures = [];
-    var PPCappearance = [];    
-    var PPCbackstory = [];
-    var PPCextranotes = [];
-    var PPCyear = [];
-    var PPCcollege = [];
     /* NPC students */
     var NPCid = [];
     var NPCplayer = [];
@@ -1314,42 +1305,14 @@
     var TPCtype = [];
     var TPCdescription = [];
 
-    // Getters - Need to remove array
+    // Getters
     function getPP() {
         _supabase.from('_tblStudents').select('*').order('id', { ascending: true }).then(response => {
             var data = response.data;
             for (var x = 0; x < data.length; x++) {
                 var person = data[x];
                 if (person['player']) {
-                    // Players
-                    PPCid.push(person['id']);
-                    PPCplayer.push(person['player']);
-                    PPCimg.push("assets/students/players/" + person['picture']);
-                    PPCage.push(person['age']);
-                    PPCgender.push(person['gender']);
-                    PPCname.push(person['name']);
-                    PPCrace.push(person['race']);
-                    PPCalignment.push(person['alignment']);
-                    PPChaircolor.push(person['haircolour']);
-                    PPCeyecolor.push(person['eyecolour']);
-                    PPCweight.push(person['weight']);
-                    PPCheight.push(person['height']);
-                    PPCappearance.push(person['appearance']);
-                    PPCbackground.push(person['background']);
-                    PPCbackgroundfeatures.push(person['backgroundfeatures']);
-                    PPCbackstory.push(person['backstory']);
-                    PPCbonds.push(person['bonds']);
-                    PPCclasst.push(person['class']);
-                    PPCextranotes.push(person['extranotes']);
-                    PPCflaws.push(person['flaws']);
-                    PPCgoals.push(person['goals']);
-                    PPCideals.push(person['ideals']);
-                    PPClevel.push(person['level']);
-                    PPCpersonalitytraits.push(person['personalitytraits']);
-                    PPCsubclass.push(person['subclass']);
-                    PPCsubrace.push(person['subrace']);
-                    PPCyear.push(person['year']);
-                    PPCcollege.push(person['college']);
+                   
                 } else {
                     // NPCs
                     NPCid.push(person['id']);
@@ -1437,65 +1400,63 @@
         var header = page.querySelector('h2');
         var profile = page.querySelector('#profile');
         var details = page.querySelector('#details');
-        for (var x = 0; x < PPCplayer.length; x++) {            
-            if (toget == PPCplayer[x]) {                
-                header.innerText = "Player: " + PPCplayer[x];
-                profile.querySelector('#pid').value = PPCid[x];
-                profile.querySelector('#player').value = PPCplayer[x];
-                profile.querySelector('#profilepicture').src = PPCimg[x];
-                profile.querySelector('#name').value = PPCname[x];
-                profile.querySelector('#age').value = PPCage[x];
-                profile.querySelector('#gender').value = PPCgender[x];
-                profile.querySelector('#race').value = PPCrace[x];
-                profile.querySelector('#subrace').value = PPCsubrace[x];
-                profile.querySelector('#alignment').value = PPCalignment[x];
-                profile.querySelector('#haircolour').value = PPChaircolor[x];
-                profile.querySelector('#eyecolour').value = PPCeyecolor[x];
-                profile.querySelector('#height').value = PPCheight[x];
-                profile.querySelector('#weight').value = PPCweight[x];
-                profile.querySelector('#level').value = PPClevel[x];
-                profile.querySelector('#class').value = PPCclasst[x];
-                profile.querySelector('#subclass').value = PPCsubclass[x];
-                profile.querySelector('#background').value = PPCbackground[x];
-                profile.querySelector('#year').value = PPCyear[x];
+        _supabase.from('_tblStudents').select('*').eq("player", toget).then(response => {
+            var character = response.data[0];
+            header.innerText = "Player: " + character.player;
+            profile.querySelector('#pid').value = character.id;
+            profile.querySelector('#player').value = character.player;
+            profile.querySelector('#profilepicture').src = "assets/students/players/" + character.picture;
+            profile.querySelector('#name').value = character.name;
+            profile.querySelector('#age').value = character.age;
+            profile.querySelector('#gender').value = character.gender;
+            profile.querySelector('#race').value = character.race;
+            profile.querySelector('#subrace').value = character.subrace;
+            profile.querySelector('#alignment').value = character.alignment;
+            profile.querySelector('#haircolour').value = character.haircolour;
+            profile.querySelector('#eyecolour').value = character.eyecolour;
+            profile.querySelector('#height').value = character.height;
+            profile.querySelector('#weight').value = character.weight;
+            profile.querySelector('#level').value = character.level;
+            profile.querySelector('#class').value = character.class;
+            profile.querySelector('#subclass').value = character.subclass;
+            profile.querySelector('#background').value = character.background;
+            profile.querySelector('#year').value = character.year;
 
-                var college = PPCcollege[x];
-                profile.querySelector('#college').value = college;
-                var cLogo = document.getElementById('collegeLogo');
-                if (college == 6) {
-                    cLogo.src = "assets/strix_logo.png";
-                }
-                if (college == 5) {
-                    cLogo.src = "assets/maps/witherbloom.png";
-                }
-                if (college == 4) {
-                    cLogo.src = "assets/maps/silverquill.png";
-                }
-                if (college == 3) {
-                    cLogo.src = "assets/maps/quandrix.png";
-                }
-                if (college == 2) {
-                    cLogo.src = "assets/maps/prismari.png";
-                }
-                if (college == 1) {
-                    cLogo.src = "assets/maps/lorehold.png";
-                }
-
-                profile.querySelector('#personalitytraits').value = PPCpersonalitytraits[x];
-                profile.querySelector('#ideals').value = PPCideals[x];
-                profile.querySelector('#bonds').value = PPCbonds[x];
-                profile.querySelector('#flaws').value = PPCflaws[x];
-                profile.querySelector('#goals').value = PPCgoals[x];
-
-                profile.querySelector('#backgroundfeatures').value = PPCbackgroundfeatures[x];
-                profile.querySelector('#appearance').value = PPCappearance[x];
-
-                details.querySelector('#backstory').value = PPCbackstory[x];
-                details.querySelector('#extranotes').value = PPCextranotes[x];
-
-                getStudentDataByID(PPCid[x]);
+            profile.querySelector('#college').value = character.college;
+            var cLogo = document.getElementById('collegeLogo');
+            if (character.college == 6) {
+                cLogo.src = "assets/strix_logo.png";
             }
-        }
+            if (character.college == 5) {
+                cLogo.src = "assets/maps/witherbloom.png";
+            }
+            if (character.college == 4) {
+                cLogo.src = "assets/maps/silverquill.png";
+            }
+            if (character.college == 3) {
+                cLogo.src = "assets/maps/quandrix.png";
+            }
+            if (character.college == 2) {
+                cLogo.src = "assets/maps/prismari.png";
+            }
+            if (character.college == 1) {
+                cLogo.src = "assets/maps/lorehold.png";
+            }
+
+            profile.querySelector('#personalitytraits').value = character.personalitytraits;
+            profile.querySelector('#ideals').value = character.ideals;
+            profile.querySelector('#bonds').value = character.bonds;
+            profile.querySelector('#flaws').value = character.flaws;
+            profile.querySelector('#goals').value = character.goals;
+
+            profile.querySelector('#backgroundfeatures').value = character.backgroundfeatures;
+            profile.querySelector('#appearance').value = character.appearance;
+
+            details.querySelector('#backstory').value = character.backstory;
+            details.querySelector('#extranotes').value = character.extranotes;
+
+            getStudentDataByID(character.id);
+        })
     }   
     function getStudentDataByID(sid) {
         _supabase.from('Job<>Student').select('Job (id, Title, Location), wage').eq('Student', sid).then(response => {
@@ -1726,6 +1687,7 @@
             newOption.innerText = NPCname[x];
 
             relationshipPage.querySelector('#addRelationNPCs').appendChild(newOption);
+            sortSelect(relationshipPage.querySelector('#addRelationNPCs'));
         }
         getNPCRelationshipDataByStudentID(sid);
     }
@@ -2331,9 +2293,6 @@
     }
     
     // Creators
-    function createAllRelationships() {
-        alert('fuck this fucking fuckety fuck! FUCK!');
-    }
     function createNewStudentData(inputs) {
         var updateobject = {};
         for (var x = 0; x < inputs.length; x++) {
@@ -2346,6 +2305,7 @@
         _supabase.from('_tblStudents').insert(updateobject).then(response => {
         })
     }
+
     function createRelationship(nid, sid) {
         var updateobject = {};
         updateobject['npc'] = nid;
@@ -2353,6 +2313,7 @@
         updateobject['relationship'] = 0;
         
         _supabase.from('npc<>student').insert(updateobject).then(response => {
+            getNPCRelationshipDataByStudentID(sid);
         })
     }
 
@@ -2393,7 +2354,21 @@
         var nid = this.parentElement.id;
         var sid = document.getElementById('profile').querySelector('#pid').value;
         _supabase.from('npc<>student').delete().match({ npc: nid, student: sid }).then(response => {
+            var relationshipPage = document.getElementById('relationships');
+
+            for (var x = 0; x < NPCname.length; x++) {
+                if (NPCid[x] == nid) {
+                    var newOption = document.createElement('option');
+
+                    newOption.value = NPCid[x];
+                    newOption.innerText = NPCname[x];
+
+                    relationshipPage.querySelector('#addRelationNPCs').appendChild(newOption);
+                    sortSelect(relationshipPage.querySelector('#addRelationNPCs'));
+                }
+            }
             getNPCRelationshipDataByStudentID(sid);
         })
     }
+
 </script>

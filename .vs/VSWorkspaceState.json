@@ -2,11 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\API",
+    "\\assets",
     "\\javascript",
     "\\views",
+    "\\views\\about",
     "\\views\\studentView",
     "\\views\\teacherView"
   ],
-  "SelectedNode": "\\studentview.html",
+  "SelectedNode": "\\teacherView.html",
   "PreviewInSolutionExplorer": false
 }
