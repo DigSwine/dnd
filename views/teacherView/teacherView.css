@@ -1069,7 +1069,7 @@ button {
     text-align: left;
 }
     .mainpage .ss .pg3 .jobs {
-        width: 100%;
+        width: 90vw;
         height: 100%;
         display: flex;
         position: relative;
@@ -1079,6 +1079,7 @@ button {
     }
         .mainpage .ss .pg3 .jobs .job {
             height: auto;
+            width: 25%;
             border: solid 1px black;
             margin: 5px 5px 5px 0;
         }
@@ -1089,55 +1090,26 @@ button {
                 font-size: 0.8rem;
                 width: 100%;
                 height: 20px;
+                padding-left: 5px;
+            }
+            .mainpage .ss .pg3 .jobs .job .details{
+                display: flex;
             }
             .mainpage .ss .pg3 .jobs .job .details input {
                 padding: 0;
                 text-align: left;
                 margin: 0;
                 font-size: 0.8rem;
-                width: 50%;
                 height: 20px;
+                padding-left: 5px;
+                flex-basis: 80%;
             }
-                .mainpage .ss .pg3 .jobs .job .details p {
-                    text-align: left;
-                    margin: 0;
-                    font-size: 0.89rem;
+                .mainpage .ss .pg3 .jobs .job .details #jwage {
+                    text-align: right;
+                    padding-right: 5px;
+                    flex-basis: 20%;
                 }
-                    .mainpage .ss .pg3 .jobs .job .details p + p {
-                        margin-left: 5px;
-                        padding-left: 5px;
-                        border-left: 1px solid black;
-                    }
-            .mainpage .ss .pg3 .jobs .job button {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 30px;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                border: none;
-                font-size: 0.8rem;
-                border-left: 1px solid black;
-            }
-                .mainpage .ss .pg3 .jobs .job button:hover {
-                    cursor: pointer;
-                }
-                .mainpage .ss .pg3 .jobs .job button:active {
-                    background-color: black;
-                    color: darkgoldenrod;
-                }
-                .mainpage .ss .pg3 .jobs .job button span {
-                    display: block;
-                    height: 30px;
-                    position: absolute;
-                    top: 5px;
-                    right: 0;
-                    width: auto;
-                    transform: translateY(-50%);
-                    margin: 0;
-                    transform: rotate(90deg);
-                }
+
 .mainpage .ss .headline {
     text-align: center;
     line-height: normal;

@@ -1,279 +1,129 @@
-/* Debug */
-div, footer, nav {
-    /* border: 1px solid #000000; */
+/* Layout */
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    margin: 0;
+    cursor: url(http://cur.cursors-4u.net/user/use-1/use160.cur), progress !important;
 }
 
-/* Layout // All pages */
-body{
+:root {
+    --headerht: 17%;
+    --footerht: 5%;
+    --mainht: 82%; /* 100-17-0.25-0.25 */
+    --gaps: 0.25%;
+    --headersides: 10%;
+}
+
+/* Debug layout */
+header, main, footer, div, a {
+    /* border: 1px solid rgba(0,0,0); */
+}
+
+header {
+
+}
+
+    header div {
+        margin: 8px;
+    }
+
+        header div + div {
+            margin-left: 5px;
+        }
+
+    header .logo {
+        width: var(--headersides);
+    }
+
+        header .logo img {
+            height: 100%;
+        }
+
+    header .pagetitle {
+        line-height: 1.75;
+        width: 100%;
+        text-align: center;
+        font-size: 5rem;
+        font-family: 'Unfair Shares', sans-serif;
+        color: darkgoldenrod;
+        -webkit-text-stroke: 2px black;
+        text-shadow: 0px 3px 5px black;
+    }
+
+    header .thenavigation {
+        width: var(--headersides);
+        text-align: right;
+        font-size: 36px;
+        padding: 5px 5px 5px 5px;
+    }
+
+        header .thenavigation .hamburger {
+        }
+
+            header .thenavigation .hamburger:hover {
+                cursor: pointer;
+                background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+                color: transparent;
+                -moz-background-clip: text;
+                -webkit-background-clip: text;
+            }
+
+main {
+    z-index: 10;
     position: relative;
-    background-color: black;
-    overflow: auto;
+    width: 100%;
+    text-align: center;
+    height: var(--mainht);
+    margin-top: var(--gaps);
+    margin-bottom: var(--gaps);
+}
+
+/* Writing Sytles */
+p {
+    white-space: pre-line;
+    text-align: justify;
+    font-family: 'Valneck';
+    font-size: 1rem;
+    color: black;
+}
+h2 {
+    white-space: pre-line;
+    font-family: 'Valneck';
+    font-size: 1.2rem;
+    margin: 0;
+    color: black;
+}
+q {
+    font-family: 'Adulatory', sans-serif;
+    font-size: 2rem;
+    color: black;
+}
+strong {
+    font-size: 1.1rem;
+    color: black;
+}
+.endquote {
+    text-align: right;
+    font-family: 'Ramus', sans-serif;
+    color: black;
 }
 
 /* Page */
-header{
-    background-color: darkviolet;
-    height: 100px;
-}
-    header .pagetitle {
-        font-size: 3rem;
-    }
-    main{
-        margin: 0;
-        height: calc(100% - 100px);
-        display: flex;
-    }
-
-.leftnav {
+body {
+    background-image: url(../../assets/about_bg_1.webp);
+    background-size: cover;
     background-color: white;
-    width: 350px;
+}
+.image-background-text {
     height: 100%;
-    position: relative;
+    margin: 0% 0% 0% 0%;
 }
-    .leftnav .block {
-        width: 100%;
-        height: 100px;
-    }
-    .leftnav .choices {
-        width: 100%;
-    }
-        .leftnav .choices .choice {
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-            .leftnav .choices .choice:hover {
-                background-color: rgb(227,28,121, 0.2);
-                color: rgb(227,28,121);
-            }
-        .leftnav .choices .selected {
-            border-left: 5px solid hotpink;
-            border-right: 5px solid hotpink;
-            background-color: rgb(227,28,121, 0.2);
-            color: rgb(227,28,121);
-        }
-
-:root {
-    --titleheight: 45px;
-    --mainbodyheight: calc(100% - var(--titleheight));
+.text-overlay {
+    padding: 10px;
+    text-align: center;
+    width: 60%;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(7px);
+    background: transparent;
+    font-size: 1.2rem;
 }
-:root {
-    --color1: rgb(0, 231, 255);
-    --color2: rgb(255, 0, 231);
-    --speed: 7s;
-}
-::placeholder {
-    color: white;
-    opacity: 1;
-}
-
-.mainpage {
-    height: var(--mainbodyheight);
-    width: calc(100% - 350px);
-    position: relative;
-}
-    .mainpage div {
-        width: auto;
-        height: auto;
-    }
-    .mainpage h2 {
-        height: var(--titleheight);
-        margin: 10px 0 0 0;
-        font-size: 2rem;
-    }
-    .mainpage .page {
-        color: white;
-        height: auto;
-    }
-    .mainpage .top {
-        display: flex;
-        height: 340px;
-        width: 100%;
-        position: relative;
-    }
-    .mainpage .bottom {
-        display: flex;
-        height: calc(100% - 360px);
-        width: 100%;
-        position: relative;
-    }
-    .mainpage input, .mainpage textarea {
-        background-color: transparent;
-        border: none;
-        text-align: center;
-        color: white;
-    }
-    .mainpage input {
-        text-align: left;
-        width: 450px;
-        padding: 5px 0 5px 10px;
-    }
-        .mainpage input:enabled {
-            border: 2px solid white;
-        }
-    .mainpage textarea {
-        border: 2px solid white;
-    }
-    .mainpage textarea:read-only {
-        border: none;
-    }
-        
-
-
-    .mainpage .controls  {
-        position: absolute;
-        top: -10px;
-        right: 0;
-        padding: 5px;
-        display: flex;
-    }
-        .mainpage .controls button {
-            font-size: 2rem;
-            padding: 5px;
-            background-color: transparent;
-            color: white;
-            border: none;
-        }
-        .mainpage .controls .control:hover {
-            color: darkgoldenrod;
-            cursor: pointer;
-        }
-            .mainpage .controls button + button {
-                margin-left: 5px;
-            }
-        .mainpage .controls .activecontrol {
-            color: hotpink;
-        }
-            .mainpage .controls .activecontrol:hover {
-                cursor: pointer;
-            }
-
-    .mainpage #profile {
-        position: relative;
-    }
-        .mainpage #profile .card {
-            height: 325px;
-            max-width: 225px;
-            margin: 0px 0 0 50px;
-            flex: 1;
-        }
-            .mainpage #profile .card img {
-                height: 100%;
-                border-radius: 5%;
-                box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-            }
-                .mainpage #profile .card img:hover {
-                    box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-                    transition: box-shadow 0.1s ease-out;
-                }
-            .mainpage #profile form {
-                flex: 2;
-                text-align: right;
-            }
-                .mainpage #profile form label {
-                    display: block;
-                    margin: 10px;
-                }
-
-
-                .mainpage #profile form .formfield {
-                    display: flex;
-                    height: 239px;
-                }
-                    .mainpage #profile form .formfield label {
-                        flex: 1;
-                        margin: 0 5px 0 20px;
-                    }
-                    .mainpage #profile form .formfield textarea {
-                        flex: 2.7;
-                        height: 225px;
-                        width: 450px;
-                        resize: none;
-                        margin: 0 10px 0 0;
-                    }
-        .mainpage #profile form label textarea {
-            height: 225px;
-        }
-        .mainpage #profile .personality {
-            width: 100%;
-            height: calc(100% - 15px);
-            margin-top: 5px;
-            text-align: right;
-            flex: 1;
-        }
-            .mainpage #profile .personality .personal {
-                text-align: right;
-                display: flex;
-                width: calc(100% - 50px);
-                padding: 0 0 0 50px;
-                height: calc(100% / 5);
-            }
-                .mainpage #profile .personality .personal p, .mainpage #profile .personality .personal textarea {
-                    height: calc(100% / 5);
-                }
-                .mainpage #profile .personality .personal p {
-                    color: white;
-                    max-width: 20%;
-                    padding: 0 5px 5px 5px;
-                    margin: 0 15px 5px 5px;
-                    flex: 1;
-                }
-                .mainpage #profile .personality .personal textarea {
-                    width: calc(100% - 20%);
-                    height: calc(100% - 10px);
-                    margin: 5px 10px 0 10px;
-                    resize: none;
-                    flex: 1;
-                    color: white;
-                    text-align: center;
-                    background-color: transparent;
-                }
-                .mainpage #profile .right {
-                    flex: 1;
-                }
-                    .mainpage #profile .right .formfield {
-                        height: 50%;
-                        display: flex;
-                    }
-                        .mainpage #profile .right .formfield label {
-                            flex: 1;
-                        }
-                        .mainpage #profile .right .formfield textarea {
-                            flex: 1;
-                            margin: 0 10px 0 0;
-                            resize: none;
-                        }
-
-.mainpage #details {
-    position: relative;
-}
-        .mainpage #details .mainpage {
-            display: flex;
-        }
-            .mainpage #details .mainpage .split {
-                flex: 1;
-                display: flex;
-                height: calc(100% - 50px);
-                margin: 0 50px 0 50px;
-                padding-bottom: 50px;
-            }
-                .mainpage #details .mainpage .split p {
-                    margin: 0;
-                    flex: 0.5;
-                }
-                .mainpage #details .mainpage .split textarea {
-                    flex: 1;
-                    resize: none;
-                }
-
-
-        .mainpage #courses {
-        }
-    .mainpage #exams {
-    }
-    .mainpage #relationships {
-    }
-    .mainpage #jobandextra {
-    }
-    .mainpage #account {
-    }

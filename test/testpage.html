@@ -1,146 +1,70 @@
 <!Document>
 <head>
-    <link rel="stylesheet" type="text/css" href="/styles/imports.css">
-    <link rel="stylesheet" type="text/css" href="/views/layout.css">
-    <link rel="stylesheet" type="text/css" href="/views/nav.css">
+    <link rel="stylesheet" type="text/css" href="../styles/imports.css">
+    <link rel="stylesheet" type="text/css" href="../views/nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="testcss.css">
 
-    <link rel="stylesheet" type="text/css" href="/test/testcss.css">
+    <title>Strixhaven - Home </title>
+    <link rel="icon" href="../assets/strix_logo.png">
 
-    <title>Testing</title>
-    <link rel="icon" href="/assets/strix_logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <html>
 <body>
     <!-- Header -->
-    <div data-include="header"></div>
-
-    <!-- Navigation -->
-    <div data-include="navigation"></div>
-
-    <main>
-        <div class="leftnav">
-            <div class="block"></div>
-            <div id="subnavchoices" class="choices">
-                <p class="choice selected">Profile</p>
-                <p class="choice">Details</p>
-                <p class="choice">Courses</p>
-                <p class="choice">Exams</p>
-                <p class="choice">Relationships</p>
-                <p class="choice">Job and Extra</p>
-                <p class="choice" hidden>Coming Soon</p>
-                <p class="choice">Account Details</p>
-                <p class="choice">Logout</p>
-            </div>
+    <header class="d-flex">
+        <div class="logo">
+            <a id="unilogo" href="about.html"><img src="/assets/strix_logo.png" class="img-fluid"/></a>
         </div>
-        <div id="pages" class="mainpage">
-            <div class="page" id="profile">
-                <div class="controls">
-                    <button id="edit" class="control fa fa-pencil-square-o"></button>
-                    <button id="save" class="control fa fa-floppy-o"></button>
-                </div>
-                <h2>Profile</h2>
-                <div class="mainbody">
-                    <div class="top">
-                        <div class="card">
-                            <img id="profilepicture" src="../assets/students/players/Morgan.jpg" />
-                        </div>
-                        <form id="profileform1">
-                            <label>Name: <input id="name" placeholder="Name" disabled /></label>
-                            <label>Age: <input id="age" placeholder="Age" disabled /></label>
-                            <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
-                            <label>Race: <input id="race" placeholder="Race" disabled /></label>
-                            <label>Subrace: <input id="subrace" placeholder="Subrace" disabled /></label>
-                            <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
-                            <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
-                            <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
-                        </form>
-                        <form id="profileform2">
-                            <label>Height: <input id="height" placeholder="Height" disabled /></label>
-                            <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
-                            <label>Level: <input id="level" placeholder="Level" disabled /></label>
-                            <label>Class: <input id="class" placeholder="Class" disabled /></label>
-                            <label>Subclass: <input id="subclass" placeholder="Subclass" disabled /></label>
-                            <label>Background: <input id="background" placeholder="Background" disabled /></label>
-                        </form>
-                    </div>
-                    <div class="bottom">
-                        <div class="personality scrollbar">
-                            <div class="personal">
-                                <p>Personality Traits:</p>
-                                <textarea id="personalitytraits" class="scrollbar" placeholder="Personality Traits" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Ideals:</p>
-                                <textarea id="ideals" class="scrollbar" placeholder="Ideals" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Bonds:</p>
-                                <textarea id="bonds" class="scrollbar" placeholder="Bonds" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Flaws:</p>
-                                <textarea id="flaws" class="scrollbar" placeholder="Flaws" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Goals:</p>
-                                <textarea id="goals" class="scrollbar" placeholder="Your life time desire" readonly></textarea>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div class="formfield">
-                                <label>Background Features:</label>
-                                <textarea id="backgroundfeatures"  class="scrollbar" placeholder="Background Features" readonly></textarea>
-                            </div>
-                            <div class="formfield">
-                                <label>Additional Character Appearance:</label>
-                                <textarea id="appearance" class="scrollbar" placeholder="Additional Character Appearance" readonly></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="page" id="details" hidden>
-                <div class="controls">
-                    <button id="edit" class="control fa fa-pencil-square-o"></button>
-                    <button id="save" class="control fa fa-floppy-o"></button>
-                </div>
-                <h2>Details</h2>
-                <div class="mainpage">
-                    <div class="split">
-                        <p>Backstory:</p>
-                        <textarea id="backstory" class="scrollbar" placeholder="Backstory"></textarea>
-                    </div>
-                    <div class="split">
-                        <p>Extras:</p>
-                        <textarea id="extranotes" class="scrollbar" placeholder="Extra notes"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="page" id="courses" hidden>
-                <h2>courses</h2>
-            </div>
-            <div class="page" id="exams" hidden>
-                <h2>exams</h2>
-            </div>
-            <div class="page" id="relationships" hidden>
-                <h2>relationships</h2>
-            </div>
-            <div class="page" id="jobandextra" hidden>
-                <h2>jobandextra</h2>
-            </div>
-            <div class="page" id="account" hidden>
-                <h2>account</h2>
-            </div>
+        <div class="pagetitle" id="pagename">
+
+        </div>
+        <div class="thenavigation">
+            <a id="navcontroller" class="fa fa-bars hamburger" onclick="swapnav('open')"></a>
+        </div>
+    </header>
+
+    <!-- Navigation
+    <div data-include="navigation"></div>
+    -->
+    <!-- Main -->
+    <main>
+        <div class="d-flex justify-content-center">
+            <p class="text-overlay blockquote text-center">
+                Welcome to Strixhaven University, a magical school founded seven centuries ago by five ancient dragons.
+                Here students can study magic and learn from the many sages who take eager learners under their wings.
+                Being accepted to Strixhaven University is a special honour, the dream of many young students.
+                Strixhaven is a place of enlightenment and learning, and both its graduates and its delegates are welcomed and respected.
+
+                Strixhaven is the premier institution of magical learning, drawing promising young mages from all over.
+                Each equipped with its own campus and faculty. Strixhaven's five colleges:
+                Lorehold, Prismari, Quandrix, Silverquill and Witherbloom, cover a vast array of academic and magical specialties.
+
+                As a Strixhaven student a well-rounded education is not all we offer.
+                You can also partake in the vibrant campus life, with plenty of clubs and other activities.
+                Even play on one of Strixhaven's prestigious Mage Tower teams and bask in the adoration of cheering crowds!
+
+                <q>The mission of Strixhaven University is to discover and preserve magical knowledge,
+                   to disseminate that knowledge from one generation to the next,
+                   to promote free and open study of magic in all its forms,
+                   and to enhance the lives of people throughout the world through the use of magic.</q>
+                <cite style="text-align:right; display:block">- Strixhaven, mission statement</cite></p>
         </div>
     </main>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
+
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="/javascript/nav.js"></script>
-<script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
-    var pageid = 'Test page';
+    var pageid = 'Strixhaven University';
+    document.getElementById("pagename").innerHTML = pageid;
     $(function () {
         var includes = $('[data-include]')
         $.each(includes, function () {
@@ -148,66 +72,4 @@
             $(this).load(file)
         })
     })
-
-    $('.choice').click(function () {
-        var sidenav = document.getElementById('subnavchoices');
-        var choices = sidenav.querySelectorAll('p');
-        for (var x = 0; x < choices.length; x++){
-            choices[x].classList = "choice";
-        }
-        this.classList = "choice selected";
-
-        var mainpage = document.getElementById('pages');
-        var pages = mainpage.querySelectorAll('.page');
-        for (var x = 0; x < pages.length; x++) {
-            if (pages[x]) {
-                pages[x].setAttribute("hidden", "true");
-            }
-        }
-        var toshow = this.innerText.toLowerCase();
-        if (toshow == "job and extra") {
-            toshow = "jobandextra";
-        }
-        if (toshow == "account details") {
-            toshow = "account";
-        }
-        if (toshow == "logout") {
-            toshow = "profile";
-        }
-        document.getElementById(toshow).toggleAttribute("hidden");
-    })
-
-    $('.control').click(function () {
-        if (this.id == "edit") {
-            if (this.classList != "fa fa-pencil-square-o activecontrol") {
-                this.classList = "fa fa-pencil-square-o activecontrol";
-                togglecurrent();
-            } else {
-                this.classList = "control fa fa-pencil-square-o";
-                togglecurrent();
-            }
-        }
-        if (this.id == "save") {
-
-        }
-    })
-
-    function togglecurrent() {
-        var mainpage = document.getElementById('pages');
-        var pages = mainpage.querySelectorAll('.page');
-        for (var x = 0; x < pages.length; x++) {
-            if (pages[x]) {
-                if (window.getComputedStyle(pages[x]).display != "none") {
-                    var inputs = pages[x].querySelectorAll('input');
-                    var textareas = pages[x].querySelectorAll('textarea');
-                    for (var y = 0; y < inputs.length; y++) {
-                        inputs[y].toggleAttribute("disabled");
-                    }
-                    for (var y = 0; y < textareas.length; y++) {
-                        textareas[y].toggleAttribute("readonly");
-                    }
-                }
-            }
-        }
-    }
 </script>
