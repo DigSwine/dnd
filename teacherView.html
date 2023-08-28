@@ -12,10 +12,43 @@
 <html>
 <body>
     <!-- Header -->
-    <div data-include="header"></div>
+    <header>
+        <div class="logo">
+            <a id="unilogo" href="about.html"><img src="/assets/strix_logo.png" /></a>
+        </div>
+        <div class="pagetitle" id="pagename">
+
+        </div>
+        <div class="thenavigation">
+            <a id="navcontroller" class="fa fa-bars hamburger" onclick="swapnav('open')"></a>
+        </div>
+    </header>
 
     <!-- Navigation -->
-    <div data-include="navigation"></div>
+    <nav id="navigation">
+        <div class="cover" onclick="swapnav('close')"></div>
+        <div class="NavContainer">
+            <video id="navigationbgvideo" class="bgvid" src="/assets/Navigation.mp4" muted autoplay loop></video>
+            <div class="close">
+                <a id="navcontroller" class="fa fa-times" onclick="swapnav('close')"></a>
+            </div>
+            <div class="NavSubContainer">
+                <a onclick="gopage('about')" id="aboutbtn">About</a>
+                <a onclick="gopage('maps')" id="campmap">University Information</a>
+                <a onclick="gopage('news')" id="news">Strixhaven Star</a>
+                <a onclick="gopage('libary')" id="admin">Library</a>
+                <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
+                <a onclick="gopage('admin')" id="admin">Administration</a>
+                <a onclick="gopage('login')" id="login">Login</a>
+                <div class="logState"></div>
+            </div>
+            <footer>
+                <div>
+                    Created by <a href="https://morganwilsonslider.wordpress.com" target="_blank">Morgan Wilson-Slider</a>
+                </div>
+            </footer>
+        </div>
+    </nav>
 
     <!-- BG -->
     <div id="bg1"></div>
@@ -635,6 +668,7 @@
 </script>
 <script>
     var pageid = 'Professor DM';
+    document.getElementById("pagename").innerHTML = pageid;
     $(function () {
         var includes = $('[data-include]')
         $.each(includes, function () {
