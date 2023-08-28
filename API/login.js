@@ -3,13 +3,9 @@ $("button").click(function () {
 });
 
 function login(us, ps) {
-        _supabase.from('_tblLogin').select('*').match({ log_use: us, log_pas: ps }).then(response => {
-            if (response.data) {
-                extractdata(response.data);
-            } else {
-                alert("Failed to log in please try again");
-            }            
-        })
+    _supabase.from('_tblLogin').select('*').match({ log_use: us, log_pas: ps }).then(response => {
+        extractdata(response.data);        
+    })
 }
 
 function extractdata(array) {
@@ -24,6 +20,9 @@ function extractdata(array) {
             sessionStorage.setItem("Teacher_Id", JSON.stringify(data['teacher_id']));
             window.open('teacherview.html', '_self');
         }
+    }
+    if (array.length == 0) {
+        alert("Please check your login details and try again");
     }
 }
 

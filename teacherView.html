@@ -720,7 +720,42 @@
     })
     $('.control').click(function () {
         var page = this.parentNode.parentNode;
+        if (this.id == "add") {
+            // Get location of add btn
+            var addloc = this.parentElement.parentElement.id;
+            
+            // Check to see if edit is an option
+            var editbtn = document.getElementById(addloc).querySelector('#edit');
+            if (editbtn) {
+                editbtn.classList = "control fa fa-pencil-square-o";
+            }
+
+            // Toggle add btn and page            
+            if (this.classList != "fa fa-plus activecontrol") {
+                this.classList = "fa fa-plus activecontrol";
+            } else {
+                this.classList = "control fa fa-plus";
+            }
+
+            if (addloc == "npcs") {
+                togglecurrent();
+            }
+            if (addloc == "relationships") {
+                var page = this.parentElement.parentElement;
+                page.querySelector('#addModel').toggleAttribute('hidden');
+            }
+        }
+
         if (this.id == "edit") {
+            // Get location of edit btn
+            var editloc = this.parentElement.parentElement.id;
+
+            // Check to see if add is an option
+            var addbtn = document.getElementById(editloc).querySelector('#add');
+            if (addbtn) {
+                addbtn.classList = "control fa fa-plus";
+            }
+
             if (this.classList != "fa fa-pencil-square-o activecontrol") {
                 this.classList = "fa fa-pencil-square-o activecontrol";
                 togglecurrent();
@@ -761,29 +796,15 @@
                     }
                 }
 
+                // Player
                 if (saveloc == "profile") {
                     var inputs = this.parentElement.parentElement.querySelectorAll('select');
                     saveStudentSchool(inputs);
                 }
-                if (saveloc == "courses") {
+                if (saveloc == "Cyr1" || saveloc == "Cyr2" || saveloc == "Cyr3" || saveloc == "Cyr4" ) {
                     var year = this.parentElement.parentElement;
                     var inputs = year.querySelectorAll('select');
                     saveCourseChoices(inputs);
-                }
-                if (saveloc == "relationships") {
-                    var cubeList = page.querySelector('#cubes');
-                    var cubes = cubeList.querySelectorAll('.cube');
-                    if (active == "edit") {
-                        for (var x = 0; x < cubes.length; x++) {
-                            saveRelationship(cubes[x]);
-                        }
-                    }
-                    if (active == "add") {
-                        togglecurrent();
-                        var page = this.parentElement.parentElement;
-                        page.querySelector('#addModel').toggleAttribute('hidden');
-                        console.log('hit');
-                    }
                 }
                 if (saveloc == "exams") {
                     var exams = [];
@@ -805,6 +826,14 @@
                     }
                     saveExamScores(exams, results);
                 }
+                if (saveloc == "relationships") {
+                    var cubeList = page.querySelector('#cubes');
+                    var cubes = cubeList.querySelectorAll('.cube');  
+                    for (var x = 0; x < cubes.length; x++) {
+                        saveRelationship(cubes[x]);
+                    }
+                }
+
                 if (saveloc == "npcs") {
                     var allinputs = [];
                     var SorT = "";
@@ -901,22 +930,7 @@
                 this.enabled;
             }, 1000);
         }
-        if (this.id == "add") {
-            var addloc = this.parentElement.parentElement.id;
-            if (this.classList != "fa fa-plus activecontrol") {
-                this.classList = "fa fa-plus activecontrol";
-            } else {
-                this.classList = "control fa fa-plus";
-            }
-
-            if (addloc == "npcs") {
-                togglecurrent();
-            }
-            if (addloc == "relationships") {
-                var page = this.parentElement.parentElement;
-                page.querySelector('#addModel').toggleAttribute('hidden');
-            }
-        }
+        
         if (this.id == "delete") {
             var editbtn = page.querySelector('#edit');
             var addbtn = page.querySelector('#add');
@@ -1658,8 +1672,8 @@
                 var newDice = document.createElement("p");
                 var newSkills = document.createElement("p");
 
-                var options = ['-- Ungraded --', 'Pass', 'Fail', 'Ace'];
-                var values = ['null', 'pass', 'fail', 'ace'];
+                var options = ['-- Ungraded --', 'Fail', 'Pass', 'Ace'];
+                var values = ['null', 'fail', 'pass', 'ace'];
                 for (var z = 0; z < options.length; z++) {
                     var newDropOption = document.createElement("option");
                     newDropOption.innerText = options[z];
@@ -2077,15 +2091,15 @@
     function saveCourseChoices(inputs) {
         var sid = document.getElementById('profile').querySelector('#pid').value;
 
+        // Delete all course choices
         _supabase.from('class<>student').delete().eq('student', sid).then(response => {
+            // Create all course choices
             var updateobject = {};
 
             for (var x = 0; x < inputs.length; x++) {
                 var selectedID = "";
                 if (inputs[x].value) {
-                    console.log(inputs[x]);
                     var split = inputs[x].value.split(':');
-                    console.log(split[0]);
                     selectedID = split[0];
 
                     updateobject['class'] = selectedID;
@@ -2094,13 +2108,16 @@
                     _supabase.from('class<>student').insert(updateobject).then(response => {
                     })
                 }
-            }
+            }        
         });
+
+        
     }
     function saveExamScores(exams, results) {
         var sid = document.getElementById("players").querySelector('#profile').querySelector('#pid').value;
         for (var x = 0; x < exams.length; x++) {
             _supabase.from('exam<>student').update({ 'score': results[x] }).eq('exam', exams[x]).eq('student', sid).then(response => {
+                reloadPage();
             })
         }
     }

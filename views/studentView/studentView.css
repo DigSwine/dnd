@@ -92,7 +92,7 @@ main {
     --speed: 7s;
 }
 ::placeholder {
-    color: white;
+    color: black;
     opacity: 1;
 }
 
@@ -235,6 +235,10 @@ main {
     .mainpage #profile {
         position: relative;
     }
+        .mainpage #profile ::placeholder {
+            color: white;
+            opacity: 1;
+        }
         .mainpage #profile .card {
             height: 325px;
             max-width: 225px;

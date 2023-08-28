@@ -595,82 +595,7 @@
         return send;
     }
 
-    $('#Y1S1 select').change(function () {
-        setTeacherName('#Y1S1');
-    });
-    $('#Y1S2 select').change(function () {
-        setTeacherName('#Y1S2');
-    });
-    $('#Y1S3 select').change(function () {
-        setTeacherName('#Y1S3');
-    });
-    $('#Y1S4 select').change(function () {
-        setTeacherName('#Y1S4');
-    });
-    $('#Y2S1 select').change(function () {
-        setTeacherName('#Y2S1');
-    });
-    $('#Y2S2 select').change(function () {
-        setTeacherName('#Y2S2');
-    });
-    $('#Y2S3 select').change(function () {
-        setTeacherName('#Y2S3');
-    });
-    $('#Y2S4 select').change(function () {
-        setTeacherName('#Y2S4');
-    });
-    $('#Y3S1 select').change(function () {
-        setTeacherName('#Y3S1');
-    });
-    $('#Y3S2 select').change(function () {
-        setTeacherName('#Y3S2');
-    });
-    $('#Y3S3 select').change(function () {
-        setTeacherName('#Y3S3');
-    });
-    $('#Y3S4 select').change(function () {
-        setTeacherName('#Y3S4');
-    });
-    $('#Y4S1 select').change(function () {
-        setTeacherName('#Y4S1');
-    });
-    $('#Y4S2 select').change(function () {
-        setTeacherName('#Y4S2');
-    });
-    $('#Y4S3 select').change(function () {
-        setTeacherName('#Y4S3');
-    });
-    $('#Y4S4 select').change(function () {
-        setTeacherName('#Y4S4');
-    });
 
-    function setTeacherName(selector) {
-        var select = $(selector + ' select');
-        var selectedoption = select.find(":selected")[0];
-        var selectedValue = selectedoption.value;
-        var split = selectedValue.split(':');
-
-        var newTeacher = document.createElement('span');
-        newTeacher.innerText = "Teacher: ";
-
-        $(selector + ' p span').remove();
-        $(selector + ' p').text("");
-
-        $(selector + ' p').append(newTeacher);
-        $(selector + ' p').append(split[1]);
-
-        var selected = $(selector + ' select').val();
-
-        $("select option").each(function () {
-            $(this).show();
-        });
-
-        $("select option[value='" + selected + "']").each(function () {
-            if (this.parentElement.value != selected) {
-                $(this).hide();
-            }
-        });
-    }
 
     function getAllInputs(toClear) {
         var inputs = toClear.querySelectorAll('input');
@@ -723,7 +648,82 @@
             }
             ps[x].innerHTML = "";
         }
+    }
 
+    // Set Event Listeners
+    $(document).ready(async function () {
+        // RemoveFromCourseDropdowns
+        document.getElementById('Y1S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+        document.getElementById('Y1S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+        document.getElementById('Y1S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+
+        document.getElementById('Y2S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+        document.getElementById('Y2S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+        document.getElementById('Y2S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+
+        document.getElementById('Y3S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+        document.getElementById('Y3S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+        document.getElementById('Y3S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+
+        // setTeacherName
+        document.getElementById('Y1S2').querySelector('select').addEventListener('change', setTeacherName, false);
+        document.getElementById('Y1S3').querySelector('select').addEventListener('change', setTeacherName, false);
+        document.getElementById('Y1S4').querySelector('select').addEventListener('change', setTeacherName, false);
+
+        document.getElementById('Y2S2').querySelector('select').addEventListener('change', setTeacherName, false);
+        document.getElementById('Y2S3').querySelector('select').addEventListener('change', setTeacherName, false);
+        document.getElementById('Y2S4').querySelector('select').addEventListener('change', setTeacherName, false);
+
+        document.getElementById('Y3S2').querySelector('select').addEventListener('change', setTeacherName, false);
+        document.getElementById('Y3S3').querySelector('select').addEventListener('change', setTeacherName, false);
+        document.getElementById('Y3S4').querySelector('select').addEventListener('change', setTeacherName, false);
+
+    })
+
+    // Course Functions
+    function RemoveFromCourseDropdowns() {
+        // All selects on page
+        var year = this.parentElement.parentElement;
+        var allSelects = year.querySelectorAll("select");
+        var allOptions = year.querySelectorAll("option");
+
+        // Show all options
+        for (var x = 0; x < allOptions.length; x++) {
+            var option = allOptions[x];
+            option.style.display = "block";
+        }
+
+        // Get selected values
+        var selected = [];
+        for (var x = 0; x < allSelects.length; x++) {
+            var select = allSelects[x];
+            if (option.value != "-- Select Course --") {
+                selected.push(select.value);
+            }
+        }
+
+        // Hide selected values
+        for (var x = 0; x < allOptions.length; x++) {
+            var option = allOptions[x];
+            for (var y = 0; y < selected.length; y++) {
+                if (option.value != "-- Select Course --") {
+                    if (option.value == selected[y]) {
+                        option.style.display = "none";
+                    }
+                }
+            }            
+        }
+    }
+    function setTeacherName() {
+        var course = this.parentElement;
+        var selectedoption = this.value;
+        var split = selectedoption.split(':');
+
+        var newTeacher = document.createElement('span');
+        newTeacher.innerText = "Teacher: ";
+        course.querySelector('p').innerHTML = "";
+        course.querySelector('p').append(newTeacher);
+        course.querySelector('p').append(split[1]);
     }
 </script>
 <script src="../../API/api.js"></script>
@@ -732,7 +732,7 @@
     $(document).ready(async function () {
         var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
         if (sid) {
-            getCollegeDropdownData();
+            await getCollegeDropdownData();
             getCourseData();
             await getStudentData(sid);            
             loadPage();
@@ -756,101 +756,57 @@
             var data = response.data;
             for (var x = 0; x < data.length; x++) {
                 var course = data[x]['class'];
+                var year = course['year'];
                 var teacher = data[x]['teacher'];
-                if (course['year'] == 1) {
-                    $('#Y1S1 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y1S2 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y1S3 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y1S4 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    if (course['required'] == "yes") {
-                        $('#Y1S1 select').val(course['id'] + ":" + teacher['teacher_name']);
-                        $('#Y1S1 select').attr("disabled", "true");
+                var required = data[x]['required'];
 
-                        var newTeacher = document.createElement('span');
-                        newTeacher.innerText = "Teacher: ";
-                        $('#Y1S1 p').append(newTeacher);
-                        $('#Y1S1 p').append(teacher['teacher_name']);
+                var newOption = document.createElement('option');
+                newOption.value = course['id'] + ":" + teacher['teacher_name'];
+                newOption.text = course['name'];
+
+                if (year == 1) {
+                    var selects = document.getElementById('Y1S1').parentElement.querySelectorAll('select');
+                    for (var y = 0; y < selects.length; y++) {
+                        selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
+                    }
+                    if (course['required'] == "yes") {
+                        // Set required course class
+                        document.getElementById('Y1S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
+                        document.getElementById('Y1S1').querySelector('select').disabled = true;
+                        
                     }
                 }
-                if (course['year'] == 2) {
-                    $('#Y2S1 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y2S2 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y2S3 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y2S4 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
+                if (year == 2) {
+                    var selects = document.getElementById('Y2S1').parentElement.querySelectorAll('select');
+                    for (var y = 0; y < selects.length; y++) {
+                        selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
+                    }
                     if (course['required'] == "yes") {
-                        $('#Y2S1 select').val(course['id'] + ":" + teacher['teacher_name']);
-                        $('#Y2S1 select').attr("disabled", "true");
-                        $('#Y2S1 p').text("Teacher: " + teacher['teacher_name']);
+                        // Set required course class
+                        document.getElementById('Y2S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
+                        document.getElementById('Y2S1').querySelector('select').disabled = true;
                     }
                 }
-                if (course['year'] == 3) {
-                    $('#Y3S1 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y3S2 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y3S3 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y3S4 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
+                if (year == 3) {
+                    var selects = document.getElementById('Y3S1').parentElement.querySelectorAll('select');
+                    for (var y = 0; y < selects.length; y++) {
+                        selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
+                    }
                     if (course['required'] == "yes") {
-                        $('#Y3S1 select').val(course['id'] + ":" + teacher['teacher_name']);
-                        $('#Y3S1 select').attr("disabled", "true");
-                        $('#Y3S1 p').text("Teacher: " + teacher['teacher_name']);
+                        // Set required course class
+                        document.getElementById('Y3S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
+                        document.getElementById('Y3S1').querySelector('select').disabled = true;
                     }
                 }
-                if (course['year'] == 4) {
-                    $('#Y4S1 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y4S2 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y4S3 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
-                    $('#Y4S4 select').append($('<option>', {
-                        value: course['id'] + ":" + teacher['teacher_name'],
-                        text: course['name']
-                    }))
+                if (year == 4) {
+                    var selects = document.getElementById('Y4S1').parentElement.querySelectorAll('select');
+                    for (var y = 0; y < selects.length; y++) {
+                        selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
+                    }
                     if (course['required'] == "yes") {
-                        $('#Y4S1 select').val(course['id'] + ":" + teacher['teacher_name']);
-                        $('#Y4S1 select').attr("disabled", "true");
-                        $('#Y4S1 p').text("Teacher: " + teacher['teacher_name']);
+                        // Set required course class
+                        document.getElementById('Y4S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
+                        document.getElementById('Y4S1').querySelector('select').disabled = true;
                     }
                 }
             }
@@ -921,14 +877,25 @@
         if (studentData.college == 1) {
             cLogo.src = "assets/maps/lorehold.png";
         }
+
         // Check for college year and college Enrolled
-        if (studentData.year > 1) {
+        if (studentData.year >= 2) {
             if (studentData.college == 6) {
+                var options = profile.querySelector('#college').querySelectorAll('option');
+                for (var t = 0; t < options.length; t++) {
+                    if (options[t].value == "6") {
+                        options[t].style.display = "none";
+                    }
+                }
+
                 profile.querySelector('#college').toggleAttribute("disabled");
                 profile.querySelector('#college').style.border = "2px white solid";
                 profile.querySelector('#college').value = 0;
+
+                
             }
         }
+
         //// Details ////
         // Assign Details Data
         var details = document.getElementById('details');

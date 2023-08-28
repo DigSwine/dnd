@@ -876,8 +876,8 @@ button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    opacity: 0.5;
-    padding: 5px;
+    opacity: 1;
+    padding: 2px 0 0 0;
     left: 5%;
     text-align: left;
 }
@@ -900,7 +900,7 @@ button {
         padding: 0;
         right: 5%;
         text-align: right;
-        width: 300px;
+        width: auto;
     }
     .mainpage .ss .bodycontainer {
         position: relative;
