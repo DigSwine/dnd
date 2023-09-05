@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\views\\addons",
-    "\\views\\teacherView"
+    "\\views"
   ],
-  "SelectedNode": "\\teacherView.html",
   "PreviewInSolutionExplorer": false
 }

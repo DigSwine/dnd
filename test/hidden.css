@@ -1,0 +1,12 @@
+body{
+    background-color: gray;
+}
+.container {
+    height: auto;
+    width: auto;
+}
+.container img {
+    padding: 10px;
+    height: 150px;
+    width: 150px;
+}
