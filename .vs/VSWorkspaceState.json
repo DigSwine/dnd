@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\assets\\personal",
+    "\\javascript",
     "\\test"
   ],
-  "SelectedNode": "\\assets\\personal\\thelocks.png",
+  "SelectedNode": "\\javascript\\paper.js",
   "PreviewInSolutionExplorer": false
 }

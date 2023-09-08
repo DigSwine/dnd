@@ -1,22 +1,23 @@
 <!Document>
 <head>
-    <link rel="stylesheet" type="text/css" href="../styles/imports.css">
-    <link rel="stylesheet" type="text/css" href="../views/nav.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="testcss.css">
+    <link rel="stylesheet" type="text/css" href="/styles/imports.css">
+    <link rel="stylesheet" type="text/css" href="/views/layout.css">
+    <link rel="stylesheet" type="text/css" href="/views/nav.css">
 
-    <title>Strixhaven - Home </title>
-    <link rel="icon" href="../assets/strix_logo.png">
+    <link rel="stylesheet" type="text/css" href="/views/news/style.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Strixhaven - Strixhaven Star </title>
+    <link rel="icon" href="/assets/strix_logo.png">
 
 </head>
 <html>
 <body>
     <!-- Header -->
-    <header class="d-flex">
+    <header>
         <div class="logo">
-            <a id="unilogo" href="about.html"><img src="/assets/strix_logo.png" class="img-fluid"/></a>
+            <a id="unilogo" href="about.html"><img src="/assets/strix_logo.png" /></a>
         </div>
         <div class="pagetitle" id="pagename">
 
@@ -26,31 +27,44 @@
         </div>
     </header>
 
-    <!-- Navigation
-    <div data-include="navigation"></div>
-    -->
-    <!-- Main -->
+    <!-- Navigation -->
+    <nav id="navigation">
+        <div class="cover" onclick="swapnav('close')"></div>
+        <div class="NavContainer">
+            <video id="navigationbgvideo" class="bgvid" src="/assets/Navigation.mp4" muted autoplay loop></video>
+            <div class="close">
+                <a id="navcontroller" class="fa fa-times" onclick="swapnav('close')"></a>
+            </div>
+            <div class="NavSubContainer">
+                <a onclick="gopage('about')" id="aboutbtn">About</a>
+                <a onclick="gopage('maps')" id="campmap">University Information</a>
+                <a onclick="gopage('news')" id="news">Strixhaven Star</a>
+                <a onclick="gopage('libary')" id="admin">Library</a>
+                <a onclick="gopage('activities')" id="extcurr">Extracurriculars</a>
+                <a onclick="gopage('admin')" id="admin">Administration</a>
+                <a onclick="gopage('login')" id="login">Login</a>
+                <div class="logState"></div>
+            </div>
+            <footer>
+                <div>
+                    Created by <a href="https://morganwilsonslider.wordpress.com" target="_blank">Morgan Wilson-Slider</a>
+                </div>
+            </footer>
+        </div>
+    </nav>
     <main>
-        <div class="d-flex justify-content-center">
-            <p class="text-overlay blockquote text-center">
-                Welcome to Strixhaven University, a magical school founded seven centuries ago by five ancient dragons.
-                Here students can study magic and learn from the many sages who take eager learners under their wings.
-                Being accepted to Strixhaven University is a special honour, the dream of many young students.
-                Strixhaven is a place of enlightenment and learning, and both its graduates and its delegates are welcomed and respected.
+        <div id="topcontainer" class="topcontainer">
+            <div class="issue">2098423</div>
+            <div class="slogan">the only paper around</div>
+            <div class="paperdate">Monday, 1st November, 2022</div>
+        </div>
+        <div class="bodycontainer">
+            <div id="leftc" class="LCorn" style="display: none" onclick="previouspg()"></div>
+            <div id="rightc" class="RCorn" style="display: block" onclick="nextpg()"></div>
 
-                Strixhaven is the premier institution of magical learning, drawing promising young mages from all over.
-                Each equipped with its own campus and faculty. Strixhaven's five colleges:
-                Lorehold, Prismari, Quandrix, Silverquill and Witherbloom, cover a vast array of academic and magical specialties.
-
-                As a Strixhaven student a well-rounded education is not all we offer.
-                You can also partake in the vibrant campus life, with plenty of clubs and other activities.
-                Even play on one of Strixhaven's prestigious Mage Tower teams and bask in the adoration of cheering crowds!
-
-                <q>The mission of Strixhaven University is to discover and preserve magical knowledge,
-                   to disseminate that knowledge from one generation to the next,
-                   to promote free and open study of magic in all its forms,
-                   and to enhance the lives of people throughout the world through the use of magic.</q>
-                <cite style="text-align:right; display:block">- Strixhaven, mission statement</cite></p>
+            <div id="page1" class="pg1" style="display: block">page 1</div>
+            <div id="page2" class="pg2" style="display: none">page 2</div>
+            <div id="page3" class="pg3" style="display: none">page 3</div>
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -60,16 +74,249 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="/javascript/nav.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+
+<script src="../javascript/nav.js"></script>
+<script src="../javascript/paper.js"></script>
+<script src="/API/api.js"></script>
 <script>
-    var pageid = 'Strixhaven University';
+    var pageid = 'Strixhaven Star';
     document.getElementById("pagename").innerHTML = pageid;
     $(function () {
-        var includes = $('[data-include]')
-        $.each(includes, function () {
-            var file = '../views/addons/_' + $(this).data('include') + '.html'
-            $(this).load(file)
-        })
+        getpapercontent();
     })
+
+    // Strixhaven Star
+    function getpapercontent() {
+        const { createClient } = supabase;
+
+        var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
+        var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
+        const _supabase = createClient(url, anon);
+
+        _supabase.from('_tblStrixhavenStar').select('*').then(response => {
+            unpackdataNews(response.data);
+        })
+        _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
+            unpackdataJobs(response.data);
+        })
+    }
+    function applyforjob(job) {
+        const { createClient } = supabase;
+        var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
+        var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
+        const _supabase = createClient(url, anon);
+
+        var id = sessionStorage.getItem("Student_Id");
+
+        var split = job.split(':');
+        var jid = split[1];
+
+        _supabase.from('Job<>Student').select('*').eq('Student', id).then(response => {
+            if (response.data.length == 0) {
+                // get job wage
+                _supabase.from('_tblJobs').select('Pay').eq('id', jid).then(response => {
+                    var wage = response.data[0]['Pay'];
+                    _supabase.from('Job<>Student').insert({ 'Job': jid, 'Student': id, 'wage': wage }).then(response => {
+                    })
+
+                    alert("You have applied for the role! CONGRATULATIONS");
+                })
+            } else {
+                alert("Unfortuantly, we can only allow you to have one job.");
+            }
+        })
+    }
+    function unpackdataNews(data) {
+        for (var x = 0; x < data.length; x++) {
+            var story = data[x];
+            var page = story['pageNo'];
+            var location = story['location'];
+
+            var title = story['title'];
+            var content = story['content'];
+
+            // Get correct page
+            var togoPage = document.getElementById('page' + page);
+
+            if (page == 0) {
+                var topc = document.getElementById('topcontainer');
+                if (location == "date") {
+                    var date = topc.querySelector('.paperdate');
+                    date.innerText = content;
+                }
+                if (location == "slogan") {
+                    var slo = topc.querySelector('.slogan');
+                    slo.innerText = content;
+                }
+                if (location == "issue") {
+                    var iss = topc.querySelector('.issue');
+                    iss.innerText = content;
+                }
+            } else if (page == 1) {
+                if (title) {
+                    togoPage.querySelector('.Mainheadline').innerText = title;
+                    togoPage.querySelector('#' + location).innerText = content;
+
+                    // check if sec con is out of view.
+                    var contentContainer = togoPage.querySelector('.secContainer');
+                    var bounding = contentContainer.getBoundingClientRect();
+                    if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                        //get height of title
+                        var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                        var currentH = contentContainer.offsetHeight;
+                        contentContainer.style.height = currentH - headerH;
+                    }
+                } else {
+                    if (location == "dropdown") {
+                        togoPage.querySelector('video').src = "../assets/star/" + content;
+                    }
+                }
+            } else {
+                var id = "";
+                if (location == "left") {
+                    id = 'pg2left';
+                }
+                if (location == "middle top") {
+                    id = 'pg2Mtop';
+                }
+                if (location == "middle bottom") {
+                    id = 'pg2Mbot';
+                }
+                if (location == "right") {
+                    id = 'pg2right';
+                }
+                if (id) {
+                    var col = togoPage.querySelector('#' + id);
+
+                    // Create Title and Content
+                    const newTitle = document.createElement("h2");
+                    const newContent = document.createElement("p");
+
+                    newTitle.innerText = title;
+                    newContent.innerText = content;
+
+                    // Append Title to Col
+                    col.appendChild(newTitle);
+                    // Append Content to Col
+                    col.appendChild(newContent);
+
+
+                } else {
+                    console.log(story);
+                }
+            }
+        }
+    }
+    function unpackdataJobs(data) {
+        for (var x = 0; x < data.length; x++) {
+            var job = data[x];
+            var jloc = job["Location"];
+            var jpay = job["Pay"];
+            var jtit = job["Title"];
+            var jid = job["id"];
+            const newjob = document.createElement("div");
+            const newtitle = document.createElement("h3");
+            const newdetails = document.createElement("div");
+            const newlocation = document.createElement("p");
+            const newpay = document.createElement("p");
+            const newbtn = document.createElement("button");
+            const newbtntxt = document.createElement("span");
+
+            newtitle.innerText = "Job Title: " + jtit;
+            newlocation.innerText = "Location: " + jloc;
+            newpay.innerText = "Wage: " + jpay;
+            newbtntxt.innerText = "Apply";
+
+            newdetails.classList = "details";
+
+            newdetails.appendChild(newlocation);
+            newdetails.appendChild(newpay);
+
+            newbtn.id = "job:" + jid;
+
+            newjob.appendChild(newtitle);
+            newjob.appendChild(newdetails);
+            if (sessionStorage.getItem('Student_Id')) {
+                newbtn.appendChild(newbtntxt);
+                newbtn.addEventListener('click', apply, false);
+                newjob.appendChild(newbtn);
+            }
+            newjob.classList = "job";
+
+            var page = document.querySelector(".pg3");
+            page.querySelector('#joblisting').appendChild(newjob);
+        }
+    }
+    function apply() {
+        // Check if logged in still
+        var id = sessionStorage.getItem('Student_Id');
+        if (id) {
+            applyforjob(this.id);
+        } else {
+            alert("FUCK YOU LOG IN");
+        }
+    }
+    var showing = 0;
+    var pages = ["page1", "page2", "page3"];
+    function toggleshow(el) {
+        var element = document.getElementById(el);
+        element.style.display = "none";
+    }
+    function nextpg() {
+        if (showing < 2) {
+            for (var x = 0; x < pages.length; x++) {
+                toggleshow(pages[x]);
+            }
+            showing++;
+            var toshow = document.getElementById(pages[showing]);
+            var preBtn = document.getElementById('leftc');
+            var nexBtn = document.getElementById('rightc');
+            if (showing == 2) {
+                toshow.style.display = "flex";
+                nexBtn.style.display = "none";
+            }
+            preBtn.style.display = "block";
+            toshow.style.display = "flex";
+        }
+    }
+    function previouspg() {
+        if (showing > 0) {
+            for (var x = 0; x < pages.length; x++) {
+                toggleshow(pages[x]);
+            }
+            showing--;
+            var toshow = document.getElementById(pages[showing]);
+            var preBtn = document.getElementById('leftc');
+            var nexBtn = document.getElementById('rightc');
+            if (showing == 0) {
+                toshow.style.display = "block";
+                preBtn.style.display = "none";
+            } else {
+                toshow.style.display = "flex";
+                nexBtn.style.display = "block";
+            }
+        }
+    }
+    var ids = [".pg1", ".pg2", ".pg3"];
+    var urls = ["../views/news/_page1.html", "../views/news/_page2.html", "../views/news/_page3.html"];
+    $.get(urls[0], function (data) {
+        $(ids[0]).html(data);
+    });
+    $.get(urls[1], function (data) {
+        $(ids[1]).html(data);
+    });
+    $.get(urls[2], function (data) {
+        $(ids[2]).html(data);
+    });
+
+    import type { Config } from "https://edge.netlify.com"
+
+    export default async () => new Response("Hello, world!")
+
+    export const config: Config = {
+        cache: "manual",
+        path: "/hello"
+    }
+
 </script>
