@@ -20,7 +20,7 @@ header, main, footer, div, a {
 }
 
 header {
-
+    padding-top: 10px;
 }
 
     header div {
