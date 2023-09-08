@@ -80,7 +80,11 @@
     var pageid = 'Strixhaven Star';
     document.getElementById("pagename").innerHTML = pageid;
     $(function () {
-        getpapercontent();
+        if (sessionStorage.getItem('strixhavenStarData')) {
+            
+        } else {
+            getpapercontent();
+        }
     })
 
     // Strixhaven Star
@@ -92,6 +96,7 @@
         const _supabase = createClient(url, anon);
 
         _supabase.from('_tblStrixhavenStar').select('*').then(response => {
+            // sessionStorage.setItem('strixhavenStarData', 'Yes')
             unpackdataNews(response.data);
         })
         _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
