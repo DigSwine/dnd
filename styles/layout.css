@@ -157,18 +157,28 @@ select:hover {
 
 
 /* Mobile */
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 850px) {
     :root {
-        --headerht: 7%;
+        --headerht: 10%;
         --mainht: 93%; /* 100-17-0.25-0.25 */
         --gaps: 0%;
         --headersides: 10%;
     }
+}
+@media only screen and (max-width: 750px) {
+    header .pagetitle {
+        font-size: 2rem;
+    }
+}
+@media only screen and (max-width: 550px) {
     header .pagetitle {
         font-size: 1.2rem;
     }
     q {
         font-size: 1.5rem;
+    }
+    main {
+        height: auto;
     }
 }
 

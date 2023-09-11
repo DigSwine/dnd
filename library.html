@@ -70,22 +70,24 @@
                 <div class="cubeContainer">
                 </div>
             </div>
-            <div class="page" id="classes">
+            <div class="page" id="classes" hidden>
                 <h1>Classes</h1>
                 <div class="cubeContainer">
+
                     <div class="cube">
                         <img src="https://steamuserimages-a.akamaihd.net/ugc/943958354987860688/A8D0883AD68233784FB7274BB347E278FEA85E8D/?imw=5000">
                         <h1>Duplicator</h1>
-                        <h2>Created By: DignifiedSwine</h2>
+                        <h2>Created by: DignifiedSwine</h2>
                         <h3>A Warlock / Rouge built around duplication casting, not illusions</h3>
                         <a href="https://homebrewery.naturalcrit.com/share/RcPEnSaJ5nrb" target="_blank">
                             <span class="link"></span>
                         </a>
                     </div>
+
                 </div>
             </div>
             <div class="page" id="backgrounds" hidden>
-                <h1>Background</h1>
+                <h1>Backgrounds</h1>
                 <div class="cubeContainer">
                 </div>
             </div>
@@ -103,6 +105,7 @@
     // Local Controlers
         // Subnavigation Controller
     $('.subnavControl').click(function () {
+        // Unselect all subnav controls
         var subControlers = document.getElementById('subNav').querySelectorAll('.subnavControl');
         for (var x = 0; x < subControlers.length; x++) {
             subControlers[x].classList = 'subnavControl';
