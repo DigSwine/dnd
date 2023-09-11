@@ -21,7 +21,6 @@
             <a id="unilogo" href="about.html"><img src="/assets/strix_logo.png" /></a>
         </div>
         <div class="pagetitle" id="pagename">
-
         </div>
         <div class="thenavigation">
             <a id="navcontroller" class="fa fa-bars hamburger" onclick="swapnav('open')"></a>
@@ -56,7 +55,41 @@
     
     <!-- Main -->
     <main>
-        <h1>Coming Soon</h1>
+        <div class="subNav" id="subNav">
+            <a class="subnavControl">Races</a>
+            <a class="subnavControl">Classes</a>
+            <a class="subnavControl">Backgrounds</a>
+        </div>
+        <div class="pageContainer" id="pageContainer">
+            <div id="welcome" class="page">
+                <h1>Welcome to the Libary</h1>
+                This is just a page, for homebrews that have been allowed already - if you have a new one or want to add it then please drop me a message
+            </div>
+            <div class="page" id="races" hidden>
+                <h1>Races</h1>
+                <div class="cubeContainer">
+                </div>
+            </div>
+            <div class="page" id="classes">
+                <h1>Classes</h1>
+                <div class="cubeContainer">
+                    <div class="cube">
+                        <img src="https://steamuserimages-a.akamaihd.net/ugc/943958354987860688/A8D0883AD68233784FB7274BB347E278FEA85E8D/?imw=5000">
+                        <h1>Duplicator</h1>
+                        <h2>Created By: DignifiedSwine</h2>
+                        <h3>A Warlock / Rouge built around duplication casting, not illusions</h3>
+                        <a href="https://homebrewery.naturalcrit.com/share/RcPEnSaJ5nrb" target="_blank">
+                            <span class="link"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="page" id="backgrounds" hidden>
+                <h1>Background</h1>
+                <div class="cubeContainer">
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 </html>
@@ -66,4 +99,24 @@
 <script>
     var pageid = 'Strixhaven Library';
     document.getElementById("pagename").innerHTML = pageid;
+
+    // Local Controlers
+        // Subnavigation Controller
+    $('.subnavControl').click(function () {
+        var subControlers = document.getElementById('subNav').querySelectorAll('.subnavControl');
+        for (var x = 0; x < subControlers.length; x++) {
+            subControlers[x].classList = 'subnavControl';
+        }
+        this.classList = 'subnavControl Selected';
+        
+
+        // Hide all pages
+        var pages = document.getElementById('pageContainer').querySelectorAll('.page');
+        for (var x = 0; x < pages.length; x++) {
+            pages[x].toggleAttribute("hidden", true);
+            if (pages[x].id == this.innerText.toLowerCase()) {
+                pages[x].toggleAttribute("hidden");
+            }
+        }
+    })
 </script>
