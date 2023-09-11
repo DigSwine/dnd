@@ -25,21 +25,64 @@ body {
 
 @media only screen and (max-width: 1540px) {
     .text-overlay {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 }
-
-/* Mobile */
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 1300px) {
+    .text-overlay {
+        font-size: 1rem;
+        width: 90%;
+    }
+    q {
+        font-size: 1.75rem;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .text-overlay {
+        font-size: 0.9rem;
+        width: 98%;
+    }
+    q {
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (max-width: 500px) {
     .text-overlay {
         font-size: 0.9rem;
         padding: 0px 10px 0px 10px;
-        width: 90%;
-        height: 90%;
     }
     p{
         margin: 0;
         padding: 0;
+    }
+}
+@media only screen and (max-width: 400px) {
+    body {
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+    .text-overlay {
+        top: 46%;
+    }
+}
+@media only screen and (max-width: 380px) {
+    .text-overlay {
+        top: 49%;
+    }
+}
+@media only screen and (max-width: 375px) {
+    .text-overlay {
+        top: 42%;
+        font-size: 0.8rem;
+    }
+
+    q {
+        font-size: 1.25rem;
+    }
+}
+@media only screen and (max-width: 260px) {
+    .text-overlay {
+        top: 50%;
     }
 
 }
