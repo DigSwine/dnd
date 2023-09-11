@@ -28,33 +28,39 @@ main .locations {
 }
     main .locations .silverquill {
         position: absolute;
-        left: 48.5%;
+        left: 50%;
+        transform: translateX(-50%);
         top: 10%;
     }
     main .locations .prismari {
         position: absolute;
-        left: 22.5%;
+        left: 25%;
+        transform: translateX(-50%);
         bottom: 20%;
     }
     main .locations .lorehold {
         position: absolute;
-        left: 26%;
+        left: 25%;
+        transform: translateX(-50%);
         top: 32%;
     }
     main .locations .qundrix {
         position: absolute;
-        right: 19.75%;
-        top: 32%;
+        right: 17%;
+        transform: translateX(-50%);
+        top: 30%;
     }
     main .locations .witherbloom {
         position: absolute;
-        right: 24.75%;
+        right: 22%;
+        transform: translateX(-50%);
         bottom: 20%;
     }
     main .locations .main_campus {
         position: absolute;
-        left: 48.75%;
-        top: 42.5%;
+        left: 50.25%;
+        transform: translateX(-50%);
+        top: 38%;
     }
     main .locations button {
         background-color: transparent;
@@ -64,7 +70,7 @@ main .locations {
             cursor: pointer;
         }
         main .locations button img {
-            height: 5vh;
+            height: 70px;
         }
 
 .card {

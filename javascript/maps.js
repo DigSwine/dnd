@@ -79,7 +79,10 @@ function collegedetails(college) {
 
 function openclosecollege(type) {
     if (type == 'close') {
-        document.getElementById('card').style.display = "none";
+        var card = document.getElementById('card');
+        card.querySelector('#collegedescription').innerHTML = ""; 
+        card.querySelector('#collegedet').innerHTML = "";
+            card.style.display = "none";
     }
     if (type == 'open') {
         document.getElementById('card').style.display = "block";
