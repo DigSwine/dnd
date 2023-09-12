@@ -8,7 +8,7 @@ var TeacherName = [];
 var TeacherRank = [];
 
 // Studnets Table
-var selectedstudentid = null ;
+var selectedstudentid = null;
 var StudentID = [];
 var StudentHouse = [];
 var StudentName = [];

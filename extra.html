@@ -63,7 +63,11 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/javascript/nav.js"></script>
+<script src="../../API/api.js"></script>
+<script src="/javascript/preload.js"></script>
+<script src="../../API/login.js"></script>
 <script>
     var pageid = 'Extracurriculars';
     document.getElementById("pagename").innerHTML = pageid;
@@ -71,9 +75,6 @@
         getClubs();
     })
 </script>
-<script src="https://unpkg.com/@supabase/supabase-js"></script>
-<script src="/API/api.js"></script>
-<script src="../../API/login.js"></script>
 <script>
     function getClubs() {
         _supabase.from('Clubs').select('*').order('id', { ascending: true }).then(response => {
@@ -150,13 +151,13 @@
                     } else {
                         alert("You are already a member of the club");
                     }
-                    
+
 
 
                 } else {
                     alert("you can only sign up to 3 at maximum");
                 }
             })
-        }        
+        }
     }
 </script>

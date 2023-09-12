@@ -88,14 +88,17 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/javascript/nav.js"></script>
+<script src="../../API/api.js"></script>
+<script src="/javascript/preload.js"></script>
 <script>
     var pageid = 'Administration';
     document.getElementById("pagename").innerHTML = pageid;
 
     var schools = ["lorehold", "prismari", "silverquill", "quandrix", "witherbloom", "principle"];
     var subnavs = ['sublor', 'subpri', 'subsil', 'subqun', 'subwit'];
-    $("a").click(function () {
+    $("main a").click(function () {
         // Get Selected
         var h = $(this).attr('href');
         var ref = h.split('#');
@@ -112,7 +115,7 @@
                 //Close All
                 document.getElementById(schools[x]).classList = "hidden";
             }
-            
+
             // Open Selected
             this.classList = "selected";
             document.getElementById(ref[1]).classList = "";
@@ -129,14 +132,7 @@
 
 
 </script>
-<script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script>
-    
-    const { createClient } = supabase;
-    var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
-    var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
-    const _supabase = createClient(url, anon);
-
     for (var x = 0; x < schools.length; x++) {
         // Teacher Data
         _supabase.from('_tblTeachers').select('*').eq('teacher_school', schools[x]).order('id', { ascending: true }).then(response => {
@@ -170,7 +166,7 @@
             element.style.top = "0px";
             CL.remove("goaway");
         }
-        
+
         if (CL == "shrink") {
             CL.remove("shrink");
             var bounding = element.getBoundingClientRect();

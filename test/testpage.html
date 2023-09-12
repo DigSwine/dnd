@@ -95,7 +95,7 @@
         const _supabase = createClient(url, anon);
 
         _supabase.from('_tblStrixhavenStar').select('*').then(response => {
-            unpackdataNews(response.data);
+            
         })
         _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
             unpackdataJobs(response.data);
@@ -126,87 +126,6 @@
                 alert("Unfortuantly, we can only allow you to have one job.");
             }
         })
-    }
-    function unpackdataNews(data) {
-        for (var x = 0; x < data.length; x++) {
-            var story = data[x];
-            var page = story['pageNo'];
-            var location = story['location'];
-
-            var title = story['title'];
-            var content = story['content'];
-
-            // Get correct page
-            var togoPage = document.getElementById('page' + page);
-
-            if (page == 0) {
-                var topc = document.getElementById('topcontainer');
-                if (location == "date") {
-                    var date = topc.querySelector('.paperdate');
-                    date.innerText = content;
-                }
-                if (location == "slogan") {
-                    var slo = topc.querySelector('.slogan');
-                    slo.innerText = content;
-                }
-                if (location == "issue") {
-                    var iss = topc.querySelector('.issue');
-                    iss.innerText = content;
-                }
-            } else if (page == 1) {
-                if (title) {
-                    togoPage.querySelector('.Mainheadline').innerText = title;
-                    togoPage.querySelector('#' + location).innerText = content;
-
-                    // check if sec con is out of view.
-                    var contentContainer = togoPage.querySelector('.secContainer');
-                    var bounding = contentContainer.getBoundingClientRect();
-                    if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                        //get height of title
-                        var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
-                        var currentH = contentContainer.offsetHeight;
-                        contentContainer.style.height = currentH - headerH;
-                    }
-                } else {
-                    if (location == "dropdown") {
-                        togoPage.querySelector('video').src = "../assets/star/" + content;
-                    }
-                }
-            } else {
-                var id = "";
-                if (location == "left") {
-                    id = 'pg2left';
-                }
-                if (location == "middle top") {
-                    id = 'pg2Mtop';
-                }
-                if (location == "middle bottom") {
-                    id = 'pg2Mbot';
-                }
-                if (location == "right") {
-                    id = 'pg2right';
-                }
-                if (id) {
-                    var col = togoPage.querySelector('#' + id);
-
-                    // Create Title and Content
-                    const newTitle = document.createElement("h2");
-                    const newContent = document.createElement("p");
-
-                    newTitle.innerText = title;
-                    newContent.innerText = content;
-
-                    // Append Title to Col
-                    col.appendChild(newTitle);
-                    // Append Content to Col
-                    col.appendChild(newContent);
-
-
-                } else {
-                    console.log(story);
-                }
-            }
-        }
     }
     function unpackdataJobs(data) {
         for (var x = 0; x < data.length; x++) {

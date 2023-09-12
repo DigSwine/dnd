@@ -16,7 +16,17 @@
 <body id="body">
     <svg style="width: 0; height: 0;" id="svg"></svg>
     <!-- Header -->
-    <div data-include="header"></div>
+    <header>
+        <div class="logo">
+            <a id="unilogo" href="about.html"><img src="/assets/strix_logo.png" /></a>
+        </div>
+        <div class="pagetitle" id="pagename">
+
+        </div>
+        <div class="thenavigation">
+            <a id="navcontroller" class="fa fa-bars hamburger" onclick="swapnav('open')"></a>
+        </div>
+    </header>
 
     <!-- Navigation -->
     <div data-include="navigation"></div>
@@ -33,14 +43,16 @@
 
     <!-- Main -->
     <main>
-        <div class="mytext" id='mytext'>Welcome Adventurer's to your first test
+        <div class="mytext" id='mytext'>
+Welcome Adventurer's to your first test
 Let's see if you are smarter than the rest
 To gain access to my domain
 A golden key you must obtain
 So trust your light and search the dark
-For only then you will find the hidden mark</div>
+For only then you will find the hidden mark
+        </div>
         <div id="btn" class="btn">
-            <img src="assets/key.png"/>
+            <img src="assets/key.png" />
         </div>
     </main>
 </body>
@@ -53,6 +65,7 @@ For only then you will find the hidden mark</div>
 <script src="/javascript/preload.js"></script>
 <script>
     var pageid = '';
+    document.getElementById("pagename").innerHTML = pageid;
     
     $(function () {
         var id = 'mytext';

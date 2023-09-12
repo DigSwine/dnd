@@ -1,58 +1,61 @@
 $(document).ready(function () {
-    preload();    
+    checkExpiry();
+    var preloaded = preloadCheck();
+    if (!preloaded) {
+        preload("preload", "default");
+        getAllPreloadAPIData();
+    }
 });
 
-//// Pre load images 
-function preload() {
-    
-//    var images = [];
+// Check if data has been preloaded
+function preloadCheck() {
+    var tester = localStorage.getItem("preload");
+    if (tester) {
+        return true;
+    }
+}
 
-//    /* all pages */
-//    images.push("strix_logo.png");
+// Pre load data
+function preload(key, value) {
+    var ttl = 900000;
+    const now = new Date()
+    const item = {
+        value: value,
+        expiry: now.getTime() + ttl,
+    }
+    localStorage.setItem(key, JSON.stringify(item));    
+}
 
-//    /* Landing Images */
-//    // images.push("landing2.mp4");
+function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+    // if the item doesn't exist, return null
+    if (!itemStr) {
+        return null
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+    // compare the expiry time of the item with the current time
+    if (now.getTime() > item.expiry) {
+        // If the item is expired, delete the item from storage
+        // and return null
+        localStorage.removeItem(key)
+        console.log(key + " has been removed");
+        return null
+    } else {
+        console.log(key + " has not been removed");
+    }
+    return item.value
+}
 
-//    /* About Images */
-//    images.push("MtG_background.jpg");
+function checkExpiry() {
+    const keys = [...Array(localStorage.length)].map((o, i) => {
+        return localStorage.key(i);
+    })
+    for (var x = 0; x < keys.length; x++) {
+        if (keys[x] == "debug") {
 
-//    /* Logos */
-//    images.push("bibloplex.png");
-//    images.push("lorehold.png");
-//    images.push("prismari.png");
-//    images.push("quandrix.png");
-//    images.push("silverquill.png");
-//    images.push("witherbloom.png");
-
-
-//    /* Maps Images */    
-//    images.push("attempt.jpg");
-//    images.push("central_map.png");
-//    images.push("lorehold_map.png");
-//    images.push("prismari_map.png");
-//    images.push("quandrix_map.png");
-//    images.push("silverquill_map.png");
-//    images.push("witherbloom_map.png");
-
-//    /* News Images */
-
-//    /* Extra Images */
-
-//    /* Admin Images */
-
-//    /* Login Images */
-       
-
-//    for (var i = 0; i < images.length; i++) {
-//        //console.log(images[i]);
-//        images[i] = '../assets/' + images[i];
-//        if (images[i].includes(".png") || images[i].includes(".jpg") || images[i].includes(".webp")) {            
-//            images[i] = new Image();
-//            images[i].src = preload.arguments[i];
-//        } else {
-//            if (images[i].includes(".mp4")) {
-
-//            }
-//        }
-//    }
+        } else {
+            getWithExpiry(keys[x]);
+        }
+    }
 }

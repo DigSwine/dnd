@@ -23,3 +23,30 @@ async function getClubMembersByClubID(id) {
     const { data, error } = await _supabase.from('Club<>Student').select('student (id, name)').eq('club', id);
     return data;
 } 
+
+// Preload APIs
+async function getAllPreloadAPIData() {
+    getStrixhavenStarPaper();
+    getStrixhavenStarJobs();
+}
+// about - non
+// map info - non, local
+// Strixhaven Star, 2.
+async function getStrixhavenStarPaper() {
+    _supabase.from('_tblStrixhavenStar').select('*').then(response => {
+        // Package Data
+        for (var x = 0; x < response.data.length; x++) {
+            var data = response.data[x];
+            var key = "strixstar" + data.location;
+            var value = data;
+            preload(key, value);
+        }       
+    })
+}
+async function getStrixhavenStarJobs() {
+    _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
+        // Package Data
+        preload("jobdata", response.data);
+    })
+}
+

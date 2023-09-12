@@ -52,7 +52,7 @@
             </footer>
         </div>
     </nav>
-    
+
     <!-- Main -->
     <main>
         <div class="subNav" id="subNav">
@@ -91,7 +91,7 @@
                         </a>
                     </div>
 
-                    
+
 
                 </div>
             </div>
@@ -163,13 +163,16 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/javascript/nav.js"></script>
+<script src="../../API/api.js"></script>
+<script src="/javascript/preload.js"></script>
 <script>
     var pageid = 'Strixhaven Library';
     document.getElementById("pagename").innerHTML = pageid;
 
     // Local Controlers
-        // Subnavigation Controller
+    // Subnavigation Controller
     $('.subnavControl').click(function () {
         // Unselect all subnav controls
         var subControlers = document.getElementById('subNav').querySelectorAll('.subnavControl');
@@ -177,7 +180,7 @@
             subControlers[x].classList = 'subnavControl';
         }
         this.classList = 'subnavControl Selected';
-        
+
 
         // Hide all pages
         var pages = document.getElementById('pageContainer').querySelectorAll('.page');
