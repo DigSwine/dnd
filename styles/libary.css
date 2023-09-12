@@ -101,7 +101,7 @@ header .thenavigation {
         .cubeContainer .cube img {
             position: absolute;
             border-radius: 10px;
-            right: 0;
+            right: -1px;
             top: 0;
             height: 100%;
             z-index: 1;
