@@ -1,129 +1,165 @@
-/* Layout */
 body {
-    overflow-y: hidden;
-    overflow-x: hidden;
-    margin: 0;
-    cursor: url(http://cur.cursors-4u.net/user/use-1/use160.cur), progress !important;
+    position: relative;
+    background-image: url('../../assets/adminbg.jpg');
+    background-size: cover;
+    background-color: gray;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 
-:root {
-    --headerht: 17%;
-    --footerht: 5%;
-    --mainht: 82%; /* 100-17-0.25-0.25 */
-    --gaps: 0.25%;
-    --headersides: 10%;
+.thenavigation .hamburger {
+    color: white;
 }
 
-/* Debug layout */
-header, main, footer, div, a {
-    /* border: 1px solid rgba(0,0,0); */
+.subtitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: -10px;
 }
 
-header {
-    padding-top: 10px;
+.subnav {
+    overflow: hidden;
 }
 
-    header div {
-        margin: 8px;
+    .subnav .subnav-content {
+        z-index: 1;
     }
 
-        header div + div {
-            margin-left: 5px;
+        .subnav .subnav-content a {
+            padding: 0 25px 0 25px;
+            color: white;
+            font-size: 1.75rem;
+            font-variant-caps: all-petite-caps;
+            text-decoration: none;
+            font-family: 'Valneck';
         }
 
-    header .logo {
-        width: var(--headersides);
-    }
-
-        header .logo img {
-            height: 100%;
-        }
-
-    header .pagetitle {
-        line-height: 1.75;
-        width: 100%;
-        text-align: center;
-        font-size: 5rem;
-        font-family: 'Unfair Shares', sans-serif;
-        color: darkgoldenrod;
-        -webkit-text-stroke: 2px black;
-        text-shadow: 0px 3px 5px black;
-    }
-
-    header .thenavigation {
-        width: var(--headersides);
-        text-align: right;
-        font-size: 36px;
-        padding: 5px 5px 5px 5px;
-    }
-
-        header .thenavigation .hamburger {
-        }
-
-            header .thenavigation .hamburger:hover {
-                cursor: pointer;
+            .subnav .subnav-content a:hover {
                 background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-                color: transparent;
-                -moz-background-clip: text;
-                -webkit-background-clip: text;
+                color: black;
             }
 
-main {
-    z-index: 10;
-    position: relative;
-    width: 100%;
-    text-align: center;
-    height: var(--mainht);
-    margin-top: var(--gaps);
-    margin-bottom: var(--gaps);
+    .subnav .selected {
+        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+        color: black;
+    }
+
+.hidden {
+    display: none;
 }
 
-/* Writing Sytles */
-p {
-    white-space: pre-line;
-    text-align: justify;
-    font-family: 'Valneck';
-    font-size: 1rem;
-    color: black;
+#card {
+    margin: 1% auto;
+    padding: 3px 0;
+    border-radius: 7px;
+    background: #000;
+    width: 33vw;
+    height: calc(width * 1.5);
 }
-h2 {
-    white-space: pre-line;
-    font-family: 'Valneck';
-    font-size: 1.2rem;
-    margin: 0;
-    color: black;
-}
-q {
-    font-family: 'Adulatory', sans-serif;
-    font-size: 2rem;
-    color: black;
-}
-strong {
-    font-size: 1.1rem;
-    color: black;
-}
-.endquote {
-    text-align: right;
-    font-family: 'Ramus', sans-serif;
-    color: black;
+@media screen and (max-width: 768px) {
+    #card {
+        width: 90vw;
+    }
 }
 
-/* Page */
-body {
-    background-image: url(../../assets/about_bg_1.webp);
-    background-size: cover;
-    background-color: white;
-}
-.image-background-text {
+        @media screen and (max-width: 1024px) and (min-width: 769px) {
+            #card {
+                width: 60vw;
+            }
+        }
+
+        @media screen and (max-width: 1366px) and (min-width: 1025px) {
+            #card {
+                width: 33vw;
+            }
+        }
+
+#inner {
+    width: 96%;
     height: 100%;
-    margin: 0% 0% 0% 0%;
+    background: #aaa;
+    padding: .5rem 0;
+    position: relative;
+    margin: .3rem auto;
 }
-.text-overlay {
-    padding: 10px;
+#title {
+    border-radius: .4rem;
+    margin: 0 auto;
+    padding: 0 0 0 3%;
+    width: 97%;
+    background: #fff;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    box-sizing: border-box;
+}
+    #cost
+
+{
+    float: right;
+    margin: .1rem .3rem 0 0;
+    background: #ccc;
+    border-radius: 50%;
+    width: 1.3rem;
+    height: 1.3rem;
+    line-height: 1.3rem;
     text-align: center;
-    width: 60%;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(7px);
-    background: transparent;
+}
+
+#image {
+    background: #333;
+    width: 95%;
+    height: 14rem;
+    margin: 0 auto;
+}
+
+#type {
+    border-radius: .4rem;
+    margin: 0 auto;
+    padding: 0 .5rem;
+    width: 98%;
+    background: #fff;
+    font-size: .9rem;
+    line-height: 1.6rem;
+    box-sizing: border-box;
+}
+#symbol {
+    float: right;
+    width: 2rem;
+    text-align: center;
+    line-height: 1.4rem;
+}
+i
+
+{
     font-size: 1.2rem;
+}
+
+#desc {
+    background: #ccc;
+    width: 94%;
+    height: auto;
+    margin: 0 auto;
+    font-size: .9rem;
+    padding: .7rem .5rem;
+}
+.mana
+
+{
+    display: inline-block;
+    margin: -.1rem 0 0 .2rem;
+}
+
+#power {
+    background: #fff;
+    border-radius: .4rem;
+    float: right;
+    margin: -.8rem 1rem 0 0;
+    padding: .15rem .4rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.3rem;
+}
+
+#footer {
+    padding: .5rem .7rem 0 .7rem;
 }

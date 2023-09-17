@@ -1,16 +1,15 @@
 <!Document>
 <head>
-    <link rel="stylesheet" type="text/css" href="/styles/imports.css">
-    <link rel="stylesheet" type="text/css" href="/views/layout.css">
-    <link rel="stylesheet" type="text/css" href="/views/nav.css">
+    <link rel="stylesheet" type="text/css" href="../styles/imports.css">
+    <link rel="stylesheet" type="text/css" href="../styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="../styles/nav.css">
 
-    <link rel="stylesheet" type="text/css" href="/views/news/style.css">
+    <link rel="stylesheet" type="text/css" href="/test/testcss.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Strixhaven - Strixhaven Star </title>
+    <title>Strixhaven - Administration</title>
     <link rel="icon" href="/assets/strix_logo.png">
-
 </head>
 <html>
 <body>
@@ -52,190 +51,173 @@
             </footer>
         </div>
     </nav>
-    <main>
-        <div id="topcontainer" class="topcontainer">
-            <div class="issue">2098423</div>
-            <div class="slogan">the only paper around</div>
-            <div class="paperdate">Monday, 1st November, 2022</div>
-        </div>
-        <div class="bodycontainer">
-            <div id="leftc" class="LCorn" style="display: none" onclick="previouspg()"></div>
-            <div id="rightc" class="RCorn" style="display: block" onclick="nextpg()"></div>
 
-            <div id="page1" class="pg1" style="display: block">page 1</div>
-            <div id="page2" class="pg2" style="display: none">page 2</div>
-            <div id="page3" class="pg3" style="display: none">page 3</div>
+    <!-- Main -->
+    <main>
+        <div class="subnav">
+            <div class="subnav-content">
+                <a id="sublor" href="#lorehold">lorehold</a>
+                <a id="subpri" href="#prismari">prismari</a>
+                <a id="subsil" href="#silverquill">silverquill</a>
+                <a id="subqun" href="#quandrix">quandrix</a>
+                <a id="subwit" href="#witherbloom">witherbloom</a>
+
+            </div>
+        </div>
+        <div id="principle">
+            <div class="principle">
+                <div class="left">
+                    <img src="../../assets/teachers/Jadzi_the_Oracle.png" />
+                </div>
+                <div class="right">
+                    <h1>Jadzi the Oracle</h1>
+                    <h2>Principle</h2>
+                    <p>
+                        The title of Strixhavens Oracle is only granted to the wisest and most accomplished mage in the multiverse. In order to be the Oracle, one must understand the fundamental truths about the nature of magic and the building blocks of the world, know and wield hundreds if not thousands of spells, and possess impeccable judgment and virtue.
+
+                        The title is currently held by Jadzi, an older human woman who graduated from Strixhaven long ago. With her incredible memory, the legends say she has memorized the location of every star arch on the plane.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="schools">
+
         </div>
     </main>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
-
-<script src="../javascript/nav.js"></script>
-<script src="../javascript/paper.js"></script>
-<script src="/API/api.js"></script>
+<script src="../..//javascript/nav.js"></script>
+<script src="../../API/api.js"></script>
+<script src="../../javascript/preload.js"></script>
 <script>
-    var pageid = 'Strixhaven Star';
+    var pageid = 'Administration';
     document.getElementById("pagename").innerHTML = pageid;
     $(function () {
-        getpapercontent();
+        getPreloadedData();
     })
 
-    // Strixhaven Star
-    function getpapercontent() {
-        const { createClient } = supabase;
+    // Local functions
+    var schools = ["lorehold", "prismari", "silverquill", "quandrix", "witherbloom", "principle"];
+    var subnavs = ['sublor', 'subpri', 'subsil', 'subqun', 'subwit'];
+    $("main a").click(function () {
+        // Get Selected
+        var h = $(this).attr('href');
+        var ref = h.split('#');
 
-        var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
-        var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
-        const _supabase = createClient(url, anon);
-
-        _supabase.from('_tblStrixhavenStar').select('*').then(response => {
-            
-        })
-        _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
-            unpackdataJobs(response.data);
-        })
-    }
-    function applyforjob(job) {
-        const { createClient } = supabase;
-        var anon = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2Nhem1uemlwcGJsbnZ2cWRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzczNDkyOCwiZXhwIjoxOTgzMzEwOTI4fQ.79swd9Gvw45ziqMzXrIxPSnQU67K6swiVnSJAzujLqA';
-        var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
-        const _supabase = createClient(url, anon);
-
-        var id = sessionStorage.getItem("Student_Id");
-
-        var split = job.split(':');
-        var jid = split[1];
-
-        _supabase.from('Job<>Student').select('*').eq('Student', id).then(response => {
-            if (response.data.length == 0) {
-                // get job wage
-                _supabase.from('_tblJobs').select('Pay').eq('id', jid).then(response => {
-                    var wage = response.data[0]['Pay'];
-                    _supabase.from('Job<>Student').insert({ 'Job': jid, 'Student': id, 'wage': wage }).then(response => {
-                    })
-
-                    alert("You have applied for the role! CONGRATULATIONS");
-                })
-            } else {
-                alert("Unfortuantly, we can only allow you to have one job.");
-            }
-        })
-    }
-    function unpackdataJobs(data) {
-        for (var x = 0; x < data.length; x++) {
-            var job = data[x];
-            var jloc = job["Location"];
-            var jpay = job["Pay"];
-            var jtit = job["Title"];
-            var jid = job["id"];
-            const newjob = document.createElement("div");
-            const newtitle = document.createElement("h3");
-            const newdetails = document.createElement("div");
-            const newlocation = document.createElement("p");
-            const newpay = document.createElement("p");
-            const newbtn = document.createElement("button");
-            const newbtntxt = document.createElement("span");
-
-            newtitle.innerText = "Job Title: " + jtit;
-            newlocation.innerText = "Location: " + jloc;
-            newpay.innerText = "Wage: " + jpay;
-            newbtntxt.innerText = "Apply";
-
-            newdetails.classList = "details";
-
-            newdetails.appendChild(newlocation);
-            newdetails.appendChild(newpay);
-
-            newbtn.id = "job:" + jid;
-
-            newjob.appendChild(newtitle);
-            newjob.appendChild(newdetails);
-            if (sessionStorage.getItem('Student_Id')) {
-                newbtn.appendChild(newbtntxt);
-                newbtn.addEventListener('click', apply, false);
-                newjob.appendChild(newbtn);
-            }
-            newjob.classList = "job";
-
-            var page = document.querySelector(".pg3");
-            page.querySelector('#joblisting').appendChild(newjob);
+        for (var x = 0; x < subnavs.length; x++) {
+            document.getElementById(subnavs[x]).classList = "";
         }
-    }
-    function apply() {
-        // Check if logged in still
-        var id = sessionStorage.getItem('Student_Id');
-        if (id) {
-            applyforjob(this.id);
+
+        // check current classlist
+        var CL = document.getElementById(ref[1]).classList;
+
+        if (CL == "hidden") {
+            for (var x = 0; x < schools.length; x++) {
+                //Close All
+                document.getElementById(schools[x]).classList = "hidden";
+            }
+
+            // Open Selected
+            this.classList = "selected";
+            document.getElementById(ref[1]).classList = "";
+            document.getElementById("principle").classList = "hidden";
+
+            window.scrollTo(0, 0);
         } else {
-            alert("FUCK YOU LOG IN");
+            // Close Focused
+            document.getElementById(ref[1]).classList = "hidden";
+            // Open Principle
+            document.getElementById("principle").classList.remove('hidden');
+        }
+    });
+
+    // Preload Data
+    function getPreloadedData() {
+        if (localStorage.getItem('teacherdata')) {
+            sortPreloadedTeacherData(JSON.parse(localStorage.getItem('teacherdata')).value);
+        } else {
+            setTimeout(() => {
+                getPreloadedData();
+            }, "500");
         }
     }
-    var showing = 0;
-    var pages = ["page1", "page2", "page3"];
-    function toggleshow(el) {
-        var element = document.getElementById(el);
-        element.style.display = "none";
-    }
-    function nextpg() {
-        if (showing < 2) {
-            for (var x = 0; x < pages.length; x++) {
-                toggleshow(pages[x]);
-            }
-            showing++;
-            var toshow = document.getElementById(pages[showing]);
-            var preBtn = document.getElementById('leftc');
-            var nexBtn = document.getElementById('rightc');
-            if (showing == 2) {
-                toshow.style.display = "flex";
-                nexBtn.style.display = "none";
-            }
-            preBtn.style.display = "block";
-            toshow.style.display = "flex";
-        }
-    }
-    function previouspg() {
-        if (showing > 0) {
-            for (var x = 0; x < pages.length; x++) {
-                toggleshow(pages[x]);
-            }
-            showing--;
-            var toshow = document.getElementById(pages[showing]);
-            var preBtn = document.getElementById('leftc');
-            var nexBtn = document.getElementById('rightc');
-            if (showing == 0) {
-                toshow.style.display = "block";
-                preBtn.style.display = "none";
-            } else {
-                toshow.style.display = "flex";
-                nexBtn.style.display = "block";
+    function sortPreloadedTeacherData(data) {
+        var teachers = data;
+        for (var x = 0; x < 1; x++) {
+            var teacher = teachers[x];
+
+            var school = teacher['teacher_school'];
+            var name = teacher['teacher_name'];
+            var role = teacher['teacher_role'];
+            var type = teacher['teacher_type'];
+            var img = teacher['teacher_img'];
+            var desc = teacher['teacher_description'];
+
+            addElement(school, name, role, type, img, desc);
+
+            var p = document.getElementById(name);
+            if (p) {
+                p.addEventListener("mouseover", toggleHidden);
             }
         }
     }
-    var ids = [".pg1", ".pg2", ".pg3"];
-    var urls = ["../views/news/_page1.html", "../views/news/_page2.html", "../views/news/_page3.html"];
-    $.get(urls[0], function (data) {
-        $(ids[0]).html(data);
-    });
-    $.get(urls[1], function (data) {
-        $(ids[1]).html(data);
-    });
-    $.get(urls[2], function (data) {
-        $(ids[2]).html(data);
-    });
+    // Create Cube
+    function addElement(schoolname, name, role, type, img, desc) {
+        var newCard      = document.createElement("div");
+        var newCardInner = document.createElement("div");
+        var newTitle = document.createElement("div");
+        var newCost = document.createElement("div")
+        var newImage = document.createElement("div");
+        var newType = document.createElement("div");
+        var newSymbol = document.createElement("div");
+        var newI = document.createElement("i");
+        var newDesc = document.createElement("div");
+        var newPower = document.createElement("div");
+        var newFooter = document.createElement("div");
 
-    import type { Config } from "https://edge.netlify.com"
+        newCard.classList = "card";
+        newCardInner.id = "inner";
+        newTitle.id = "title";
+        newTitle.innerText = name;
+        newCost.id = "cost";
+        newCost.innerText = "0";
 
-    export default async () => new Response("Hello, world!")
+        newTitle.appendChild(newCost);
+        newCardInner.appendChild(newTitle);
+        newCard.appendChild(newCardInner);
 
-    export const config: Config = {
-        cache: "manual",
-        path: "/hello"
+        newCardInner.id = "image";
+
+        newCardInner.appendChild(newImage);
+
+        newType.id = "type";
+        newType.innerText = "Slut";
+
+        newSymbol.id = "symbol";
+        newI.classList = "ss ss-emn ss-uncommon ss-fw";
+
+        newSymbol.appendChild(newI);
+        newType.appendChild(newSymbol);
+
+        newDesc.id = "desc";
+        newDesc.innerText = desc;
+
+        newPower.id = "power";
+        newPower.innerText = "6/4";
+
+        newFooter.id = "footer";
+        newFooter.innerText = "Strixhaven";
+
+        newCardInner.appendChild(newDesc);
+        newCardInner.appendChild(newPower);
+        newCardInner.appendChild(newFooter);
+
+        newCard.appendChild(newCardInner);
+
+        document.getElementById('principle').innerHTML = "";
+        document.getElementById('principle').appendChild(newCard);
     }
-
 </script>
