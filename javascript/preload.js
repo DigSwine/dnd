@@ -1,16 +1,35 @@
-$(document).ready(function () {
-    checkExpiry();
-    var preloaded = preloadCheck();
-    if (!preloaded) {
+$(document).ready(async function () {
+    await checkExpiry();
+    var tocheck = preloadCheck('preload');
+    if (!tocheck) {
         preload("preload", "default");
-        getAllPreloadAPIData();
+    }
+    tocheck = preloadCheck('newsdata');
+    if (!tocheck) {
+        preloadStrixhavenStarPaper();
+    }
+    tocheck = preloadCheck('jobdata');
+    if (!tocheck) {
+        preloadStrixhavenStarJobs();
+    }
+    tocheck = preloadCheck('clubdata');
+    if (!tocheck) {
+        preloadCulbs();
+    }
+    tocheck = preloadCheck('studentclubdata');
+    if (!tocheck) {
+        preloadstudentNumberOfClubs();
+    }
+    tocheck = preloadCheck('teacherdata');
+    if (!tocheck) {
+        preloadAllTeachers();
     }
 });
 
 // Check if data has been preloaded
-function preloadCheck() {
-    var tester = localStorage.getItem("preload");
-    if (tester) {
+function preloadCheck(key) {
+    var ls = localStorage.getItem(key);
+    if (ls) {
         return true;
     }
 }
@@ -25,7 +44,18 @@ function preload(key, value) {
     }
     localStorage.setItem(key, JSON.stringify(item));    
 }
+function checkExpiry() {
+    const keys = [...Array(localStorage.length)].map((o, i) => {
+        return localStorage.key(i);
+    })
+    for (var x = 0; x < keys.length; x++) {
+        if (keys[x] == "debug") {
 
+        } else {
+            getWithExpiry(keys[x]);
+        }
+    }
+}
 function getWithExpiry(key) {
     const itemStr = localStorage.getItem(key)
     // if the item doesn't exist, return null
@@ -45,17 +75,4 @@ function getWithExpiry(key) {
         console.log(key + " has not been removed");
     }
     return item.value
-}
-
-function checkExpiry() {
-    const keys = [...Array(localStorage.length)].map((o, i) => {
-        return localStorage.key(i);
-    })
-    for (var x = 0; x < keys.length; x++) {
-        if (keys[x] == "debug") {
-
-        } else {
-            getWithExpiry(keys[x]);
-        }
-    }
 }

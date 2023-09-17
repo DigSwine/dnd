@@ -72,57 +72,63 @@
     var pageid = 'Extracurriculars';
     document.getElementById("pagename").innerHTML = pageid;
     $(function () {
-        getClubs();
+        getPreloadedData();
     })
 </script>
 <script>
-    function getClubs() {
-        _supabase.from('Clubs').select('*').order('id', { ascending: true }).then(response => {
-            var alldata = response.data;
-            var clubs = [];
-            _supabase.from('Club<>Student').select('club').eq('student', sessionStorage.getItem('Student_Id')).then(response => {
-                if (sessionStorage.getItem('Student_Id')) {
-                    for (var x = 0; x < response.data.length; x++) {
-                        clubs.push(response.data[x]['club']);
-                    }
-                }
-                for (var x = 0; x < alldata.length; x++) {
-                    var data = alldata[x];
-                    var page = document.getElementById('cubes');
-                    const newCube = document.createElement("div");
-                    const newContent = document.createElement("div");
-                    const newQuote = document.createElement("q");
-                    const newText = document.createElement("p");
-                    const newHeartCont = document.createElement("div");
-                    const newheart = document.createElement("i");
+    function getPreloadedData() {
+        if (localStorage.getItem('clubdata')) {
+            sortPreloadedClubData(JSON.parse(localStorage.getItem('clubdata')).value);
+        } else {
+            setTimeout(() => {
+                getPreloadedData();
+            }, "500");
+        }
+    }
+    function sortPreloadedClubData(data) {
+        var alldata = data;
+        var clubs = [];
+        var studentClubes = JSON.parse(localStorage.getItem('studentclubdata')).value;
+        for (var x = 0; x < studentClubes.length; x++) {
+            clubs.push(studentClubes[x]['club']);
+        }
 
-                    newheart.classList = "fa fa-heart-o";
-                    newheart.ariaHidden = "false";
-                    if (sessionStorage.getItem('Student_Id')) {
-                        for (var y = 0; y < clubs.length; y++) {
-                            if (clubs[y] == data['id']) {
-                                newheart.classList = "fa fa-heart";
-                                newheart.style.color = "darkgoldenrod";
-                            }
-                        }
-                        newHeartCont.appendChild(newheart);
-                        newHeartCont.classList = "heartcont";
-                        newHeartCont.id = "col:" + data['id'];
-                        newHeartCont.addEventListener('click', signup, false);
+        for (var x = 0; x < alldata.length; x++) {
+            var data = alldata[x];
+            console.log(data);
+            var page = document.getElementById('cubes');
+            const newCube = document.createElement("div");
+            const newContent = document.createElement("div");
+            const newQuote = document.createElement("q");
+            const newText = document.createElement("p");
+            const newHeartCont = document.createElement("div");
+            const newheart = document.createElement("i");
+
+            newheart.classList = "fa fa-heart-o";
+            newheart.ariaHidden = "false";
+            if (sessionStorage.getItem('Student_Id')) {
+                for (var y = 0; y < clubs.length; y++) {
+                    if (clubs[y] == data['id']) {
+                        newheart.classList = "fa fa-heart";
+                        newheart.style.color = "darkgoldenrod";
                     }
-                    newText.innerText = data['desc'];
-                    newQuote.innerText = data['quote'];
-                    newContent.classList = "content";
-                    newCube.classList = "cube";
-                    newCube.style.backgroundImage = "url('../../assets/clubs/" + data['img'] + "')";
-                    newContent.appendChild(newQuote);
-                    newContent.appendChild(newText);
-                    newContent.appendChild(newHeartCont);
-                    newCube.appendChild(newContent);
-                    page.appendChild(newCube);
                 }
-            })
-        })
+                newHeartCont.appendChild(newheart);
+                newHeartCont.classList = "heartcont";
+                newHeartCont.id = "col:" + data['id'];
+                newHeartCont.addEventListener('click', signup, false);
+            }
+            newText.innerText = data['desc'];
+            newQuote.innerText = data['quote'];
+            newContent.classList = "content";
+            newCube.classList = "cube";
+            newCube.style.backgroundImage = "url('../../assets/clubs/" + data['img'] + "')";
+            newContent.appendChild(newQuote);
+            newContent.appendChild(newText);
+            newContent.appendChild(newHeartCont);
+            newCube.appendChild(newContent);
+            page.appendChild(newCube);
+        }
     }
     function signup() {
         var split = this.id.split(':');
@@ -141,12 +147,17 @@
                         }
                     }
                     if (prev == "no") {
+                        // Remove preloaded data
+                        localStorage.removeItem('studentclubdata')
                         _supabase.from('Club<>Student').insert({ 'club': cid, 'student': sid }).then(response => {
                             alert("You have signed up");
                             var heart = $(this).find('i');
                             heart = heart[0];
                             heart.classList = "fa fa-heart";
                             heart.style.color = "darkgoldenrod";
+
+                            // load preloaded data
+                            preloadstudentNumberOfClubs();
                         })
                     } else {
                         alert("You are already a member of the club");

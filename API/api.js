@@ -25,28 +25,47 @@ async function getClubMembersByClubID(id) {
 } 
 
 // Preload APIs
-async function getAllPreloadAPIData() {
-    getStrixhavenStarPaper();
-    getStrixhavenStarJobs();
-}
-// about - non
-// map info - non, local
-// Strixhaven Star, 2.
-async function getStrixhavenStarPaper() {
+// Local Storage
+// Strixhaven Star
+async function preloadStrixhavenStarPaper() {
     _supabase.from('_tblStrixhavenStar').select('*').then(response => {
         // Package Data
-        for (var x = 0; x < response.data.length; x++) {
-            var data = response.data[x];
-            var key = "strixstar" + data.location;
-            var value = data;
-            preload(key, value);
-        }       
+        preload("newsdata", response.data);
     })
 }
-async function getStrixhavenStarJobs() {
+async function preloadStrixhavenStarJobs() {
     _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
         // Package Data
         preload("jobdata", response.data);
     })
 }
-
+// Extracrruiculars
+async function preloadCulbs() {
+    _supabase.from('Clubs').select('*').order('id', { ascending: true }).then(response => {
+        // Package Data
+        preload("clubdata", response.data);
+    })
+}
+async function preloadstudentNumberOfClubs() {
+    if (sessionStorage.getItem('Student_Id')) {
+        _supabase.from('Club<>Student').select('club').eq('student', sessionStorage.getItem('Student_Id')).then(response => {
+            if (response.data.length >= 1) {
+                // Package Data
+                preload("studentclubdata", response.data);
+            } else {
+                // Package Data
+                preload("studentclubdata", "");
+            }
+        })
+    } else {
+        // Package Data
+        preload("studentclubdata", "");
+    }
+}
+// Admin 
+async function preloadAllTeachers() {
+    _supabase.from('_tblTeachers').select('*').order('id', { ascending: true }).then(response => {
+            // Package Data
+            preload("teacherdata", response.data);
+    })
+}

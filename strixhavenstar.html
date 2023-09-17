@@ -158,18 +158,8 @@
 
     // Preload Functions
     function getPreloadedData() {
-        if (localStorage.getItem('strixstardate')) {
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstardate')));
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstarslogan')));
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstarissue')));
-
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstardropdown')));
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstarone')));
-
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstarleft')));
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstarmiddle top')));
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstarmiddle bottom')));
-            sortPreloadedPaperData(JSON.parse(localStorage.getItem('strixstarright')));
+        if (localStorage.getItem('newsdata')) {
+            sortPreloadedPaperData(JSON.parse(localStorage.getItem('newsdata')).value);
 
             sortPreloadedJobData(JSON.parse(localStorage.getItem('jobdata')).value);
         } else {
@@ -179,79 +169,80 @@
         }
     }
     function sortPreloadedPaperData(data) {
-        var data = data.value;
+        for (var x = 0; x < 9; x++) {
+            var star = data[x];
+            var pageNo = star.pageNo;
+            var location = star.location;
+            var title = star.title;
+            var content = star.content;
 
-        var pageNo = data.pageNo;
-        var location = data.location;
-        var title = data.title;
-        var content = data.content;
+            // Get correct page
+            var togoPage = document.getElementById('page' + pageNo);
 
-        // Get correct page
-        var togoPage = document.getElementById('page' + pageNo);
-
-        if (pageNo == 0) {
-            var topc = document.getElementById('topcontainer');
-            if (location == "date") {
-                var date = topc.querySelector('.paperdate');
-                date.innerText = content;
-            }
-            if (location == "slogan") {
-                var slo = topc.querySelector('.slogan');
-                slo.innerText = content;
-            }
-            if (location == "issue") {
-                var iss = topc.querySelector('.issue');
-                iss.innerText = content;
-            }
-        }
-        if (pageNo == "1") {
-            if (location == "dropdown") {
-                togoPage.querySelector('video').src = "../assets/star/" + content;
-            }
-            if (location == "one") {
-                togoPage.querySelector('.Mainheadline').innerText = title;
-                togoPage.querySelector('#' + location).innerText = content;
-
-                // check if sec con is out of view.
-                var contentContainer = togoPage.querySelector('.secContainer');
-                var bounding = contentContainer.getBoundingClientRect();
-                if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                    //get height of title
-                    var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
-                    var currentH = contentContainer.offsetHeight;
-                    contentContainer.style.height = currentH - headerH;
+            if (pageNo == 0) {
+                var topc = document.getElementById('topcontainer');
+                if (location == "date") {
+                    var date = topc.querySelector('.paperdate');
+                    date.innerText = content;
                 }
+                if (location == "slogan") {
+                    var slo = topc.querySelector('.slogan');
+                    slo.innerText = content;
+                }
+                if (location == "issue") {
+                    var iss = topc.querySelector('.issue');
+                    iss.innerText = content;
+                }
+            }
+            if (pageNo == "1") {
+                if (location == "dropdown") {
+                    togoPage.querySelector('video').src = "../assets/star/" + content;
+                }
+                if (location == "one") {
+                    togoPage.querySelector('.Mainheadline').innerText = title;
+                    togoPage.querySelector('#' + location).innerText = content;
 
-            }
-        }
-        if (pageNo == "2") {
-            var id = "";
-            if (location == "left") {
-                id = 'pg2left';
-            }
-            if (location == "middle top") {
-                id = 'pg2Mtop';
-            }
-            if (location == "middle bottom") {
-                id = 'pg2Mbot';
-            }
-            if (location == "right") {
-                id = 'pg2right';
-            }
-            if (id) {
-                var col = togoPage.querySelector('#' + id);
+                    // check if sec con is out of view.
+                    var contentContainer = togoPage.querySelector('.secContainer');
+                    var bounding = contentContainer.getBoundingClientRect();
+                    if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                        //get height of title
+                        var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                        var currentH = contentContainer.offsetHeight;
+                        contentContainer.style.height = currentH - headerH;
+                    }
 
-                // Create Title and Content
-                const newTitle = document.createElement("h2");
-                const newContent = document.createElement("p");
+                }
+            }
+            if (pageNo == "2") {
+                var id = "";
+                if (location == "left") {
+                    id = 'pg2left';
+                }
+                if (location == "middle top") {
+                    id = 'pg2Mtop';
+                }
+                if (location == "middle bottom") {
+                    id = 'pg2Mbot';
+                }
+                if (location == "right") {
+                    id = 'pg2right';
+                }
+                if (id) {
+                    var col = togoPage.querySelector('#' + id);
 
-                newTitle.innerText = title;
-                newContent.innerText = content;
+                    // Create Title and Content
+                    const newTitle = document.createElement("h2");
+                    const newContent = document.createElement("p");
 
-                // Append Title to Col
-                col.appendChild(newTitle);
-                // Append Content to Col
-                col.appendChild(newContent);
+                    newTitle.innerText = title;
+                    newContent.innerText = content;
+
+                    // Append Title to Col
+                    col.appendChild(newTitle);
+                    // Append Content to Col
+                    col.appendChild(newContent);
+                }
             }
         }
     }

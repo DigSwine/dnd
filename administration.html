@@ -95,7 +95,11 @@
 <script>
     var pageid = 'Administration';
     document.getElementById("pagename").innerHTML = pageid;
+    $(function () {
+        getPreloadedData();
+    })
 
+    // Local functions
     var schools = ["lorehold", "prismari", "silverquill", "quandrix", "witherbloom", "principle"];
     var subnavs = ['sublor', 'subpri', 'subsil', 'subqun', 'subwit'];
     $("main a").click(function () {
@@ -130,66 +134,37 @@
         }
     });
 
-
-</script>
-<script>
-    for (var x = 0; x < schools.length; x++) {
-        // Teacher Data
-        _supabase.from('_tblTeachers').select('*').eq('teacher_school', schools[x]).order('id', { ascending: true }).then(response => {
-            var teachersinschool = response.data;
-            if (teachersinschool) {
-                for (var y = 0; y < teachersinschool.length; y++) {
-                    var teacher = teachersinschool[y];
-
-                    var school = teacher['teacher_school'];
-                    var name = teacher['teacher_name'];
-                    var role = teacher['teacher_role'];
-                    var type = teacher['teacher_type'];
-                    var img = teacher['teacher_img'];
-                    var desc = teacher['teacher_description'];
-
-                    addElement(school, name, role, type, img, desc);
-
-                    var p = document.getElementById(name);
-                    if (p) {
-                        p.addEventListener("mouseover", toggleHidden);
-                    }
-                }
-            }
-        })
-    }
-
-    function toggleHidden() {
-        var element = this.querySelector('section');
-        var CL = element.classList;
-        if (CL == "shrink goaway") {
-            element.style.top = "0px";
-            CL.remove("goaway");
-        }
-
-        if (CL == "shrink") {
-            CL.remove("shrink");
-            var bounding = element.getBoundingClientRect();
-            if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                // get height of hidden
-                var eleH = element.offsetHeight;
-                // minus cube height
-                var heightofCube = this.offsetHeight;
-                let style = getComputedStyle(this);
-                let borderBottomWidth = parseInt(style.borderBottomWidth) || 0;
-                var fullH = heightofCube - borderBottomWidth - borderBottomWidth;
-                var attempt = eleH - fullH;
-                element.style.top = "-" + attempt + "px";
-                element.style.borderRadius = "20px 20px 20px 0px";
-            }
-            this.addEventListener("mouseout", toggleHidden);
+    // Preload Data
+    function getPreloadedData() {
+        if (localStorage.getItem('teacherdata')) {
+            sortPreloadedTeacherData(JSON.parse(localStorage.getItem('teacherdata')).value);
         } else {
-            element.classList = "shrink";
-            this.removeEventListener("mouseout", toggleHidden);
+            setTimeout(() => {
+                getPreloadedData();
+            }, "500");
         }
     }
+    function sortPreloadedTeacherData(data) {
+        var teachers = data;
+        for (var x = 0; x < teachers.length; x++) {
+            var teacher = teachers[x];
 
-    var t = 0;
+            var school = teacher['teacher_school'];
+            var name = teacher['teacher_name'];
+            var role = teacher['teacher_role'];
+            var type = teacher['teacher_type'];
+            var img = teacher['teacher_img'];
+            var desc = teacher['teacher_description'];
+
+            addElement(school, name, role, type, img, desc);
+
+            var p = document.getElementById(name);
+            if (p) {
+                p.addEventListener("mouseover", toggleHidden);
+            }
+        }
+    }
+    // Create Cube
     function addElement(schoolname, name, role, type, img, desc) {
         const newSchool = document.createElement("div");
         const newAdmin = document.createElement("div");
@@ -311,6 +286,36 @@
                     t2.appendChild(newPersonContainer);
                 }
             }
+        }
+    }
+    // Create Popup
+    function toggleHidden() {
+        var element = this.querySelector('section');
+        var CL = element.classList;
+        if (CL == "shrink goaway") {
+            element.style.top = "0px";
+            CL.remove("goaway");
+        }
+
+        if (CL == "shrink") {
+            CL.remove("shrink");
+            var bounding = element.getBoundingClientRect();
+            if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                // get height of hidden
+                var eleH = element.offsetHeight;
+                // minus cube height
+                var heightofCube = this.offsetHeight;
+                let style = getComputedStyle(this);
+                let borderBottomWidth = parseInt(style.borderBottomWidth) || 0;
+                var fullH = heightofCube - borderBottomWidth - borderBottomWidth;
+                var attempt = eleH - fullH;
+                element.style.top = "-" + attempt + "px";
+                element.style.borderRadius = "20px 20px 20px 0px";
+            }
+            this.addEventListener("mouseout", toggleHidden);
+        } else {
+            element.classList = "shrink";
+            this.removeEventListener("mouseout", toggleHidden);
         }
     }
 </script>

@@ -104,7 +104,8 @@
                             <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
                             <label>Background: <input id="background" placeholder="Background" disabled /></label>
                             <label>Year: <input id="year" placeholder="Year" disabled /></label>
-                            <label>College: 
+                            <label>
+                                College:
                                 <select id="college" disabled>
                                     <option value="0">-- Please Select College Choice --</option>
                                 </select>
@@ -306,7 +307,7 @@
                     <div class="year">
                         <h3>Yr 1</h3>
                         <div class="exams">
-                            
+
                         </div>
                     </div>
                     <div class="year">
@@ -377,11 +378,41 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script src="/javascript/nav.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="/javascript/nav.js"></script>
+<script src="../../API/api.js"></script>
+<script src="/javascript/preload.js"></script>
 <script>
     var pageid = 'Loading';
     document.getElementById("pagename").innerHTML = pageid;
+    $(function () {
+        getPreloadedData();
+    })
+    function getPreloadedData() {
+        if (sessionStorage.getItem('studentdata')) {
+            sortPreloadedTeacherData(JSON.parse(sessionStorage.getItem('studentdata')).value);
+        } else {
+            setTimeout(() => {
+                getPreloadedData();
+            }, "500");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function loadPage() {
         // Load last page saved on
@@ -711,7 +742,7 @@
                         option.style.display = "none";
                     }
                 }
-            }            
+            }
         }
     }
     function setTeacherName() {
@@ -734,7 +765,7 @@
         if (sid) {
             await getCollegeDropdownData();
             getCourseData();
-            await getStudentData(sid);            
+            await getStudentData(sid);
             loadPage();
         }
     })
@@ -773,7 +804,7 @@
                         // Set required course class
                         document.getElementById('Y1S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
                         document.getElementById('Y1S1').querySelector('select').disabled = true;
-                        
+
                     }
                 }
                 if (year == 2) {
@@ -892,7 +923,7 @@
                 profile.querySelector('#college').style.border = "2px white solid";
                 profile.querySelector('#college').value = 0;
 
-                
+
             }
         }
 
@@ -1078,7 +1109,7 @@
                 inspo.innerText = "Inspiration: " + lovers + "/" + prof;
             }
         });
-    }    
+    }
     function getStudentCourseByID(sid) {
         _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').eq('student', sid).order('class', { ascending: false }).then(response => {
             var data = response.data;
@@ -1116,14 +1147,14 @@
                     var teacher = split[1];
                     if (courseId == course['id']) {
                         $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
-                        $('#' + classChoice + ' select').attr("disabled", "true");                        
+                        $('#' + classChoice + ' select').attr("disabled", "true");
 
                         // Remove for other dropdowns
                         var selected = this.value;
                         $("select option[value='" + selected + "']").each(function () {
                             if (this.parentElement.value != selected) {
                                 $(this).remove();
-                            }                             
+                            }
                         });
                     }
                 });
