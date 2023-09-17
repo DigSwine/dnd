@@ -4,32 +4,31 @@ body {
     background-image: url(../../assets/libary.webp);
     background-size: cover;
     background-color: #808080;
+    background-repeat: no-repeat;
 }
 
 .cubeWrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
     width: 100%;
     margin-top: 30px;
 }
 #cubes {
+    padding: 0 5px 0 5px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
 .cube {
     height: 200px;
-    width: 275px;
+    flex-basis: 15.5%;
     background-size: 350px;
     background-position: center;
     border: 5px solid #fff;
     box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.1);
     position: relative;
-    margin: 0 5px 15px 5px;
     transition: 0.2s ease;
 }
     .cube:hover {
@@ -88,24 +87,113 @@ body {
         background: rgba(0, 0, 0, 0.9);
     }
 
-@media only screen and (max-width: 1540px) {
-    .cubeWrapper {
-        margin-top: 0;
+
+@media only screen and (max-width: 1580px) {
+    body {
+        overflow-y: auto;
+    }
+    main {
+        height: auto;
     }
     .cube {
-        height: 150px;
-        width: 225px;
+        flex-basis: 18%;
+        background-size: cover;
     }
-        .cube:hover {
-            width: 240px;
-        }
     .content q {
-        margin: 0;
-        font-size: 1.2rem;
+        font-size: 1.6rem;
     }
     .content p {
-        margin: 0;
-        width: 95%;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+    }
+    .content .heartcont {
+        font-size: 1.5rem;
+    }
+}
+    @media only screen and (max-width: 1350px) {
+        .cube {
+            flex-basis: 23%;
+            background-size: cover;
+        }
+
+        .content q {
+            font-size: 1.65rem;
+        }
+
+        .content p {
+            font-size: 0.95rem;
+        }
+
+        .content .heartcont {
+            font-size: 1.6rem;
+        }
+    }
+@media only screen and (max-width: 1225px) {
+    .cube {
+        flex-basis: 31%;
+        background-size: cover;
+    }
+
+    .content q {
+        font-size: 1.7rem;
+    }
+
+    .content p {
+        width: 85%;
+        font-size: 0.95rem;
+    }
+
+    .content .heartcont {
+        font-size: 1.6rem;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .content q {
+        font-size: 1.6rem;
+    }
+
+    .content p {
+        width: 85%;
+        font-size: 0.95rem;
+    }
+
+    .content .heartcont {
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .cube {
+        flex-basis: 47%;
+        background-size: cover;
+    }
+    .content q {
+        font-size: 1.6rem;
+    }
+
+    .content p {
+        width: 85%;
+        font-size: 0.95rem;
+    }
+
+    .content .heartcont {
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (max-width: 625px) {
+    .cube {
+        flex-basis: 97%;
+        background-size: cover;
+    }
+
+    .content q {
+        font-size: 1.6rem;
+    }
+
+    .content p {
+        width: 85%;
+        font-size: 0.95rem;
+    }
+
+    .content .heartcont {
+        font-size: 1.5rem;
     }
 }
