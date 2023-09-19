@@ -4,162 +4,114 @@ body {
     background-size: cover;
     background-color: gray;
     background-repeat: no-repeat;
-    overflow: hidden;
+    overflow: auto;
+}
+:root {
+    --mainht: auto;
+}
+main {
+    max-width: 100vw;
 }
 
 .thenavigation .hamburger {
     color: white;
 }
 
-.subtitle {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: -10px;
+.subNav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 725px;
 }
-
-.subnav {
-    overflow: hidden;
-}
-
-    .subnav .subnav-content {
+    .subNav .subnavControl {
+        background-color: transparent;
+        color: white;
+        padding: 15px;
         z-index: 1;
+        padding: 0;
+        color: white;
+        font-size: 1.75rem;
+        font-variant-caps: all-petite-caps;
+        text-decoration: none;
+        font-family: 'Valneck';
+        width: 100%;
+        display: block;
     }
-
-        .subnav .subnav-content a {
-            padding: 0 25px 0 25px;
-            color: white;
-            font-size: 1.75rem;
-            font-variant-caps: all-petite-caps;
-            text-decoration: none;
-            font-family: 'Valneck';
+        .subNav .subnavControl:hover {
+            background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+            color: black;
         }
-
-            .subnav .subnav-content a:hover {
-                background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-                color: black;
-            }
-
-    .subnav .selected {
+    .subNav .Selected {
+        text-decoration: underline;
         background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
         color: black;
     }
 
-.hidden {
-    display: none;
-}
-
-#card {
-    margin: 1% auto;
-    padding: 3px 0;
-    border-radius: 7px;
-    background: #000;
-    width: 33vw;
-    height: calc(width * 1.5);
-}
-@media screen and (max-width: 768px) {
-    #card {
-        width: 90vw;
-    }
-}
-
-        @media screen and (max-width: 1024px) and (min-width: 769px) {
-            #card {
-                width: 60vw;
-            }
-        }
-
-        @media screen and (max-width: 1366px) and (min-width: 1025px) {
-            #card {
-                width: 33vw;
-            }
-        }
-
-#inner {
-    width: 96%;
-    height: 100%;
-    background: #aaa;
-    padding: .5rem 0;
+.pageContainer {
+    height: 725px;
+    max-width: calc(100%-300px);
+    padding: 0 20px 0 0;
     position: relative;
-    margin: .3rem auto;
+    margin: 0 0 0 300px;
 }
-#title {
-    border-radius: .4rem;
-    margin: 0 auto;
-    padding: 0 0 0 3%;
-    width: 97%;
-    background: #fff;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    box-sizing: border-box;
-}
-    #cost
+    .pageContainer .principle{
+        height: 100%;
+        display: flex;
+    }
+    .pageContainer .principle .left {
+        flex-basis: 55%;
 
-{
-    float: right;
-    margin: .1rem .3rem 0 0;
-    background: #ccc;
-    border-radius: 50%;
-    width: 1.3rem;
-    height: 1.3rem;
-    line-height: 1.3rem;
-    text-align: center;
-}
+    }
+        .pageContainer .principle .left img {
+            width: 75%;
+        }
+    .pageContainer .principle .right {
+        flex-basis: 45%;
+        text-align: center;
+        color: white;
+    }
+        .pageContainer .principle .right p {
+            text-align: center;
+        }
+    .pageContainer .school {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+    }
+        .pageContainer .school h1 {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .pageContainer .school .Deans {
+            display: flex;
+            flex-direction: row;
+            flex-basis: 50%;
+            height: 33%
+        }
 
-#image {
-    background: #333;
-    width: 95%;
-    height: 14rem;
-    margin: 0 auto;
-}
 
-#type {
-    border-radius: .4rem;
-    margin: 0 auto;
-    padding: 0 .5rem;
-    width: 98%;
-    background: #fff;
-    font-size: .9rem;
-    line-height: 1.6rem;
-    box-sizing: border-box;
-}
-#symbol {
-    float: right;
-    width: 2rem;
-    text-align: center;
-    line-height: 1.4rem;
-}
-i
 
-{
-    font-size: 1.2rem;
-}
+            .pageContainer .school .Deans .dean{
+                height: 100%;
+                width: auto;
+            }
+        .pageContainer .school .Professors {
+            display: flex;
+            flex-direction: row;
+            flex-basis: 100%;
+            height: 33%
+        }
 
-#desc {
-    background: #ccc;
-    width: 94%;
-    height: auto;
-    margin: 0 auto;
-    font-size: .9rem;
-    padding: .7rem .5rem;
-}
-.mana
+            .pageContainer .school .Professors .professor {
+                height: 100%;
+                width: auto;
+            }
 
-{
-    display: inline-block;
-    margin: -.1rem 0 0 .2rem;
-}
-
-#power {
-    background: #fff;
-    border-radius: .4rem;
-    float: right;
-    margin: -.8rem 1rem 0 0;
-    padding: .15rem .4rem;
-    text-align: center;
-    font-size: 1rem;
-    line-height: 1.3rem;
-}
-
-#footer {
-    padding: .5rem .7rem 0 .7rem;
-}
+            .pageContainer .school img {
+                height: 100%;
+            }
+        

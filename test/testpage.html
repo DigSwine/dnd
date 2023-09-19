@@ -54,34 +54,42 @@
 
     <!-- Main -->
     <main>
-        <div class="subnav">
-            <div class="subnav-content">
-                <a id="sublor" href="#lorehold">lorehold</a>
-                <a id="subpri" href="#prismari">prismari</a>
-                <a id="subsil" href="#silverquill">silverquill</a>
-                <a id="subqun" href="#quandrix">quandrix</a>
-                <a id="subwit" href="#witherbloom">witherbloom</a>
-
-            </div>
+        <div class="subnav" id="subNav">
+            <a class="subnavControl" href="#lorehold">lorehold</a>
+            <a class="subnavControl" href="#prismari">prismari</a>
+            <a class="subnavControl" href="#silverquill">silverquill</a>
+            <a class="subnavControl" href="#quandrix">quandrix</a>
+            <a class="subnavControl" href="#witherbloom">witherbloom</a>
         </div>
-        <div id="principle">
-            <div class="principle">
-                <div class="left">
-                    <img src="../../assets/teachers/Jadzi_the_Oracle.png" />
-                </div>
-                <div class="right">
-                    <h1>Jadzi the Oracle</h1>
-                    <h2>Principle</h2>
-                    <p>
-                        The title of Strixhavens Oracle is only granted to the wisest and most accomplished mage in the multiverse. In order to be the Oracle, one must understand the fundamental truths about the nature of magic and the building blocks of the world, know and wield hundreds if not thousands of spells, and possess impeccable judgment and virtue.
+        <div class="pageContainer">
+            <div id="principle">
+                <div class="principle">
+                    <div class="left">
+                        <img src="../../assets/teachers/Jadzi_the_Oracle.png" />
+                    </div>
+                    <div class="right">
+                        <h1>Jadzi the Oracle</h1>
+                        <h2>Principle</h2>
+                        <p>
+                            The title of Strixhavens Oracle is only granted to the wisest and most accomplished mage in the multiverse. In order to be the Oracle, one must understand the fundamental truths about the nature of magic and the building blocks of the world, know and wield hundreds if not thousands of spells, and possess impeccable judgment and virtue.
 
-                        The title is currently held by Jadzi, an older human woman who graduated from Strixhaven long ago. With her incredible memory, the legends say she has memorized the location of every star arch on the plane.
-                    </p>
+                            The title is currently held by Jadzi, an older human woman who graduated from Strixhaven long ago. With her incredible memory, the legends say she has memorized the location of every star arch on the plane.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="schools">
-
+            <div id="schools">
+                <div class="school" id="lorehold" hidden>
+                </div>
+                <div class="school" id="prismari" hidden>
+                </div>
+                <div class="school" id="silverquill" hidden>
+                </div>
+                <div class="school" id="quandrix" hidden>
+                </div>
+                <div class="school" id="witherbloom" hidden>
+                </div>
+            </div>
         </div>
     </main>
 </body>
@@ -100,38 +108,37 @@
     })
 
     // Local functions
-    var schools = ["lorehold", "prismari", "silverquill", "quandrix", "witherbloom", "principle"];
-    var subnavs = ['sublor', 'subpri', 'subsil', 'subqun', 'subwit'];
-    $("main a").click(function () {
-        // Get Selected
-        var h = $(this).attr('href');
-        var ref = h.split('#');
-
-        for (var x = 0; x < subnavs.length; x++) {
-            document.getElementById(subnavs[x]).classList = "";
-        }
-
-        // check current classlist
-        var CL = document.getElementById(ref[1]).classList;
-
-        if (CL == "hidden") {
-            for (var x = 0; x < schools.length; x++) {
-                //Close All
-                document.getElementById(schools[x]).classList = "hidden";
+    $("main .subnavControl").click(function () {
+        // Set Subnav
+        var subNavOptions = document.getElementById('subNav').querySelectorAll('a')
+        var alreadyselected = "no";
+        for (var x = 0; x < subNavOptions.length; x++) {
+            if (this.innerText == subNavOptions[x].innerText) {
+                if (this.classList == "subnavControl selected") {
+                    alreadyselected = "yes";
+                }
             }
-
-            // Open Selected
-            this.classList = "selected";
-            document.getElementById(ref[1]).classList = "";
-            document.getElementById("principle").classList = "hidden";
-
-            window.scrollTo(0, 0);
-        } else {
-            // Close Focused
-            document.getElementById(ref[1]).classList = "hidden";
-            // Open Principle
-            document.getElementById("principle").classList.remove('hidden');
+            subNavOptions[x].classList = "subnavControl";
         }
+        if (alreadyselected == "no") {
+            this.classList = "subnavControl selected";
+        }
+
+        // Set Page
+        var pages = document.getElementById('schools').querySelectorAll('.school')
+        for (var x = 0; x < pages.length; x++) {
+            pages[x].toggleAttribute('hidden', true);
+            if (pages[x].id == this.innerText) {
+                if (alreadyselected == "no") {
+                    var selected = this.innerText;
+                    document.getElementById('principle').toggleAttribute("hidden", true);
+                    document.getElementById(selected).toggleAttribute("hidden");
+                } else {
+                    document.getElementById('principle').toggleAttribute("hidden");
+                }
+            }
+        }
+
     });
 
     // Preload Data
@@ -146,7 +153,7 @@
     }
     function sortPreloadedTeacherData(data) {
         var teachers = data;
-        for (var x = 0; x < 1; x++) {
+        for (var x = 0; x < teachers.length; x++) {
             var teacher = teachers[x];
 
             var school = teacher['teacher_school'];
@@ -165,59 +172,55 @@
         }
     }
     // Create Cube
-    function addElement(schoolname, name, role, type, img, desc) {
-        var newCard      = document.createElement("div");
-        var newCardInner = document.createElement("div");
-        var newTitle = document.createElement("div");
-        var newCost = document.createElement("div")
-        var newImage = document.createElement("div");
-        var newType = document.createElement("div");
-        var newSymbol = document.createElement("div");
-        var newI = document.createElement("i");
-        var newDesc = document.createElement("div");
-        var newPower = document.createElement("div");
-        var newFooter = document.createElement("div");
+    function addElement(collegename, name, role, type, img, desc) {
+        var college = document.getElementById(collegename);
+        var status;
 
-        newCard.classList = "card";
-        newCardInner.id = "inner";
-        newTitle.id = "title";
-        newTitle.innerText = name;
-        newCost.id = "cost";
-        newCost.innerText = "0";
+        if (role == "Dean") {
+            status = role;
+        } else {
+            status = role + type;
+        }
 
-        newTitle.appendChild(newCost);
-        newCardInner.appendChild(newTitle);
-        newCard.appendChild(newCardInner);
+        var school = college.querySelector("#" + status + "s");
+        if (!school) {            
+            var newSchool = document.createElement("div");
+            newSchool.id = status + "s";
+            newSchool.classList = role + "s";
+            college.appendChild(newSchool);
+            school = college.querySelector("#" + status + "s");
+        }
+        
+        var newTeacher = document.createElement("div");
+        var newTextContainer = document.createElement("div");
+        var newName = document.createElement("h2");
+        var newRole = document.createElement("h3");
+        var newDesc = document.createElement("p");
+        var newImg = document.createElement("img");
 
-        newCardInner.id = "image";
-
-        newCardInner.appendChild(newImage);
-
-        newType.id = "type";
-        newType.innerText = "Slut";
-
-        newSymbol.id = "symbol";
-        newI.classList = "ss ss-emn ss-uncommon ss-fw";
-
-        newSymbol.appendChild(newI);
-        newType.appendChild(newSymbol);
-
-        newDesc.id = "desc";
+        newName.innerText = name;
+        newRole.innerText = role + " of " + type;
         newDesc.innerText = desc;
+        newImg.src = "../assets/teachers/" + img;
 
-        newPower.id = "power";
-        newPower.innerText = "6/4";
+        newTextContainer.classList = "textcontainer";
 
-        newFooter.id = "footer";
-        newFooter.innerText = "Strixhaven";
+        newName.classList = "TName";
+        newRole.classList = "TRole";
+        newDesc.classList = "TDesc";
+        newImg.classList = "TImg";
 
-        newCardInner.appendChild(newDesc);
-        newCardInner.appendChild(newPower);
-        newCardInner.appendChild(newFooter);
+        newTeacher.classList = role.toLowerCase();
 
-        newCard.appendChild(newCardInner);
+        newTextContainer.appendChild(newName);
+        newTextContainer.appendChild(newRole);
+        newTextContainer.appendChild(newDesc);
 
-        document.getElementById('principle').innerHTML = "";
-        document.getElementById('principle').appendChild(newCard);
+        newTeacher.appendChild(newImg);
+        // newTeacher.appendChild(newTextContainer);
+
+
+        school.appendChild(newTeacher);
+        
     }
 </script>
