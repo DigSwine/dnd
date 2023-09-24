@@ -6,7 +6,9 @@ body {
     background-repeat: no-repeat;
     overflow: auto;
 }
-
+header .thenavigation .hamburger {
+    color: white;
+}
 main {
     display: flex;
     flex-direction: row;
@@ -15,6 +17,8 @@ main {
     --argyle: repeating-linear-gradient( 120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 60px ), repeating-linear-gradient( 60deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 60px ), linear-gradient( 60deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.1) ), linear-gradient( 120deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.1) );
     background-size: 70px 120px;
     --tartan: repeating-linear-gradient( transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 270deg, transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 125deg, transparent, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.2) 5px );
+    --bookSize: 220px;
+    --transX: 207px;
 }
 
 .subNav {
@@ -25,6 +29,8 @@ main {
     background-image: url('https://cdn.discordapp.com/attachments/1045792079747502201/1155539578959187989/new_wood.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    /* top-left top-right bottom-right bottom-left */
+    border-radius: 0 10px 10px 0;
 }
     .subNav .subNavChoice {
         flex: 1;
@@ -57,7 +63,7 @@ main {
     position: relative;
     padding: 45px 50px 15px 45px;
     width: 95%;
-    height: 721.219px;
+    height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -65,7 +71,7 @@ main {
 
 .book {
     width: 50px;
-    height: 220px;
+    height: var(--bookSize);
     position: relative;
     margin-left: 1px;
     transform-style: preserve-3d;
@@ -90,15 +96,16 @@ main {
 .spine {
     position: relative;
     width: 50px;
-    height: 220px;
+    height: var(--bookSize);
     transform: rotateY(0deg) translateZ(0px);
 }
 .spine-title {
     margin: 2px;
     position: absolute;
     top: 0px;
-    left: 0px;
-    font-size: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.05rem;
     color: gold;
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -120,7 +127,7 @@ main {
 }
 .cover {
     width: 190px;
-    height: 220px;
+    height: var(--bookSize);
     top: 0px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -142,4 +149,42 @@ main {
 .book:hover {
     z-index: 1;
     transform: rotateX(-25deg) rotateY(-40deg) rotateZ(-15deg) translateY(50px) translateX(-30px);
+}
+
+@media only screen and (max-width: 1580px) {
+    .bookshelf {
+        width: 1325px;
+    }
+    .bookContainer {
+        width: 1250px;
+        height: 650px;
+        padding: 60px 50px 15px 45px;
+    }
+    .spine-title {
+        font-size: 0.8rem;
+    }
+    :root {
+        --bookSize: 175px;
+        --transX: 180px;
+    }
+}
+
+@media only screen and (max-width: 1350px) {
+
+}
+
+@media only screen and (max-width: 1225px) {
+
+}
+
+@media only screen and (max-width: 1000px) {
+
+}
+
+@media only screen and (max-width: 900px) {
+
+}
+
+@media only screen and (max-width: 625px) {
+
 }

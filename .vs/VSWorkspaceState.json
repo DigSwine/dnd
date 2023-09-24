@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\API",
     "\\assets",
-    "\\javascript",
-    "\\test",
-    "\\views"
+    "\\assets\\libary",
+    "\\assets\\students\\players"
   ],
+  "SelectedNode": "\\assets\\libary\\emptybookcase.jpg",
   "PreviewInSolutionExplorer": false
 }

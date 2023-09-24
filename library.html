@@ -275,15 +275,16 @@
     document.getElementById("pagename").innerHTML = pageid;
 
     $('.subNavChoice').click(function () {
+        var transdistance = getComputedStyle(document.documentElement).getPropertyValue('--transX');
         // Hide all pages
         var shelfs = ['bsRaces', 'bsClasses', 'bsBackgrounds'];
         for (var x = 0; x < shelfs.length; x++) {
             var shelf = document.getElementById(shelfs[x]);
             if (shelf.id == "bs" + this.innerText) {
-                if (shelf.style.transform == 'translateX(207px)') {
+                if (shelf.style.transform == 'translateX(' + transdistance +')') {
                     shelf.style.transform = 'translateX(-100%)';
                 } else {
-                    shelf.style.transform = 'translateX(207px)';
+                    shelf.style.transform = 'translateX(' + transdistance +')';
                 }
             } else {
                 shelf.style.transform = 'translateX(-100%)';

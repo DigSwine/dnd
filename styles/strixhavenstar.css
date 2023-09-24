@@ -149,7 +149,7 @@ main, p, h2, Mainheadline {
             flex: .7;
             column-count: 2;
             white-space: pre-line;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             text-align: left;
             column-fill: balance;
         }
