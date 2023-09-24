@@ -1,117 +1,132 @@
 body {
     position: relative;
-    background-image: url('../../assets/adminbg.jpg');
+    background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7893c980-c0bf-4672-a650-8cbf3703c5b8/dg8rf2j-2ed49ef7-fd60-4241-9730-3ab8ad153ef1.png/v1/fill/w_1182,h_676,q_70,strp/magic_school__library_by_susannjefferson_dg8rf2j-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzMyIiwicGF0aCI6IlwvZlwvNzg5M2M5ODAtYzBiZi00NjcyLWE2NTAtOGNiZjM3MDNjNWI4XC9kZzhyZjJqLTJlZDQ5ZWY3LWZkNjAtNDI0MS05NzMwLTNhYjhhZDE1M2VmMS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.UplXI4BLjm4edBqHjc1zF5fL_IhICxKCFzi-gcCxnd0);
     background-size: cover;
     background-color: gray;
     background-repeat: no-repeat;
     overflow: auto;
 }
-:root {
-    --mainht: auto;
-}
-main {
-    max-width: 100vw;
-}
 
-.thenavigation .hamburger {
-    color: white;
+main{
+    display: flex;
+    flex-direction: row;
 }
 
 .subNav {
+    z-index: 2;
+    flex: 0.1;
     display: flex;
     flex-direction: column;
+    background-image: url('https://www.myfreetextures.com/wp-content/uploads/2014/10/texture-seamless-wood-4.jpg')
+}
+    .subNav .subNavChoice{
+        flex: 1;
+        color: darkgoldenrod;
+        
+    }
+
+.bookshelf {
+    z-index: 0;
+    position: absolute;
+    width: 1727.980px;
+    height: 100%;
+    transform: translateX(-100%);
+    transition-duration: 1s;
+}
+.bookContainer {
+    position: relative;
+    padding: 15px 15px 15px 45px;
+    width: 1667.98px;
+    height: 766.219px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+:root {
+    --argyle: repeating-linear-gradient( 120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 60px ), repeating-linear-gradient( 60deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 60px ), linear-gradient( 60deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.1) ), linear-gradient( 120deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.1) );
+    background-size: 70px 120px;
+    --tartan: repeating-linear-gradient( transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 270deg, transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 125deg, transparent, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.2) 5px );
+}
+
+.book {
+    width: 50px;
+    height: 280px;
+    position: relative;
+    margin-left: 1px;
+    transform-style: preserve-3d;
+    transform: translateZ(0) rotateY(0);
+    transition: transform 1s;
+}
+.book+.book {
+    margin-left: 10px;
+}
+
+.side {
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 3px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    transform-origin: center left;
+}
+
+.spine {
+    position: relative;
+    width: 50px;
+    height: 280px;
+    /* Patterns from: https://projects.verou.me/css3patterns/ */
+    /* background-image: var(--tartan);*/
+    transform: rotateY(0deg) translateZ(0px);
+}
+.spine-title {
+    margin: 2px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 12px;
+    color: gold;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+.spine-author {
+    position: absolute;
+    color: goldenrod;
+    bottom: 0px;
+    left: 20%; /* no idea why 20% centers it */
+}
+
+.top {
+    width: 50px;
+    height: 190px;
+    top: -2px; /* hmm, why -2 and not 0? */
+    background-image: linear-gradient(90deg, white 90%, gray 10%);
+    background-size: 5px 5px;
+    transform: rotateX(90deg) translateZ(95px) translateY(-95px);
+}
+.cover {
+    width: 190px;
+    height: 280px;
+    top: 0px;
+    background-size: contain;
+    background-repeat: round;
+    left: 50px;
+    transform: rotateY(90deg) translateZ(0);
+    transition: transform 1s;
+}
+.book .link {
     position: absolute;
     top: 0;
     left: 0;
-    width: 300px;
-    height: 725px;
+    z-index: 15;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
-    .subNav .subnavControl {
-        background-color: transparent;
-        color: white;
-        padding: 15px;
-        z-index: 1;
-        padding: 0;
-        color: white;
-        font-size: 1.75rem;
-        font-variant-caps: all-petite-caps;
-        text-decoration: none;
-        font-family: 'Valneck';
-        width: 100%;
-        display: block;
-    }
-        .subNav .subnavControl:hover {
-            background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-            color: black;
-        }
-    .subNav .Selected {
-        text-decoration: underline;
-        background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-        color: black;
-    }
 
-.pageContainer {
-    height: 725px;
-    max-width: calc(100%-300px);
-    padding: 0 20px 0 0;
-    position: relative;
-    margin: 0 0 0 300px;
+.book:hover {
+    z-index: 1;
+    transform: rotateX(-25deg) rotateY(-40deg) rotateZ(-15deg) translateY(50px) translateX(-30px);
 }
-    .pageContainer .principle{
-        height: 100%;
-        display: flex;
-    }
-    .pageContainer .principle .left {
-        flex-basis: 55%;
-
-    }
-        .pageContainer .principle .left img {
-            width: 75%;
-        }
-    .pageContainer .principle .right {
-        flex-basis: 45%;
-        text-align: center;
-        color: white;
-    }
-        .pageContainer .principle .right p {
-            text-align: center;
-        }
-    .pageContainer .school {
-        width: 100%;
-        height: 100%;
-        background-color: white;
-    }
-        .pageContainer .school h1 {
-            margin: 0;
-            padding: 0;
-        }
-        
-        .pageContainer .school .Deans {
-            display: flex;
-            flex-direction: row;
-            flex-basis: 50%;
-            height: 33%
-        }
-
-
-
-            .pageContainer .school .Deans .dean{
-                height: 100%;
-                width: auto;
-            }
-        .pageContainer .school .Professors {
-            display: flex;
-            flex-direction: row;
-            flex-basis: 100%;
-            height: 33%
-        }
-
-            .pageContainer .school .Professors .professor {
-                height: 100%;
-                width: auto;
-            }
-
-            .pageContainer .school img {
-                height: 100%;
-            }
-        
+  

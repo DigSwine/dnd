@@ -1,190 +1,145 @@
 body {
-    background-image: url(../../assets/libary/libarybg.jpg);
+    position: relative;
+    background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7893c980-c0bf-4672-a650-8cbf3703c5b8/dg8rf2j-2ed49ef7-fd60-4241-9730-3ab8ad153ef1.png/v1/fill/w_1182,h_676,q_70,strp/magic_school__library_by_susannjefferson_dg8rf2j-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzMyIiwicGF0aCI6IlwvZlwvNzg5M2M5ODAtYzBiZi00NjcyLWE2NTAtOGNiZjM3MDNjNWI4XC9kZzhyZjJqLTJlZDQ5ZWY3LWZkNjAtNDI0MS05NzMwLTNhYjhhZDE1M2VmMS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.UplXI4BLjm4edBqHjc1zF5fL_IhICxKCFzi-gcCxnd0);
     background-size: cover;
+    background-color: gray;
     background-repeat: no-repeat;
-    background-color: #808080;
+    overflow: auto;
 }
 
-header .thenavigation {
-    color: white;
+main {
+    display: flex;
+    flex-direction: row;
+}
+:root {
+    --argyle: repeating-linear-gradient( 120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 60px ), repeating-linear-gradient( 60deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 60px ), linear-gradient( 60deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.1) ), linear-gradient( 120deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.1) );
+    background-size: 70px 120px;
+    --tartan: repeating-linear-gradient( transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 270deg, transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 125deg, transparent, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.2) 5px );
 }
 
-.subNav{
+.subNav {
+    z-index: 2;
+    flex: 0.1;
     display: flex;
     flex-direction: column;
+    background-image: url('https://cdn.discordapp.com/attachments/1045792079747502201/1155539578959187989/new_wood.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+    .subNav .subNavChoice {
+        flex: 1;
+        color: darkgoldenrod;
+        font-weight: bold;
+        position: relative;
+    }
+    .subNav .subNavChoice span {
+        background-color: papayawhip;
+        border-radius: 30px;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+.bookshelf {
+    z-index: 0;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 105%;
-}
-    .subNav .subnavControl {
-        background-color: transparent;
-        color: white;
-        padding: 15px;
-    }
-        .subNav .subnavControl:hover {
-            background-color: white;
-            color: black;
-        }
-    .subNav .Selected {
-        background-color: white;
-        color: black;
-        text-decoration: underline;
-    }
-
-.pageContainer {
-    padding: 0 10px 10px 10px;
+    width: 1650.98px;
     height: 100%;
-    margin: 0 0 0 300px;
-    color: black;
+    transform: translateX(-100%);
+    transition-duration: 1s;
+    background-image: url('https://cdn.discordapp.com/attachments/1045792079747502201/1155541447211229234/bookcase1.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.bookContainer {
     position: relative;
-}
-.page {
-    padding: 5px;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    text-align: left;
-}
-    .page h1 {
-        margin: 0;
-        padding: 0;
-        text-decoration: underline;
-    }
-
-.cubeContainer {
-    padding: 15px;
-    margin: 5px 15px 0 0;
+    padding: 45px 50px 15px 45px;
+    width: 95%;
+    height: 721.219px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
 }
-    .cubeContainer .cube {
-        flex: 1;
-        padding: 10px;
-        background-color: antiquewhite;
-        border-radius: 10px;
-        flex-basis: 15%;
-        position: relative;
-        min-width: 200px;
-    }
-        .cubeContainer .cube h1 {
-            font-family: 'Times New Roman', Times, serif;
-            padding: 0;
-            margin: 0;
-            position: relative;
-            color: black;
-            text-decoration: none;
-            font-size: 20px;
-            z-index: 10;
-        }
-        .cubeContainer .cube h2 {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 12px;
-            padding: 0;
-            margin: 0;
-            position: relative;
-            color: gray;
-            z-index: 10;
-        }
-        .cubeContainer .cube h3 {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 16px;
-            padding: 5px 0 0 0;
-            margin: 0;
-            position: relative;
-            color: black;
-            z-index: 10;
-        }
-        .cubeContainer .cube img {
-            position: absolute;
-            border-radius: 10px;
-            right: -1px;
-            top: 0;
-            height: 100%;
-            z-index: 1;
-            -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(rgba(2,0,0,1)), to(rgba(0,0,0,0)));
-        }
-        .cubeContainer .cube .link{
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 15;
-            width: 100%;
-            height: 100%;
-        }
 
-@media only screen and (max-width: 1540px) {
-    .subNav {
-        width: 150px;
-    }
-    .pageContainer {
-        margin: 0 0 0 150px;
-        height: auto;
-    }
-    .page {
-        color: white;
-    }
-    .cubeContainer .cube {
-        min-width: 200px;
-    }
+.book {
+    width: 50px;
+    height: 220px;
+    position: relative;
+    margin-left: 1px;
+    transform-style: preserve-3d;
+    transform: translateZ(0) rotateY(0);
+    transition: transform 1s;
+    z-index: 0;
 }
-@media only screen and (max-width: 1024px) {
-    .subNav {
-        width: 100px;
+    .book + .book {
+        margin-left: 10px;
     }
-    .pageContainer {
-        margin: 0 0 0 100px;
-    }
-    .page {
-        padding: 0;
-        margin: 0 0 0 10px;
-    }
-    .page h1 {
-        font-size: 18px;
-    }
-}
-@media only screen and (max-width: 850px) {
-    
-}
-@media only screen and (max-width: 500px) {
-    .subNav {
-        flex-direction: column;
-        width: 100%;
-        height: auto;
-        padding: 0;
-    }
-        .subNav .subnavControl {
-            padding: 5px;
-        }
 
-    .pageContainer {
-        position: absolute;
-        top: 84px;
-        left: 0;
-        margin: 0 0 0 0;
-        padding: 0;
-        width: 100%;
-    }
-    .page {
-        padding: 0;
-        margin: 10px 0 0 10px;
-    }
-        .page h1 {
-            font-size: 18px;
-        }
-    .cubeContainer .cube {
-        min-width: 200px;
-    }
-        .cubeContainer .cube h1 {
-            font-size: 16px;
-        }
-        .cubeContainer .cube h2 {
-            font-size: 8px;
-        }
-        .cubeContainer .cube h3 {
-            font-size: 12px;
-        }
+.side {
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 3px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    transform-origin: center left;
+}
+
+.spine {
+    position: relative;
+    width: 50px;
+    height: 220px;
+    transform: rotateY(0deg) translateZ(0px);
+}
+.spine-title {
+    margin: 2px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 12px;
+    color: gold;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+.spine-author {
+    position: absolute;
+    color: goldenrod;
+    bottom: 0px;
+    left: 20%; /* no idea why 20% centers it */
+}
+
+.top {
+    width: 50px;
+    height: 190px;
+    top: -2px; /* hmm, why -2 and not 0? */
+    background-image: linear-gradient(90deg, white 90%, gray 10%);
+    background-size: 5px 5px;
+    transform: rotateX(90deg) translateZ(95px) translateY(-95px);
+}
+.cover {
+    width: 190px;
+    height: 220px;
+    top: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    left: 50px;
+    transform: rotateY(90deg) translateZ(0);
+    transition: transform 1s;
+}
+
+.book .link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.book:hover {
+    z-index: 1;
+    transform: rotateX(-25deg) rotateY(-40deg) rotateZ(-15deg) translateY(50px) translateX(-30px);
 }

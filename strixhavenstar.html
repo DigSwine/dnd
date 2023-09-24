@@ -63,30 +63,34 @@
             <div id="leftc" class="LCorn" style="display: none" onclick="previouspg()"></div>
             <div id="rightc" class="RCorn" style="display: block" onclick="nextpg()"></div>
 
-            <div id="page1" class="pg1" style="display: block">
-                <div class="Mainheadline"></div>
-                <div class="secContainer">
-                    <div id="pg1left" class="leftcol">
-                        <video src="" type="video/mp4" muted autoplay loop></video>
+            <div id="page1" class="page pg1" style="display: block">
+                <div class="contentContainer">
+                    <h1 class="Mainheadline"></h1>
+                    <div class="secContainer">
+                        <div id="pg1left" class="leftcol">
+                            <video src="" type="video/mp4" muted autoplay loop></video>
+                        </div>
+                        <div id="one" class="right"></div>
                     </div>
-                    <div id="one" class="right"></div>
                 </div>
             </div>
 
-            <div id="page2" class="pg2" style="display: none">
-                <div id="pg2left" class="left"></div>
-                <div class="midwrapper">
-                    <div id="pg2Mtop" class="top"></div>
-                    <div id="pg2Mbot" class="bot"></div>
+                <div id="page2" class="page pg2" style="display: none">
+                    <div class="contentContainer">
+                        <div id="pg2left" class="left"></div>
+                        <div class="midwrapper">
+                            <div id="pg2Mtop" class="top"></div>
+                            <div id="pg2Mbot" class="bot"></div>
+                        </div>
+                        <div id="pg2right" class="right"></div>
+                    </div>
                 </div>
-                <div id="pg2right" class="right"></div>
-            </div>
 
-            <div id="page3" class="pg3" style="display: none">
-                <div id="joblisting" class="jobs">
+                <div id="page3" class="pg3" style="display: none">
+                    <div id="joblisting" class="jobs">
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
 </body>
 </html>
@@ -107,14 +111,10 @@
     // Local functions
     var showing = 0;
     var pages = ["page1", "page2", "page3"];
-    function toggleshow(el) {
-        var element = document.getElementById(el);
-        element.style.display = "none";
-    }
     function nextpg() {
         if (showing < 2) {
             for (var x = 0; x < pages.length; x++) {
-                toggleshow(pages[x]);
+                document.getElementById(pages[x]).style.display = "none";
             }
             showing++;
             var toshow = document.getElementById(pages[showing]);
@@ -125,13 +125,13 @@
                 nexBtn.style.display = "none";
             }
             preBtn.style.display = "block";
-            toshow.style.display = "flex";
+            toshow.style.display = "block";
         }
     }
     function previouspg() {
         if (showing > 0) {
             for (var x = 0; x < pages.length; x++) {
-                toggleshow(pages[x]);
+                document.getElementById(pages[x]).style.display = "none";
             }
             showing--;
             var toshow = document.getElementById(pages[showing]);
@@ -141,7 +141,7 @@
                 toshow.style.display = "block";
                 preBtn.style.display = "none";
             } else {
-                toshow.style.display = "flex";
+                toshow.style.display = "block";
                 nexBtn.style.display = "block";
             }
         }
@@ -201,17 +201,6 @@
                 if (location == "one") {
                     togoPage.querySelector('.Mainheadline').innerText = title;
                     togoPage.querySelector('#' + location).innerText = content;
-
-                    // check if sec con is out of view.
-                    var contentContainer = togoPage.querySelector('.secContainer');
-                    var bounding = contentContainer.getBoundingClientRect();
-                    if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                        //get height of title
-                        var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
-                        var currentH = contentContainer.offsetHeight;
-                        contentContainer.style.height = currentH - headerH;
-                    }
-
                 }
             }
             if (pageNo == "2") {
