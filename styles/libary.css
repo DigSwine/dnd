@@ -102,10 +102,10 @@ main {
 .spine-title {
     margin: 2px;
     position: absolute;
-    top: 0px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.05rem;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 1.2rem;
     color: gold;
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -152,20 +152,20 @@ main {
     transform: rotateX(-25deg) rotateY(-40deg) rotateZ(-15deg) translateY(50px) translateX(-30px);
 }
 
-@media only screen and (max-width: 1580px) {
+@media only screen and (max-width: 1536px) {
     .bookshelf {
         width: 1325px;
     }
     .bookContainer {
-        width: 1250px;
-        height: 650px;
-        padding: 60px 50px 15px 45px;
+        width: 1200px;
+        height: 610px;
+        padding: 73px 50px 15px 45px;
     }
     .spine-title {
         font-size: 0.8rem;
     }
     :root {
-        --bookSize: 175px;
+        --bookSize: 165px;
         --transX: 180px;
     }
 }
