@@ -34,13 +34,9 @@ body {
         margin: 0 200px 0 200px;
     }
 }
-@media only screen and (max-width: 1562px) {
-    .text-overlay {
-        margin: 0 100px 0 100px;
-    }
-}
 @media only screen and (max-width: 1540px) {
     .text-overlay {
+        height: 550px;
         font-size: 1.1rem;
     }
 }

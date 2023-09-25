@@ -232,27 +232,28 @@ section {
 
 @media only screen and (max-width: 1540px) {
     .principle {
+        margin: 0 0 0 15px;
         position: relative;
         max-height: 98%;
         width: 98%;
         display: flex;
         padding: 50px 30px 0 15px;
     }
-    .principle .left img {
-        height: 400px;
-    }
-    .principle .right h1 {
-        font-size: 1.7rem;
-    }
-    .principle .right h2 {
-        font-size: 1.2rem;
-    }
-    .principle .right p {
-        font-size: 1.3rem;
-    }
+        .principle .left img {
+            height: 400px;
+        }
+        .principle .right h1 {
+            font-size: 1.7rem;
+        }
+        .principle .right h2 {
+            font-size: 1.2rem;
+        }
+        .principle .right p {
+            font-size: 1.3rem;
+        }
     .cube {
-        height: 150px;
-        width: 125px;
+        height: 185px;
+        width: 185px;
     }
         .cube:hover {
             width: 200px;
