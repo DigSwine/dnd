@@ -159,7 +159,6 @@ main {
     }
     .shelf-1 {
         width: 1200px;
-        height: 610px;
         padding: 73px 50px 15px 45px;
     }
     .spine-title {
@@ -167,6 +166,7 @@ main {
     }
     :root {
         --bookSize: 165px;
+        --shelfSize: 170px;
         --transX: 165px;
     }
 }
