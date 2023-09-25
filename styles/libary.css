@@ -18,6 +18,7 @@ main {
     background-size: 70px 120px;
     --tartan: repeating-linear-gradient( transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 270deg, transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 125deg, transparent, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.2) 5px );
     --bookSize: 220px;
+    --shelfSize: 225px;
     --transX: 207px;
 }
 
@@ -59,14 +60,13 @@ main {
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
-.bookContainer {
+.shelf-1 {
     position: relative;
-    padding: 38px 50px 15px 45px;
+    padding: 38px 50px 0 45px;
     width: 1552.41px;
-    height: 710.406px;
+    height: var(--shelfSize);
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
 }
 
 .book {
@@ -157,7 +157,7 @@ main {
     .bookshelf {
         width: 1325px;
     }
-    .bookContainer {
+    .shelf-1 {
         width: 1200px;
         height: 610px;
         padding: 73px 50px 15px 45px;
