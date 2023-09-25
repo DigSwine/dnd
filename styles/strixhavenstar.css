@@ -220,13 +220,13 @@ main, p, h2, Mainheadline {
             .pg3 .jobs .job .details p {
                 margin: 0;
                 font-size: 0.9rem;
-                flex: .9;
+                flex: .7;
             }
                 .pg3 .jobs .job .details p + p{
                     margin-left: 5px;
                     padding-left: 5px;
                     border-left: 1px solid black;
-                    flex: .2;
+                    flex: .3;
                 }
 
                 .pg3 .jobs .job button {
@@ -322,11 +322,14 @@ main, p, h2, Mainheadline {
         margin: 0;
     }
     
-    .pg1 .contentContainer{
+    .contentContainer{
         height: 89%;
     }
     .pg1 .secContainer .right{
         font-size: 1.25rem;
+    }
+    .pg3 .jobs .job {
+        flex-basis: 32%;
     }
 }
 @media only screen and (max-width: 1155px) {
