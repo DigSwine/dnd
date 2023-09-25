@@ -328,6 +328,9 @@ main, p, h2, Mainheadline {
     .pg1 .secContainer .right{
         font-size: 1.25rem;
     }
+    .pg3 .jobs {
+        margin-top: 0;
+    }
     .pg3 .jobs .job {
         flex-basis: 32%;
     }
