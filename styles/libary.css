@@ -109,6 +109,7 @@ main {
     color: gold;
     writing-mode: vertical-rl;
     text-orientation: mixed;
+    height: 100%;
 }
 .spine-author {
     position: absolute;
