@@ -16,14 +16,18 @@ $(document).ready(async function () {
     if (!tocheck) {
         preloadCulbs();
     }
-    tocheck = preloadCheck('studentclubdata');
-    if (!tocheck) {
-        preloadstudentNumberOfClubs();
-    }
     tocheck = preloadCheck('teacherdata');
     if (!tocheck) {
         preloadAllTeachers();
     }
+    tocheck = preloadCheck('campusClasses');
+    if (!tocheck) {
+        preloadCourses();
+    }    
+    tocheck = preloadCheck('campusColleges');
+    if (!tocheck) {
+        preloadColleges();
+    }    
 });
 
 // Check if data has been preloaded
@@ -76,3 +80,4 @@ function getWithExpiry(key) {
     }
     return item.value
 }
+

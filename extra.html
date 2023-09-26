@@ -88,14 +88,12 @@
     function sortPreloadedClubData(data) {
         var alldata = data;
         var clubs = [];
-        var studentClubes = JSON.parse(localStorage.getItem('studentclubdata')).value;
+        var studentClubes = JSON.parse(sessionStorage.getItem('studentClub'));
         for (var x = 0; x < studentClubes.length; x++) {
-            clubs.push(studentClubes[x]['club']);
+            clubs.push(studentClubes[x].club.id);
         }
-
         for (var x = 0; x < alldata.length; x++) {
             var data = alldata[x];
-            console.log(data);
             var page = document.getElementById('cubes');
             const newCube = document.createElement("div");
             const newContent = document.createElement("div");
@@ -147,8 +145,7 @@
                         }
                     }
                     if (prev == "no") {
-                        // Remove preloaded data
-                        localStorage.removeItem('studentclubdata')
+                        removeStorage('studentClub');
                         _supabase.from('Club<>Student').insert({ 'club': cid, 'student': sid }).then(response => {
                             alert("You have signed up");
                             var heart = $(this).find('i');
@@ -156,8 +153,8 @@
                             heart.classList = "fa fa-heart";
                             heart.style.color = "darkgoldenrod";
 
-                            // load preloaded data
-                            preloadstudentNumberOfClubs();
+                            // load session data
+                            getClubByStudentID(sid);
                         })
                     } else {
                         alert("You are already a member of the club");

@@ -381,39 +381,692 @@
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/javascript/nav.js"></script>
 <script src="../../API/api.js"></script>
-<script src="/javascript/preload.js"></script>
 <script>
     var pageid = 'Loading';
     document.getElementById("pagename").innerHTML = pageid;
-    $(function () {
-        getPreloadedData();
+    $(async function () {
+        loadPage();
+        setEvenetListeners();
+
+        var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
+        if (!sessionStorage.getItem('studentData')) {
+            await getStudentByID(sid);
+        }
+        if (!sessionStorage.getItem('studentJob')) {
+            await getStudentJobByStudentID(sid);
+        }
+        if (!sessionStorage.getItem('studentClub')) {
+            await getClubByStudentID(sid); 
+        }
+        if (!sessionStorage.getItem('studentClasses')) {
+            await getClassesbyStudentID(sid);
+        }
+        if (!sessionStorage.getItem('studentExams')) {
+            await getExamsbyStudentID(sid);
+        }
+        if (!sessionStorage.getItem('studentRelationships')) {
+            await getRelationshipsbyStudentID(sid);
+        }
+        getsessionData();
     })
-    function getPreloadedData() {
-        if (sessionStorage.getItem('studentdata')) {
-            sortPreloadedTeacherData(JSON.parse(sessionStorage.getItem('studentdata')).value);
+    function getsessionData() {
+        if (sessionStorage.getItem('studentData')) {
+            if (sessionStorage.getItem('studentJob')) {
+                if (sessionStorage.getItem('studentClub')) {
+                    if (sessionStorage.getItem('studentClasses')) {
+                        if (sessionStorage.getItem('studentExams')) {
+                            if (sessionStorage.getItem('studentRelationships')) {
+                                sort_CollegeDropdown(JSON.parse(localStorage.getItem('campusColleges')).value);
+                                sort_studentData(JSON.parse(sessionStorage.getItem('studentData')));
+                                sort_studentJob(JSON.parse(sessionStorage.getItem('studentJob')),
+                                                JSON.parse(sessionStorage.getItem('jobCoworkers')));
+                                sort_studentClub(JSON.parse(sessionStorage.getItem('studentClub')));
+                                sort_CourseData(JSON.parse(localStorage.getItem('campusClasses')).value);
+                                sort_StudentCourses(JSON.parse(sessionStorage.getItem('studentClasses')));
+                                sort_ExamData(JSON.parse(sessionStorage.getItem('studentExams')));
+                                sort_Relationships(JSON.parse(sessionStorage.getItem('studentRelationships')));
+                            } else {
+                                console.log("redo - relationship");
+                                setTimeout(() => {
+                                    getsessionData();
+                                }, "500");
+                            }
+                        } else {
+                            console.log("redo - exam");
+                            setTimeout(() => {
+                                getsessionData();
+                            }, "500");
+                        }
+                    } else {
+                        console.log("redo - classes");
+                        setTimeout(() => {
+                            getsessionData();
+                        }, "500");
+                    }
+                } else {
+                    console.log("redo - club");
+                    setTimeout(() => {
+                        getsessionData();
+                    }, "500");
+                }
+            } else {
+                console.log("redo - job");
+                setTimeout(() => {
+                    getsessionData();
+                }, "500");
+            }
         } else {
+            console.log("redo - student");
             setTimeout(() => {
-                getPreloadedData();
+                getsessionData();
             }, "500");
         }
     }
 
+    function sort_studentData(data) {
+        //// Profile ////
+        var studentData = data[0];
+        // Assign Profile Data
+        var profile = document.getElementById('profile');
+        profile.querySelector('#profilepicture').src = "assets/students/players/" + studentData.picture;
+        profile.querySelector('#name').value = studentData.name;
+        profile.querySelector('#age').value = studentData.age;
+        profile.querySelector('#gender').value = studentData.gender;
+        profile.querySelector('#race').value = studentData.race;
+        profile.querySelector('#subrace').value = studentData.subrace;
+        profile.querySelector('#alignment').value = studentData.alignment;
+        profile.querySelector('#haircolour').value = studentData.haircolour;
+        profile.querySelector('#eyecolour').value = studentData.eyecolour;
+        profile.querySelector('#year').value = studentData.year;
+        profile.querySelector('#height').value = studentData.height;
+        profile.querySelector('#weight').value = studentData.weight;
+        profile.querySelector('#level').value = studentData.level;
+        profile.querySelector('#class').value = studentData.class;
+        profile.querySelector('#subclass').value = studentData.subclass;
+        profile.querySelector('#background').value = studentData.background;
+        profile.querySelector('#college').value = studentData.college;
+        profile.querySelector('#personalitytraits').value = studentData.personalitytraits;
+        profile.querySelector('#personalitytraits').style.height = profile.querySelector('#personalitytraits').scrollHeight + 'px';
+        profile.querySelector('#ideals').value = studentData.ideals;
+        profile.querySelector('#ideals').style.height = profile.querySelector('#ideals').scrollHeight + 'px';
+        profile.querySelector('#bonds').value = studentData.bonds;
+        profile.querySelector('#bonds').style.height = profile.querySelector('#bonds').scrollHeight + 'px';
+        profile.querySelector('#flaws').value = studentData.flaws;
+        profile.querySelector('#flaws').style.height = profile.querySelector('#flaws').scrollHeight + 'px';
+        profile.querySelector('#goals').value = studentData.goals;
+        profile.querySelector('#goals').style.height = profile.querySelector('#goals').scrollHeight + 'px';
+        profile.querySelector('#backgroundfeatures').value = studentData.backgroundfeatures;
+        profile.querySelector('#backgroundfeatures').style.height = profile.querySelector('#backgroundfeatures').scrollHeight + 'px';
+        profile.querySelector('#appearance').value = studentData.appearance;
+        profile.querySelector('#appearance').style.height = profile.querySelector('#appearance').scrollHeight + 'px';
+        // Page Changes //
+        // Page Title
+        var headertitle = document.getElementById('pagename');
+        if (studentData.name) {
+            headertitle.innerText = "Welcome " + studentData.name;
+        } else {
+            headertitle.innerText = "Welcome " + studentData.player;
+        }
+        // College Logo
+        var cLogo = document.getElementById('collegeLogo');
+        if (studentData.college == 6) {
+            cLogo.src = "assets/strix_logo.png";
+        }
+        if (studentData.college == 5) {
+            cLogo.src = "assets/maps/witherbloom.png";
+        }
+        if (studentData.college == 4) {
+            cLogo.src = "assets/maps/silverquill.png";
+        }
+        if (studentData.college == 3) {
+            cLogo.src = "assets/maps/quandrix.png";
+        }
+        if (studentData.college == 2) {
+            cLogo.src = "assets/maps/prismari.png";
+        }
+        if (studentData.college == 1) {
+            cLogo.src = "assets/maps/lorehold.png";
+        }
+
+        // Check for college year and college Enrolled
+        if (studentData.year >= 2) {
+            if (studentData.college == 6) {
+                var options = profile.querySelector('#college').querySelectorAll('option');
+                for (var t = 0; t < options.length; t++) {
+                    if (options[t].value == "6") {
+                        options[t].style.display = "none";
+                    }
+                }
+                profile.querySelector('#college').toggleAttribute("disabled");
+                profile.querySelector('#college').style.border = "2px white solid";
+                profile.querySelector('#college').value = 0;
+            }
+        }
+
+        //// Details ////
+        // Assign Details Data
+        var details = document.getElementById('details');
+        details.querySelector('#backstory').value = studentData.backstory;
+        details.querySelector('#extranotes').value = studentData.extranotes;
+    }
+    function sort_studentJob(data1, data2) {
+        //// Job ////
+        var studentJob = data1[0];
+        if (studentJob) {
+            // Assign Job Data
+            var currentJob = document.getElementById('jobs');
+            const theJob = document.createElement('div');
+            const theTitle = document.createElement('h3');
+            const theLocation = document.createElement('p');
+            const theWage = document.createElement('p');
+            const theCoworker = document.createElement('p');
+            const QuitButton = document.createElement('button');
+            theJob.classList = "job";
+            theJob.id = "job";
+            QuitButton.classList = "quit";
+            QuitButton.id = studentJob.id;
+            QuitButton.innerText = "Resign";
+            QuitButton.addEventListener('click', quitJob, false);
+            theTitle.innerText = studentJob.Job.Title;
+            theLocation.innerText = studentJob.Job.Location;
+            theLocation.classList = "location";
+            theWage.innerText = studentJob.wage;
+            theWage.classList = "wage";
+
+            var coworkers = data2;
+            var theCoworkers = "";
+            var wcount = 0;
+            for (var x = 0; x < coworkers.length; x++) {
+                var worker = coworkers[x]['Student'];
+                if (sessionStorage.getItem('Student_Id') != worker.id) {
+                    if (worker.name) {
+                        if (wcount > 0) {
+                            theCoworkers = theCoworkers + " & " + worker.name;
+                        } else {
+                            theCoworkers = worker.name;
+                        }
+                        wcount++;
+                    }
+                }
+            }
+            theCoworker.innerText = theCoworkers;
+            theCoworker.classList = "coworker";
+
+            theJob.appendChild(theTitle);
+            theJob.appendChild(theLocation);
+            theJob.appendChild(theCoworker);
+            theJob.appendChild(theWage);
+            theJob.appendChild(QuitButton);
+            currentJob.appendChild(theJob);
+        }
+    }
+    function sort_studentClub(data) {
+        var clubs = data;
+        if (clubs) {
+            var clubList = document.getElementById('clubs');
+            for (var x = 0; x < clubs.length; x++) {
+                var club = clubs[x].club;
+                const theClub = document.createElement('div');
+                const theClubName = document.createElement('p');
+                const theClubSkill = document.createElement('p');
+                const theClubDice = document.createElement('p');
+                const theClubMembers = document.createElement('div');
+                const theClubQuit = document.createElement('button');
+                theClub.classList = "club";
+                theClubName.classList = "clubname";
+                theClubName.innerText = club.name;
+                theClubSkill.classList = "clubskill";
+                theClubSkill.innerText = club.skills;
+                theClubDice.classList = "dice";
+                theClubDice.innerText = "1d4";
+                theClubMembers.classList = "members scrollbar";
 
 
+                var sessionClub = "clubMembers" + club.id;
+                var clubMembers = JSON.parse(sessionStorage.getItem(sessionClub));
+                for (var y = 0; y < clubMembers.length; y++) {
+                    if (sessionStorage.getItem("Student_Id") != clubMembers[y].student.id) {
+                        const theClubMember = document.createElement('p');
+                        theClubMember.classList = "member";
+                        theClubMember.innerText = clubMembers[y].student.name;
+                        theClubMembers.appendChild(theClubMember);
+                    }
+                }
 
+                theClubQuit.classList = "quit";
+                theClubQuit.innerText = "Quit Club";
+                theClubQuit.id = club.id;
+                theClubQuit.addEventListener('click', quitClub, false);
+                theClub.appendChild(theClubName);
+                theClub.appendChild(theClubSkill);
+                theClub.appendChild(theClubDice);
+                theClub.appendChild(theClubMembers);
+                theClub.appendChild(theClubQuit);
+                clubList.appendChild(theClub);
+            }
+        }
+    }
+    function sort_CourseData(data1) {
+        var data = data1;
+        for (var x = 0; x < data.length; x++) {
+            var course = data[x]['class'];
+            var year = course['year'];
+            var teacher = data[x]['teacher'];
+            var required = data[x]['required'];
 
+            var newOption = document.createElement('option');
+            newOption.value = course['id'] + ":" + teacher['teacher_name'];
+            newOption.text = course['name'];
 
+            if (year == 1) {
+                var selects = document.getElementById('Y1S1').parentElement.querySelectorAll('select');
+                for (var y = 0; y < selects.length; y++) {
+                    selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
+                }
+                if (course['required'] == "yes") {
+                    // Set required course class
+                    document.getElementById('Y1S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
+                    document.getElementById('Y1S1').querySelector('select').disabled = true;
 
+                }
+            }
+            if (year == 2) {
+                var selects = document.getElementById('Y2S1').parentElement.querySelectorAll('select');
+                for (var y = 0; y < selects.length; y++) {
+                    selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
+                }
+                if (course['required'] == "yes") {
+                    // Set required course class
+                    document.getElementById('Y2S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
+                    document.getElementById('Y2S1').querySelector('select').disabled = true;
+                }
+            }
+            if (year == 3) {
+                var selects = document.getElementById('Y3S1').parentElement.querySelectorAll('select');
+                for (var y = 0; y < selects.length; y++) {
+                    selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
+                }
+                if (course['required'] == "yes") {
+                    // Set required course class
+                    document.getElementById('Y3S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
+                    document.getElementById('Y3S1').querySelector('select').disabled = true;
+                }
+            }
+            if (year == 4) {
+                var selects = document.getElementById('Y4S1').parentElement.querySelectorAll('select');
+                for (var y = 0; y < selects.length; y++) {
+                    selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
+                }
+                if (course['required'] == "yes") {
+                    // Set required course class
+                    document.getElementById('Y4S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
+                    document.getElementById('Y4S1').querySelector('select').disabled = true;
+                }
+            }
+        }
 
+    }
+    function sort_StudentCourses(data) {
+        var Y1C = 1;
+        var Y2C = 1;
+        var Y3C = 1;
+        var Y4C = 1;
 
+        for (var x = 0; x < data.length; x++) {
+            var course = data[x].class;
 
+            // Create location of course option
+            if (course.year == 1) {
+                var classChoice = "Y1S" + Y1C;
+                Y1C++;
+            }
+            if (course.year == 2) {
+                var classChoice = "Y2S" + Y2C;
+                Y2C++;
+            }
+            if (course.year == 3) {
+                var classChoice = "Y3S" + Y3C;
+                Y3C++;
+            }
+            if (course.year == 4) {
+                var classChoice = "Y4S" + Y4C;
+                Y4C++;
+            }
 
+            // Select course option and lock dropdown
+            $('#' + classChoice + ' select > option').each(function () {
+                var split = $(this).val().split(":");
+                var courseId = split[0];
+                var teacher = split[1];
+                if (courseId == course['id']) {
+                    $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
+                    $('#' + classChoice + ' select').attr("disabled", "true");
 
+                    // Remove for other dropdowns
+                    var selected = this.value;
+                    $("select option[value='" + selected + "']").each(function () {
+                        if (this.parentElement.value != selected) {
+                            $(this).remove();
+                        }
+                    });
+                }
+            });
+        }
+        // Courses
+        var theyear = document.getElementById('profile').querySelector('#year').value;
+        if (theyear) {
+            var coursesPage = document.getElementById('courses');
+            var courseYears = coursesPage.querySelectorAll('.year');
+            for (var y = 0; y < courseYears.length; y++) {
+                var year = courseYears[y];
+                var saveBtn = year.querySelector('.controls');
+                if (y <= theyear - 1) {
+                    var coursesSelected = year.querySelectorAll('select');
+                    var number = 0;
+                    for (var z = 0; z < coursesSelected.length; z++) {
+                        if (coursesSelected[z].disabled) {
+                            number++;
+                        }
+                    }
+                    if (number == 4) {
+                        saveBtn.style.display = "none";
+                    }
+                } else {
+                    year.querySelector('.coursechoices').innerHTML = "";
+                    saveBtn.style.display = "none";
+                }
+            }
+        }
+    }
+    function sort_ExamData(data) {
+        var examsPage = document.getElementById('exams');
+        var examExams = examsPage.querySelectorAll('.exams');
 
+        for (var y = 0; y < examExams.length; y++) {
+            examExams[y].innerHTML = "";
+        }
+        var exams = data;
+        for (var x = 0; x < exams.length; x++) {
+            var exam = exams[x].exam;
+            var student = exams[x].student;
+            var score = exams[x].score;
+            
+            for (var y = 0; y < examExams.length; y++) {
+                var newExam = document.createElement("div");
+                var newTitle = document.createElement("p");
+                var newScore = document.createElement("p");
+                var newDice = document.createElement("p");
+                var newSkills = document.createElement("p");
 
+                if (y + 1 == exam.year) {
+                    newTitle.innerText = exam.name;
+                    if (score) {
+                        newScore.innerText = score;
+                        if (score == "ace") {
+                            newDice.innerText = "2d4";
+                        }
+                        if (score == "pass") {
+                            newDice.innerText = "1d4";
+                        }
+                        if (score == "fail") {
+                            newDice.innerText = "0d4";
+                        }
 
+                        newSkills.innerText = exam.skill;
+                        newTitle.classList = "etitle"
+                        newScore.classList = "escore"
+                        newDice.classList = "edice"
+                        newSkills.classList = "eskill"
+                        newExam.classList = "exam";
+                        newExam.appendChild(newTitle);
+                        newExam.appendChild(newScore);
+                        newExam.appendChild(newDice);
+                        newExam.appendChild(newSkills);
+                        
+                        if (exam.year <= student.year) {
+                            if (score != "null") {
+                                examExams[y].appendChild(newExam);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function sort_Relationships(data) {
+        var relationshipPage = document.getElementById('relationships');
+        var page = relationshipPage.querySelector('#cubes');
+        var lovers = 0;
+        page.innerHTML = "";
+        for (var x = 0; x < data.length; x++) {
+            var sr = data[x];
+            const newCube = document.createElement("div");
+            const newName = document.createElement("p");
 
+            const newRelationship = document.createElement("div");
+            const newBoon = document.createElement("div");
+            const newBane = document.createElement("div");
 
+            const newScoreSpan = document.createElement("span");
+            const newRelationshipSpan = document.createElement("span");
+            const newBoonSpan = document.createElement("span");
+            const newBaneSpan = document.createElement("span");
+
+            newName.innerText = sr['npc']['name'];
+
+            var text = "";
+            if (sr['relationship'] >= "-100") {
+                if (sr['relationship'] >= 8) {
+                    text = "Lover";
+                    lovers++;
+                } else if (sr['relationship'] >= "3") {
+                    text = "Friend";
+                } else if (sr['relationship'] >= "0") {
+                    text = "Neutral";
+                } else {
+                    text = "Rival";
+                }
+            }
+            newRelationshipSpan.innerText = "Relationship: ";
+            newRelationship.appendChild(newRelationshipSpan);
+            var newTextRelationship = document.createElement('p');
+            newTextRelationship.innerText = " " + text;
+            newRelationship.appendChild(newTextRelationship);
+
+            newBoonSpan.innerText = "Boon: ";
+            newBoon.appendChild(newBoonSpan);
+            var newTextBoon = document.createElement('p');
+            newTextBoon.innerText = " " + sr['npc']['boon'];
+            newBoon.appendChild(newTextBoon);
+
+            newCube.classList = "cube";
+            newCube.id = sr['npc']['id'];
+
+            newName.classList = "cName";
+
+            newCube.appendChild(newName);
+            newCube.appendChild(newRelationship);
+
+            if (sr['relationship'] >= "-100") {
+                if (sr['relationship'] >= "3") {
+                    newCube.appendChild(newBoon);
+                }
+            }
+
+            page.appendChild(newCube);
+        }
+        if (lovers > 0) {
+            var inspo = relationshipPage.querySelector('#insporation');
+            var prof = 0;
+            var clevel = document.getElementById('profile').querySelector('#level').value;
+            if (clevel <= 20) {
+                prof = 6;
+                if (clevel < 17) {
+                    prof = 5;
+                    if (clevel < 13) {
+                        prof = 4;
+                        if (clevel < 9) {
+                            prof = 3;
+                            if (clevel < 5) {
+                                prof = 2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (inspo) {
+            inspo.innerText = "Inspiration: " + lovers + "/" + prof;
+        }
+    }
+
+    function quitJob() {
+        var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
+        _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
+            removeStorage('studentJob');
+            removeStorage('jobCoworkers');
+        })
+        alert("You have now resigned");
+        var parent = this.parentNode;
+        parent.style.display = "none";
+    }
+    function quitClub() {
+        var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
+        var cid = this.id;
+        _supabase.from('Club<>Student').delete().eq('club', cid).eq('student', sid).then(response => {
+            alert("you have left the club");
+            removeStorage("clubMembers" + cid, response.data);
+            removeStorage("studentClub");
+            var parent = this.parentNode;
+            parent.style.display = "none";
+        })
+    }
+    function clearStudentDataById(sid) {
+        // Clear Profile
+        var toClear = document.getElementById('profile')
+        var updateobject = {};
+        var inputs = getAllInputs(toClear);
+        var numberCleared = 0;
+
+        for (var x = 0; x < inputs.length; x++) {
+            updateobject[inputs[x].id] = null;
+            if (inputs[x].id == "college") {
+                updateobject[inputs[x].id] = 6;
+            }
+            if (inputs[x].id == "year") {
+                updateobject[inputs[x].id] = 1;
+            }
+        }
+        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
+            // Clear Details
+            var toClear = document.getElementById('details')
+            var updateobject = {};
+            var inputs = getAllInputs(toClear);
+            for (var x = 0; x < inputs.length; x++) {
+                updateobject[inputs[x].id] = null;
+            }
+            _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
+                // Reset Courses
+                _supabase.from('class<>student').delete().eq('student', sid).then(response => {
+                    // Reset Exams
+                    var updateobject = {};
+                    for (var x = 0; x < 11; x++) {
+                        updateobject['score'] = null;
+                        updateobject['cheated'] = null;
+                        updateobject['studied'] = null;
+                        _supabase.from('exam<>student').update(updateobject).eq('exam', x).eq('student', sid).then(response => {
+                        })
+                    }
+                    // Clear Relationships
+                    _supabase.from('npc<>student').delete().eq('student', sid).then(response => {
+                        // Clear Job
+                        _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
+                            // Clear Extras
+                            _supabase.from('Club<>Student').delete().eq('student', sid).then(response => {
+                                const keys = [...Array(sessionStorage.length)].map((o, i) => {
+                                    return sessionStorage.key(i);
+                                })
+                                for (var x = 0; x < keys.length; x++) {
+                                    if (keys[x] == "Student_Id") {
+
+                                    } else {
+                                        removeStorage(keys[x]);
+                                    }
+                                }
+                                window.location = window.location;
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    }
+
+    // Local Functions
+    function setEvenetListeners() {
+        if (document.getElementById('Y1S2')) {
+            document.getElementById('Y1S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y1S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y1S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y1S2').querySelector('select').addEventListener('change', setTeacherName, false);
+            document.getElementById('Y1S3').querySelector('select').addEventListener('change', setTeacherName, false);
+            document.getElementById('Y1S4').querySelector('select').addEventListener('change', setTeacherName, false);
+        }
+        if (document.getElementById('Y2S2')) {
+            document.getElementById('Y2S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y2S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y2S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y2S2').querySelector('select').addEventListener('change', setTeacherName, false);
+            document.getElementById('Y2S3').querySelector('select').addEventListener('change', setTeacherName, false);
+            document.getElementById('Y2S4').querySelector('select').addEventListener('change', setTeacherName, false);
+        }
+        if (document.getElementById('Y3S2')) {
+            document.getElementById('Y3S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y3S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y3S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
+            document.getElementById('Y3S2').querySelector('select').addEventListener('change', setTeacherName, false);
+            document.getElementById('Y3S3').querySelector('select').addEventListener('change', setTeacherName, false);
+            document.getElementById('Y3S4').querySelector('select').addEventListener('change', setTeacherName, false);
+        }
+    }
+    function getAllInputs(toClear) {
+        var inputs = toClear.querySelectorAll('input');
+        var textareas = toClear.querySelectorAll('textarea');
+        var selects = toClear.querySelectorAll('select');
+        var allinputs = [];
+        for (var y = 0; y < inputs.length; y++) {
+            if (inputs[y].id) {
+                allinputs.push(inputs[y]);
+            }
+        }
+        for (var y = 0; y < textareas.length; y++) {
+            if (textareas[y].id) {
+                allinputs.push(textareas[y]);
+            }
+        }
+        for (var y = 0; y < selects.length; y++) {
+            if (selects[y].id) {
+                if (selects[y].id == "college") {
+                    if (selects[y].value != 0) {
+                        allinputs.push(selects[y]);
+                    }
+                }
+            }
+        }
+        return allinputs;
+    }
+    function clearpages() {
+        // course selectors and teachers
+        var page = document.getElementById('courses');
+        var selects = page.querySelectorAll('select');
+        var ps = page.querySelectorAll('p');
+        for (var x = 0; x < selects.length; x++) {
+            if (selects[x].value == 0) {
+                selects[x].value = 0;
+            }
+            ps[x].innerHTML = "";
+        }
+    }
     function loadPage() {
         // Load last page saved on
         const queryString = window.location.search;
@@ -431,17 +1084,6 @@
                     allChoices[x].classList = "choice selected";
                 }
             }
-            // Check the data has been loaded for the page
-
-            // profile - Done on load
-            // details - Done on load
-            // courses
-            if (toOpen == "courses") {
-                getStudentCourseByID(sessionStorage.getItem("Student_Id"));
-            }
-            // exams - Nothing to save
-            // relationships - Nothing to save
-            // job and extras - Nothing to save
 
             // Reset URL
             window.history.pushState("object or string", "Title", "/studentview.html");
@@ -450,8 +1092,107 @@
             document.getElementById(toOpen).toggleAttribute("hidden");
         }
     }
+    function reloadPage() {
+        var allPages = document.getElementById('pages').querySelectorAll(".page");
 
-    // Non Data Base
+        for (var x = 0; x < allPages.length; x++) {
+            if (allPages[x].checkVisibility()) {
+                var currentPage = allPages[x].id;
+                const urlParams = new URLSearchParams(window.location.search);
+                urlParams.set('page', currentPage);
+                window.location.search = urlParams;
+            }
+        }
+    }
+    function togglecurrent() {
+        var mainpage = document.getElementById('pages');
+        var pages = mainpage.querySelectorAll('.page');
+        for (var x = 0; x < pages.length; x++) {
+            if (pages[x]) {
+                if (window.getComputedStyle(pages[x]).display != "none") {
+                    var inputs = pages[x].querySelectorAll('input');
+                    var textareas = pages[x].querySelectorAll('textarea');
+                    for (var y = 0; y < inputs.length; y++) {
+                        inputs[y].toggleAttribute("disabled");
+                    }
+                    for (var y = 0; y < textareas.length; y++) {
+                        textareas[y].toggleAttribute("readonly");
+                    }
+                }
+            }
+        }
+    }
+    function toshow(id) {
+        var send = 0;
+        if (id == "one") {
+            send = 0;
+        }
+        if (id == "two") {
+            send = 1;
+        }
+        if (id == "three") {
+            send = 2;
+        }
+        if (id == "four") {
+            send = 3;
+        }
+        return send;
+    }
+    function RemoveFromCourseDropdowns() {
+        // All selects on page
+        var year = this.parentElement.parentElement;
+        var allSelects = year.querySelectorAll("select");
+        var allOptions = year.querySelectorAll("option");
+
+        // Show all options
+        for (var x = 0; x < allOptions.length; x++) {
+            var option = allOptions[x];
+            option.style.display = "block";
+        }
+
+        // Get selected values
+        var selected = [];
+        for (var x = 0; x < allSelects.length; x++) {
+            var select = allSelects[x];
+            if (option.value != "-- Select Course --") {
+                selected.push(select.value);
+            }
+        }
+
+        // Hide selected values
+        for (var x = 0; x < allOptions.length; x++) {
+            var option = allOptions[x];
+            for (var y = 0; y < selected.length; y++) {
+                if (option.value != "-- Select Course --") {
+                    if (option.value == selected[y]) {
+                        option.style.display = "none";
+                    }
+                }
+            }
+        }
+    }
+    function setTeacherName() {
+        var course = this.parentElement;
+        var selectedoption = this.value;
+        var split = selectedoption.split(':');
+
+        var newTeacher = document.createElement('span');
+        newTeacher.innerText = "Teacher: ";
+        course.querySelector('p').innerHTML = "";
+        course.querySelector('p').append(newTeacher);
+        course.querySelector('p').append(split[1]);
+    }
+    function sort_CollegeDropdown(data) {
+        for (var y = 0; y < data.length; y++) {
+            var col = data[y];
+            var newCollege = document.createElement('option');
+            newCollege.value = col['id'];
+            newCollege.innerText = col['college_name'];
+            profile.querySelector('#college').appendChild(newCollege);
+        }
+    }
+
+    // Controls
     $('.choice').click(function () {
         clearpages();
         var sidenav = document.getElementById('subnavchoices');
@@ -480,13 +1221,13 @@
             toshow = "profile";
         }
         if (toshow == "courses") {
-            getStudentCourseByID(sessionStorage.getItem("Student_Id"));
+            // getStudentCourseByID(sessionStorage.getItem("Student_Id"));
         }
         if (toshow == "exams") {
-            getStudentExamByID(sessionStorage.getItem("Student_Id"));
+            // getStudentExamByID(sessionStorage.getItem("Student_Id"));
         }
         if (toshow == "relationships") {
-            getRelationships(sessionStorage.getItem("Student_Id"));
+            // getRelationships(sessionStorage.getItem("Student_Id"));
         }
         document.getElementById(toshow).toggleAttribute("hidden");
     })
@@ -572,16 +1313,13 @@
             }, 1000);
         }
     })
-
     $('#newpas').click(function () {
         setNewPass();
     })
-
     $('#deleteUser').click(function () {
         var doc = this.parentElement.querySelector('.clearConfirm');
         doc.toggleAttribute("hidden");
     })
-
     $('.subConfirm button').click(function () {
         if (this.innerText == "No") {
             this.parentElement.parentElement.setAttribute("hidden", "true");
@@ -590,835 +1328,4 @@
             clearStudentDataById(sessionStorage.getItem("Student_Id"));
         }
     })
-
-    function togglecurrent() {
-        var mainpage = document.getElementById('pages');
-        var pages = mainpage.querySelectorAll('.page');
-        for (var x = 0; x < pages.length; x++) {
-            if (pages[x]) {
-                if (window.getComputedStyle(pages[x]).display != "none") {
-                    var inputs = pages[x].querySelectorAll('input');
-                    var textareas = pages[x].querySelectorAll('textarea');
-                    for (var y = 0; y < inputs.length; y++) {
-                        inputs[y].toggleAttribute("disabled");
-                    }
-                    for (var y = 0; y < textareas.length; y++) {
-                        textareas[y].toggleAttribute("readonly");
-                    }
-                }
-            }
-        }
-    }
-    function toshow(id) {
-        var send = 0;
-        if (id == "one") {
-            send = 0;
-        }
-        if (id == "two") {
-            send = 1;
-        }
-        if (id == "three") {
-            send = 2;
-        }
-        if (id == "four") {
-            send = 3;
-        }
-        return send;
-    }
-
-
-
-    function getAllInputs(toClear) {
-        var inputs = toClear.querySelectorAll('input');
-        var textareas = toClear.querySelectorAll('textarea');
-        var selects = toClear.querySelectorAll('select');
-        var allinputs = [];
-        for (var y = 0; y < inputs.length; y++) {
-            if (inputs[y].id) {
-                allinputs.push(inputs[y]);
-            }
-        }
-        for (var y = 0; y < textareas.length; y++) {
-            if (textareas[y].id) {
-                allinputs.push(textareas[y]);
-            }
-        }
-        for (var y = 0; y < selects.length; y++) {
-            if (selects[y].id) {
-                if (selects[y].id == "college") {
-                    if (selects[y].value != 0) {
-                        allinputs.push(selects[y]);
-                    }
-                }
-            }
-        }
-        return allinputs;
-    }
-
-    function reloadPage() {
-        var allPages = document.getElementById('pages').querySelectorAll(".page");
-
-        for (var x = 0; x < allPages.length; x++) {
-            if (allPages[x].checkVisibility()) {
-                var currentPage = allPages[x].id;
-                const urlParams = new URLSearchParams(window.location.search);
-                urlParams.set('page', currentPage);
-                window.location.search = urlParams;
-            }
-        }
-    }
-
-    function clearpages() {
-        // course selectors and teachers
-        var page = document.getElementById('courses');
-        var selects = page.querySelectorAll('select');
-        var ps = page.querySelectorAll('p');
-        for (var x = 0; x < selects.length; x++) {
-            if (selects[x].value == 0) {
-                selects[x].value = 0;
-            }
-            ps[x].innerHTML = "";
-        }
-    }
-
-    // Set Event Listeners
-    $(document).ready(async function () {
-        // RemoveFromCourseDropdowns
-        document.getElementById('Y1S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-        document.getElementById('Y1S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-        document.getElementById('Y1S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-
-        document.getElementById('Y2S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-        document.getElementById('Y2S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-        document.getElementById('Y2S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-
-        document.getElementById('Y3S2').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-        document.getElementById('Y3S3').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-        document.getElementById('Y3S4').querySelector('select').addEventListener('change', RemoveFromCourseDropdowns, false);
-
-        // setTeacherName
-        document.getElementById('Y1S2').querySelector('select').addEventListener('change', setTeacherName, false);
-        document.getElementById('Y1S3').querySelector('select').addEventListener('change', setTeacherName, false);
-        document.getElementById('Y1S4').querySelector('select').addEventListener('change', setTeacherName, false);
-
-        document.getElementById('Y2S2').querySelector('select').addEventListener('change', setTeacherName, false);
-        document.getElementById('Y2S3').querySelector('select').addEventListener('change', setTeacherName, false);
-        document.getElementById('Y2S4').querySelector('select').addEventListener('change', setTeacherName, false);
-
-        document.getElementById('Y3S2').querySelector('select').addEventListener('change', setTeacherName, false);
-        document.getElementById('Y3S3').querySelector('select').addEventListener('change', setTeacherName, false);
-        document.getElementById('Y3S4').querySelector('select').addEventListener('change', setTeacherName, false);
-
-    })
-
-    // Course Functions
-    function RemoveFromCourseDropdowns() {
-        // All selects on page
-        var year = this.parentElement.parentElement;
-        var allSelects = year.querySelectorAll("select");
-        var allOptions = year.querySelectorAll("option");
-
-        // Show all options
-        for (var x = 0; x < allOptions.length; x++) {
-            var option = allOptions[x];
-            option.style.display = "block";
-        }
-
-        // Get selected values
-        var selected = [];
-        for (var x = 0; x < allSelects.length; x++) {
-            var select = allSelects[x];
-            if (option.value != "-- Select Course --") {
-                selected.push(select.value);
-            }
-        }
-
-        // Hide selected values
-        for (var x = 0; x < allOptions.length; x++) {
-            var option = allOptions[x];
-            for (var y = 0; y < selected.length; y++) {
-                if (option.value != "-- Select Course --") {
-                    if (option.value == selected[y]) {
-                        option.style.display = "none";
-                    }
-                }
-            }
-        }
-    }
-    function setTeacherName() {
-        var course = this.parentElement;
-        var selectedoption = this.value;
-        var split = selectedoption.split(':');
-
-        var newTeacher = document.createElement('span');
-        newTeacher.innerText = "Teacher: ";
-        course.querySelector('p').innerHTML = "";
-        course.querySelector('p').append(newTeacher);
-        course.querySelector('p').append(split[1]);
-    }
-</script>
-<script src="../../API/api.js"></script>
-<script src="/javascript/login.js"></script>
-<script>
-    $(document).ready(async function () {
-        var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
-        if (sid) {
-            await getCollegeDropdownData();
-            getCourseData();
-            await getStudentData(sid);
-            loadPage();
-        }
-    })
-
-    // Getters
-    function getCollegeDropdownData() {
-        _supabase.from('_tblColleges').select('*').order('id', { ascending: false }).then(response => {
-            for (var y = 0; y < response.data.length; y++) {
-                var col = response.data[y];
-                var newCollege = document.createElement('option');
-                newCollege.value = col['id'];
-                newCollege.innerText = col['college_name'];
-                profile.querySelector('#college').appendChild(newCollege);
-            }
-        })
-    }
-    function getCourseData() {
-        _supabase.from('class<>teacher').select('class(id, name, year, required), teacher(id, teacher_name)').then(response => {
-            var data = response.data;
-            for (var x = 0; x < data.length; x++) {
-                var course = data[x]['class'];
-                var year = course['year'];
-                var teacher = data[x]['teacher'];
-                var required = data[x]['required'];
-
-                var newOption = document.createElement('option');
-                newOption.value = course['id'] + ":" + teacher['teacher_name'];
-                newOption.text = course['name'];
-
-                if (year == 1) {
-                    var selects = document.getElementById('Y1S1').parentElement.querySelectorAll('select');
-                    for (var y = 0; y < selects.length; y++) {
-                        selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
-                    }
-                    if (course['required'] == "yes") {
-                        // Set required course class
-                        document.getElementById('Y1S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
-                        document.getElementById('Y1S1').querySelector('select').disabled = true;
-
-                    }
-                }
-                if (year == 2) {
-                    var selects = document.getElementById('Y2S1').parentElement.querySelectorAll('select');
-                    for (var y = 0; y < selects.length; y++) {
-                        selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
-                    }
-                    if (course['required'] == "yes") {
-                        // Set required course class
-                        document.getElementById('Y2S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
-                        document.getElementById('Y2S1').querySelector('select').disabled = true;
-                    }
-                }
-                if (year == 3) {
-                    var selects = document.getElementById('Y3S1').parentElement.querySelectorAll('select');
-                    for (var y = 0; y < selects.length; y++) {
-                        selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
-                    }
-                    if (course['required'] == "yes") {
-                        // Set required course class
-                        document.getElementById('Y3S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
-                        document.getElementById('Y3S1').querySelector('select').disabled = true;
-                    }
-                }
-                if (year == 4) {
-                    var selects = document.getElementById('Y4S1').parentElement.querySelectorAll('select');
-                    for (var y = 0; y < selects.length; y++) {
-                        selects[y].options.add(new Option(course['name'], course['id'] + ":" + teacher['teacher_name']))
-                    }
-                    if (course['required'] == "yes") {
-                        // Set required course class
-                        document.getElementById('Y4S1').querySelector('select').value = course['id'] + ":" + teacher['teacher_name'];
-                        document.getElementById('Y4S1').querySelector('select').disabled = true;
-                    }
-                }
-            }
-        });
-    }
-
-    async function getStudentData(sid) {
-        //// Profile ////
-        var studentData = await getStudentByID(sid);
-        // Assign Profile Data
-        var profile = document.getElementById('profile');
-        profile.querySelector('#profilepicture').src = "assets/students/players/" + studentData.picture;
-        profile.querySelector('#name').value = studentData.name;
-        profile.querySelector('#age').value = studentData.age;
-        profile.querySelector('#gender').value = studentData.gender;
-        profile.querySelector('#race').value = studentData.race;
-        profile.querySelector('#subrace').value = studentData.subrace;
-        profile.querySelector('#alignment').value = studentData.alignment;
-        profile.querySelector('#haircolour').value = studentData.haircolour;
-        profile.querySelector('#eyecolour').value = studentData.eyecolour;
-        profile.querySelector('#year').value = studentData.year;
-        profile.querySelector('#height').value = studentData.height;
-        profile.querySelector('#weight').value = studentData.weight;
-        profile.querySelector('#level').value = studentData.level;
-        profile.querySelector('#class').value = studentData.class;
-        profile.querySelector('#subclass').value = studentData.subclass;
-        profile.querySelector('#background').value = studentData.background;
-        profile.querySelector('#college').value = studentData.college;
-        profile.querySelector('#personalitytraits').value = studentData.personalitytraits;
-        profile.querySelector('#personalitytraits').style.height = profile.querySelector('#personalitytraits').scrollHeight + 'px';
-        profile.querySelector('#ideals').value = studentData.ideals;
-        profile.querySelector('#ideals').style.height = profile.querySelector('#ideals').scrollHeight + 'px';
-        profile.querySelector('#bonds').value = studentData.bonds;
-        profile.querySelector('#bonds').style.height = profile.querySelector('#bonds').scrollHeight + 'px';
-        profile.querySelector('#flaws').value = studentData.flaws;
-        profile.querySelector('#flaws').style.height = profile.querySelector('#flaws').scrollHeight + 'px';
-        profile.querySelector('#goals').value = studentData.goals;
-        profile.querySelector('#goals').style.height = profile.querySelector('#goals').scrollHeight + 'px';
-        profile.querySelector('#backgroundfeatures').value = studentData.backgroundfeatures;
-        profile.querySelector('#backgroundfeatures').style.height = profile.querySelector('#backgroundfeatures').scrollHeight + 'px';
-        profile.querySelector('#appearance').value = studentData.appearance;
-        profile.querySelector('#appearance').style.height = profile.querySelector('#appearance').scrollHeight + 'px';
-        // Page Changes //
-        // Page Title
-        var headertitle = await document.getElementById('pagename');
-        if (studentData.name) {
-            headertitle.innerText = "Welcome " + studentData.name;
-        } else {
-            headertitle.innerText = "Welcome " + studentData.player;
-        }
-        // College Logo
-        var cLogo = await document.getElementById('collegeLogo');
-        if (studentData.college == 6) {
-            cLogo.src = "assets/strix_logo.png";
-        }
-        if (studentData.college == 5) {
-            cLogo.src = "assets/maps/witherbloom.png";
-        }
-        if (studentData.college == 4) {
-            cLogo.src = "assets/maps/silverquill.png";
-        }
-        if (studentData.college == 3) {
-            cLogo.src = "assets/maps/quandrix.png";
-        }
-        if (studentData.college == 2) {
-            cLogo.src = "assets/maps/prismari.png";
-        }
-        if (studentData.college == 1) {
-            cLogo.src = "assets/maps/lorehold.png";
-        }
-
-        // Check for college year and college Enrolled
-        if (studentData.year >= 2) {
-            if (studentData.college == 6) {
-                var options = profile.querySelector('#college').querySelectorAll('option');
-                for (var t = 0; t < options.length; t++) {
-                    if (options[t].value == "6") {
-                        options[t].style.display = "none";
-                    }
-                }
-
-                profile.querySelector('#college').toggleAttribute("disabled");
-                profile.querySelector('#college').style.border = "2px white solid";
-                profile.querySelector('#college').value = 0;
-
-
-            }
-        }
-
-        //// Details ////
-        // Assign Details Data
-        var details = document.getElementById('details');
-        details.querySelector('#backstory').value = studentData.backstory;
-        details.querySelector('#extranotes').value = studentData.extranotes;
-        //// Job ////
-        var studentJob = await getStudentJobByStudentID(sid);
-        if (studentJob) {
-            // Assign Job Data
-            var currentJob = document.getElementById('jobs');
-            const theJob = document.createElement('div');
-            const theTitle = document.createElement('h3');
-            const theLocation = document.createElement('p');
-            const theWage = document.createElement('p');
-            const theCoworker = document.createElement('p');
-            const QuitButton = document.createElement('button');
-            theJob.classList = "job";
-            theJob.id = "job";
-            QuitButton.classList = "quit";
-            QuitButton.id = studentJob.id;
-            QuitButton.innerText = "Resign";
-            QuitButton.addEventListener('click', quitJob, false);
-            theTitle.innerText = studentJob.Job.Title;
-            theLocation.innerText = studentJob.Job.Location;
-            theLocation.classList = "location";
-            theWage.innerText = studentJob.wage;
-            theWage.classList = "wage";
-            var coworkers = await getJobCoworkers(studentJob.Job.id);
-            var theCoworkers = "";
-            var wcount = 0;
-            for (var x = 0; x < coworkers.length; x++) {
-                var worker = coworkers[x]['Student'];
-                if (sessionStorage.getItem('Student_Id') != worker.id) {
-                    if (worker.name) {
-                        if (wcount > 0) {
-                            theCoworkers = theCoworkers + " & " + worker.name;
-                        } else {
-                            theCoworkers = worker.name;
-                        }
-                        wcount++;
-                    }
-                }
-            }
-            theCoworker.innerText = theCoworkers;
-            theCoworker.classList = "coworker";
-            theJob.appendChild(theTitle);
-            theJob.appendChild(theLocation);
-            theJob.appendChild(theCoworker);
-            theJob.appendChild(theWage);
-            theJob.appendChild(QuitButton);
-            currentJob.appendChild(theJob);
-        }
-        //// Clubs ////
-        var clubs = await getClubByStudentID(sid);
-        if (clubs) {
-            var clubList = document.getElementById('clubs');
-            for (var x = 0; x < clubs.length; x++) {
-                var club = clubs[x].club;
-                const theClub = document.createElement('div');
-                const theClubName = document.createElement('p');
-                const theClubSkill = document.createElement('p');
-                const theClubDice = document.createElement('p');
-                const theClubMembers = document.createElement('div');
-                const theClubQuit = document.createElement('button');
-                theClub.classList = "club";
-                theClubName.classList = "clubname";
-                theClubName.innerText = club.name;
-                theClubSkill.classList = "clubskill";
-                theClubSkill.innerText = club.skills;
-                theClubDice.classList = "dice";
-                theClubDice.innerText = "1d4";
-                theClubMembers.classList = "members scrollbar";
-                var clubMembers = await getClubMembersByClubID(club.id);
-                for (var y = 0; y < clubMembers.length; y++) {
-                    if (sessionStorage.getItem("Student_Id") != clubMembers[y].student.id) {
-                        const theClubMember = document.createElement('p');
-                        theClubMember.classList = "member";
-                        theClubMember.innerText = clubMembers[y].student.name;
-                        theClubMembers.appendChild(theClubMember);
-                    }
-                }
-                theClubQuit.classList = "quit";
-                theClubQuit.innerText = "Quit Club";
-                theClubQuit.id = club.id;
-                theClubQuit.addEventListener('click', quitClub, false);
-                theClub.appendChild(theClubName);
-                theClub.appendChild(theClubSkill);
-                theClub.appendChild(theClubDice);
-                theClub.appendChild(theClubMembers);
-                theClub.appendChild(theClubQuit);
-                clubList.appendChild(theClub);
-            }
-        }
-    }
-
-    function getRelationships(sid) {
-        _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student, relationship').eq('student', sid).order('npc', { ascending: true }).then(response => {
-            var relationshipPage = document.getElementById('relationships');
-            var page = relationshipPage.querySelector('#cubes');
-            var lovers = 0;
-            page.innerHTML = "";
-            for (var x = 0; x < response.data.length; x++) {
-                var data = response.data[x];
-                const newCube = document.createElement("div");
-                const newName = document.createElement("p");
-
-                const newRelationship = document.createElement("div");
-                const newBoon = document.createElement("div");
-                const newBane = document.createElement("div");
-
-                const newScoreSpan = document.createElement("span");
-                const newRelationshipSpan = document.createElement("span");
-                const newBoonSpan = document.createElement("span");
-                const newBaneSpan = document.createElement("span");
-
-                newName.innerText = data['npc']['name'];
-
-                var text = "";
-                if (data['relationship'] >= "-100") {
-                    if (data['relationship'] >= 8) {
-                        text = "Lover";
-                        lovers++;
-                    } else if (data['relationship'] >= "3") {
-                        text = "Friend";
-                    } else if (data['relationship'] >= "0") {
-                        text = "Neutral";
-                    } else {
-                        text = "Rival";
-                    }
-                }
-                newRelationshipSpan.innerText = "Relationship: ";
-                newRelationship.appendChild(newRelationshipSpan);
-                var newTextRelationship = document.createElement('p');
-                newTextRelationship.innerText = " " + text;
-                newRelationship.appendChild(newTextRelationship);
-
-                newBoonSpan.innerText = "Boon: ";
-                newBoon.appendChild(newBoonSpan);
-                var newTextBoon = document.createElement('p');
-                newTextBoon.innerText = " " + data['npc']['boon'];
-                newBoon.appendChild(newTextBoon);
-
-                newCube.classList = "cube";
-                newCube.id = data['npc']['id'];
-
-                newName.classList = "cName";
-
-                newCube.appendChild(newName);
-                newCube.appendChild(newRelationship);
-
-                if (data['relationship'] >= "-100") {
-                    if (data['relationship'] >= "3") {
-                        newCube.appendChild(newBoon);
-                    }
-                }
-
-                page.appendChild(newCube);
-            }
-            if (lovers > 0) {
-                var inspo = relationshipPage.querySelector('#insporation');
-                var prof = 0;
-                var clevel = document.getElementById('profile').querySelector('#level').value;
-                if (clevel <= 20) {
-                    prof = 6;
-                    if (clevel < 17) {
-                        prof = 5;
-                        if (clevel < 13) {
-                            prof = 4;
-                            if (clevel < 9) {
-                                prof = 3;
-                                if (clevel < 5) {
-                                    prof = 2;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (inspo) {
-                inspo.innerText = "Inspiration: " + lovers + "/" + prof;
-            }
-        });
-    }
-    function getStudentCourseByID(sid) {
-        _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').eq('student', sid).order('class', { ascending: false }).then(response => {
-            var data = response.data;
-            var Y1C = 1;
-            var Y2C = 1;
-            var Y3C = 1;
-            var Y4C = 1;
-
-            for (var x = 0; x < data.length; x++) {
-                var course = data[x]['class'];
-                var student = data[x]['student'];
-
-                // Create location of course option
-                if (course['year'] == 1) {
-                    var classChoice = "Y1S" + Y1C;
-                    Y1C++;
-                }
-                if (course['year'] == 2) {
-                    var classChoice = "Y2S" + Y2C;
-                    Y2C++;
-                }
-                if (course['year'] == 3) {
-                    var classChoice = "Y3S" + Y3C;
-                    Y3C++;
-                }
-                if (course['year'] == 4) {
-                    var classChoice = "Y4S" + Y4C;
-                    Y4C++;
-                }
-
-                // Select course option and lock dropdown
-                $('#' + classChoice + ' select > option').each(function () {
-                    var split = $(this).val().split(":");
-                    var courseId = split[0];
-                    var teacher = split[1];
-                    if (courseId == course['id']) {
-                        $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
-                        $('#' + classChoice + ' select').attr("disabled", "true");
-
-                        // Remove for other dropdowns
-                        var selected = this.value;
-                        $("select option[value='" + selected + "']").each(function () {
-                            if (this.parentElement.value != selected) {
-                                $(this).remove();
-                            }
-                        });
-                    }
-                });
-            }
-            // Courses
-            var theyear = document.getElementById('profile').querySelector('#year').value;
-            if (theyear) {
-                var coursesPage = document.getElementById('courses');
-                var courseYears = coursesPage.querySelectorAll('.year');
-                for (var y = 0; y < courseYears.length; y++) {
-                    var year = courseYears[y];
-                    var saveBtn = year.querySelector('.controls');
-                    if (y <= theyear - 1) {
-                        var coursesSelected = year.querySelectorAll('select');
-                        var number = 0;
-                        for (var z = 0; z < coursesSelected.length; z++) {
-                            if (coursesSelected[z].disabled) {
-                                number++;
-                            }
-                        }
-                        if (number == 4) {
-                            saveBtn.style.display = "none";
-                        }
-                    } else {
-                        year.querySelector('.coursechoices').innerHTML = "";
-                        saveBtn.style.display = "none";
-                    }
-                }
-            }
-        });
-    }
-    function getStudentExamByID(sid) {
-        var examsPage = document.getElementById('exams');
-        var examExams = examsPage.querySelectorAll('.exams');
-
-        for (var y = 0; y < examExams.length; y++) {
-            examExams[y].innerHTML = "";
-        }
-        _supabase.from('exam<>student').select('exam(*), score, studied, cheated, student(year)').eq('student', sid).order('exam', { ascending: true }).then(response => {
-            var exams = response.data;
-            for (var x = 0; x < exams.length; x++) {
-                var exam = exams[x];
-                for (var y = 0; y < examExams.length; y++) {
-                    var newExam = document.createElement("div");
-                    var newTitle = document.createElement("p");
-                    var newScore = document.createElement("p");
-                    var newDice = document.createElement("p");
-                    var newSkills = document.createElement("p");
-
-                    if (y + 1 == exam['exam']['year']) {
-
-                        newTitle.innerText = exam['exam']['name'];
-                        if (exam['score']) {
-                            newScore.innerText = exam['score'];
-                            if (exam['score'] == "ace") {
-                                newDice.innerText = "2d4";
-                            }
-                            if (exam['score'] == "pass") {
-                                newDice.innerText = "1d4";
-                            }
-                            if (exam['score'] == "fail") {
-                                newDice.innerText = "0d4";
-                            }
-
-                            newSkills.innerText = exam['exam']['skill'];
-
-                            newTitle.classList = "etitle"
-                            newScore.classList = "escore"
-                            newDice.classList = "edice"
-                            newSkills.classList = "eskill"
-
-                            newExam.classList = "exam";
-
-                            newExam.appendChild(newTitle);
-                            newExam.appendChild(newScore);
-                            newExam.appendChild(newDice);
-                            newExam.appendChild(newSkills);
-
-                            if (exam['exam']['year'] <= exam['student']['year']) {
-                                if (exam['score'] != "null") {
-                                    examExams[y].appendChild(newExam);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    // Setters
-    function setNewPass() {
-        var Form = document.getElementById('newPas');
-        if (Form.querySelector('#NPW').value != "") {
-            // Check Confirm Password
-            if (Form.querySelector('#NPW').value == Form.querySelector('#CNPW').value) {
-                var id = "";
-                if (sessionStorage.getItem("Student_Id")) {
-                    id = sessionStorage.getItem("Student_Id");
-                }
-                // Check Current Password is Correct
-                _supabase.from('_tblLogin').select('log_use').eq('student_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
-                    if (response.data.length > 0) {
-                        // Update Password
-                        _supabase.from('_tblLogin').update({ log_pas: Form.querySelector('#NPW').value }).eq('student_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
-                            alert("Your password has been updated");
-                            reloadPage();
-                        })
-                    }
-                });
-            }
-        }
-    }
-    function saveStudentProfileData(inputs) {
-        var updateobject = {};
-        var yr = 0;
-        for (var x = 0; x < inputs.length; x++) {
-            updateobject[inputs[x].id] = inputs[x].value;
-            if (inputs[x].id == "year") {
-                yr = inputs[x].value;
-            }
-        }
-        if (yr == 1) {
-            if (updateobject.college != 6) {
-                updateobject.college = 6
-            }
-        }
-
-        // Validation
-        var canUpdate = "no";
-        var cleared = 0;
-        if (updateobject.year > 0 && updateobject.year < 5) {
-            cleared++;
-        } else {
-            alert("Year must be between 1 and 4");
-        }
-        if (updateobject.level > 0 && updateobject.level < 21) {
-            cleared++;
-        } else {
-            alert("Level must be between 1 and 20");
-        }
-
-        if (cleared == 2) {
-            canUpdate = "yes";
-        }
-        if (canUpdate == "yes") {
-            _supabase.from('_tblStudents').update(updateobject).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
-                reloadPage();
-            })
-        }
-    }
-    function saveStudentDetailsData(inputs) {
-        var updateobject = {};
-        var yr = 0;
-        for (var x = 0; x < inputs.length; x++) {
-            updateobject[inputs[x].id] = inputs[x].value;
-            if (inputs[x].id == "year") {
-                yr = inputs[x].value;
-            }
-        }
-        if (yr == 1) {
-            if (updateobject.college != 6) {
-                updateobject.college = 6
-            }
-        }
-
-        _supabase.from('_tblStudents').update(updateobject).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
-            reloadPage();
-        })
-    }
-    function saveCourseChoices(choices) {
-        _supabase.from('class<>student').select('class(id, year, name, required)').eq('student', sessionStorage.getItem("Student_Id")).then(response => {
-            var uniqueCourses = [];
-            for (var x = 0; x < response.data.length; x++) {
-                var existingCourse = response.data[x]['class'];
-                for (var y = 0; y < choices.length; y++) {
-                    if (existingCourse['id'] == choices[y]) {
-                        delete choices[y];
-                    }
-                }
-            }
-            var filtered = choices.filter(function (el) {
-                return el != null;
-            });
-            $.each(filtered, function (i, el) {
-                if ($.inArray(el, uniqueCourses) === -1) uniqueCourses.push(el);
-            });
-            if (uniqueCourses.length > 0) {
-                for (var x = 0; x < uniqueCourses.length; x++) {
-                    _supabase.from('class<>student').insert({ 'class': uniqueCourses[x], 'student': sessionStorage.getItem("Student_Id") }).then(response => {
-                        reloadPage();
-                    });
-                }
-            }
-        });
-    }
-
-    // Removers
-    function quitJob() {
-        var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
-        _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
-        })
-        alert("You have now resigned");
-        var parent = this.parentNode;
-        parent.style.display = "none";
-        // document.getElementById('myjob').style.display = "none";
-    }
-    function quitClub() {
-        var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
-        var cid = this.id;
-        _supabase.from('Club<>Student').delete().eq('club', cid).eq('student', sid).then(response => {
-            alert("you have left the club");
-            var parent = this.parentNode;
-            parent.style.display = "none";
-        })
-    }
-    function clearStudentDataById(sid) {
-        // Clear Profile
-        var toClear = document.getElementById('profile')
-        var updateobject = {};
-        var inputs = getAllInputs(toClear);
-        var numberCleared = 0;
-
-        for (var x = 0; x < inputs.length; x++) {
-            updateobject[inputs[x].id] = null;
-            if (inputs[x].id == "college") {
-                updateobject[inputs[x].id] = 6;
-            }
-            if (inputs[x].id == "year") {
-                updateobject[inputs[x].id] = 1;
-            }
-        }
-        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
-            // Clear Details
-            var toClear = document.getElementById('details')
-            var updateobject = {};
-            var inputs = getAllInputs(toClear);
-            for (var x = 0; x < inputs.length; x++) {
-                updateobject[inputs[x].id] = null;
-            }
-            _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
-                // Reset Courses
-                _supabase.from('class<>student').delete().eq('student', sid).then(response => {
-                    // Reset Exams
-                    var updateobject = {};
-                    for (var x = 0; x < 11; x++) {
-                        updateobject['score'] = null;
-                        updateobject['cheated'] = null;
-                        updateobject['studied'] = null;
-                        _supabase.from('exam<>student').update(updateobject).eq('exam', x).eq('student', sid).then(response => {
-                        })
-                    }
-                    // Clear Relationships
-                    _supabase.from('npc<>student').delete().eq('student', sid).then(response => {
-                        // Clear Job
-                        _supabase.from('Job<>Student').delete().eq('Student', sid).then(response => {
-                            // Clear Extras
-                            _supabase.from('Club<>Student').delete().eq('student', sid).then(response => {
-                                window.location = window.location;
-                            })
-                        })
-                    })
-                })
-            })
-        })
-    }
 </script>

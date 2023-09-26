@@ -152,7 +152,7 @@
         if (id) {
             applyforjob(this.id);
         } else {
-            alert("FUCK YOU LOG IN");
+            alert("Please login, truth be told you shouldn't be seeing this so dont clear your session storage");
         }
     }
 
@@ -289,6 +289,8 @@
                 _supabase.from('_tblJobs').select('Pay').eq('id', jid).then(response => {
                     var wage = response.data[0]['Pay'];
                     _supabase.from('Job<>Student').insert({ 'Job': jid, 'Student': id, 'wage': wage }).then(response => {
+                        removeStorage('studentJob');
+                        getStudentJobByStudentID(id)
                     })
 
                     alert("You have applied for the role! CONGRATULATIONS");
