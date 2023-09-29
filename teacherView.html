@@ -1,4 +1,4 @@
-<!Document>
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="/styles/imports.css">
     <link rel="stylesheet" type="text/css" href="/styles/layout.css">
@@ -501,9 +501,9 @@
                 </div>
                 <h2>Strixhaven Star</h2>
                 <div id="topcontainer" class="topcontainer">
-                    <div class="issue">2098423</div>
-                    <div class="slogan">the only paper around</div>
-                    <div class="paperdate">Monday, 1st November, 2022</div>
+                    <div class="issue"></div>
+                    <div class="slogan"></div>
+                    <div class="paperdate"></div>
                 </div>
                 <div class="bodycontainer">
                     <div id="leftc" class="LCorn" style="display: none" onclick="previouspg()"></div>
@@ -513,9 +513,33 @@
                         <option value="defSSvideo.mp4">Circle Time</option>
                         <option value="strix_star_vid.mp4">Welcome to Strixhaven</option>
                     </select>
-                    <div id="page1" class="pg1" style="display: block">page 1</div>
-                    <div id="page2" class="pg2" style="display: none">page 2</div>
-                    <div id="page3" class="pg3" style="display: none">page 3</div>
+                    <div id="page1" class="sspage pg1" style="display: block">
+                        <div class="contentContainer">
+                            <h1 class="Mainheadline"></h1>
+                            <div class="secContainer">
+                                <div id="pg1left" class="leftcol">
+                                    <video src="" type="video/mp4" muted autoplay loop></video>
+                                </div>
+                                <div id="one" class="right"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="page2" class="sspage pg2" style="display: none">
+                        <div class="contentContainer">
+                            <div id="pg2left" class="left"></div>
+                            <div class="midwrapper">
+                                <div id="pg2Mtop" class="top"></div>
+                                <div id="pg2Mbot" class="bot"></div>
+                            </div>
+                            <div id="pg2right" class="right"></div>
+                        </div>
+                    </div>
+
+                    <div id="page3" class="pg3" style="display: none">
+                        <div id="joblisting" class="jobs scrollbar">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -593,7 +617,7 @@
                     <button id="save" class="control fa fa-floppy-o"></button>
                 </div>
                 <h2>Notes</h2>
-                <div class="top">
+                <div class="noteContainer">
                     <div class="notearea">
                         <h3>Year 1 Note</h3>
                         <textarea id="note"></textarea>
@@ -602,8 +626,6 @@
                         <h3>Year 2 Note</h3>
                         <textarea id="note"></textarea>
                     </div>
-                </div>
-                <div class="bottom">
                     <div class="notearea">
                         <h3>Year 3 Note</h3>
                         <textarea id="note"></textarea>
@@ -643,7 +665,808 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="/javascript/nav.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="/javascript/login.js"></script>
+<script src="../../API/api.js"></script>
+<script src="/javascript/preload.js"></script>
+
 <script>
+    var pageid = 'Professor DM';
+    document.getElementById("pagename").innerHTML = pageid;
+    $(async function () {
+        loadPage();
+
+        var tid = JSON.parse(sessionStorage.getItem("Teacher_Id"));
+        if (tid) {
+            await checkloadState('NPCData');
+            await checkloadState('teacherNotes');
+            await checkloadState('teachersData');
+            await checkloadState('playersData');
+            await checkloadState('playersClassData');
+            await checkloadState('playersExamData'); 
+            await checkloadState('playersRelationshipData');
+
+            getPreloadData();
+            getSessionData();
+        } else {
+            window.location = 'login.html';
+        }
+    })
+    async function checkloadState(toCheck) {
+        var t = sessionStorage.getItem(toCheck);
+        if (!t) {
+            console.log(toCheck + " was not loaded");
+            if (toCheck == 'NPCData') {
+                await getNPCs();
+            }
+            if (toCheck == 'teacherNotes') {
+                await getTeacherNotes();
+            }
+            if (toCheck == 'teachersData') {
+                await getTeachers();
+            }
+            if (toCheck == 'playersData') {
+                await getPlayers();
+            }
+            if (toCheck == 'playersClassData') {
+                await getPlayersClass();
+            }
+            if (toCheck == 'playersExamData') {
+                await getPlayersExams();
+            }
+            if (toCheck == 'playersRelationshipData') {
+                await getPlayersRelationships();
+            }
+            
+            setTimeout(() => {
+                checkloadState(toCheck)
+            }, "2000");
+        } else {
+            return true;
+        }
+    }
+
+    function getPreloadData() {
+        if (localStorage.getItem('newsdata')) {
+            if (localStorage.getItem('jobdata')) {
+                if (localStorage.getItem('campusClasses')) {
+                    if (localStorage.getItem('campusColleges')) {
+                        sort_PreloadedPaperData(JSON.parse(localStorage.getItem('newsdata')).value);
+                        sort_PreloadedJobData(JSON.parse(localStorage.getItem('jobdata')).value);
+                        sort_ClassDropdowns(JSON.parse(localStorage.getItem('campusClasses')).value);
+                        sort_CollegeDropdowns(JSON.parse(localStorage.getItem('campusColleges')).value);
+                    } else {
+                        setTimeout(() => {
+                            getPreloadData();
+                        }, "500");
+                    }
+                } else {
+                    setTimeout(() => {
+                        getPreloadData();
+                    }, "500");
+                }
+            } else {
+                setTimeout(() => {
+                    getPreloadData();
+                }, "500");
+            }
+        } else {
+            setTimeout(() => {
+                getPreloadData();
+            }, "500");
+        }
+    }
+    function getSessionData() {
+        if (sessionStorage.getItem('NPCData')) {
+            if (sessionStorage.getItem('teacherNotes')) {
+                if (sessionStorage.getItem('teachersData')) {
+                    sort_NPCDropdown(JSON.parse(sessionStorage.getItem('NPCData')));
+                    sort_Notes(JSON.parse(sessionStorage.getItem('teacherNotes')));
+                    sort_Teachers(JSON.parse(sessionStorage.getItem('teachersData')));
+                    sort_RelationshipDropdown(JSON.parse(sessionStorage.getItem('NPCData')));
+                } else {
+                    setTimeout(() => {
+                        getSessionData();
+                    }, "500");
+                }
+            } else {
+                setTimeout(() => {
+                    getSessionData();
+                }, "500");
+            }
+        } else {
+            setTimeout(() => {
+                getSessionData();
+            }, "500");
+        }
+    }
+
+    // PreloadSorters
+    function sort_PreloadedPaperData(data) {
+        for (var x = 0; x < data.length; x++) {
+            var story = data[x];
+            var page = story['pageNo'];
+            var location = story['location'];
+
+            var title = story['title'];
+            var content = story['content'];
+
+            var id = "";
+            if (location == "left") {
+                id = 'pg2left';
+            }
+            if (location == "middle top") {
+                id = 'pg2Mtop';
+            }
+            if (location == "middle bottom") {
+                id = 'pg2Mbot';
+            }
+            if (location == "right") {
+                id = 'pg2right';
+            }
+            if (location == "right") {
+                id = 'pg2right';
+            }
+
+            const newTitle = document.createElement("input");
+            newTitle.value = title;
+            newTitle.disabled = "true";
+
+            const newContent = document.createElement("textarea");
+            newContent.value = content;
+            newContent.readOnly = "true";
+
+            // Get correct page
+            var togoPage = document.getElementById('page' + page);
+
+            if (page == 0) {
+                var topc = document.getElementById('topcontainer');
+                const newinput = document.createElement("input");
+                newinput.value = content;
+                newinput.classList = "topInputs";
+                newinput.disabled = "true";
+
+                if (location == "date") {
+                    var date = topc.querySelector('.paperdate');
+                    date.innerHTML = "";
+                    date.appendChild(newinput);
+                }
+                if (location == "slogan") {
+                    var slo = topc.querySelector('.slogan');
+                    slo.innerHTML = "";
+                    slo.appendChild(newinput);
+                }
+                if (location == "issue") {
+                    var iss = topc.querySelector('.issue');
+                    iss.innerHTML = "";
+                    iss.appendChild(newinput);
+                }
+            } else if (page == 1) {
+                if (title) {
+                    togoPage.querySelector('.Mainheadline').appendChild(newTitle);
+                    togoPage.querySelector('#' + location).appendChild(newContent);
+
+                    // check if sec con is out of view.
+                    var contentContainer = togoPage.querySelector('.secContainer');
+                    var bounding = contentContainer.getBoundingClientRect();
+                    if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                        //get height of title
+                        var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
+                        var currentH = contentContainer.offsetHeight;
+                        contentContainer.style.height = currentH - headerH;
+                    }
+                } else {
+                    if (location == "dropdown") {
+                        var drop = togoPage.parentElement.querySelector('select');
+                        drop.value = content;
+                        drop.disabled = "true";
+                        togoPage.querySelector('video').src = "../assets/star/" + content;
+                    }
+                }
+            } else {
+                if (id) {
+                    var col = togoPage.querySelector('#' + id);
+                    newTitle.classList = "colTitle";
+                    if (col) {
+                        // Append Title to Col
+                        col.appendChild(newTitle);
+                        // Append Content to Col
+                        col.appendChild(newContent);
+                    }
+                } else {
+                    console.log(story);
+                }
+            }
+        }
+    }
+    function sort_PreloadedJobData(data) {
+        for (var x = 0; x < data.length; x++) {
+            var job = data[x];
+            var jloc = job["Location"];
+            var jpay = job["Pay"];
+            var jtit = job["Title"];
+            var jid = job["id"];
+            const newjob = document.createElement("div");
+            const newtitle = document.createElement("input");
+            const newdetails = document.createElement("div");
+            const newlocation = document.createElement("input");
+            const newpay = document.createElement("input");
+
+            newtitle.value = jtit;
+            newlocation.value = jloc;
+            newpay.value = jpay;
+
+            newtitle.disabled = "true";
+            newlocation.disabled = "true";
+            newpay.disabled = "true";
+
+            newtitle.classList = "jtitle";
+            newlocation.id = "jlocation";
+            newpay.id = "jwage";
+
+            newdetails.classList = "details";
+
+            newdetails.appendChild(newlocation);
+            newdetails.appendChild(newpay);
+
+            newjob.appendChild(newtitle);
+            newjob.appendChild(newdetails);
+
+            newjob.classList = "job";
+            newjob.id = jid;
+
+            var page = document.querySelector(".pg3");
+            page.querySelector('#joblisting').appendChild(newjob);
+        }
+    }
+    function sort_ClassDropdowns(data) {
+        for (var x = 0; x < data.length; x++) {
+            var course = data[x]['class'];
+            var teacher = data[x]['teacher'];
+
+            var page = document.getElementById('courses');
+
+            var selects = [];
+            if (course['year'] == 1) {
+                selects = page.querySelector('#Cyr1').querySelectorAll("select");
+                if (course['required'] == "yes") {
+                    $('#Y1S1 select').val(course['id'] + ":" + teacher['teacher_name']);
+                    $('#Y1S1 select').attr("disabled", "true");
+                    $('#Y1S1 p').text("Teacher: " + teacher['teacher_name']);
+                }
+            }
+            if (course['year'] == 2) {
+                selects = page.querySelector('#Cyr2').querySelectorAll("select");
+                if (course['required'] == "yes") {
+                    $('#Y2S1 select').val(course['id'] + ":" + teacher['teacher_name']);
+                    $('#Y2S1 select').attr("disabled", "true");
+                    $('#Y2S1 p').text("Teacher: " + teacher['teacher_name']);
+                }
+            }
+            if (course['year'] == 3) {
+                selects = page.querySelector('#Cyr3').querySelectorAll("select");
+                if (course['required'] == "yes") {
+                    $('#Y3S1 select').val(course['id'] + ":" + teacher['teacher_name']);
+                    $('#Y3S1 select').attr("disabled", "true");
+                    $('#Y3S1 p').text("Teacher: " + teacher['teacher_name']);
+                }
+            }
+            if (course['year'] == 4) {
+                selects = page.querySelector('#Cyr4').querySelectorAll("select");
+                if (course['required'] == "yes") {
+                    $('#Y4S1 select').val(course['id'] + ":" + teacher['teacher_name']);
+                    $('#Y4S1 select').attr("disabled", "true");
+                    $('#Y4S1 p').text("Teacher: " + teacher['teacher_name']);
+                }
+            }
+            for (var y = 0; y < selects.length; y++) {
+                var newOption = document.createElement('option');
+                newOption.value = course['id'] + ":" + teacher['teacher_name'];
+                newOption.text = course['name'];
+                selects[y].addEventListener('change', setCourseTeacher, false);
+                selects[y].add(newOption);
+            }
+        }
+
+        // Sort all dropdowns
+        var selects = page.querySelectorAll('select');
+        for (var x = 0; x < selects.length; x++) {
+            var selElem = selects[x];
+            sortSelect(selElem);
+        }
+    }
+    function sort_CollegeDropdowns(data) {
+        var page = document.getElementById('players');
+        var profile = page.querySelector('#profile');
+        for (var y = 0; y < data.length; y++) {
+            var col = data[y];
+            var newCollege = document.createElement('option');
+            newCollege.value = col['id'];
+            newCollege.innerText = col['college_name'];
+            profile.querySelector('#college').appendChild(newCollege);
+        }
+    }
+    
+    // Session Sorters
+    function sort_NPCDropdown(data) {
+        var npcPage = document.getElementById('npcs');
+        for (var x = 0; x < data.length; x++) {
+            var newOption = document.createElement('option');
+            newOption.value = data[x].id;
+            newOption.innerText = data[x].name;
+
+            // NPC Page
+            npcPage.querySelector('#npcList2').appendChild(newOption);
+        }
+    }
+    function sort_Notes(data) {
+        var page = document.getElementById('extra notes');
+        var notes = page.querySelectorAll('textarea');
+        for (var x = 0; x < data.length; x++) {
+            var note = data[x];
+            if (note.year == 1) {
+                notes[0].value = note.note;
+            }
+            if (note.year == 2) {
+                notes[1].value = note.note;
+            }
+            if (note.year == 3) {
+                notes[2].value = note.note;
+            }
+            if (note.year == 4) {
+                notes[3].value = note.note;
+            }
+        }
+    }
+    function sort_Teachers(data) {
+        // CREATE NPC teacher list
+        var npcPage = document.getElementById('npcs');
+        for (var x = 0; x < data.length; x++) {
+            var newOption = document.createElement('option');
+            newOption.value = data[x].id;
+            newOption.innerText = data[x].teacher_name;
+
+            // NPC Page
+            npcPage.querySelector('#teacherList').appendChild(newOption);
+        }
+    }
+    function sort_RelationshipDropdown(data) {
+        var relationshipPage = document.getElementById('relationships');
+        for (var x = 0; x < data.length; x++) {
+            var newOption = document.createElement('option');
+            newOption.value = data[x].id;
+            newOption.innerText = data[x].name;
+
+            // NPC Page
+            relationshipPage.querySelector('#addRelationNPCs').appendChild(newOption);
+            sortSelect(relationshipPage.querySelector('#addRelationNPCs'));
+        }
+    }
+    function sort_playerData(who, data1) {
+        var data;
+        for (var x = 0; x < data1.length; x++) {
+            if (who == data1[x].player) {
+                data = data1[x];
+            }
+        }
+
+        var cLogo = document.getElementById('collegeLogo');
+        var page = document.getElementById('players');
+        var header = page.querySelector('h2');
+        var profile = page.querySelector('#profile');
+        var details = page.querySelector('#details');
+
+        // Title
+        header.innerText = "Player: " + data.player;
+        if (cLogo) {
+            if (data.college == 6) {
+                cLogo.src = "assets/strix_logo.png";
+            }
+            if (data.college == 5) {
+                cLogo.src = "assets/maps/witherbloom.png";
+            }
+            if (data.college == 4) {
+                cLogo.src = "assets/maps/silverquill.png";
+            }
+            if (data.college == 3) {
+                cLogo.src = "assets/maps/quandrix.png";
+            }
+            if (data.college == 2) {
+                cLogo.src = "assets/maps/prismari.png";
+            }
+            if (data.college == 1) {
+                cLogo.src = "assets/maps/lorehold.png";
+            }
+        }
+        // Profile
+        profile.querySelector('#pid').value = data.id;
+        profile.querySelector('#player').value = data.player;
+        profile.querySelector('#profilepicture').src = "assets/students/players/" + data.picture;
+        profile.querySelector('#name').value = data.name;
+        profile.querySelector('#age').value = data.age;
+        profile.querySelector('#gender').value = data.gender;
+        profile.querySelector('#race').value = data.race;
+        profile.querySelector('#subrace').value = data.subrace;
+        profile.querySelector('#alignment').value = data.alignment;
+        profile.querySelector('#haircolour').value = data.haircolour;
+        profile.querySelector('#eyecolour').value = data.eyecolour;
+        profile.querySelector('#height').value = data.height;
+        profile.querySelector('#weight').value = data.weight;
+        profile.querySelector('#level').value = data.level;
+        profile.querySelector('#class').value = data.class;
+        profile.querySelector('#subclass').value = data.subclass;
+        profile.querySelector('#background').value = data.background;
+        profile.querySelector('#year').value = data.year;
+        profile.querySelector('#college').value = data.college;
+        profile.querySelector('#personalitytraits').value = data.personalitytraits;
+        profile.querySelector('#ideals').value = data.ideals;
+        profile.querySelector('#bonds').value = data.bonds;
+        profile.querySelector('#flaws').value = data.flaws;
+        profile.querySelector('#goals').value = data.goals;
+        profile.querySelector('#backgroundfeatures').value = data.backgroundfeatures;
+        profile.querySelector('#appearance').value = data.appearance;
+        // Details
+        details.querySelector('#backstory').value = data.backstory;
+        details.querySelector('#extranotes').value = data.extranotes;
+        // Courses
+        var allclasses = JSON.parse(sessionStorage.getItem('playersClassData'));
+        var classes = [];
+        for (var y = 0; y < allclasses.length; y++) {
+            if (allclasses[y].student.id == data.id) {
+                classes.push(allclasses[y]);
+            }
+        }
+        sort_playerClass(classes);
+        // Exams
+        var allexams = JSON.parse(sessionStorage.getItem('playersExamData'));
+        var exams = [];
+        for (var y = 0; y < allexams.length; y++) {
+            if (allexams[y].student.id == data.id) {
+                exams.push(allexams[y]);
+            }
+        }
+        sort_playerExams(exams);
+        // Job and Extras
+        var jobs = JSON.parse(sessionStorage.getItem('playersJobData'));
+        for (var y = 0; y < jobs.length; y++) {
+            if (jobs[y].Student.id == data.id) {
+                sort_playerJob(jobs[y]);
+            }
+        }
+        var allclubs = JSON.parse(sessionStorage.getItem('playersClubData'));
+        var clubs = [];
+        for (var y = 0; y < allclubs.length; y++) {
+            if (allclubs[y].student.id == data.id) {
+                clubs.push(allclubs[y]);
+            }
+        }
+        sort_playerClub(clubs);
+        // Relationships
+        var allrel = JSON.parse(sessionStorage.getItem('playersRelationshipData'));
+        var rels = [];
+        for (var y = 0; y < allrel.length; y++) {
+            if (allrel[y].student.id == data.id) {
+                rels.push(allrel[y]);
+            }
+        }
+        sort_playerRelationships(rels);
+    }
+    function sort_playerClass(data) {
+        var Y1C = 1;
+        var Y2C = 1;
+        var Y3C = 1;
+        var Y4C = 1;
+
+        for (var x = 0; x < data.length; x++) {
+            var course = data[x]['class'];
+            var student = data[x]['student'];
+
+            if (course['year'] == 1) {
+                var classChoice = "Y1S" + Y1C;
+                Y1C++;
+            }
+            if (course['year'] == 2) {
+                var classChoice = "Y2S" + Y2C;
+                Y2C++;
+            }
+            if (course['year'] == 3) {
+                var classChoice = "Y3S" + Y3C;
+                Y3C++;
+            }
+            if (course['year'] == 4) {
+                var classChoice = "Y4S" + Y4C;
+                Y4C++;
+            }
+            $('#' + classChoice + ' select > option').each(function () {
+                var split = $(this).val().split(":");
+                var courseId = split[0];
+                var teacher = split[1];
+
+                if (courseId == course['id']) {
+                    $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
+                    $('#' + classChoice + ' select').attr("disabled", "true");
+                    $('#' + classChoice + ' p').text("Teacher: " + teacher);
+                }
+            });
+        }
+    }
+    function sort_playerExams(data) {
+        var examsPage = document.getElementById('exams');
+        var examExams = examsPage.querySelectorAll('.exams');
+        for (var x = 0; x < data.length; x++) {
+            var results = data[x];
+
+            var newExam = document.createElement("div");
+            var newTitle = document.createElement("p");
+            var newDropDown = document.createElement("select");
+            var newDice = document.createElement("p");
+            var newSkills = document.createElement("p");
+
+            var options = ['-- Ungraded --', 'Fail', 'Pass', 'Ace'];
+            var values = ['null', 'fail', 'pass', 'ace'];
+            for (var z = 0; z < options.length; z++) {
+                var newDropOption = document.createElement("option");
+                newDropOption.innerText = options[z];
+                newDropOption.value = values[z];
+
+                newDropDown.appendChild(newDropOption);
+                newDropDown.addEventListener('change', changeDice, false);
+            }
+
+            var score = 0;
+            if (results['score']) {
+                if (results['score'] == "pass") {
+                    score = 1;
+                }
+                if (results['score'] == "ace") {
+                    score = 2;
+                }
+            }
+
+            newTitle.innerText = results['exam']['name'];
+            newDice.innerText = score + "d4";
+            newDice.id = "dice";
+            newSkills.innerText = results['exam']['skill'];
+
+            newExam.id = "exam" + results['exam']['id'];
+
+            newExam.appendChild(newTitle);
+            newExam.appendChild(newDropDown);
+            newExam.appendChild(newDice);
+            newExam.appendChild(newSkills);
+
+            examExams[results['exam']['year'] - 1].appendChild(newExam);
+
+            var t = document.getElementById("exam" + results['exam']['id']);
+            if (results['score']) {
+                t.querySelector('select').value = results['score'];
+            }
+        }
+    }
+    function sort_playerJob(data) {
+        var currentJob = document.getElementById('jobs');
+        const theJob = document.createElement('div');
+        const theTitle = document.createElement('p');
+        const theLocation = document.createElement('p');
+        const theWage = document.createElement('input');
+        const theCoworker = document.createElement('p');
+        const QuitButton = document.createElement('button');
+
+        var job = data.Job;
+
+        theJob.classList = "job";
+        theJob.id = "job";
+        QuitButton.classList = "quit";
+        QuitButton.id = data.Student.id;
+        QuitButton.innerText = "Fire";
+        QuitButton.addEventListener('click', fireFromJob, false);
+
+        theTitle.innerText = job.Title;
+        theTitle.classList = "title";
+
+        theLocation.innerText = job.Location;
+        theLocation.classList = "location";
+
+        theWage.value = data.wage;
+        theWage.classList = "wage";
+        theWage.addEventListener('change', saveWage, false);
+
+        _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
+            var allworkers = response.data;
+            var wcount = 0;
+            var coworkers = "";
+            if (allworkers) {
+                for (var y = 0; y < allworkers.length; y++) {
+                    var worker = allworkers[y]['Student'];
+                    if (document.getElementById('profile').querySelector('#profileform1').querySelector('#pid').value != worker['id']) {
+                        if (wcount > 0) {
+                            coworkers = coworkers + " & " + worker['name'];
+                        } else {
+                            coworkers = worker['name'];
+                        }
+                        wcount++;
+                    }
+                }
+            }
+            theCoworker.innerText = coworkers;
+            theCoworker.classList = "coworker";
+
+            theJob.appendChild(theTitle);
+            theJob.appendChild(theLocation);
+            theJob.appendChild(theCoworker);
+            theJob.appendChild(theWage);
+            theJob.appendChild(QuitButton);
+            currentJob.appendChild(theJob);
+        })
+    }
+    function sort_playerClub(data1) {
+        if (data1.length > 0) {
+            var clubs = document.getElementById('clubs');
+            for (var x = 0; x < data1.length; x++) {
+                var data = data1[x];
+                var club = data['club'];
+                var sid = data.student.id;
+
+                var clubid = club['id'];
+                var clubname = club['name'];
+                var clubskills = club['skills'];
+
+                const theClub = document.createElement('div');
+                const theClubName = document.createElement('p');
+                const theClubSkill = document.createElement('p');
+                const theClubDice = document.createElement('p');
+                const theClubMembers = document.createElement('div');
+
+                const theClubQuit = document.createElement('button');
+
+                theClub.classList = "club";
+
+                theClubName.classList = "clubname";
+                theClubName.innerText = clubname;
+
+                theClubSkill.classList = "clubskill";
+                theClubSkill.innerText = clubskills;
+
+                theClubDice.classList = "dice";
+                theClubDice.innerText = "1d4";
+
+                theClubMembers.classList = "members scrollbar";
+
+                _supabase.from('Club<>Student').select('student (id, name)').eq('club', clubid).then(response => {
+                    for (var y = 0; y < response.data.length; y++) {
+                        if (sid != response.data[y]['student']['id']) {
+                            const theClubMember = document.createElement('p');
+                            theClubMember.classList = "member";
+                            theClubMember.innerText = response.data[y]['student']['name'];
+                            theClubMembers.appendChild(theClubMember);
+                        }
+                    }
+                })
+
+                theClubQuit.classList = "quit";
+                theClubQuit.innerText = "Quit Club";
+                theClubQuit.id = clubid;
+                theClubQuit.addEventListener('click', kickFromClub, false);
+
+                theClub.appendChild(theClubName);
+                theClub.appendChild(theClubSkill);
+                theClub.appendChild(theClubDice);
+                theClub.appendChild(theClubMembers);
+
+                theClub.appendChild(theClubQuit);
+
+                clubs.appendChild(theClub);
+            }
+        }
+    }
+    function sort_playerRelationships(data1) {
+        var relationshipPage = document.getElementById('relationships');
+        var addSelected = relationshipPage.querySelector('select');
+        var page = relationshipPage.querySelector('#cubes');
+        page.innerHTML = "";
+        console.log(data1);
+        for (var x = 0; x < data1.length; x++) {
+            var data = data1[x];
+            const newCube = document.createElement("div");
+            const newName = document.createElement("p");
+
+            const newScore = document.createElement("div");
+            const newRelationship = document.createElement("div");
+            const newBoon = document.createElement("div");
+            const newBane = document.createElement("div");
+
+            const newDeleteBtn = document.createElement("button");
+
+            const newScoreSpan = document.createElement("span");
+            const newRelationshipSpan = document.createElement("span");
+            const newBoonSpan = document.createElement("span");
+            const newBaneSpan = document.createElement("span");
+
+            newName.innerText = data['npc']['name'];
+
+            newScoreSpan.innerText = "Relationship Score: ";
+            newScoreSpan.classList = "scoreTitle";
+            newScore.appendChild(newScoreSpan);
+            const newInput = document.createElement("input");
+            newInput.value = data['relationship'];
+            newInput.disabled = "true";
+            newScore.appendChild(newInput);
+
+            var text = "";
+            if (data['relationship'] >= "-100") {
+                if (data['relationship'] >= 8) {
+                    text = "Lover";
+                } else if (data['relationship'] >= "3") {
+                    text = "Friend";
+                } else if (data['relationship'] >= "0") {
+                    text = "Neutral";
+                } else {
+                    text = "Rival";
+                }
+            }
+            newRelationshipSpan.innerText = "Relationship: ";
+            newRelationship.appendChild(newRelationshipSpan);
+            var newTextRelationship = document.createElement('p');
+            newTextRelationship.innerText = " " + text;
+            newRelationship.appendChild(newTextRelationship);
+
+            newBoonSpan.innerText = "Boon: ";
+            newBoon.appendChild(newBoonSpan);
+            var newTextBoon = document.createElement('p');
+            newTextBoon.innerText = " " + data['npc']['boon'];
+            newBoon.appendChild(newTextBoon);
+
+            newBaneSpan.innerText = "Bane: ";
+            newBane.appendChild(newBaneSpan);
+            var newTextBane = document.createElement('p');
+            newTextBane.innerText = " " + data['npc']['bane'];
+            newBane.appendChild(newTextBane);
+
+            newDeleteBtn.classList = "fa fa-trash";
+            newDeleteBtn.addEventListener('click', removeRelationship, false);
+
+            newCube.classList = "cube";
+            newCube.id = data['npc']['id'];
+
+            newName.classList = "cName";
+
+            newCube.appendChild(newName);
+            newCube.appendChild(newScore);
+            newCube.appendChild(newRelationship);
+            newCube.appendChild(newBoon);
+            newCube.appendChild(newBane);
+            newCube.appendChild(newDeleteBtn);
+
+            page.appendChild(newCube);
+
+            var options = addSelected.querySelectorAll("option");
+            for (var y = 0; y < options.length; y++) {
+                if (options[y].value == data['npc']['id']) {
+                    options[y].remove();
+                }
+            }
+        }
+    }
+
+
+    // Removers
+    function deleteStudent(id) {
+        // Club
+        _supabase.from('Club<>Student').delete().match({ student: id }).then(response => {
+            // Job
+            _supabase.from('Job<>Student').delete().match({ Student: id }).then(response => {
+                // Relationship
+                _supabase.from('npc<>student').delete().match({ npc: id }).then(response => {
+                    // Student Table
+                    _supabase.from('_tblStudents').delete().match({ id: id }).then(response => {
+                        removeStorage('NPCData');
+                        reloadPage();
+                    })
+                })
+            })
+        })
+    }
+
+    // Local Functions
     var dropdowns = [];
     var dropdown = document.getElementsByClassName("dropdown-btn");
     var subdown = document.getElementsByClassName("subbtn");
@@ -678,294 +1501,136 @@
             dropdownContent.style.display = "block";
         }
     }
-</script>
-<script>
-    var pageid = 'Professor DM';
-    document.getElementById("pagename").innerHTML = pageid;
-    $(function () {
-        var includes = $('[data-include]')
-        $.each(includes, function () {
-            var file = 'views/addons/_' + $(this).data('include') + '.html'
-            $(this).load(file)
-        })
-    })
 
-    $('.choice').click(function () {
-        var subnav = document.getElementById('subnavchoices');
-        var choices = subnav.querySelectorAll('.choice');
-        var current = "no";
-        if (this.classList == "choice selected") {
-            current = "yes";
-        }
-        for (var x = 0; x < choices.length; x++) {
-            choices[x].classList = "choice";
-        }
-        var choice = this.querySelector('p');
-        var toshow = choice.innerText.toLowerCase();
-        if (current == "no") {
-            this.classList = "choice selected";
-
-            if (toshow == "logout") {
-                logot();
+    function loadPage() {
+        // Load last page saved on
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const toOpen = urlParams.get('page');
+        if (toOpen) {
+            var allPages = document.getElementById('pages').querySelectorAll(".page");
+            var allChoices = document.getElementById('subnavchoices').querySelectorAll(".choice");
+            for (var x = 0; x < allPages.length; x++) {
+                allPages[x].setAttribute("hidden", "true");
             }
-
-            var mainpage = document.getElementById('pages');
-            var pages = mainpage.querySelectorAll('.page');
-            for (var x = 0; x < pages.length; x++) {
-                if (pages[x]) {
-                    pages[x].setAttribute("hidden", "true");
+            for (var x = 0; x < allChoices.length; x++) {
+                allChoices[x].classList = "choice";
+                if (allChoices[x].innerText.toLowerCase() == toOpen) {
+                    allChoices[x].classList = "choice selected";
                 }
             }
-            if (this.id != "ppp") {
-                var cLogo = document.getElementById('collegeLogo');
-                cLogo.src = "assets/strix_logo.png";
-            }
-            document.getElementById(toshow).toggleAttribute("hidden");
-        } else {
-            var pages = document.getElementById("pages").querySelectorAll(".page");
-            if (toshow != 'players') {
-                for (var x = 0; x < pages.length; x++) {
-                    pages[x].setAttribute("hidden", "true");
+            if (toOpen == "players") {
+                const subOpen = urlParams.get('subpage');
+                const player = urlParams.get('p');
+                var views = document.getElementById('players').querySelectorAll('.view');
+                for (var y = 0; y < views.length; y++) {
+                    views[y].setAttribute("hidden", "true");
+                    if (views[y].id == subOpen) {
+                        views[y].toggleAttribute("hidden");
+                    }
                 }
-                document.getElementById("tea").toggleAttribute("hidden");
+                _supabase.from('_tblStudents').select('player').eq("id", player).then(response => {
+                    var p = response.data[0]['player'];
+                    filter_playerData(p, JSON.parse(sessionStorage.getItem('playersData')));
+                })
             }
+            // Reset URL
+            window.history.pushState("object or string", "Title", "/teacherview.html");
+
+            // Show Page
+            document.getElementById(toOpen).toggleAttribute("hidden");
         }
-    })
-    $('.control').click(function () {
-        var page = this.parentNode.parentNode;
-        if (this.id == "add") {
-            // Get location of add btn
-            var addloc = this.parentElement.parentElement.id;
-            
-            // Check to see if edit is an option
-            var editbtn = document.getElementById(addloc).querySelector('#edit');
-            if (editbtn) {
-                editbtn.classList = "control fa fa-pencil-square-o";
-            }
-
-            // Toggle add btn and page            
-            if (this.classList != "fa fa-plus activecontrol") {
-                this.classList = "fa fa-plus activecontrol";
-            } else {
-                this.classList = "control fa fa-plus";
-            }
-
-            if (addloc == "npcs") {
-                togglecurrent();
-            }
-            if (addloc == "relationships") {
-                var page = this.parentElement.parentElement;
-                page.querySelector('#addModel').toggleAttribute('hidden');
+    }
+    function reloadPage() {
+        var allPages = document.getElementById('pages').querySelectorAll(".page");
+        for (var x = 0; x < allPages.length; x++) {
+            if (allPages[x].checkVisibility()) {
+                var currentPage = allPages[x].id;
+                const urlParams = new URLSearchParams(window.location.search);
+                urlParams.set('page', currentPage);
+                if (currentPage == "players") {
+                    var views = document.getElementById('players').querySelectorAll('.view');
+                    for (var y = 0; y < views.length; y++) {
+                        if (!views[y].hidden) {
+                            urlParams.set('subpage', views[y].id);
+                        }
+                    }
+                    urlParams.set('p', document.getElementById('profile').querySelector('#pid').value)
+                }
+                window.location.search = urlParams;
             }
         }
+    }
+    function cleanNPC(toclean) {
+        var mainpage = document.getElementById('pages');
+        var NPCpage = mainpage.querySelector('#npcs');
+        var NPCstudent = NPCpage.querySelector('.student');
+        var NPCteacher = NPCpage.querySelector('.teacher');
 
-        if (this.id == "edit") {
-            // Get location of edit btn
-            var editloc = this.parentElement.parentElement.id;
-
-            // Check to see if add is an option
-            var addbtn = document.getElementById(editloc).querySelector('#add');
-            if (addbtn) {
-                addbtn.classList = "control fa fa-plus";
-            }
-
-            if (this.classList != "fa fa-pencil-square-o activecontrol") {
-                this.classList = "fa fa-pencil-square-o activecontrol";
-                togglecurrent();
-            } else {
-                this.classList = "control fa fa-pencil-square-o";
-                togglecurrent();
+        if (toclean == "teacher") {
+            var inputs = NPCteacher.querySelectorAll("input");
+            var selects = NPCteacher.querySelectorAll("select");
+            var textareas = NPCteacher.querySelectorAll("textarea");
+        }
+        if (toclean == "student") {
+            var inputs = NPCstudent.querySelectorAll("input");
+            var selects = NPCstudent.querySelectorAll("select");
+            var textareas = NPCstudent.querySelectorAll("textarea");
+        }
+        for (var x = 0; x < inputs.length; x++) {
+            inputs[x].value = "";
+        }
+        for (var x = 0; x < selects.length; x++) {
+            selects[x].value = "0";
+        }
+        for (var x = 0; x < textareas.length; x++) {
+            textareas[x].value = "";
+        }
+    }
+    function getNPCStudentDataByID(who, data) {
+        for (var x = 0; x < data.length; x++) {
+            if (data[x].id == who) {
+                var page = document.getElementById('npcs');
+                var NPCprofile = page.querySelector('.student');
+                NPCprofile.querySelector('#nid').value = data[x].id;
+                NPCprofile.querySelector('#name').value = data[x].name;
+                NPCprofile.querySelector('#age').value = data[x].age;
+                NPCprofile.querySelector('#gender').value = data[x].gender;
+                NPCprofile.querySelector('#race').value = data[x].race;
+                NPCprofile.querySelector('#subrace').value = data[x].subrace;
+                NPCprofile.querySelector('#alignment').value = data[x].alignment;
+                NPCprofile.querySelector('#haircolour').value = data[x].haircolour;
+                NPCprofile.querySelector('#eyecolour').value = data[x].eyecolour;
+                NPCprofile.querySelector('#height').value = data[x].height;
+                NPCprofile.querySelector('#weight').value = data[x].weight;
+                NPCprofile.querySelector('#year').value = data[x].year;
+                NPCprofile.querySelector('#boon').value = data[x].boon;
+                NPCprofile.querySelector('#bane').value = data[x].bane;
+                NPCprofile.querySelector('#extranotes').value = data[x].extranotes;
             }
         }
-        if (this.id == "save") {
-            this.disabled;
-            var saveloc = this.parentElement.parentElement.id;
-            if (!saveloc) {
-                saveloc = this.parentElement.parentElement.parentElement.parentElement.id;
-            }
-            var editbtn = page.querySelector('#edit');
-            var addbtn = page.querySelector('#add');
-            var active = "";
-            var bothselected = "no";
-            
-            if (editbtn && addbtn) {
-                if (addbtn.classList == "fa fa-plus activecontrol" && editbtn.classList == "fa fa-pencil-square-o activecontrol") {
-                    bothselected = "yes";
-                }
-            }
-            // Catch
-            if (bothselected == "no") {
-                if (editbtn) {
-                    if (editbtn.classList != "control fa fa-pencil-square-o") {
-                        togglecurrent();
-                        editbtn.classList = "control fa fa-pencil-square-o";
-                        active = "edit";
-                    }
-                }
-                if (addbtn) {
-                    if (addbtn.classList != "control fa fa-plus") {
-                        addbtn.classList = "control fa fa-plus";
-                        active = "add";
-                    }
-                }
-
-                // Player
-                if (saveloc == "profile") {
-                    var inputs = this.parentElement.parentElement.querySelectorAll('select');
-                    saveStudentSchool(inputs);
-                }
-                if (saveloc == "Cyr1" || saveloc == "Cyr2" || saveloc == "Cyr3" || saveloc == "Cyr4" ) {
-                    var year = this.parentElement.parentElement;
-                    var inputs = year.querySelectorAll('select');
-                    saveCourseChoices(inputs);
-                }
-                if (saveloc == "exams") {
-                    var exams = [];
-                    var results = [];
-                    var selects = page.querySelectorAll('select');
-                    for (var y = 0; y < selects.length; y++) {
-                        var select = selects[y];
-                        var options = select.querySelectorAll('option');
-                        for (var z = 0; z < options.length; z++) {
-                            var option = options[z];
-                            if (option.selected) {
-                                if (option.value != 0) {
-                                    var sec = select.parentElement.id.split('exam');
-                                    exams.push(sec[1]);
-                                    results.push(option.value);
-                                }
-                            }
-                        }
-                    }
-                    saveExamScores(exams, results);
-                }
-                if (saveloc == "relationships") {
-                    var cubeList = page.querySelector('#cubes');
-                    var cubes = cubeList.querySelectorAll('.cube');  
-                    for (var x = 0; x < cubes.length; x++) {
-                        saveRelationship(cubes[x]);
-                    }
-                }
-
-                if (saveloc == "npcs") {
-                    var allinputs = [];
-                    var SorT = "";
-                    if (this.parentElement.parentElement.querySelector('#nid').value) {
-                        page = page.querySelector('.student');
-                        SorT = "s";
-                    }
-                    if (this.parentElement.parentElement.querySelector('#tid').value) {
-                        page = page.querySelector('.teacher');
-                        SorT = "t";
-                    }
-
-                    if (active) {
-                        var studnetName = page.querySelector('#name').value;
-                        var teacherName = page.querySelector('#teacher_name').value;
-
-                        
-                        var subPage = "";
-                        if (studnetName) {
-                            subPage = page.querySelector('#profileform1');
-                        }
-                        if (teacherName) {
-                            subPage = page.querySelector('#profileform2');
-                        }
-
-                        var inputs = subPage.querySelectorAll('input');
-                        var textareas = subPage.querySelectorAll('textarea');
-
-                        for (var y = 0; y < inputs.length; y++) {
-                            if (inputs[y].id) {
-                                allinputs.push(inputs[y]);
-                            }
-                        }
-                        for (var y = 0; y < textareas.length; y++) {
-                            if (textareas[y].id) {
-                                allinputs.push(textareas[y]);
-                            }
-                        }
-
-                        if (active == "add") {
-                            if (studnetName) {
-                                createNewStudentData(allinputs);
-                            }
-                            if (teacherName) {
-                                alert("new teachers require an image, classes ect. Send me the info for the teacher");
-                            }
-                        }
-                        if (active == "edit") {
-                            if (studnetName) {                                
-                                saveNPCStudentData(allinputs);
-                            }
-                            if (teacherName) {
-                                // alert("new teachers require an image, classes ect. Send me the info for the teacher");
-                            }                            
-                        }
-                    }
-                }
-                if (saveloc == "extra notes") {
-                    var textareas = page.querySelectorAll('textarea');
-                    var allinputs = [];
-                    for (var y = 0; y < textareas.length; y++) {
-                        if (textareas[y].id) {
-                            allinputs.push(textareas[y]);
-                        }
-                    }
-                    saveNotes(allinputs);
-                }
-                if (saveloc == "strixhaven star") {
-                    var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
-                    var pgHeader = [];
-                    var pgContent = [];
-                    var MainOptions = [];
-                    for (var x = 0; x < pages.length; x++) {
-                        var pg = page.querySelector(pages[x]);
-                        if (pages[x] != "#topcontainer") {
-                            pgHeader.push(pg.querySelector('input'));
-                            pgContent.push(pg.querySelector('textarea'));
-                        }
-                    }
-                    var pg = page.querySelector('#topcontainer');
-                    MainOptions.push(pg.querySelectorAll('input'));
-                    MainOptions.push(pg.parentElement.querySelector('select'));
-
-                    saveSS(pages, pgHeader, pgContent, MainOptions);
-
-                    var jobs = page.querySelector('.pg3').querySelector('.jobs').querySelectorAll('.job');
-                    saveJobs(jobs);
-                }
-            } else {
-                alert("Please unselect one of the options - add or edit");
-            }
-            // Turn button on after 1 second
-            setTimeout(function () {
-                this.enabled;
-            }, 1000);
-        }
-        
-        if (this.id == "delete") {
-            var editbtn = page.querySelector('#edit');
-            var addbtn = page.querySelector('#add');
-            var active = "";
-
-            var studentID = this.parentElement.parentElement.querySelector('#nid').value;
-            var teacherID = this.parentElement.parentElement.querySelector('#tid').value;
-            if (studentID) {
-                deleteStudent(studentID);
-            }
-            if (teacherID) {
-                alert("Please let me know that you want to remove teacher: " + teacherID);
+    }
+    function getNPCTeacherDataByID(who, data) {
+        for (var x = 0; x < data.length; x++) {
+            if (data[x].id == who) {
+                var page = document.getElementById('npcs');
+                var TPCprofile = page.querySelector('.teacher');
+                TPCprofile.querySelector('#tid').value = data[x].id;
+                TPCprofile.querySelector('#teacher_name').value = data[x].teacher_name;
+                TPCprofile.querySelector('#teacher_role').value = data[x].teacher_role;
+                TPCprofile.querySelector('#schooldropdown').value = data[x].teacher_school;
+                TPCprofile.querySelector('#teacher_type').value = data[x].teacher_type;
+                TPCprofile.querySelector('#teacher_description').value = data[x].teacher_description;
             }
         }
-    })
+    }
     function togglecurrent() {
         var mainpage = document.getElementById('pages');
         var pages = mainpage.querySelectorAll('.page');
-        
+
         for (var x = 0; x < pages.length; x++) {
             if (pages[x]) {
-                if (window.getComputedStyle(pages[x]).display != "none") {  
+                if (window.getComputedStyle(pages[x]).display != "none") {
                     if (pages[x].id == "players") {
                         var views = pages[x].querySelectorAll('.view');
                         for (var y = 0; y < views.length; y++) {
@@ -1018,48 +1683,7 @@
         }
         return send;
     }
-
-    $('.subbtn').click(function () {
-        var toget = this.innerText;
-        cleanPages();
-        getPlayerData(toget);
-    })
-
-    $('#npcList').change(function () {
-        getNPCRelationshipDataByID(this.value);
-    })
-
-    // NPCs
-    $('#npcList2').change(function () {
-        cleanNPC('teacher');
-        getNPCStudentDataByID(this.value);
-    })
-    $('#teacherList').change(function () {
-        cleanNPC('student');
-        getNPCTeacherDataByID(this.value);
-    })
-
-    $('.srcSelector').change(function () {
-        this.parentElement.parentElement.querySelector('video').src = "../assets/star/" + this.value;
-    })
-
-    $('#confirmRelation').click(function () {
-        var nid = this.parentElement.querySelector('#addRelationNPCs').value;
-        var sid = document.getElementById('profile').querySelector('#pid').value;
-        this.parentElement.querySelector('#addRelationNPCs').value = 0;
-        this.parentElement.toggleAttribute('hidden');
-        var addloc = this.parentElement.parentElement.querySelector('.controls').querySelector('#add');
-        addloc.classList = "fa fa-plus";
-        createRelationship(nid, sid);        
-    })
-    $('#cancleRelation').click(function () {
-        var page = this.parentElement.parentElement;
-        page.querySelector('#addModel').toggleAttribute('hidden');
-        var addloc = page.querySelector('.controls').querySelector('#add');
-        addloc.classList = "fa fa-plus";
-    })
-
-    function cleanPages(){
+    function cleanPages() {
         var profile = document.getElementById('profile');
         var detail = document.getElementById('details');
         var courses = document.getElementById('courses');
@@ -1091,54 +1715,29 @@
         job.innerHTML = "";
         club.innerHTML = "";
     }
-    function cleanNPC(toclean) {
-        var mainpage = document.getElementById('pages');
-        var NPCpage = mainpage.querySelector('#npcs');
-        var NPCstudent = NPCpage.querySelector('.student');
-        var NPCteacher = NPCpage.querySelector('.teacher');
-
-        if (toclean == "teacher") {
-            var inputs = NPCteacher.querySelectorAll("input");
-            var selects = NPCteacher.querySelectorAll("select");
-            var textareas = NPCteacher.querySelectorAll("textarea");
-        } 
-        if (toclean == "student") {
-            var inputs = NPCstudent.querySelectorAll("input");
-            var selects = NPCstudent.querySelectorAll("select");
-            var textareas = NPCstudent.querySelectorAll("textarea");
-        } 
-        for (var x = 0; x < inputs.length; x++) {
-            inputs[x].value = "";
-        }
-        for (var x = 0; x < selects.length; x++) {
-            selects[x].value = "0";
-        }
-        for (var x = 0; x < textareas.length; x++) {
-            textareas[x].value = "";
-        }
-    }
-
-    $('.subNavChoice').click(function () {
-        var selectedView = this.innerText.toLowerCase();
-        if (selectedView == "job and extras") {
-            selectedView = 'jobandextras';
-        }
-        var Views = document.getElementById('players').querySelector('.mainbody').querySelectorAll('.view');
-        var page = document.getElementById('players');
-        var profile = page.querySelector('#profile');
-        for (var x = 0; x < Views.length; x++) {
-            Views[x].setAttribute("hidden", "true");
-            if (Views[x].id == selectedView) {
-                if (selectedView == "Job and Extras") {
-                    page.querySelector('h2').innerText = "Job";
-                } else {
-                    var p = "Player: " + profile.querySelector('#player').value;
-                    page.querySelector('h2').innerHTML = p;
+    function setNewPass() {
+        var Form = document.getElementById('newPas');
+        if (Form.querySelector('#NPW').value != "") {
+            // Check Confirm Password
+            if (Form.querySelector('#NPW').value == Form.querySelector('#CNPW').value) {
+                if (Form.querySelector('#NPW').value != "testing") {
+                    var id = "";
+                    if (sessionStorage.getItem("Teacher_Id")) {
+                        id = sessionStorage.getItem("Teacher_Id");
+                    }
+                    // Check Current Password is Correct
+                    _supabase.from('_tblLogin').select('log_use').eq('teacher_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
+                        if (response.data.length > 0) {
+                            // Update Password
+                            _supabase.from('_tblLogin').update({ log_pas: Form.querySelector('#NPW').value }).eq('teacher_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
+                                alert("Your password has been updated");
+                            })
+                        }
+                    });
                 }
-                Views[x].toggleAttribute("hidden");
             }
         }
-    })
+    }
 
     var showing = 0;
     var pages = ["page1", "page2", "page3"];
@@ -1185,19 +1784,6 @@
             }
         }
     }
-
-    var ids = [".pg1", ".pg2", ".pg3"];
-    var urls = ["views/news/_page1.html", "views/news/_page2.html", "views/news/_page3.html"];
-    $.get(urls[0], function (data) {
-        $(ids[0]).html(data);
-    });
-    $.get(urls[1], function (data) {
-        $(ids[1]).html(data);
-    });
-    $.get(urls[2], function (data) {
-        $(ids[2]).html(data);
-    });
-
     function sortSelect(selElem) {
         var tmpAry = new Array();
         for (var i = 0; i < selElem.options.length; i++) {
@@ -1215,7 +1801,6 @@
         }
         return;
     }
-
     function changeDice() {
         var dice = this.parentElement.querySelector("#dice");
         if (this.value == 'pass') {
@@ -1234,898 +1819,349 @@
         textarea.innerText = "Teacher: " + data.split(':')[1];
     }
 
-    function loadPage() {
-        // Load last page saved on
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const toOpen = urlParams.get('page');
-        if (toOpen) {
-            var allPages = document.getElementById('pages').querySelectorAll(".page");
-            var allChoices = document.getElementById('subnavchoices').querySelectorAll(".choice");
-            for (var x = 0; x < allPages.length; x++) {
-                allPages[x].setAttribute("hidden", "true");
-            }
-            for (var x = 0; x < allChoices.length; x++) {
-                allChoices[x].classList = "choice";
-                if (allChoices[x].innerText.toLowerCase() == toOpen) {
-                    allChoices[x].classList = "choice selected";
-                }
-            }
-            if (toOpen == "players") {
-                const subOpen = urlParams.get('subpage');
-                const player = urlParams.get('p');
-                var views = document.getElementById('players').querySelectorAll('.view');
-                for (var y = 0; y < views.length; y++) {
-                    views[y].setAttribute("hidden", "true");
-                    if (views[y].id == subOpen) {
-                        views[y].toggleAttribute("hidden");
-                    }
-                }
-                _supabase.from('_tblStudents').select('player').eq("id", player).then(response => {
-                    var p = response.data[0]['player'];
-                    getPlayerData(p);
-                })                
-            }
-            // Check the data has been loaded for the page
+    // Controls
+    $('.subbtn').click(function () {
+        var toget = this.innerText;
+        cleanPages();
 
-            // Players - Done on load
-            // Strixhaven Star
-            // NPCs
-            // Extra Notes - Done on load
-            // Coming Soon - No data
-            // Account - No data
-
-            // Reset URL
-            //window.history.pushState("object or string", "Title", "/teacherview.html");
-
-            // Show Page
-            document.getElementById(toOpen).toggleAttribute("hidden");
-        }
-    }
-    function reloadPage() {
-        var allPages = document.getElementById('pages').querySelectorAll(".page");
-        for (var x = 0; x < allPages.length; x++) {
-            if (allPages[x].checkVisibility()) {
-                var currentPage = allPages[x].id;
-                const urlParams = new URLSearchParams(window.location.search);
-                urlParams.set('page', currentPage);
-                if (currentPage == "players") {
-                    var views = document.getElementById('players').querySelectorAll('.view');
-                    for (var y = 0; y < views.length; y++) {
-                        if (!views[y].hidden) {
-                            urlParams.set('subpage', views[y].id);
-                        }
-                    }
-                    urlParams.set('p', document.getElementById('profile').querySelector('#pid').value)
-                }
-                window.location.search = urlParams;
-            }
-        }
-    }
-    
-</script>
-<script src="../../API/api.js"></script>
-<script src="/javascript/login.js"></script>
-<script>
-    $(document).ready(function () {
-        getPP();
-        getCourseData();
-        getNotes();
-        getpapercontent();
-        loadPage();
+        sort_playerData(toget, JSON.parse(sessionStorage.getItem('playersData')));
     })
+    $('#npcs #npcList2').change(function () {
+        cleanNPC('teacher');
+        getNPCStudentDataByID(this.value, JSON.parse(sessionStorage.getItem('NPCData')));
+    })
+    $('#npcs #teacherList').change(function () {
+        cleanNPC('student');
+        getNPCTeacherDataByID(this.value, JSON.parse(sessionStorage.getItem('teachersData')));
+    })
+</script>
 
-    /* NPC students */
-    var NPCid = [];
-    var NPCplayer = [];
-    var NPCimg = [];
-    var NPCage = [];
-    var NPCgender = [];
-    var NPCname = [];
-    var NPCrace = [];
-    var NPCalignment = [];
-    var NPChaircolor = [];
-    var NPCeyecolor = [];
-    var NPCweight = [];
-    var NPCheight = [];
-    var NPCappearance = [];
-    var NPCbackground = [];
-    var NPCbackgroundfeatures = [];
-    var NPCbackstory = [];
-    var NPCbonds = [];
-    var NPCclasst = [];
-    var NPCextranotes = [];
-    var NPCflaws = [];
-    var NPCgoals = [];
-    var NPCideals = [];
-    var NPClevel = [];
-    var NPCpersonalitytraits = [];
-    var NPCsubclass = [];
-    var NPCsubrace = [];
-    var NPCyear = [];
-    var NPCcollege = [];
-    var NPCextranotes = [];
-    var NPCboon = [];
-    var NPCbane = [];
-    var NPCrScore = [];
+<script>
+    // Controls
+    $('.choice').click(function () {
+        var subnav = document.getElementById('subnavchoices');
+        var choices = subnav.querySelectorAll('.choice');
+        var current = "no";
+        if (this.classList == "choice selected") {
+            current = "yes";
+        }
+        for (var x = 0; x < choices.length; x++) {
+            choices[x].classList = "choice";
+        }
+        var choice = this.querySelector('p');
+        var toshow = choice.innerText.toLowerCase();
+        if (current == "no") {
+            this.classList = "choice selected";
 
-    /* NPC teachers */
-    var TPCid = [];
-    var TPCname = [];
-    var TPCrole = [];
-    var TPCschool = [];
-    var TPCtype = [];
-    var TPCdescription = [];
+            if (toshow == "logout") {
+                logot();
+            }
 
-    // Getters
-    function getPP() {
-        _supabase.from('_tblStudents').select('*').order('id', { ascending: true }).then(response => {
-            var data = response.data;
-            for (var x = 0; x < data.length; x++) {
-                var person = data[x];
-                if (person['player']) {
-                   
-                } else {
-                    // NPCs
-                    NPCid.push(person['id']);
-                    NPCplayer.push(person['player']);
-                    NPCimg.push("assets/students/players/" + person['picture']);
-                    NPCage.push(person['age']);
-                    NPCgender.push(person['gender']);
-                    NPCname.push(person['name']);
-                    NPCrace.push(person['race']);
-                    NPCalignment.push(person['alignment']);
-                    NPChaircolor.push(person['haircolour']);
-                    NPCeyecolor.push(person['eyecolour']);
-                    NPCweight.push(person['weight']);
-                    NPCheight.push(person['height']);
-                    NPCappearance.push(person['appearance']);
-                    NPCbackground.push(person['background']);
-                    NPCbackgroundfeatures.push(person['backgroundfeatures']);
-                    NPCbackstory.push(person['backstory']);
-                    NPCbonds.push(person['bonds']);
-                    NPCclasst.push(person['class']);
-                    NPCextranotes.push(person['extranotes']);
-                    NPCflaws.push(person['flaws']);
-                    NPCgoals.push(person['goals']);
-                    NPCideals.push(person['ideals']);
-                    NPClevel.push(person['level']);
-                    NPCpersonalitytraits.push(person['personalitytraits']);
-                    NPCsubclass.push(person['subclass']);
-                    NPCsubrace.push(person['subrace']);
-                    NPCyear.push(person['year']);
-                    NPCcollege.push(person['college']);
-                    NPCextranotes.push(person['extranotes']);
-                    NPCboon.push(person['boon']);
-                    NPCbane.push(person['bane']);
+            var mainpage = document.getElementById('pages');
+            var pages = mainpage.querySelectorAll('.page');
+            for (var x = 0; x < pages.length; x++) {
+                if (pages[x]) {
+                    pages[x].setAttribute("hidden", "true");
                 }
             }
-            // CREATE NPC LISTs
-            var npcPage = document.getElementById('npcs');
-            var relationPage = document.getElementById('relationships');
-            for (var x = 0; x < NPCname.length; x++) {
-                var newOption = document.createElement('option');
-
-                newOption.value = NPCid[x];
-                newOption.innerText = NPCname[x];
-
-                npcPage.querySelector('#npcList2').appendChild(newOption);
-            }
-        })
-        _supabase.from('_tblTeachers').select('*').order('id', { ascending: true }).then(response => {
-            for (var x = 0; x < response.data.length; x++) {
-                var person = response.data[x];
-                if (person['id']) {
-                    TPCid.push(person['id']);
-                    TPCname.push(person['teacher_name']);
-                    TPCrole.push(person['teacher_role']);
-                    TPCschool.push(person['teacher_school']);
-                    TPCtype.push(person['teacher_type']);
-                    TPCdescription.push(person['teacher_description']);
-                }
-            }
-            // CREATE NPC teacher list
-            var npcPage = document.getElementById('npcs');
-            for (var x = 0; x < TPCname.length; x++) {
-                var newOption = document.createElement('option');
-
-                newOption.value = TPCid[x];
-                newOption.innerText = TPCname[x];
-
-                npcPage.querySelector('#teacherList').appendChild(newOption);
-            }
-        });
-        _supabase.from('_tblColleges').select('*').order('id', { ascending: false }).then(response => {
-            var page = document.getElementById('players');
-            var profile = page.querySelector('#profile');
-            for (var y = 0; y < response.data.length; y++) {
-                var col = response.data[y];
-                var newCollege = document.createElement('option');
-                newCollege.value = col['id'];
-                newCollege.innerText = col['college_name'];
-                profile.querySelector('#college').appendChild(newCollege);
-            }
-        });
-    }
-    function getPlayerData(toget) {
-        var page = document.getElementById('players');
-        var header = page.querySelector('h2');
-        var profile = page.querySelector('#profile');
-        var details = page.querySelector('#details');
-        _supabase.from('_tblStudents').select('*').eq("player", toget).then(response => {
-            var character = response.data[0];
-            header.innerText = "Player: " + character.player;
-            profile.querySelector('#pid').value = character.id;
-            profile.querySelector('#player').value = character.player;
-            profile.querySelector('#profilepicture').src = "assets/students/players/" + character.picture;
-            profile.querySelector('#name').value = character.name;
-            profile.querySelector('#age').value = character.age;
-            profile.querySelector('#gender').value = character.gender;
-            profile.querySelector('#race').value = character.race;
-            profile.querySelector('#subrace').value = character.subrace;
-            profile.querySelector('#alignment').value = character.alignment;
-            profile.querySelector('#haircolour').value = character.haircolour;
-            profile.querySelector('#eyecolour').value = character.eyecolour;
-            profile.querySelector('#height').value = character.height;
-            profile.querySelector('#weight').value = character.weight;
-            profile.querySelector('#level').value = character.level;
-            profile.querySelector('#class').value = character.class;
-            profile.querySelector('#subclass').value = character.subclass;
-            profile.querySelector('#background').value = character.background;
-            profile.querySelector('#year').value = character.year;
-
-            profile.querySelector('#college').value = character.college;
-            var cLogo = document.getElementById('collegeLogo');
-            if (character.college == 6) {
+            if (this.id != "ppp") {
+                var cLogo = document.getElementById('collegeLogo');
                 cLogo.src = "assets/strix_logo.png";
             }
-            if (character.college == 5) {
-                cLogo.src = "assets/maps/witherbloom.png";
+            document.getElementById(toshow).toggleAttribute("hidden");
+        } else {
+            var pages = document.getElementById("pages").querySelectorAll(".page");
+            if (toshow != 'players') {
+                for (var x = 0; x < pages.length; x++) {
+                    pages[x].setAttribute("hidden", "true");
+                }
+                document.getElementById("tea").toggleAttribute("hidden");
             }
-            if (character.college == 4) {
-                cLogo.src = "assets/maps/silverquill.png";
+        }
+    })
+    $('.control').click(function () {
+        var page = this.parentNode.parentNode;
+        if (this.id == "add") {
+            // Get location of add btn
+            var addloc = this.parentElement.parentElement.id;
+
+            // Check to see if edit is an option
+            var editbtn = document.getElementById(addloc).querySelector('#edit');
+            if (editbtn) {
+                editbtn.classList = "control fa fa-pencil-square-o";
             }
-            if (character.college == 3) {
-                cLogo.src = "assets/maps/quandrix.png";
-            }
-            if (character.college == 2) {
-                cLogo.src = "assets/maps/prismari.png";
-            }
-            if (character.college == 1) {
-                cLogo.src = "assets/maps/lorehold.png";
+
+            // Toggle add btn and page
+            if (this.classList != "fa fa-plus activecontrol") {
+                this.classList = "fa fa-plus activecontrol";
+            } else {
+                this.classList = "control fa fa-plus";
             }
 
-            profile.querySelector('#personalitytraits').value = character.personalitytraits;
-            profile.querySelector('#ideals').value = character.ideals;
-            profile.querySelector('#bonds').value = character.bonds;
-            profile.querySelector('#flaws').value = character.flaws;
-            profile.querySelector('#goals').value = character.goals;
+            if (addloc == "npcs") {
+                togglecurrent();
+            }
+            if (addloc == "relationships") {
+                var page = this.parentElement.parentElement;
+                page.querySelector('#addModel').toggleAttribute('hidden');
+            }
+        }
 
-            profile.querySelector('#backgroundfeatures').value = character.backgroundfeatures;
-            profile.querySelector('#appearance').value = character.appearance;
+        if (this.id == "edit") {
+            // Get location of edit btn
+            var editloc = this.parentElement.parentElement.id;
 
-            details.querySelector('#backstory').value = character.backstory;
-            details.querySelector('#extranotes').value = character.extranotes;
+            // Check to see if add is an option
+            var addbtn = document.getElementById(editloc).querySelector('#add');
+            if (addbtn) {
+                addbtn.classList = "control fa fa-plus";
+            }
 
-            getStudentDataByID(character.id);
-        })
-    }   
-    function getStudentDataByID(sid) {
-        _supabase.from('Job<>Student').select('Job (id, Title, Location), wage').eq('Student', sid).then(response => {
-            if (response.data.length > 0) {
-                for (var x = 0; x < response.data.length; x++) {
-                    var data = response.data[x];
-                    var job = data['Job'];
+            if (this.classList != "fa fa-pencil-square-o activecontrol") {
+                this.classList = "fa fa-pencil-square-o activecontrol";
+                togglecurrent();
+            } else {
+                this.classList = "control fa fa-pencil-square-o";
+                togglecurrent();
+            }
+        }
+        if (this.id == "save") {
+            this.disabled;
+            var saveloc = this.parentElement.parentElement.id;
+            if (!saveloc) {
+                saveloc = this.parentElement.parentElement.parentElement.parentElement.id;
+            }
+            var editbtn = page.querySelector('#edit');
+            var addbtn = page.querySelector('#add');
+            var active = "";
+            var bothselected = "no";
 
-                    var currentJob = document.getElementById('jobs');
+            if (editbtn && addbtn) {
+                if (addbtn.classList == "fa fa-plus activecontrol" && editbtn.classList == "fa fa-pencil-square-o activecontrol") {
+                    bothselected = "yes";
+                }
+            }
+            // Catch
+            if (bothselected == "no") {
+                if (editbtn) {
+                    if (editbtn.classList != "control fa fa-pencil-square-o") {
+                        togglecurrent();
+                        editbtn.classList = "control fa fa-pencil-square-o";
+                        active = "edit";
+                    }
+                }
+                if (addbtn) {
+                    if (addbtn.classList != "control fa fa-plus") {
+                        addbtn.classList = "control fa fa-plus";
+                        active = "add";
+                    }
+                }
 
-                    const theJob = document.createElement('div');
-                    const theTitle = document.createElement('p');
-                    const theLocation = document.createElement('p');
-                    const theWage = document.createElement('input');
-                    const theCoworker = document.createElement('p');
-                    const QuitButton = document.createElement('button');
+                // Player
+                if (saveloc == "profile") {
+                    var inputs = this.parentElement.parentElement.querySelectorAll('select');
+                    saveStudentSchool(inputs);
+                }
+                if (saveloc == "details") {
+                }
 
-                    theJob.classList = "job";
-                    theJob.id = "job";
-                    QuitButton.classList = "quit";
-                    QuitButton.id = sid;
-                    QuitButton.innerText = "Fire";
-                    QuitButton.addEventListener('click', fireFromJob, false);
+                if (saveloc == "Cyr1" || saveloc == "Cyr2" || saveloc == "Cyr3" || saveloc == "Cyr4") {
+                    var all = this.parentElement.parentElement.parentElement.parentElement;
+                    var inputs = all.querySelectorAll('select');
+                    saveCourseChoices(inputs);
+                }
 
-                    theTitle.innerText = job['Title'];
-                    theTitle.classList = "title";
+                /*
 
-                    theLocation.innerText = job['Location'];
-                    theLocation.classList = "location";
-
-                    theWage.value = data['wage'];
-                    theWage.classList = "wage";
-                    theWage.addEventListener('change', saveWage, false);
-
-                    _supabase.from('Job<>Student').select('Student (id, name, player)').eq('Job', job['id']).then(response => {
-                        var allworkers = response.data;
-                        var wcount = 0;
-                        var coworkers = "";
-                        if (allworkers) {
-                            for (var y = 0; y < allworkers.length; y++) {
-                                var worker = allworkers[y]['Student'];
-                                if (document.getElementById('profile').querySelector('#profileform1').querySelector('#pid').value != worker['id']) {
-                                    if (wcount > 0) {
-                                        coworkers = coworkers + " & " + worker['name'];
-                                    } else {
-                                        coworkers = worker['name'];
-                                    }
-                                    wcount++;
+                if (saveloc == "exams") {
+                    var exams = [];
+                    var results = [];
+                    var selects = page.querySelectorAll('select');
+                    for (var y = 0; y < selects.length; y++) {
+                        var select = selects[y];
+                        var options = select.querySelectorAll('option');
+                        for (var z = 0; z < options.length; z++) {
+                            var option = options[z];
+                            if (option.selected) {
+                                if (option.value != 0) {
+                                    var sec = select.parentElement.id.split('exam');
+                                    exams.push(sec[1]);
+                                    results.push(option.value);
                                 }
                             }
                         }
-                        theCoworker.innerText = coworkers;
-                        theCoworker.classList = "coworker";
-
-                        theJob.appendChild(theTitle);
-                        theJob.appendChild(theLocation);
-                        theJob.appendChild(theCoworker);
-                        theJob.appendChild(theWage);
-                        theJob.appendChild(QuitButton);
-                        currentJob.appendChild(theJob);
-                    })
+                    }
+                    saveExamScores(exams, results);
                 }
-            }
-        })
-        _supabase.from('Club<>Student').select('club (*)').eq('student', sid).then(response => {
-            if (response.data.length > 0) {
-                var clubs = document.getElementById('clubs');
-                for (var x = 0; x < response.data.length; x++) {
-                    var data = response.data[x];
-                    var club = data['club'];
+                if (saveloc == "relationships") {
+                    var cubeList = page.querySelector('#cubes');
+                    var cubes = cubeList.querySelectorAll('.cube');
+                    for (var x = 0; x < cubes.length; x++) {
+                        saveRelationship(cubes[x]);
+                    }
+                }
 
-                    var clubid = club['id'];
-                    var clubname = club['name'];
-                    var clubskills = club['skills'];
+                if (saveloc == "npcs") {
+                    var allinputs = [];
+                    var SorT = "";
+                    if (this.parentElement.parentElement.querySelector('#nid').value) {
+                        page = page.querySelector('.student');
+                        SorT = "s";
+                    }
+                    if (this.parentElement.parentElement.querySelector('#tid').value) {
+                        page = page.querySelector('.teacher');
+                        SorT = "t";
+                    }
 
-                    const theClub = document.createElement('div');
-                    const theClubName = document.createElement('p');
-                    const theClubSkill = document.createElement('p');
-                    const theClubDice = document.createElement('p');
-                    const theClubMembers = document.createElement('div');
+                    if (active) {
+                        var studnetName = page.querySelector('#name').value;
+                        var teacherName = page.querySelector('#teacher_name').value;
 
-                    const theClubQuit = document.createElement('button');
 
-                    theClub.classList = "club";
+                        var subPage = "";
+                        if (studnetName) {
+                            subPage = page.querySelector('#profileform1');
+                        }
+                        if (teacherName) {
+                            subPage = page.querySelector('#profileform2');
+                        }
 
-                    theClubName.classList = "clubname";
-                    theClubName.innerText = clubname;
+                        var inputs = subPage.querySelectorAll('input');
+                        var textareas = subPage.querySelectorAll('textarea');
 
-                    theClubSkill.classList = "clubskill";
-                    theClubSkill.innerText = clubskills;
-
-                    theClubDice.classList = "dice";
-                    theClubDice.innerText = "1d4";
-
-                    theClubMembers.classList = "members scrollbar";
-
-                    _supabase.from('Club<>Student').select('student (id, name)').eq('club', clubid).then(response => {
-                        for (var y = 0; y < response.data.length; y++) {
-                            if (sid != response.data[y]['student']['id']) {
-                                const theClubMember = document.createElement('p');
-                                theClubMember.classList = "member";
-                                theClubMember.innerText = response.data[y]['student']['name'];
-                                theClubMembers.appendChild(theClubMember);
+                        for (var y = 0; y < inputs.length; y++) {
+                            if (inputs[y].id) {
+                                allinputs.push(inputs[y]);
                             }
                         }
-                    })
-
-                    theClubQuit.classList = "quit";
-                    theClubQuit.innerText = "Quit Club";
-                    theClubQuit.id = clubid;
-                   theClubQuit.addEventListener('click', kickFromClub, false);
-
-                    theClub.appendChild(theClubName);
-                    theClub.appendChild(theClubSkill);
-                    theClub.appendChild(theClubDice);
-                    theClub.appendChild(theClubMembers);
-
-                    theClub.appendChild(theClubQuit);
-
-                    clubs.appendChild(theClub);
-                }
-            }
-        })
-        _supabase.from('class<>student').select('class(id, year, name, required), student(id, name)').order('class', { ascending: false }).eq('student', sid).then(response => {
-            var data = response.data;
-            var Y1C = 1;
-            var Y2C = 1;
-            var Y3C = 1;
-            var Y4C = 1;
-
-            for (var x = 0; x < data.length; x++) {
-                var course = data[x]['class'];
-                var student = data[x]['student'];
-
-                if (course['year'] == 1) {
-                    var classChoice = "Y1S" + Y1C;
-                    Y1C++;
-                }
-                if (course['year'] == 2) {
-                    var classChoice = "Y2S" + Y2C;
-                    Y2C++;
-                }
-                if (course['year'] == 3) {
-                    var classChoice = "Y3S" + Y3C;
-                    Y3C++;
-                }
-                if (course['year'] == 4) {
-                    var classChoice = "Y4S" + Y4C;
-                    Y4C++;
-                }
-                $('#' + classChoice + ' select > option').each(function () {
-                    var split = $(this).val().split(":");
-                    var courseId = split[0];
-                    var teacher = split[1];
-
-                    if (courseId == course['id']) {
-                        $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
-                        $('#' + classChoice + ' select').attr("disabled", "true");
-                        $('#' + classChoice + ' p').text("Teacher: " + teacher);
-                    }
-                });
-            }
-        });
-        _supabase.from('exam<>student').select('exam(*), score, studied, cheated').eq('student', sid).order('exam', { ascending: true }).then(response => {
-            var examsPage = document.getElementById('exams');
-            var examExams = examsPage.querySelectorAll('.exams');
-            var exams = response.data;
-            for (var x = 0; x < exams.length; x++) {
-                var results = exams[x];
-
-                var newExam = document.createElement("div");
-                var newTitle = document.createElement("p");
-                var newDropDown = document.createElement("select");
-                var newDice = document.createElement("p");
-                var newSkills = document.createElement("p");
-
-                var options = ['-- Ungraded --', 'Fail', 'Pass', 'Ace'];
-                var values = ['null', 'fail', 'pass', 'ace'];
-                for (var z = 0; z < options.length; z++) {
-                    var newDropOption = document.createElement("option");
-                    newDropOption.innerText = options[z];
-                    newDropOption.value = values[z];
-
-                    newDropDown.appendChild(newDropOption);
-                    newDropDown.addEventListener('change', changeDice, false);
-                }
-
-                var score = 0;
-                if (results['score']) {
-                    if (results['score'] == "pass") {
-                        score = 1;
-                    }
-                    if (results['score'] == "ace") {
-                        score = 2;
-                    }
-                }
-
-                newTitle.innerText = results['exam']['name'];
-                newDice.innerText = score + "d4";
-                newDice.id = "dice";
-                newSkills.innerText = results['exam']['skill'];
-
-                newExam.id = "exam" + results['exam']['id'];
-
-                newExam.appendChild(newTitle);
-                newExam.appendChild(newDropDown);
-                newExam.appendChild(newDice);
-                newExam.appendChild(newSkills);
-
-                examExams[results['exam']['year'] - 1].appendChild(newExam);
-
-                var t = document.getElementById("exam" + results['exam']['id']);
-                if (results['score']) {
-                    t.querySelector('select').value = results['score'];
-                }
-            }
-        });
-        var relationshipPage = document.getElementById('relationships');
-        var addSelected = relationshipPage.querySelector('select');
-        var options = addSelected.querySelectorAll("option");
-        for (var y = 0; y < options.length; y++) {
-            if (options[y].value != 0) {
-                options[y].remove();
-            }
-        }
-        for (var x = 0; x < NPCname.length; x++) {
-            var newOption = document.createElement('option');
-
-            newOption.value = NPCid[x];
-            newOption.innerText = NPCname[x];
-
-            relationshipPage.querySelector('#addRelationNPCs').appendChild(newOption);
-            sortSelect(relationshipPage.querySelector('#addRelationNPCs'));
-        }
-        getNPCRelationshipDataByStudentID(sid);
-    }
-    function getCourseData() {
-        _supabase.from('class<>teacher').select('class(id, name, year, required), teacher(id, teacher_name)').then(response => {
-            var data = response.data;
-            for (var x = 0; x < data.length; x++) {
-                var course = data[x]['class'];
-                var teacher = data[x]['teacher'];
-
-                var page = document.getElementById('courses');
-                
-                var selects = [];
-                if (course['year'] == 1) {
-                    selects = page.querySelector('#Cyr1').querySelectorAll("select");
-                    if (course['required'] == "yes") {
-                        $('#Y1S1 select').val(course['id'] + ":" + teacher['teacher_name']);
-                        $('#Y1S1 select').attr("disabled", "true");
-                        $('#Y1S1 p').text("Teacher: " + teacher['teacher_name']);
-                    }
-                }
-                if (course['year'] == 2) {
-                    selects = page.querySelector('#Cyr2').querySelectorAll("select");
-                    if (course['required'] == "yes") {
-                        $('#Y2S1 select').val(course['id'] + ":" + teacher['teacher_name']);
-                        $('#Y2S1 select').attr("disabled", "true");
-                        $('#Y2S1 p').text("Teacher: " + teacher['teacher_name']);
-                    }
-                }
-                if (course['year'] == 3) {
-                    selects = page.querySelector('#Cyr3').querySelectorAll("select");
-                    if (course['required'] == "yes") {
-                        $('#Y3S1 select').val(course['id'] + ":" + teacher['teacher_name']);
-                        $('#Y3S1 select').attr("disabled", "true");
-                        $('#Y3S1 p').text("Teacher: " + teacher['teacher_name']);
-                    }
-                }
-                if (course['year'] == 4) {
-                    selects = page.querySelector('#Cyr4').querySelectorAll("select");
-                    if (course['required'] == "yes") {
-                        $('#Y4S1 select').val(course['id'] + ":" + teacher['teacher_name']);
-                        $('#Y4S1 select').attr("disabled", "true");
-                        $('#Y4S1 p').text("Teacher: " + teacher['teacher_name']);
-                    }
-                }
-                for (var y = 0; y < selects.length; y++) {
-                    var newOption = document.createElement('option');
-                    newOption.value = course['id'] + ":" + teacher['teacher_name'];
-                    newOption.text = course['name'];
-                    selects[y].addEventListener('change', setCourseTeacher, false);
-                    selects[y].add(newOption);
-                }
-            }
-
-            // Sort all dropdowns
-            var selects = page.querySelectorAll('select');
-            for (var x = 0; x < selects.length; x++) {
-                var selElem = selects[x];
-                sortSelect(selElem);
-            }
-        });
-    }
-    function getNPCRelationshipDataByStudentID(sid) {
-        _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student, relationship').eq('student', sid).order('npc', { ascending: true }).then(response => {
-            var relationshipPage = document.getElementById('relationships');
-            var addSelected = relationshipPage.querySelector('select');
-            var page = relationshipPage.querySelector('#cubes');
-            page.innerHTML = "";
-            for (var x = 0; x < response.data.length; x++) {
-                var data = response.data[x];
-                const newCube = document.createElement("div");
-                const newName = document.createElement("p");
-
-                const newScore = document.createElement("div");
-                const newRelationship = document.createElement("div");
-                const newBoon = document.createElement("div");
-                const newBane = document.createElement("div");
-
-                const newDeleteBtn = document.createElement("button");
-
-                const newScoreSpan = document.createElement("span");
-                const newRelationshipSpan = document.createElement("span");
-                const newBoonSpan = document.createElement("span");
-                const newBaneSpan = document.createElement("span");
-
-                newName.innerText = data['npc']['name'];
-
-                newScoreSpan.innerText = "Relationship Score: ";
-                newScoreSpan.classList = "scoreTitle";
-                newScore.appendChild(newScoreSpan);
-                const newInput = document.createElement("input");
-                newInput.value = data['relationship'];
-                newInput.disabled = "true";
-                newScore.appendChild(newInput);
-
-                var text = "";
-                if (data['relationship'] >= "-100") {
-                    if (data['relationship'] >= 8) {
-                        text = "Lover";
-                    } else if (data['relationship'] >= "3") {
-                        text = "Friend";
-                    } else if (data['relationship'] >= "0") {
-                        text = "Neutral";
-                    } else {
-                        text = "Rival";
-                    }
-                }
-                newRelationshipSpan.innerText = "Relationship: ";
-                newRelationship.appendChild(newRelationshipSpan);
-                var newTextRelationship = document.createElement('p');
-                newTextRelationship.innerText = " " + text;
-                newRelationship.appendChild(newTextRelationship);
-
-                newBoonSpan.innerText = "Boon: ";
-                newBoon.appendChild(newBoonSpan);
-                var newTextBoon = document.createElement('p');
-                newTextBoon.innerText = " " + data['npc']['boon'];
-                newBoon.appendChild(newTextBoon);
-
-                newBaneSpan.innerText = "Bane: ";
-                newBane.appendChild(newBaneSpan);
-                var newTextBane = document.createElement('p');
-                newTextBane.innerText = " " + data['npc']['bane'];
-                newBane.appendChild(newTextBane);
-
-                newDeleteBtn.classList = "fa fa-trash";
-                newDeleteBtn.addEventListener('click', removeRelationship, false);
-
-                newCube.classList = "cube";
-                newCube.id = data['npc']['id'];
-
-                newName.classList = "cName";
-
-                newCube.appendChild(newName);
-                newCube.appendChild(newScore);
-                newCube.appendChild(newRelationship);
-                newCube.appendChild(newBoon);
-                newCube.appendChild(newBane);
-                newCube.appendChild(newDeleteBtn);
-
-                page.appendChild(newCube);
-
-                var options = addSelected.querySelectorAll("option");
-                for (var y = 0; y < options.length; y++) {
-                    if (options[y].value == data['npc']['id']) {
-                        options[y].remove();
-                    }
-                }
-            }
-        });
-    }
-    function getNPCStudentDataByID(nid) {
-        for (var x = 0; x < NPCid.length; x++) {
-            if (NPCid[x] == nid) {
-                var page = document.getElementById('npcs');
-                var NPCprofile = page.querySelector('.student');
-                NPCprofile.querySelector('#nid').value = NPCid[x];
-                NPCprofile.querySelector('#name').value = NPCname[x];
-                NPCprofile.querySelector('#age').value = NPCage[x];
-                NPCprofile.querySelector('#gender').value = NPCgender[x];
-                NPCprofile.querySelector('#race').value = NPCrace[x];
-                NPCprofile.querySelector('#subrace').value = NPCsubrace[x];
-                NPCprofile.querySelector('#alignment').value = NPCalignment[x];
-                NPCprofile.querySelector('#haircolour').value = NPChaircolor[x];
-                NPCprofile.querySelector('#eyecolour').value = NPCeyecolor[x];
-                NPCprofile.querySelector('#height').value = NPCheight[x];
-                NPCprofile.querySelector('#weight').value = NPCweight[x];
-                NPCprofile.querySelector('#year').value = NPCyear[x];
-                NPCprofile.querySelector('#boon').value = NPCboon[x];
-                NPCprofile.querySelector('#bane').value = NPCbane[x];
-                NPCprofile.querySelector('#extranotes').value = NPCextranotes[x]
-            }
-        }
-    }
-    function getNPCTeacherDataByID(tid) {
-        for (var x = 0; x < TPCid.length; x++) {
-            if (TPCid[x] == tid) {
-                var page = document.getElementById('npcs');
-                var TPCprofile = page.querySelector('.teacher');
-                TPCprofile.querySelector('#tid').value = TPCid[x];
-                TPCprofile.querySelector('#teacher_name').value = TPCname[x];
-                TPCprofile.querySelector('#teacher_role').value = TPCrole[x];
-                TPCprofile.querySelector('#schooldropdown').value = TPCschool[x];
-                TPCprofile.querySelector('#teacher_type').value = TPCtype[x];
-                TPCprofile.querySelector('#teacher_description').value = TPCdescription[x];
-            }
-        }
-    }
-    function getNotes() {
-        _supabase.from('notes').select('*').order('id', { ascending: true }).then(response => {
-            var page = document.getElementById('extra notes');
-            var notes = page.querySelectorAll('textarea');
-            for (var x = 0; x < response.data.length; x++) {
-                var note = response.data[x];
-                if (note['year'] == 1) {
-                    notes[0].value = note['note'];
-                }
-                if (note['year'] == 2) {
-                    notes[1].value = note['note'];
-                }
-                if (note['year'] == 3) {
-                    notes[2].value = note['note'];
-                }
-                if (note['year'] == 4) {
-                    notes[3].value = note['note'];
-                }
-            }
-        });
-    }
-    function getpapercontent() {
-        _supabase.from('_tblStrixhavenStar').select('*').then(response => {
-            for (var x = 0; x < response.data.length; x++) {
-                var story = response.data[x];
-                var page = story['pageNo'];
-                var location = story['location'];
-
-                var title = story['title'];
-                var content = story['content'];
-
-                var id = "";
-                if (location == "left") {
-                    id = 'pg2left';
-                }
-                if (location == "middle top") {
-                    id = 'pg2Mtop';
-                }
-                if (location == "middle bottom") {
-                    id = 'pg2Mbot';
-                }
-                if (location == "right") {
-                    id = 'pg2right';
-                }
-                if (location == "right") {
-                    id = 'pg2right';
-                }
-
-                const newTitle = document.createElement("input");
-                newTitle.value = title;
-                newTitle.disabled = "true";
-
-                const newContent = document.createElement("textarea");
-                newContent.value = content;
-                newContent.readOnly = "true";
-
-                // Get correct page
-                var togoPage = document.getElementById('page' + page);
-
-                if (page == 0) {
-                    var topc = document.getElementById('topcontainer');
-                    const newinput = document.createElement("input");
-                    newinput.value = content;
-                    newinput.classList = "topInputs";
-                    newinput.disabled = "true";
-
-                    if (location == "date") {
-                        var date = topc.querySelector('.paperdate');
-                        date.innerHTML = "";
-                        date.appendChild(newinput);
-                    }
-                    if (location == "slogan") {
-                        var slo = topc.querySelector('.slogan');
-                        slo.innerHTML = "";
-                        slo.appendChild(newinput);
-                    }
-                    if (location == "issue") {
-                        var iss = topc.querySelector('.issue');
-                        iss.innerHTML = "";
-                        iss.appendChild(newinput);
-                    }
-                } else if (page == 1) {
-                    if (title) {
-                        togoPage.querySelector('.Mainheadline').appendChild(newTitle);
-                        togoPage.querySelector('#' + location).appendChild(newContent);
-
-                        // check if sec con is out of view.
-                        var contentContainer = togoPage.querySelector('.secContainer');
-                        var bounding = contentContainer.getBoundingClientRect();
-                        if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                            //get height of title
-                            var headerH = togoPage.querySelector('.Mainheadline').offsetHeight;
-                            var currentH = contentContainer.offsetHeight;
-                            contentContainer.style.height = currentH - headerH;
+                        for (var y = 0; y < textareas.length; y++) {
+                            if (textareas[y].id) {
+                                allinputs.push(textareas[y]);
+                            }
                         }
-                    } else {
-                        if (location == "dropdown") {
-                            var drop = togoPage.parentElement.querySelector('select');
-                            drop.value = content;
-                            drop.disabled = "true";
-                            togoPage.querySelector('video').src = "../assets/star/" + content;
+
+                        if (active == "add") {
+                            if (studnetName) {
+                                createNewStudentData(allinputs);
+                            }
+                            if (teacherName) {
+                                alert("new teachers require an image, classes ect. Send me the info for the teacher");
+                            }
+                        }
+                        if (active == "edit") {
+                            if (studnetName) {
+                                saveNPCStudentData(allinputs);
+                            }
+                            if (teacherName) {
+                                // alert("new teachers require an image, classes ect. Send me the info for the teacher");
+                            }
                         }
                     }
+                }
+                if (saveloc == "extra notes") {
+                    var textareas = page.querySelectorAll('textarea');
+                    var allinputs = [];
+                    for (var y = 0; y < textareas.length; y++) {
+                        if (textareas[y].id) {
+                            allinputs.push(textareas[y]);
+                        }
+                    }
+                    saveNotes(allinputs);
+                }
+                if (saveloc == "strixhaven star") {
+                    var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
+                    var pgHeader = [];
+                    var pgContent = [];
+                    var MainOptions = [];
+                    for (var x = 0; x < pages.length; x++) {
+                        var pg = page.querySelector(pages[x]);
+                        if (pages[x] != "#topcontainer") {
+                            pgHeader.push(pg.querySelector('input'));
+                            pgContent.push(pg.querySelector('textarea'));
+                        }
+                    }
+                    var pg = page.querySelector('#topcontainer');
+                    MainOptions.push(pg.querySelectorAll('input'));
+                    MainOptions.push(pg.parentElement.querySelector('select'));
+
+                    saveSS(pages, pgHeader, pgContent, MainOptions);
+
+                    var jobs = page.querySelector('.pg3').querySelector('.jobs').querySelectorAll('.job');
+                    saveJobs(jobs);
+
+                    
+                } */
+            } else {
+                alert("Please unselect one of the options - add or edit");
+            }
+            // Turn button on after 1 second
+            setTimeout(function () {
+                this.enabled;
+            }, 1000);
+        }
+
+        if (this.id == "delete") {
+            var editbtn = page.querySelector('#edit');
+            var addbtn = page.querySelector('#add');
+            var active = "";
+
+            var studentID = this.parentElement.parentElement.querySelector('#nid').value;
+            var teacherID = this.parentElement.parentElement.querySelector('#tid').value;
+            if (studentID) {
+                deleteStudent(studentID);
+            }
+            if (teacherID) {
+                alert("Please let me know that you want to remove teacher: " + teacherID);
+            }
+        }
+    })
+
+    $('#npcList').change(function () {
+        getNPCRelationshipDataByID(this.value);
+    })
+    $('.srcSelector').change(function () {
+        this.parentElement.parentElement.querySelector('video').src = "../assets/star/" + this.value;
+    })
+    $('#confirmRelation').click(function () {
+        var nid = this.parentElement.querySelector('#addRelationNPCs').value;
+        var sid = document.getElementById('profile').querySelector('#pid').value;
+        this.parentElement.querySelector('#addRelationNPCs').value = 0;
+        this.parentElement.toggleAttribute('hidden');
+        var addloc = this.parentElement.parentElement.querySelector('.controls').querySelector('#add');
+        addloc.classList = "fa fa-plus";
+        createRelationship(nid, sid);
+    })
+    $('#cancleRelation').click(function () {
+        var page = this.parentElement.parentElement;
+        page.querySelector('#addModel').toggleAttribute('hidden');
+        var addloc = page.querySelector('.controls').querySelector('#add');
+        addloc.classList = "fa fa-plus";
+    })
+    $('.subNavChoice').click(function () {
+        var selectedView = this.innerText.toLowerCase();
+        if (selectedView == "job and extras") {
+            selectedView = 'jobandextras';
+        }
+        var Views = document.getElementById('players').querySelector('.mainbody').querySelectorAll('.view');
+        var page = document.getElementById('players');
+        var profile = page.querySelector('#profile');
+        for (var x = 0; x < Views.length; x++) {
+            Views[x].setAttribute("hidden", "true");
+            if (Views[x].id == selectedView) {
+                if (selectedView == "Job and Extras") {
+                    page.querySelector('h2').innerText = "Job";
                 } else {
-                    if (id) {
-                        var col = togoPage.querySelector('#' + id);
-
-                        newTitle.classList = "colTitle";
-
-                        // Append Title to Col
-                        col.appendChild(newTitle);
-                        // Append Content to Col
-                        col.appendChild(newContent);
-                    } else {
-                        console.log(story);
-                    }
+                    var p = "Player: " + profile.querySelector('#player').value;
+                    page.querySelector('h2').innerHTML = p;
                 }
+                Views[x].toggleAttribute("hidden");
             }
-        })
-        _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
-            for (var x = 0; x < response.data.length; x++) {
-                var job = response.data[x];
-                var jloc = job["Location"];
-                var jpay = job["Pay"];
-                var jtit = job["Title"];
-                var jid = job["id"];
-                const newjob = document.createElement("div");
-                const newtitle = document.createElement("input");
-                const newdetails = document.createElement("div");
-                const newlocation = document.createElement("input");
-                const newpay = document.createElement("input");
-
-                newtitle.value = jtit;
-                newlocation.value = jloc;
-                newpay.value = jpay;
-
-                newtitle.disabled = "true";
-                newlocation.disabled = "true";
-                newpay.disabled = "true";
-
-                newtitle.classList = "jtitle";
-                newlocation.id = "jlocation";
-                newpay.id = "jwage";
-
-                newdetails.classList = "details";
-
-                newdetails.appendChild(newlocation);
-                newdetails.appendChild(newpay);
-
-                newjob.appendChild(newtitle);
-                newjob.appendChild(newdetails);
-
-                newjob.classList = "job";
-                newjob.id = jid;
-
-                var page = document.querySelector(".pg3");
-                page.querySelector('#joblisting').appendChild(newjob);
-            }
-        })
-    }
-
+        }
+    })
     ////// Setters
     //// Players
-    function saveStudentSchool(inputs) {
-        updateobject = {};
-        updateobject['college'] = inputs[0].value;
-        var id = document.getElementById('pid').value;
-        _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
-            reloadPage();
-        })
-    }
-    function saveCourseChoices(inputs) {
-        var sid = document.getElementById('profile').querySelector('#pid').value;
 
-        // Delete all course choices
-        _supabase.from('class<>student').delete().eq('student', sid).then(response => {
-            // Create all course choices
-            var updateobject = {};
 
-            for (var x = 0; x < inputs.length; x++) {
-                var selectedID = "";
-                if (inputs[x].value) {
-                    var split = inputs[x].value.split(':');
-                    selectedID = split[0];
-
-                    updateobject['class'] = selectedID;
-                    updateobject['student'] = sid;
-
-                    _supabase.from('class<>student').insert(updateobject).then(response => {
-                    })
-                }
-            }        
-        });
-
-        
-    }
     function saveExamScores(exams, results) {
         var sid = document.getElementById("players").querySelector('#profile').querySelector('#pid').value;
         for (var x = 0; x < exams.length; x++) {
@@ -2152,181 +2188,12 @@
         _supabase.from('npc<>student').update(updateobject).eq('student', sid).eq('npc', nid).then(response => {
         })
     }
-    ////// Strixhaven Star
-    function saveSS(locations, headers, contents, options) {
-        var updateobject = {};
-        var id = "";
-        // Storys
-        for (var x = 0; x < headers.length; x++) {
-            if (locations[x] == '#page1') {
-                id = 1;
-            }
-            if (locations[x] == '#pg2left') {
-                id = 2;
-            }
-            if (locations[x] == '#pg2Mtop') {
-                id = 3;
-            }
-            if (locations[x] == '#pg2Mbot') {
-                id = 4;
-            }
-            if (locations[x] == '#pg2right') {
-                id = 5;
-            }
-            updateobject['title'] = headers[x].value;
-            updateobject['content'] = contents[x].value;
-
-            _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
-            })
-        }
-        // Header
-        for (var x = 0; x < options[0].length; x++) {
-            var loc = options[0][x].parentElement.classList;
-            if (loc == 'issue') {
-                id = 9;
-            }
-            if (loc == 'slogan') {
-                id = 8;
-            }
-            if (loc == 'paperdate') {
-                id = 7;
-            }
-
-            updateobject['title'] = null;
-            updateobject['content'] = options[0][x].value;
-            _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
-
-            })
-        }
-        // Image
-        id = 6;
-        updateobject['title'] = null;
-        updateobject['content'] = options[1].value;
-        _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
-
-        })
-    }
-    function saveJobs(jobs) {
-        var updateobject = {};
-        var id = "";
-        for (var x = 0; x < jobs.length; x++) {
-            var job = jobs[x];
-            id = job.id;
-
-            updateobject['Title'] = job.querySelector('.jtitle').value;
-            updateobject['Location'] = job.querySelector('#jlocation').value;
-            updateobject['Pay'] = job.querySelector('#jwage').value;
-
-            _supabase.from('_tblJobs').update(updateobject).eq('id', id).then(response => {
-            })
-        }
-    }
-    ////// NPCs
-    function saveNPCStudentData(inputs) {
-        console.log("hit");
-        var updateobject = {};
-        var sid = "";
-        for (var x = 0; x < inputs.length; x++) {
-            if (inputs[x].id == "nid" || inputs[x].id == "sid") {
-                sid = inputs[x].value;
-            } else {
-                if (inputs[x].id != "npcList2") {
-                    updateobject[inputs[x].id] = inputs[x].value;
-                }
-            }
-        }
-        _supabase.from('_tblStudents').update(updateobject).eq('id', sid).then(response => {
-            alert("new npc student");
-            //reloadPage();
-        })
-    }
-    function saveTeacherData(inputs) {
-        var updateobject = {};
-        var tid = "";
-        for (var x = 0; x < inputs.length; x++) {
-            if (inputs[x].id == "tid") {
-                tid = inputs[x].value;
-            } else
-                if (inputs[x].id == "schooldropdown") {
-                    inputs[x].id = "teacher_school";
-                    updateobject[inputs[x].id] = inputs[x].value;
-                } else
-                    if (inputs[x].id == "teacherList") {
-
-                    } else {
-                        updateobject[inputs[x].id] = inputs[x].value;
-                    }
-        }
-        _supabase.from('_tblTeachers').update(updateobject).eq('id', tid).then(response => {
-            reloadPage();
-        })
-    }
-    ////// Extra Notes
-    function saveNotes(inputs) {
-        var updateobject = {};
-        var noteid = "";
-        for (var x = 0; x < inputs.length; x++) {
-            noteid = x + 1;
-            updateobject[inputs[x].id] = inputs[x].value;
-            _supabase.from('notes').update(updateobject).eq('id', noteid).then(response => {
-                if (x == inputs.length) {
-                    reloadPage();
-                } else {
-                    setTimeout(reloadPage, 1000);
-                }
-            })
-        }
-    }
-    ////// Coming Soon
-    ////// Account
-    function setNewPass() {
-        var Form = document.getElementById('newPas');
-        if (Form.querySelector('#NPW').value != "") {
-            // Check Confirm Password
-            if (Form.querySelector('#NPW').value == Form.querySelector('#CNPW').value) {
-                if (Form.querySelector('#NPW').value != "testing") {
-                    var id = "";
-                    if (sessionStorage.getItem("Teacher_Id")) {
-                        id = sessionStorage.getItem("Teacher_Id");
-                    }
-                    // Check Current Password is Correct
-                    _supabase.from('_tblLogin').select('log_use').eq('teacher_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
-                        if (response.data.length > 0) {
-                            // Update Password
-                            _supabase.from('_tblLogin').update({ log_pas: Form.querySelector('#NPW').value }).eq('teacher_id', id).eq('log_pas', Form.querySelector('#CPW').value).then(response => {
-                                alert("Your password has been updated");
-                            })
-                        }
-                    });
-                }
-            }
-        }
-    } 
-        
-    // Creators
-    function createNewStudentData(inputs) {
-        var updateobject = {};
-        for (var x = 0; x < inputs.length; x++) {
-            if (inputs[x].id == "nid" || inputs[x].id == "sid") {
-
-            } else if (inputs[x].id == "year") {
-                if (inputs[x].value == "") {
-                    updateobject[inputs[x].id] = 1;
-                }
-            } else {
-                updateobject[inputs[x].id] = inputs[x].value;
-            }
-        }
-        _supabase.from('_tblStudents').insert(updateobject).then(response => {
-            reloadPage();
-        })
-    }
     function createRelationship(nid, sid) {
         var updateobject = {};
         updateobject['npc'] = nid;
         updateobject['student'] = sid;
         updateobject['relationship'] = 0;
-        
+
         _supabase.from('npc<>student').insert(updateobject).then(response => {
             getNPCRelationshipDataByStudentID(sid);
         })
@@ -2346,21 +2213,6 @@
         _supabase.from('Club<>Student').delete().eq('club', cid).eq('student', sid).then(response => {
             var parent = this.parentNode;
             parent.style.display = "none";
-        })
-    }
-    function deleteStudent(nid) {
-        // -Club
-        _supabase.from('Club<>Student').delete().match({ student: nid }).then(response => {
-        })
-        // -Job
-        _supabase.from('Job<>Student').delete().match({ Student: nid }).then(response => {
-        })
-        // -Relationship
-        _supabase.from('npc<>student').delete().match({ npc: nid }).then(response => {
-        })
-        // Student Table
-        _supabase.from('_tblStudents').delete().match({ id: nid }).then(response => {
-            reloadPage();
         })
     }
     function removeRelationship() {

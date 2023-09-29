@@ -389,25 +389,29 @@
         setEvenetListeners();
 
         var sid = JSON.parse(sessionStorage.getItem("Student_Id"));
-        if (!sessionStorage.getItem('studentData')) {
-            await getStudentByID(sid);
+        if (sid) {
+            if (!sessionStorage.getItem('studentData')) {
+                await getStudentByID(sid);
+            }
+            if (!sessionStorage.getItem('studentJob')) {
+                await getStudentJobByStudentID(sid);
+            }
+            if (!sessionStorage.getItem('studentClub')) {
+                await getClubByStudentID(sid);
+            }
+            if (!sessionStorage.getItem('studentClasses')) {
+                await getClassesbyStudentID(sid);
+            }
+            if (!sessionStorage.getItem('studentExams')) {
+                await getExamsbyStudentID(sid);
+            }
+            if (!sessionStorage.getItem('studentRelationships')) {
+                await getRelationshipsbyStudentID(sid);
+            }
+            getsessionData();
+        } else {
+            window.location = 'login.html';
         }
-        if (!sessionStorage.getItem('studentJob')) {
-            await getStudentJobByStudentID(sid);
-        }
-        if (!sessionStorage.getItem('studentClub')) {
-            await getClubByStudentID(sid); 
-        }
-        if (!sessionStorage.getItem('studentClasses')) {
-            await getClassesbyStudentID(sid);
-        }
-        if (!sessionStorage.getItem('studentExams')) {
-            await getExamsbyStudentID(sid);
-        }
-        if (!sessionStorage.getItem('studentRelationships')) {
-            await getRelationshipsbyStudentID(sid);
-        }
-        getsessionData();
     })
     function getsessionData() {
         if (sessionStorage.getItem('studentData')) {
@@ -741,7 +745,7 @@
                 if (courseId == course['id']) {
                     $('#' + classChoice + ' select').val(course['id'] + ":" + teacher).change();
                     $('#' + classChoice + ' select').attr("disabled", "true");
-
+                    $('#' + classChoice + ' p').text("Teacher: " + teacher);
                     // Remove for other dropdowns
                     var selected = this.value;
                     $("select option[value='" + selected + "']").each(function () {

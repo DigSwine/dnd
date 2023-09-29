@@ -30,7 +30,6 @@ header {
         text-shadow: none;
         -webkit-text-stroke: 0px black;
         width: calc(100% - 342px - 74px);
-
     }
     header .thenavigation{
         width:auto;
@@ -97,7 +96,7 @@ main {
 }
 
 .leftnav {
-    background-color: beige;
+    background-color: antiquewhite;
     width: 350px;
     height: 100vh;
     position: absolute;
@@ -247,7 +246,7 @@ main {
         }
             .mainpage #profile .card img {
                 height: 100%;
-                max-width: 350px;
+                max-width: 390px;
                 border-radius: 5%;
                 box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
             }

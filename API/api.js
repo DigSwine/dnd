@@ -4,6 +4,57 @@ var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
 const _supabase = createClient(url, anon);
 
 // Local APIs
+function preloadCheck(key) {
+    var ls = localStorage.getItem(key);
+    if (ls) {
+        return true;
+    }
+}
+function preload(key, value) {
+    var ttl = 900000;
+    const now = new Date()
+    const item = {
+        value: value,
+        expiry: now.getTime() + ttl,
+    }
+    localStorage.setItem(key, JSON.stringify(item));
+}
+function checkExpiry() {
+    const keys = [...Array(localStorage.length)].map((o, i) => {
+        return localStorage.key(i);
+    })
+    for (var x = 0; x < keys.length; x++) {
+        if (keys[x] == "debug") {
+
+        } else {
+            getWithExpiry(keys[x]);
+        }
+    }
+}
+function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+    // if the item doesn't exist, return null
+    if (!itemStr) {
+        return null
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+    // compare the expiry time of the item with the current time
+    if (now.getTime() > item.expiry) {
+        // If the item is expired, delete the item from storage
+        // and return null
+        localStorage.removeItem(key)
+        console.log(key + " has been removed");
+        return null
+    } else {
+        console.log(key + " has not been removed");
+    }
+    return item.value
+}
+function removelocalStorage(key) {
+    localStorage.removeItem(key)
+}
+
 async function preloadStrixhavenStarPaper() {
     _supabase.from('_tblStrixhavenStar').select('*').then(response => {
         // Package Data
@@ -127,10 +178,14 @@ async function getExamsbyStudentID(sid) {
 }
 async function getRelationshipsbyStudentID(id) {
     _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student, relationship').eq('student', id).order('npc', { ascending: true }).then(response => {
-        sessionload("studentRelationships", response.data);
+        if (response.data.length > 0) {
+            sessionload("studentRelationships", response.data);
+        } else {
+            sessionload("studentRelationships", "");
+        }
+        
     });
 }
-
 async function saveStudentProfileData(inputs) {
     var updateobject = {};
     var yr = 0;
@@ -210,6 +265,232 @@ async function saveCourseChoices(choices) {
                     removeStorage('studentClasses');
                     reloadPage();
                 });
+            }
+        }
+    });
+}
+
+async function getNPCs() {
+    await _supabase.from('_tblStudents').select('*').is('player', null).order('id', { ascending: true }).then(response => {
+        sessionload("NPCData", response.data);
+    })
+}
+async function getTeacherNotes() {
+    _supabase.from('notes').select('*').order('id', { ascending: true }).then(response => {
+        sessionload("teacherNotes", response.data);
+    })
+}
+async function getTeachers() {
+    _supabase.from('_tblTeachers').select('*').order('id', { ascending: true }).then(response => {
+        sessionload("teachersData", response.data);
+    });
+}
+async function getPlayers() {
+    _supabase.from('_tblStudents').select('*').not('player', 'is', null).order('id', { ascending: true }).then(response => {
+        getPlayersJobs();
+        getPlayersClubs();
+        getPlayersExams();
+        getPlayersRelationships();
+        sessionload("playersData", response.data);
+    });
+}
+async function getPlayersJobs() {
+    _supabase.from('Job<>Student').select('Job (id, Title, Location), Student!inner(id, name), wage').not('Student.player', 'is', null).then(response => {
+        sessionload("playersJobData", response.data);
+    })
+}
+async function getPlayersClubs() {
+    _supabase.from('Club<>Student').select('club (*), student!inner(id, name)').not('student.player', 'is', null).then(response => {
+        sessionload("playersClubData", response.data);
+    })
+}
+async function getPlayersClass() {
+    _supabase.from('class<>student').select('class(id, year, name, required), student!inner(id, player)').not('student.player', 'is', null).then(response => {
+        sessionload("playersClassData", response.data);
+    })
+}
+async function getPlayersExams() {
+    _supabase.from('exam<>student').select('exam(*), student!inner(id, player)').not('student.player', 'is', null).then(response => {
+        sessionload("playersExamData", response.data);
+    })
+}
+async function getPlayersRelationships() {
+    _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student!inner(id, player), relationship').not('student.player', 'is', null).order('npc', { ascending: true }).then(response => {
+        sessionload("playersRelationshipData", response.data);
+    })
+}
+
+
+async function saveSS(locations, headers, contents, options) {
+    removelocalStorage('newsdata');
+    var updateobject = {};
+    var id = "";
+    // Storys
+    for (var x = 0; x < headers.length; x++) {
+        if (locations[x] == '#page1') {
+            id = 1;
+        }
+        if (locations[x] == '#pg2left') {
+            id = 2;
+        }
+        if (locations[x] == '#pg2Mtop') {
+            id = 3;
+        }
+        if (locations[x] == '#pg2Mbot') {
+            id = 4;
+        }
+        if (locations[x] == '#pg2right') {
+            id = 5;
+        }
+        updateobject['title'] = headers[x].value;
+        updateobject['content'] = contents[x].value;
+
+        _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
+        })
+    }
+    // Header
+    for (var x = 0; x < options[0].length; x++) {
+        var loc = options[0][x].parentElement.classList;
+        if (loc == 'issue') {
+            id = 9;
+        }
+        if (loc == 'slogan') {
+            id = 8;
+        }
+        if (loc == 'paperdate') {
+            id = 7;
+        }
+
+        updateobject['title'] = null;
+        updateobject['content'] = options[0][x].value;
+        _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
+        })
+    }
+    // Image
+    id = 6;
+    updateobject['title'] = null;
+    updateobject['content'] = options[1].value;
+    _supabase.from('_tblStrixhavenStar').update(updateobject).eq('id', id).then(response => {
+    })
+}
+async function saveJobs(jobs) {
+    removelocalStorage('jobdata');
+    var updateobject = {};
+    var id = "";
+    for (var x = 0; x < jobs.length; x++) {
+        var job = jobs[x];
+        id = job.id;
+        updateobject['Title'] = job.querySelector('.jtitle').value;
+        updateobject['Location'] = job.querySelector('#jlocation').value;
+        updateobject['Pay'] = job.querySelector('#jwage').value;
+
+        _supabase.from('_tblJobs').update(updateobject).eq('id', id).then(response => {
+        })
+    }
+}
+async function createNewStudentData(inputs) {
+    removeStorage('NPCData');
+    var updateobject = {};
+    for (var x = 0; x < inputs.length; x++) {
+        if (inputs[x].id == "nid") {
+
+        } else if (inputs[x].id == "year") {
+            if (inputs[x].value == "") {
+                updateobject[inputs[x].id] = 1;
+            }
+        } else {
+            updateobject[inputs[x].id] = inputs[x].value;
+        }
+    }
+    _supabase.from('_tblStudents').insert(updateobject).then(response => {
+        reloadPage();
+    })
+}
+async function saveNPCStudentData(inputs) {
+    removeStorage('NPCData');
+    var updateobject = {};
+    var id = "";
+    for (var x = 0; x < inputs.length; x++) {
+        if (inputs[x].id == "nid") {
+            id = inputs[x].value;
+        } else {
+            if (inputs[x].id != "npcList2") {
+                updateobject[inputs[x].id] = inputs[x].value;
+            }
+        }
+    }
+    _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
+        reloadPage();
+    })
+}
+async function saveTeacherData(inputs) {
+    removeStorage('teachersData');
+    var updateobject = {};
+    var tid = "";
+    for (var x = 0; x < inputs.length; x++) {
+        if (inputs[x].id == "tid") {
+            tid = inputs[x].value;
+        } else
+            if (inputs[x].id == "schooldropdown") {
+                inputs[x].id = "teacher_school";
+                updateobject[inputs[x].id] = inputs[x].value;
+            } else
+                if (inputs[x].id == "teacherList") {
+
+                } else {
+                    updateobject[inputs[x].id] = inputs[x].value;
+                }
+    }
+    _supabase.from('_tblTeachers').update(updateobject).eq('id', tid).then(response => {
+        reloadPage();
+    })
+}
+async function saveNotes(inputs) {
+    removeStorage('teacherNotes');
+    var updateobject = {};
+    var noteid = "";
+    for (var x = 0; x < inputs.length; x++) {
+        noteid = x + 1;
+        updateobject[inputs[x].id] = inputs[x].value;
+        _supabase.from('notes').update(updateobject).eq('id', noteid).then(response => {
+            if (x == inputs.length) {
+                reloadPage();
+            } else {
+                setTimeout(reloadPage, 1000);
+            }
+        })
+    }
+}
+async function saveStudentSchool(inputs) {
+    removeStorage('playersData');
+    updateobject = {};
+    updateobject['college'] = inputs[0].value;
+    var id = document.getElementById('pid').value;
+    console.log(updateobject);
+    _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
+        reloadPage();
+    })
+}
+async function saveCourseChoices(inputs) {
+    removeStorage('playersClassData'); 
+    var sid = document.getElementById('profile').querySelector('#pid').value;
+    // Delete all course choices
+    _supabase.from('class<>student').delete().eq('student', sid).then(response => {
+        // Create all course choices
+        var updateobject = {};
+
+        for (var x = 0; x < inputs.length; x++) {
+            var selectedID = "";
+            if (inputs[x].value) {
+                var split = inputs[x].value.split(':');
+                selectedID = split[0];
+
+                updateobject['class'] = selectedID;
+                updateobject['student'] = sid;
+
+                _supabase.from('class<>student').insert(updateobject).then(response => {
+                    reloadPage();
+                })
             }
         }
     });

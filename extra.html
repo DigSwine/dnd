@@ -88,9 +88,11 @@
     function sortPreloadedClubData(data) {
         var alldata = data;
         var clubs = [];
-        var studentClubes = JSON.parse(sessionStorage.getItem('studentClub'));
-        for (var x = 0; x < studentClubes.length; x++) {
-            clubs.push(studentClubes[x].club.id);
+        if (sessionStorage.getItem('Student_Id')) {
+            var studentClubes = JSON.parse(sessionStorage.getItem('studentClub'));
+            for (var x = 0; x < studentClubes.length; x++) {
+                clubs.push(studentClubes[x].club.id);
+            }
         }
         for (var x = 0; x < alldata.length; x++) {
             var data = alldata[x];

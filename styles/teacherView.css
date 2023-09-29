@@ -85,13 +85,21 @@ header {
 /**/
 main {
     margin: 0;
-    height: calc(100% - 100px);
-    display: flex;
 }
 
 :root {
+    --subnavWidth: 350px;
+
+
+
+
+
+
+
+
+
+
     --titleheight: 45px;
-    --mainbodyheight: calc(100% - var(--titleheight));
     --color1: rgb(0, 231, 255);
     --color2: rgb(255, 0, 231);
     --speed: 7s;
@@ -103,12 +111,12 @@ main {
 }
 
 .leftnav {
-    background-color: white;
-    width: 350px;
+    background-color: antiquewhite;
+    width: var(--subnavWidth);
     height: 100vh;
     position: absolute;
     top: -100px;
-    position: relative;
+    left: 0;
 }
     .leftnav .block {
         width: 100%;
@@ -122,7 +130,6 @@ main {
         width: 100%;
     }
         .leftnav .choices .choice {
-            background-color: white;
             position: relative;
             padding: 20px;
             height: auto;
@@ -204,23 +211,39 @@ button {
     }
 
 .mainpage {
-    height: var(--mainbodyheight);
-    width: calc(100% - 350px);
+    margin: 0 0 0 var(--subnavWidth);
+    height: calc(100vh - 100px);
+    height: -moz-calc(100% - 100px);
+    height: -webkit-calc(100% - 100px);
+    width: calc(100% - var(--subnavWidth));
+    width: -moz-calc(100% - var(--subnavWidth));
+    width: -webkit-calc(100% - var(--subnavWidth));
     position: relative;
 }
     .mainpage div {
         width: auto;
         height: auto;
     }
-    .mainpage h2 {
-        height: var(--titleheight);
-        margin: 10px 0 0 0;
-        font-size: 2rem;
+
+    .mainpage .mainbody {
+        width: 100%;
+        height: calc(100% - 45px);
+    }
+    .mainpage .mainbody .view {
+        width: 100%;
+        height: 100%;
     }
     .mainpage .page {
         color: white;
-        height: auto;
+        height: 89vh;
+        position: relative;
     }
+        .mainpage .page h2 {
+            height: var(--titleheight);
+            margin: 0 0 0 0;
+            font-size: 2rem;
+        }
+
     .mainpage .top {
         display: flex;
         height: 340px;
@@ -248,9 +271,9 @@ button {
     }
 
     .mainpage .srcSelector {
-        position: absolute;
-        top: 25px;
-        left: 225px;
+        position: fixed;
+        top: 100px;
+        left: 400px;
     }
         .mainpage #npcs form label select{
             text-align: left;
@@ -317,9 +340,8 @@ button {
     }
         .mainpage #profile .card {
             height: 325px;
-            max-width: 225px;
             margin: 0px 0 0 50px;
-            flex: 1;
+            flex: .33;
         }
             .mainpage #profile .card img {
                 height: 100%;
@@ -331,14 +353,20 @@ button {
                     transition: box-shadow 0.1s ease-out;
                 }
         .mainpage #profile form {
-            flex: 2;
+            flex: .33;
             text-align: right;
         }
             .mainpage #profile form label {
-                display: block;
+                display: flex;
                 margin: 10px;
             }
-            .mainpage #profile form .formfield {
+            .mainpage #profile form label #text{
+                flex: .3;
+            }
+            .mainpage #profile form label {
+                flex: .7;
+            }
+                .mainpage #profile form .formfield {
                 display: flex;
                 height: 239px;
             }
@@ -822,29 +850,36 @@ button {
 
     .mainpage .extranotes {
         padding: 0 50px 0 50px;
+        position: relative;
     }
-        .mainpage .extranotes .top, .mainpage .extranotes .bottom {
-            height: 360px;
+        .mainpage .extranotes .noteContainer {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: calc(100% - 60px);
+            height: -moz-calc(100% - 60px);
+            height: -webkit-calc(100% - 60px);
         }
-        .mainpage .extranotes .notearea {
-            height: calc(100%);
-            flex: 1;
-        }
-        .mainpage .extranotes .top {
-            margin: 0 0 50px 0; 
-        }
-        .mainpage .extranotes .notearea + .notearea {
-            margin: 0 0 0 50px;
-        }
-        .mainpage .extranotes textarea {
-            margin: 0;
-            padding: 10px;
-            width: 90%;
-            height: calc(90% - 22px - 30px);
-            text-align: left;
-            resize: none;
-            cursor: pointer;
-        }
+            .mainpage .extranotes .noteContainer .notearea {
+                flex-basis: 50%;
+                height: 50%;
+            }
+                .mainpage .extranotes .noteContainer .notearea h3 {
+                    margin: 0 0 15px 0;
+                }
+                .mainpage .extranotes .noteContainer .notearea textarea {
+                    margin: 0;
+                    padding: 10px;
+                    width: calc(100% - 40px);
+                    width: -moz-calc(100% - 40px);
+                    width: -webkit-calc(100% - 40px);
+                    height: calc(100% - 72px);
+                    height: -moz-calc(100% - 72px);
+                    height: -webkit-calc(100% - 72px);
+                    text-align: left;
+                    resize: none;
+                    cursor: pointer;
+                }
 
 :root {
     --pg2colwidth: calc(100%/3);
@@ -856,14 +891,20 @@ button {
     background-color: black;
     color: black;
     width: 100%;
-    height: 89vh;
+    font-family: 'Underwood319', sans-serif;
+    font-size: 1rem;
 }
-.mainpage .ss .controls {
+.mainpage .ss h2{
+    margin: 0;
+}
+
+    .mainpage .ss .controls {
     top: 5px;
 }
     .mainpage .ss .controls .control {
         color: black;
     }
+
 .mainpage .ss .topcontainer {
     position: relative;
     padding: 15px;
@@ -974,23 +1015,49 @@ button {
         font-weight: bold;
         border-color: black;
     }
-    
-    .mainpage .ss .pg1 {
+
+    .mainpage .ss .bodycontainer {
+        position: relative;
+        padding: 0 15px 0 15px;
+        width: calc(100% - 130px);
+        width: -moz-calc(100% - 130px);
+        width: -webkit-calc(100% - 130px);
+        height: calc(100% - 120px);
+        height: -moz-calc(100% - 120px);
+        height: -webkit-calc(100% - 120px);
+        margin: 0 50px 0 50px;
+    }
+    .mainpage .ss .sspage {
         height: 100%;
         padding: 0 50px 0 50px;
-        text-align: left;
+        position: relative;
+        display: block;
     }
+
+    .mainpage .ss .contentContainer {
+        display: flex;
+        height: 100%;
+    }
+    .mainpage .ss .pg1 .contentContainer {
+        flex-direction: column;
+    }
+
     .mainpage .ss .pg1 .Mainheadline {
+        flex: .1;
         text-align: center;
         font-size: 2.75rem;
         font-weight: bold;
-        height: 70px;
-        width: 100%;
+        padding: 0;
+        margin: 0;        
     }
     .mainpage .ss .pg1 .secContainer {
         position: relative;
         height: calc(100% - 70px);
         display: flex;
+    }
+
+
+    .mainpage .ss .pg1 {
     }
         .mainpage .ss .pg1 .secContainer .leftcol {
             position: relative;
@@ -1063,26 +1130,23 @@ button {
                 margin: 0 0 20px 0;
             }
 
-.mainpage .ss .pg3 {
-    height: 100%;
-    padding: 0 50px 0 50px;
-    text-align: left;
-}
-    .mainpage .ss .pg3 .jobs {
-        width: 90vw;
-        height: 100%;
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        flex-wrap: wrap;
-        margin-top: 10px;
+    .mainpage .ss .pg3 {
+        padding: 0 0 0 50px;
+        text-align: left;
     }
-        .mainpage .ss .pg3 .jobs .job {
-            height: auto;
-            width: 25%;
-            border: solid 1px black;
-            margin: 5px 5px 5px 0;
+        .mainpage .ss .pg3 .jobs {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 10px;
         }
+            .mainpage .ss .pg3 .jobs .job {
+                border: solid 1px black;
+                flex-basis: 23%;
+                padding: 5px;
+                position: relative;
+            }
             .mainpage .ss .pg3 .jobs .job .jtitle {
                 padding: 0;
                 text-align: left;

@@ -4,7 +4,6 @@ body {
     background-size: cover;
     background-color: gray;
     background-repeat: no-repeat;
-    overflow: auto;
 }
 header .thenavigation .hamburger {
     color: white;
@@ -19,19 +18,18 @@ main {
     --tartan: repeating-linear-gradient( transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 270deg, transparent, transparent 50px, rgba(0, 0, 0, 0.4) 50px, rgba(0, 0, 0, 0.4) 53px, transparent 53px, transparent 63px, rgba(0, 0, 0, 0.4) 63px, rgba(0, 0, 0, 0.4) 66px, transparent 66px, transparent 116px, rgba(0, 0, 0, 0.5) 116px, rgba(0, 0, 0, 0.5) 166px, rgba(255, 255, 255, 0.2) 166px, rgba(255, 255, 255, 0.2) 169px, rgba(0, 0, 0, 0.5) 169px, rgba(0, 0, 0, 0.5) 179px, rgba(255, 255, 255, 0.2) 179px, rgba(255, 255, 255, 0.2) 182px, rgba(0, 0, 0, 0.5) 182px, rgba(0, 0, 0, 0.5) 232px, transparent 232px ), repeating-linear-gradient( 125deg, transparent, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.2) 5px );
     --bookSize: 220px;
     --shelfSize: 232px;
-    --transX: 207px;
+    --transX: 230px;
 }
 
 .subNav {
     z-index: 2;
-    flex: 0.1;
     display: flex;
     flex-direction: column;
     background-image: url('https://cdn.discordapp.com/attachments/1045792079747502201/1155539578959187989/new_wood.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    /* top-left top-right bottom-right bottom-left */
     border-radius: 0 10px 10px 0;
+    width: 200px;
 }
     .subNav .subNavChoice {
         flex: 1;
@@ -52,7 +50,9 @@ main {
 .bookshelf {
     z-index: 0;
     position: absolute;
-    width: 1650.98px;
+    width: calc(100% - 280px);
+    width: -moz-calc(100% - 280px);
+    width: -webkit-calc(100% - 280px);
     height: 100%;
     transform: translateX(-100%);
     transition-duration: 1s;
@@ -63,7 +63,9 @@ main {
 .shelf-1 {
     position: relative;
     padding: 1.5% 0 0 2.5%;
-    width: 1552.41px;
+    width: calc(100% - 5%);
+    width: -moz-calc(100% - 5%);
+    width: -webkit-calc(100% - 5%);
     height: var(--shelfSize);
     display: flex;
     flex-direction: row;
@@ -152,9 +154,6 @@ main {
 }
 
 @media only screen and (max-width: 1536px) {
-    .bookshelf {
-        width: 1325px;
-    }
     .shelf-1 {
         width: 1200px;
         
@@ -163,7 +162,6 @@ main {
         font-size: 0.8rem;
     }
     :root {
-        --bookSize: 165px;
         --shelfSize: 218px;
         --transX: 165px;
     }

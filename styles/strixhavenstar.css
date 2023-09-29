@@ -57,7 +57,7 @@ main, p, h2, Mainheadline {
 
 .bodycontainer {
     position: relative;
-    padding: 0 15px 15px 15px;
+    padding: 0 15px 0 15px;
     width: 90%;
     height: 95%;
     margin: 0 5% 0 5%;
@@ -101,7 +101,6 @@ main, p, h2, Mainheadline {
 }
 
 .page {
-    height: 755px;
     padding: 0 50px 0 50px;
     position: relative;
     display: block;
@@ -112,7 +111,6 @@ main, p, h2, Mainheadline {
 }
 
 .pg1 {
-    padding: 0 50px 0 0;
 }
     .pg1 .contentContainer{
         flex-direction: column;
