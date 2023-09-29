@@ -195,7 +195,7 @@ async function saveStudentDetailsData(inputs) {
         reloadPage();
     })
 }
-async function saveCourseChoices(choices) {
+async function saveStudentCourseChoices(choices) {
     _supabase.from('class<>student').select('class(id, year, name, required)').eq('student', sessionStorage.getItem("Student_Id")).then(response => {
         var uniqueCourses = [];
         for (var x = 0; x < response.data.length; x++) {
