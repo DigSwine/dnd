@@ -4,53 +4,6 @@ var url = 'https://pdccazmnzippblnvvqdp.supabase.co';
 const _supabase = createClient(url, anon);
 
 // Local APIs
-function preloadCheck(key) {
-    var ls = localStorage.getItem(key);
-    if (ls) {
-        return true;
-    }
-}
-function preload(key, value) {
-    var ttl = 900000;
-    const now = new Date()
-    const item = {
-        value: value,
-        expiry: now.getTime() + ttl,
-    }
-    localStorage.setItem(key, JSON.stringify(item));
-}
-function checkExpiry() {
-    const keys = [...Array(localStorage.length)].map((o, i) => {
-        return localStorage.key(i);
-    })
-    for (var x = 0; x < keys.length; x++) {
-        if (keys[x] == "debug") {
-
-        } else {
-            getWithExpiry(keys[x]);
-        }
-    }
-}
-function getWithExpiry(key) {
-    const itemStr = localStorage.getItem(key)
-    // if the item doesn't exist, return null
-    if (!itemStr) {
-        return null
-    }
-    const item = JSON.parse(itemStr)
-    const now = new Date()
-    // compare the expiry time of the item with the current time
-    if (now.getTime() > item.expiry) {
-        // If the item is expired, delete the item from storage
-        // and return null
-        localStorage.removeItem(key)
-        console.log(key + " has been removed");
-        return null
-    } else {
-        console.log(key + " has not been removed");
-    }
-    return item.value
-}
 function removelocalStorage(key) {
     localStorage.removeItem(key)
 }
@@ -310,13 +263,25 @@ async function getPlayersClass() {
     })
 }
 async function getPlayersExams() {
-    _supabase.from('exam<>student').select('exam(*), student!inner(id, player)').not('student.player', 'is', null).then(response => {
+    _supabase.from('exam<>student').select('exam(*), student!inner(id, player), score, cheated, studied').order('exam', { ascending: true }).not('student.player', 'is', null).then(response => {
         sessionload("playersExamData", response.data);
     })
 }
 async function getPlayersRelationships() {
     _supabase.from('npc<>student').select('npc(id, name, year, bane, boon), student!inner(id, player), relationship').not('student.player', 'is', null).order('npc', { ascending: true }).then(response => {
         sessionload("playersRelationshipData", response.data);
+        var id = document.getElementById('profile').querySelector('#pid').value;
+        if (id) {
+            var allrel = response.data;
+            var rels = [];
+            for (var y = 0; y < allrel.length; y++) {
+                if (allrel[y].student.id == id) {
+                    rels.push(allrel[y]);
+                }
+            }
+            sort_playerRelationships(rels);
+        }
+
     })
 }
 
@@ -495,6 +460,40 @@ async function saveCourseChoices(inputs) {
         }
     });
 }
+async function createRelationship(nid, sid) {
+    removeStorage('playersRelationshipData');
+    var updateobject = {};
+    updateobject['npc'] = nid;
+    updateobject['student'] = sid;
+    updateobject['relationship'] = 0;
+
+    await _supabase.from('npc<>student').insert(updateobject).then(response => {
+        getPlayersRelationships();
+    })
+}
+async function saveExamScores(exams, results) {
+    removeStorage('playersExamData');    
+    var sid = document.getElementById("players").querySelector('#profile').querySelector('#pid').value;
+    for (var x = 0; x < exams.length; x++) {
+        _supabase.from('exam<>student').update({ 'score': results[x] }).eq('exam', exams[x]).eq('student', sid).then(response => {
+            reloadPage();
+        })
+    }
+}
+async function saveRelationship(cube) {
+    removeStorage('playersRelationshipData');
+    var sid = document.getElementById("profile").querySelector('#pid').value;
+    var nid = cube.id
+    var score = cube.querySelector('input').value;
+
+    var updateobject = {};
+    updateobject['relationship'] = score;
+
+    _supabase.from('npc<>student').update(updateobject).eq('student', sid).eq('npc', nid).then(response => {
+        getPlayersRelationships();
+    })
+}
+
 
 async function setNewPass() {
     var Form = document.getElementById('newPas');

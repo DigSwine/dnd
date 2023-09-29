@@ -666,8 +666,8 @@
 <script src="/javascript/nav.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/javascript/login.js"></script>
-<script src="../../API/api.js"></script>
 <script src="/javascript/preload.js"></script>
+<script src="/API/api.js"></script>
 
 <script>
     var pageid = 'Professor DM';
@@ -1363,7 +1363,6 @@
         var addSelected = relationshipPage.querySelector('select');
         var page = relationshipPage.querySelector('#cubes');
         page.innerHTML = "";
-        console.log(data1);
         for (var x = 0; x < data1.length; x++) {
             var data = data1[x];
             const newCube = document.createElement("div");
@@ -1463,6 +1462,15 @@
                     })
                 })
             })
+        })
+    }
+    function removeRelationship() {
+        removeStorage('playersRelationshipData');
+        var nid = this.parentElement.id;
+        var sid = document.getElementById('profile').querySelector('#pid').value;
+        _supabase.from('npc<>student').delete().match({ npc: nid, student: sid }).then(response => {
+            
+            getPlayersRelationships();
         })
     }
 
@@ -1819,25 +1827,8 @@
         textarea.innerText = "Teacher: " + data.split(':')[1];
     }
 
-    // Controls
-    $('.subbtn').click(function () {
-        var toget = this.innerText;
-        cleanPages();
-
-        sort_playerData(toget, JSON.parse(sessionStorage.getItem('playersData')));
-    })
-    $('#npcs #npcList2').change(function () {
-        cleanNPC('teacher');
-        getNPCStudentDataByID(this.value, JSON.parse(sessionStorage.getItem('NPCData')));
-    })
-    $('#npcs #teacherList').change(function () {
-        cleanNPC('student');
-        getNPCTeacherDataByID(this.value, JSON.parse(sessionStorage.getItem('teachersData')));
-    })
-</script>
-
-<script>
-    // Controls
+    //// Controls
+    // Subnav
     $('.choice').click(function () {
         var subnav = document.getElementById('subnavchoices');
         var choices = subnav.querySelectorAll('.choice');
@@ -1879,6 +1870,68 @@
             }
         }
     })
+    $('.subbtn').click(function () {
+        var toget = this.innerText;
+        cleanPages();
+
+        sort_playerData(toget, JSON.parse(sessionStorage.getItem('playersData')));
+    })
+    $('.subNavChoice').click(function () {
+    var selectedView = this.innerText.toLowerCase();
+    if (selectedView == "job and extras") {
+        selectedView = 'jobandextras';
+    }
+    var Views = document.getElementById('players').querySelector('.mainbody').querySelectorAll('.view');
+    var page = document.getElementById('players');
+    var profile = page.querySelector('#profile');
+    for (var x = 0; x < Views.length; x++) {
+        Views[x].setAttribute("hidden", "true");
+        if (Views[x].id == selectedView) {
+            if (selectedView == "Job and Extras") {
+                page.querySelector('h2').innerText = "Job";
+            } else {
+                var p = "Player: " + profile.querySelector('#player').value;
+                page.querySelector('h2').innerHTML = p;
+            }
+            Views[x].toggleAttribute("hidden");
+        }
+    }
+    })
+    // SS
+    $('.srcSelector').change(function () {
+        this.parentElement.parentElement.querySelector('video').src = "../assets/star/" + this.value;
+    })
+    // NPCs
+    $('#npcs #npcList2').change(function () {
+        cleanNPC('teacher');
+        getNPCStudentDataByID(this.value, JSON.parse(sessionStorage.getItem('NPCData')));
+    })
+    $('#npcs #teacherList').change(function () {
+        cleanNPC('student');
+        getNPCTeacherDataByID(this.value, JSON.parse(sessionStorage.getItem('teachersData')));
+    })
+    // Relationships
+    $('#cancleRelation').click(function () {
+        // Closes add relationship model
+        var page = this.parentElement.parentElement;
+        page.querySelector('#addModel').toggleAttribute('hidden');
+        var addloc = page.querySelector('.controls').querySelector('#add');
+        addloc.classList = "fa fa-plus";
+    })
+    $('#confirmRelation').click(async function () {
+        var nid = this.parentElement.querySelector('#addRelationNPCs').value;
+        var sid = document.getElementById('profile').querySelector('#pid').value;
+        this.parentElement.querySelector('#addRelationNPCs').value = 0;
+        this.parentElement.toggleAttribute('hidden');
+        var addloc = this.parentElement.parentElement.querySelector('.controls').querySelector('#add');
+        addloc.classList = "fa fa-plus";
+        createRelationship(nid, sid);
+    })
+
+</script>
+
+<script>
+
     $('.control').click(function () {
         var page = this.parentNode.parentNode;
         if (this.id == "add") {
@@ -1906,7 +1959,6 @@
                 page.querySelector('#addModel').toggleAttribute('hidden');
             }
         }
-
         if (this.id == "edit") {
             // Get location of edit btn
             var editloc = this.parentElement.parentElement.id;
@@ -1925,6 +1977,7 @@
                 togglecurrent();
             }
         }
+
         if (this.id == "save") {
             this.disabled;
             var saveloc = this.parentElement.parentElement.id;
@@ -1964,15 +2017,11 @@
                 }
                 if (saveloc == "details") {
                 }
-
                 if (saveloc == "Cyr1" || saveloc == "Cyr2" || saveloc == "Cyr3" || saveloc == "Cyr4") {
                     var all = this.parentElement.parentElement.parentElement.parentElement;
                     var inputs = all.querySelectorAll('select');
                     saveCourseChoices(inputs);
                 }
-
-                /*
-
                 if (saveloc == "exams") {
                     var exams = [];
                     var results = [];
@@ -2000,7 +2049,29 @@
                         saveRelationship(cubes[x]);
                     }
                 }
+                // Strixhaven Star
+                if (saveloc == "strixhaven star") {
+                    var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
+                    var pgHeader = [];
+                    var pgContent = [];
+                    var MainOptions = [];
+                    for (var x = 0; x < pages.length; x++) {
+                        var pg = page.querySelector(pages[x]);
+                        if (pages[x] != "#topcontainer") {
+                            pgHeader.push(pg.querySelector('input'));
+                            pgContent.push(pg.querySelector('textarea'));
+                        }
+                    }
+                    var pg = page.querySelector('#topcontainer');
+                    MainOptions.push(pg.querySelectorAll('input'));
+                    MainOptions.push(pg.parentElement.querySelector('select'));
 
+                    saveSS(pages, pgHeader, pgContent, MainOptions);
+
+                    var jobs = page.querySelector('.pg3').querySelector('.jobs').querySelectorAll('.job');
+                    saveJobs(jobs);
+                }
+                // NPCs
                 if (saveloc == "npcs") {
                     var allinputs = [];
                     var SorT = "";
@@ -2058,6 +2129,7 @@
                         }
                     }
                 }
+                //Notes
                 if (saveloc == "extra notes") {
                     var textareas = page.querySelectorAll('textarea');
                     var allinputs = [];
@@ -2068,29 +2140,6 @@
                     }
                     saveNotes(allinputs);
                 }
-                if (saveloc == "strixhaven star") {
-                    var pages = ['#page1', '#pg2left', '#pg2Mtop', '#pg2Mbot', '#pg2right'];
-                    var pgHeader = [];
-                    var pgContent = [];
-                    var MainOptions = [];
-                    for (var x = 0; x < pages.length; x++) {
-                        var pg = page.querySelector(pages[x]);
-                        if (pages[x] != "#topcontainer") {
-                            pgHeader.push(pg.querySelector('input'));
-                            pgContent.push(pg.querySelector('textarea'));
-                        }
-                    }
-                    var pg = page.querySelector('#topcontainer');
-                    MainOptions.push(pg.querySelectorAll('input'));
-                    MainOptions.push(pg.parentElement.querySelector('select'));
-
-                    saveSS(pages, pgHeader, pgContent, MainOptions);
-
-                    var jobs = page.querySelector('.pg3').querySelector('.jobs').querySelectorAll('.job');
-                    saveJobs(jobs);
-
-                    
-                } */
             } else {
                 alert("Please unselect one of the options - add or edit");
             }
@@ -2103,7 +2152,6 @@
         if (this.id == "delete") {
             var editbtn = page.querySelector('#edit');
             var addbtn = page.querySelector('#add');
-            var active = "";
 
             var studentID = this.parentElement.parentElement.querySelector('#nid').value;
             var teacherID = this.parentElement.parentElement.querySelector('#tid').value;
@@ -2116,60 +2164,27 @@
         }
     })
 
-    $('#npcList').change(function () {
-        getNPCRelationshipDataByID(this.value);
-    })
-    $('.srcSelector').change(function () {
-        this.parentElement.parentElement.querySelector('video').src = "../assets/star/" + this.value;
-    })
-    $('#confirmRelation').click(function () {
-        var nid = this.parentElement.querySelector('#addRelationNPCs').value;
-        var sid = document.getElementById('profile').querySelector('#pid').value;
-        this.parentElement.querySelector('#addRelationNPCs').value = 0;
-        this.parentElement.toggleAttribute('hidden');
-        var addloc = this.parentElement.parentElement.querySelector('.controls').querySelector('#add');
-        addloc.classList = "fa fa-plus";
-        createRelationship(nid, sid);
-    })
-    $('#cancleRelation').click(function () {
-        var page = this.parentElement.parentElement;
-        page.querySelector('#addModel').toggleAttribute('hidden');
-        var addloc = page.querySelector('.controls').querySelector('#add');
-        addloc.classList = "fa fa-plus";
-    })
-    $('.subNavChoice').click(function () {
-        var selectedView = this.innerText.toLowerCase();
-        if (selectedView == "job and extras") {
-            selectedView = 'jobandextras';
-        }
-        var Views = document.getElementById('players').querySelector('.mainbody').querySelectorAll('.view');
-        var page = document.getElementById('players');
-        var profile = page.querySelector('#profile');
-        for (var x = 0; x < Views.length; x++) {
-            Views[x].setAttribute("hidden", "true");
-            if (Views[x].id == selectedView) {
-                if (selectedView == "Job and Extras") {
-                    page.querySelector('h2').innerText = "Job";
-                } else {
-                    var p = "Player: " + profile.querySelector('#player').value;
-                    page.querySelector('h2').innerHTML = p;
-                }
-                Views[x].toggleAttribute("hidden");
-            }
-        }
-    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     ////// Setters
-    //// Players
 
-
-    function saveExamScores(exams, results) {
-        var sid = document.getElementById("players").querySelector('#profile').querySelector('#pid').value;
-        for (var x = 0; x < exams.length; x++) {
-            _supabase.from('exam<>student').update({ 'score': results[x] }).eq('exam', exams[x]).eq('student', sid).then(response => {
-                reloadPage();
-            })
-        }
-    }
     function saveWage() {
         var sid = document.getElementById('profile').querySelector('#pid').value;
         var newWage = this.value;
@@ -2177,27 +2192,7 @@
         _supabase.from('Job<>Student').update({ 'wage': newWage }).eq('Student', sid).then(response => {
         })
     }
-    function saveRelationship(cube) {
-        var sid = document.getElementById("profile").querySelector('#pid').value;
-        var nid = cube.id
-        var score = cube.querySelector('input').value;
-
-        var updateobject = {};
-        updateobject['relationship'] = score;
-
-        _supabase.from('npc<>student').update(updateobject).eq('student', sid).eq('npc', nid).then(response => {
-        })
-    }
-    function createRelationship(nid, sid) {
-        var updateobject = {};
-        updateobject['npc'] = nid;
-        updateobject['student'] = sid;
-        updateobject['relationship'] = 0;
-
-        _supabase.from('npc<>student').insert(updateobject).then(response => {
-            getNPCRelationshipDataByStudentID(sid);
-        })
-    }
+    
 
     // Removers
     function fireFromJob() {
@@ -2215,21 +2210,5 @@
             parent.style.display = "none";
         })
     }
-    function removeRelationship() {
-        var nid = this.parentElement.id;
-        var sid = document.getElementById('profile').querySelector('#pid').value;
-        _supabase.from('npc<>student').delete().match({ npc: nid, student: sid }).then(response => {
-            var relationshipPage = document.getElementById('relationships');
-            for (var x = 0; x < NPCname.length; x++) {
-                if (NPCid[x] == nid) {
-                    var newOption = document.createElement('option');
-                    newOption.value = NPCid[x];
-                    newOption.innerText = NPCname[x];
-                    relationshipPage.querySelector('#addRelationNPCs').appendChild(newOption);
-                    sortSelect(relationshipPage.querySelector('#addRelationNPCs'));
-                }
-            }
-            getNPCRelationshipDataByStudentID(sid);
-        })
-    }
+
 </script>

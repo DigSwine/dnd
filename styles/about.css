@@ -17,7 +17,8 @@ body {
     padding: 10px;
     text-align: center;
     width: 60%;
-    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
     backdrop-filter: blur(7px);
     background: transparent;
     font-size: 1.2rem;
