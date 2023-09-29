@@ -234,10 +234,107 @@ main {
     .mainpage #profile {
         position: relative;
     }
-        .mainpage #profile ::placeholder {
-            color: white;
-            opacity: 1;
+        .mainpage #profile .mainbody {
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 15px);
+            height: -moz-calc(100% - 15px);
+            height: -webkit-calc(100% - 15px);
         }
+        .mainpage #profile .topCollection {
+            flex: .3;
+            display: flex;
+            flex-direction: row;
+        }
+        .mainpage #profile .botCollection {
+            margin: 10px 0 0 0;
+            flex: .6;
+            display: flex;
+            flex-direction: row;
+            text-align: left;
+        }
+        .mainpage #profile form {
+            flex: 1;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            margin: 0;
+        }
+            .mainpage #profile form label {
+                display: block;
+                margin: 5px;
+            }
+        .mainpage #profile .personality {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 0 0 50px;
+        }
+            .mainpage #profile .personality .personal {
+                flex: 1;
+                display: flex;
+                text-align: right;
+            }
+
+                .mainpage #profile .personality .personal p, .mainpage #profile .personality .personal textarea {
+                    height: calc(100% / 5);
+                }
+
+                .mainpage #profile .personality .personal p {
+                    color: white;
+                    max-width: 20%;
+                    padding: 0 5px 5px 5px;
+                    margin: 0 15px 5px 5px;
+                    flex: 1;
+                    text-align: right;
+                }
+
+                .mainpage #profile .personality .personal textarea {
+                    margin: 5px 10px 0 10px;
+                    resize: none;
+                    flex: 1;
+                    color: white;
+                    background-color: transparent;
+                    height: calc(100% - 10px) !important;
+                    height: -moz-calc(100% - 10px) !important;
+                    height: -webkit-calc(100% - 10px) !important;
+                }
+
+        .mainpage #profile .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 50px 0 0;
+        }
+            .mainpage #profile .right .formfield {
+                flex: 1;
+                display: flex;
+            }
+                .mainpage #profile .right .formfield label {
+                    flex: 0.7;
+                    text-align: right;
+                    padding: 0 5px 5px 5px;
+                    margin: 0 15px 5px 5px;
+                }
+                .mainpage #profile .right .formfield textarea {
+                    flex: 1;
+                    margin: 0 10px 0 0;
+                    height: calc(100% - 10px);
+                    resize: none;
+                }
+
+
+
+
+
+
+
+
+.mainpage #profile ::placeholder {
+    color: white;
+    opacity: 1;
+}
         .mainpage #profile .card {
             height: 325px;
             max-width: 350px;
@@ -254,14 +351,8 @@ main {
                     box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
                     transition: box-shadow 0.1s ease-out;
                 }
-        .mainpage #profile form {
-            flex: 2;
-            text-align: right;
-        }
-            .mainpage #profile form label {
-                display: block;
-                margin: 10px;
-            }
+
+            
 
             .mainpage #profile form .formfield {
                 display: flex;
@@ -281,62 +372,19 @@ main {
             .mainpage #profile form label textarea {
                 height: 225px;
             }
-        .mainpage #profile .personality {
-            width: 100%;
-            height: calc(100% - 15px);
-            margin-top: 5px;
-            text-align: right;
-            flex: 1;
-        }
-            .mainpage #profile .personality .personal {
-                text-align: right;
-                display: flex;
-                width: calc(100% - 50px);
-                padding: 0 0 0 50px;
-                height: calc(100% / 5);
-            }
-                .mainpage #profile .personality .personal p, .mainpage #profile .personality .personal textarea {
-                    height: calc(100% / 5);
-                }
-                .mainpage #profile .personality .personal p {
-                    color: white;
-                    max-width: 20%;
-                    padding: 0 5px 5px 5px;
-                    margin: 0 15px 5px 5px;
-                    flex: 1;
-                }
-                .mainpage #profile .personality .personal textarea {
-                    width: calc(100% - 20%);
-                    height: calc(100% - 10px);
-                    min-height: calc(100% - 10px);
-                    margin: 5px 10px 0 10px;
-                    resize: none;
-                    flex: 1;
-                    color: white;
-                    text-align: left;
-                    background-color: transparent;
-                }
-        .mainpage #profile .right {
-            flex: 1;
-        }
-            .mainpage #profile .right .formfield {
-                height: 50%;
-                display: flex;
-            }
-                .mainpage #profile .right .formfield label {
-                    flex: 0.7;
-                }
-                .mainpage #profile .right .formfield textarea {
-                    flex: 1;
-                    margin: 0 10px 0 0;
-                    height: calc(100% - 10px);
-                    resize: none;
-                }
+        
+
+
     .mainpage select:disabled {
         -moz-appearance: none;
         -webkit-appearance: none;
         appearance: none;
     }
+
+
+
+
+
 
     .mainpage #details {
         position: relative;
