@@ -157,32 +157,15 @@ main {
 @media only screen and (max-width: 1536px) {
     .shelf-1 {
         width: 1200px;
-        
+        height: calc(100% / 3 - 15px);
+        height: -moz-calc(100% / 3 - 15px);
+        height: -webkit-calc(100% / 3 - 15px);
     }
     .spine-title {
         font-size: 0.8rem;
     }
     :root {
         --shelfSize: 218px;
+        --bookSize: 100%;
     }
-}
-
-@media only screen and (max-width: 1350px) {
-
-}
-
-@media only screen and (max-width: 1225px) {
-
-}
-
-@media only screen and (max-width: 1000px) {
-
-}
-
-@media only screen and (max-width: 900px) {
-
-}
-
-@media only screen and (max-width: 625px) {
-
 }
