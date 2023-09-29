@@ -253,13 +253,17 @@ main {
             flex-direction: row;
             text-align: left;
         }
+        .mainpage #profile .topCollection .formContainer {
+            flex: .7;
+            display: flex;
+
+        }
         .mainpage #profile form {
             flex: 1;
             text-align: right;
             display: flex;
             flex-direction: column;
             height: 100%;
-            margin: 0;
         }
             .mainpage #profile form label {
                 display: block;
@@ -276,11 +280,9 @@ main {
                 display: flex;
                 text-align: right;
             }
-
                 .mainpage #profile .personality .personal p, .mainpage #profile .personality .personal textarea {
                     height: calc(100% / 5);
                 }
-
                 .mainpage #profile .personality .personal p {
                     color: white;
                     max-width: 20%;
@@ -289,7 +291,6 @@ main {
                     flex: 1;
                     text-align: right;
                 }
-
                 .mainpage #profile .personality .personal textarea {
                     margin: 5px 10px 0 10px;
                     resize: none;
@@ -300,7 +301,6 @@ main {
                     height: -moz-calc(100% - 10px) !important;
                     height: -webkit-calc(100% - 10px) !important;
                 }
-
         .mainpage #profile .right {
             flex: 1;
             display: flex;
@@ -323,27 +323,17 @@ main {
                     height: calc(100% - 10px);
                     resize: none;
                 }
-
-
-
-
-
-
-
-
 .mainpage #profile ::placeholder {
     color: white;
     opacity: 1;
 }
         .mainpage #profile .card {
-            height: 325px;
-            max-width: 350px;
-            margin: 0px 0 0 50px;
-            flex: 1;
+            flex: .3;
+            margin: 0 0 0 50px;
         }
             .mainpage #profile .card img {
-                height: 100%;
                 max-width: 390px;
+                max-height: 300px;
                 border-radius: 5%;
                 box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255,255,255,0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
             }
@@ -351,9 +341,6 @@ main {
                     box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255,255,255,0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
                     transition: box-shadow 0.1s ease-out;
                 }
-
-            
-
             .mainpage #profile form .formfield {
                 display: flex;
                 height: 239px;
@@ -362,6 +349,14 @@ main {
                     flex: 1;
                     margin: 0 5px 0 20px;
                 }
+        .mainpage #profile .topCollection form label #text {
+            width: 30%;
+        }
+        .mainpage #profile .topCollection form label input {
+            text-align: left;
+            width: 70%;
+            padding: 5px 0 5px 10px;
+        }
                 .mainpage #profile form .formfield textarea {
                     flex: 2.7;
                     height: 225px;
@@ -372,19 +367,11 @@ main {
             .mainpage #profile form label textarea {
                 height: 225px;
             }
-        
-
-
     .mainpage select:disabled {
         -moz-appearance: none;
         -webkit-appearance: none;
         appearance: none;
     }
-
-
-
-
-
 
     .mainpage #details {
         position: relative;

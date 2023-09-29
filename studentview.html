@@ -86,66 +86,68 @@
                         <div class="card">
                             <img id="profilepicture" />
                         </div>
-                        <form id="profileform1">
-                            <label>Name: <input id="name" placeholder="Name" disabled /></label>
-                            <label>Age: <input id="age" placeholder="Age" disabled /></label>
-                            <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
-                            <label>Race: <input id="race" placeholder="Race" disabled /></label>
-                            <label>Subrace: <input id="subrace" placeholder="Subrace" disabled /></label>
-                            <label>Class: <input id="class" placeholder="Class" disabled /></label>
-                            <label>Subclass: <input id="subclass" placeholder="Subclass" disabled /></label>
-                            <label>Level: <input id="level" placeholder="Level" disabled /></label>
-                        </form>
-                        <form id="profileform2">
-                            <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
-                            <label>Height: <input id="height" placeholder="Height" disabled /></label>
-                            <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
-                            <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
-                            <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
-                            <label>Background: <input id="background" placeholder="Background" disabled /></label>
-                            <label>Year: <input id="year" placeholder="Year" disabled /></label>
-                            <label>
-                                College:
-                                <select id="college" disabled>
-                                    <option value="0">-- Please Select College Choice --</option>
-                                </select>
-                            </label>
-                        </form>
-                    </div>
-                    <div class="botCollection">
-                        <div class="personality scrollbar">
-                            <div class="personal">
-                                <p>Personality Traits:</p>
-                                <textarea id="personalitytraits" class="scrollbar" placeholder="Personality Traits" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Ideals:</p>
-                                <textarea id="ideals" class="scrollbar" placeholder="Ideals" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Bonds:</p>
-                                <textarea id="bonds" class="scrollbar" placeholder="Bonds" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Flaws:</p>
-                                <textarea id="flaws" class="scrollbar" placeholder="Flaws" readonly></textarea>
-                            </div>
-                            <div class="personal">
-                                <p>Goals:</p>
-                                <textarea id="goals" class="scrollbar" placeholder="Your life time desire" readonly></textarea>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div class="formfield">
-                                <label>Background Features:</label>
-                                <textarea id="backgroundfeatures" class="scrollbar" placeholder="Background Features" readonly></textarea>
-                            </div>
-                            <div class="formfield">
-                                <label>Additional Character Appearance:</label>
-                                <textarea id="appearance" class="scrollbar" placeholder="Additional Character Appearance" readonly></textarea>
-                            </div>
+                        <div class="formContainer">
+                            <form id="profileform1">
+                                <label>Name: <input id="name" placeholder="Name" disabled /></label>
+                                <label>Age: <input id="age" placeholder="Age" disabled /></label>
+                                <label>Gender: <input id="gender" placeholder="Gender" disabled /></label>
+                                <label>Race: <input id="race" placeholder="Race" disabled /></label>
+                                <label>Subrace: <input id="subrace" placeholder="Subrace" disabled /></label>
+                                <label>Class: <input id="class" placeholder="Class" disabled /></label>
+                                <label>Subclass: <input id="subclass" placeholder="Subclass" disabled /></label>
+                                <label>Level: <input id="level" placeholder="Level" disabled /></label>
+                            </form>
+                            <form id="profileform2">
+                                <label>Alignment: <input id="alignment" placeholder="Alignment" disabled /></label>
+                                <label>Height: <input id="height" placeholder="Height" disabled /></label>
+                                <label>Weight: <input id="weight" placeholder="Weight" disabled /></label>
+                                <label>Hair Colour: <input id="haircolour" placeholder="Hair Colour" disabled /></label>
+                                <label>Eye Colour: <input id="eyecolour" placeholder="Eye Colour" disabled /></label>
+                                <label>Background: <input id="background" placeholder="Background" disabled /></label>
+                                <label>Year: <input id="year" placeholder="Year" disabled /></label>
+                                <label>
+                                    College:
+                                    <select id="college" disabled>
+                                        <option value="0">-- Please Select College Choice --</option>
+                                    </select>
+                                </label>
+                            </form>
                         </div>
                     </div>
+                        <div class="botCollection">
+                            <div class="personality scrollbar">
+                                <div class="personal">
+                                    <p>Personality Traits:</p>
+                                    <textarea id="personalitytraits" class="scrollbar" placeholder="Personality Traits" readonly></textarea>
+                                </div>
+                                <div class="personal">
+                                    <p>Ideals:</p>
+                                    <textarea id="ideals" class="scrollbar" placeholder="Ideals" readonly></textarea>
+                                </div>
+                                <div class="personal">
+                                    <p>Bonds:</p>
+                                    <textarea id="bonds" class="scrollbar" placeholder="Bonds" readonly></textarea>
+                                </div>
+                                <div class="personal">
+                                    <p>Flaws:</p>
+                                    <textarea id="flaws" class="scrollbar" placeholder="Flaws" readonly></textarea>
+                                </div>
+                                <div class="personal">
+                                    <p>Goals:</p>
+                                    <textarea id="goals" class="scrollbar" placeholder="Your life time desire" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="formfield">
+                                    <label>Background Features:</label>
+                                    <textarea id="backgroundfeatures" class="scrollbar" placeholder="Background Features" readonly></textarea>
+                                </div>
+                                <div class="formfield">
+                                    <label>Additional Character Appearance:</label>
+                                    <textarea id="appearance" class="scrollbar" placeholder="Additional Character Appearance" readonly></textarea>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
             <div class="page" id="details" hidden>
@@ -1228,12 +1230,14 @@
             // getStudentCourseByID(sessionStorage.getItem("Student_Id"));
         }
         if (toshow == "exams") {
-            // getStudentExamByID(sessionStorage.getItem("Student_Id"));
+            // getStudentExamByID();
         }
-        if (toshow == "relationships") {
-            // getRelationships(sessionStorage.getItem("Student_Id"));
-        }
+
         document.getElementById(toshow).toggleAttribute("hidden");
+        if (toshow == "relationships") {
+            removeStorage('studentRelationships');
+            getRelationshipsbyStudentID(sessionStorage.getItem("Student_Id"));
+        }
     })
     $('.control').click(function () {
         if (this.id == "edit") {
