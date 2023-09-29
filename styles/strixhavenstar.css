@@ -320,9 +320,6 @@ main, p, h2, Mainheadline {
         margin: 0;
     }
     
-    .contentContainer{
-        height: 89%;
-    }
     .pg1 .secContainer .right{
         font-size: 1.25rem;
     }
@@ -333,6 +330,58 @@ main, p, h2, Mainheadline {
         flex-basis: 32%;
     }
 }
+@media only screen and (max-width: 1343px) {
+        .pg3 .jobs .job {
+            flex-basis: 48%;
+        }
+}
+@media only screen and (max-width: 1100px) {
+    .pg2 .contentContainer {
+        flex-direction: column;
+        height: auto;
+        min-height: 100%;
+    }
+    .pg2 .midwrapper {
+        flex: 1;
+        border-left: none;
+        border-right: none;
+        border-top: 2px solid #2f2f2f;
+        border-bottom: 2px solid #2f2f2f;
+    }
+    .pg2 .left, .pg2 .right {
+        padding: 10px 0 10px 0;
+        flex: 1;
+    }
+                .pg2 .midwrapper .bot:before {
+                    border-top: 2px solid #2f2f2f;
+                    content: '';
+                    display: block;
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+    .pg2 .midwrapper .top, .pg2 .midwrapper .bot {
+        padding: 10px 0 10px 0;
+        flex: 1;
+    }
+}
+@media only screen and (max-width: 871px) {
+    .pg3 .jobs .job {
+        flex-basis: 95%;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .bodycontainer {
+        position: relative;
+        padding: 0 0 0 0;
+        width: 100%;
+        height: 95%;
+        margin: 0 0 0 0;
+    }
+}
+
+
+
+
 @media only screen and (max-width: 1155px) {
     body {
         overflow-y: auto;

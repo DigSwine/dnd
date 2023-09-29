@@ -6,14 +6,13 @@ body {
 
 .image-background-text {
     height: 100%;
-    margin: 0% 0% 0% 0%;
-    display: flex;
+    margin: 0%;
 }
 
 .text-overlay {
-    flex: 1;
-    margin: 0 400px 0 400px;
-    height: 650px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 10px;
     text-align: center;
     width: 60%;
@@ -24,26 +23,32 @@ body {
     font-size: 1.2rem;
 }
 
-@media only screen and (max-width: 1800px) {
+@media only screen and (max-width: 2560px) {
     .text-overlay {
-        height: auto;
-        margin: 0 300px 0 300px;
+        font-size: 1.5rem;
+    }
+    q {
+        font-size: 2.75rem;
     }
 }
-@media only screen and (max-width: 1562px) {
+@media only screen and (max-width: 1945px) {
     .text-overlay {
-        margin: 0 200px 0 200px;
+        font-size: 1.2rem;
+    }
+
+    q {
+        font-size: 2rem;
     }
 }
 @media only screen and (max-width: 1540px) {
     .text-overlay {
-        height: 550px;
+        height: auto;
         font-size: 1.1rem;
     }
 }
 @media only screen and (max-width: 1300px) {
     .text-overlay {
-        font-size: 1rem;
+        font-size: 1.2rem;
         width: 90%;
     }
 
@@ -51,9 +56,9 @@ body {
         font-size: 1.75rem;
     }
 }
-@media only screen and (max-width: 970px) {
+@media only screen and (max-width: 995px) {
     .text-overlay {
-        margin: 0 50px 0 50px;
+        font-size: 1.1rem;
     }
 }
 @media only screen and (max-width: 870px) {
@@ -61,7 +66,7 @@ body {
         margin: 0 0px 0 0px;
     }
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 780px) {
     .text-overlay {
         font-size: 0.9rem;
         width: 98%;
@@ -85,28 +90,13 @@ body {
         overflow-y: auto;
         overflow-x: auto;
     }
-    .text-overlay {
-        top: 46%;
-    }
-}
-@media only screen and (max-width: 380px) {
-    .text-overlay {
-        top: 49%;
-    }
 }
 @media only screen and (max-width: 375px) {
     .text-overlay {
-        top: 42%;
         font-size: 0.8rem;
     }
 
     q {
         font-size: 1.25rem;
     }
-}
-@media only screen and (max-width: 260px) {
-    .text-overlay {
-        top: 50%;
-    }
-
 }
