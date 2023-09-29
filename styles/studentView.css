@@ -131,7 +131,7 @@ main {
         }
 
 .mainpage {
-    height: var(--mainbodyheight);
+    height: 89vh;
     width: calc(100% - 350px);
     position: relative;
 }
@@ -146,7 +146,7 @@ main {
     }
     .mainpage .page {
         color: white;
-        height: auto;
+        height: 100%;
     }
     .mainpage .top {
         display: flex;
