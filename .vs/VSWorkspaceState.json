@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\API"
+    "\\API",
+    "\\assets",
+    "\\assets\\personal",
+    "\\test"
   ],
-  "SelectedNode": "\\API\\api.js",
+  "SelectedNode": "\\assets\\personal\\Eliza_tattoo_back.png",
   "PreviewInSolutionExplorer": false
 }
