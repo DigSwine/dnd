@@ -474,6 +474,17 @@
         var studentData = data[0];
         // Assign Profile Data
         var profile = document.getElementById('profile');
+
+        //console.log(getPlayerImage(studentData.picture));
+
+      
+
+        
+
+
+
+        // profile.querySelector('#profilepicture').src = getPlayerImage(studentData.picture);
+
         profile.querySelector('#profilepicture').src = "assets/students/players/" + studentData.picture;
         profile.querySelector('#name').value = studentData.name;
         profile.querySelector('#age').value = studentData.age;

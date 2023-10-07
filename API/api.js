@@ -284,6 +284,13 @@ async function getPlayersRelationships() {
 
     })
 }
+async function getPlayerImage(name) {
+    //_supabase.storage.from('pictures').download('students/' + name).then(response => {
+
+    //    const urls = blobs.map(( response.data ) , URL.createObjectURL(response.data));
+    //    return urls;
+    //})
+}
 
 
 async function saveSS(locations, headers, contents, options) {
