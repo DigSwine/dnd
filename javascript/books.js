@@ -64,7 +64,7 @@ books.classes.url = [
     "https://homebrewery.naturalcrit.com/share/EGRM4xOrtHQP",
     "https://homebrewery.naturalcrit.com/share/UJKvsxEaGLuD",
     "https://www.gmbinder.com/share/-MssFRJW4q20toN8higH",
-    "https://homebrewery.naturalcrit.com/share/VnHNpsYX-SGm1",
+    "https://homebrewery.naturalcrit.com/share/VnHNpsYX-SGm",
     "https://homebrewery.naturalcrit.com/share/uUc-RJ0Q88LN"
 ];
 books.classes.img = [
