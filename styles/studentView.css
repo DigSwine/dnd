@@ -252,6 +252,7 @@ main {
             display: flex;
             flex-direction: row;
             text-align: left;
+            max-height: 450px;
         }
         .mainpage #profile .topCollection .formContainer {
             flex: .7;
@@ -274,6 +275,7 @@ main {
             display: flex;
             flex-direction: column;
             padding: 0 0 0 50px;
+            gap: 5px;
         }
             .mainpage #profile .personality .personal {
                 flex: 1;
@@ -306,6 +308,7 @@ main {
             display: flex;
             flex-direction: column;
             padding: 0 50px 0 0;
+            gap: 5px;
         }
             .mainpage #profile .right .formfield {
                 flex: 1;
@@ -322,6 +325,7 @@ main {
                     margin: 0 10px 0 0;
                     height: calc(100% - 10px);
                     resize: none;
+                    max-height: 200px;
                 }
 .mainpage #profile ::placeholder {
     color: white;

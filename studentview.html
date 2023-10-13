@@ -469,7 +469,7 @@
         }
     }
 
-    function sort_studentData(data) {
+    async function sort_studentData(data) {
         //// Profile ////
         var studentData = data[0];
         // Assign Profile Data
@@ -478,10 +478,13 @@
         //console.log(getPlayerImage(studentData.picture));
 
       
+        //const downloadResult = await getPlayerImage(studentData.picture)
 
-        
-
-
+        //console.log(downloadResult.data);
+        //if (downloadResult.files.length !== 0) {
+        //    const imageUrl = window.URL.createObjectURL(downloadResult)
+        //}
+        //profile.querySelector('#profilepicture').src = imageUrl
 
         // profile.querySelector('#profilepicture').src = getPlayerImage(studentData.picture);
 
