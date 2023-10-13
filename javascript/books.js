@@ -65,7 +65,7 @@ books.classes.url = [
     "https://homebrewery.naturalcrit.com/share/UJKvsxEaGLuD",
     "https://www.gmbinder.com/share/-MssFRJW4q20toN8higH",
     "https://homebrewery.naturalcrit.com/share/VnHNpsYX-SGm1",
-    "https://homebrewery.naturalcrit.com/share/P1a4HjHAsPLG"
+    "https://homebrewery.naturalcrit.com/share/uUc-RJ0Q88LN"
 ];
 books.classes.img = [
     "https://steamuserimages-a.akamaihd.net/ugc/943958354987860688/A8D0883AD68233784FB7274BB347E278FEA85E8D/?imw=5000",
@@ -73,7 +73,7 @@ books.classes.img = [
     "https://i.pinimg.com/originals/48/41/e8/4841e8adab4f2257d6ad89f296d53fd2.jpg",
     "https://cdnb.artstation.com/p/assets/images/images/000/661/881/large/james-paick-20.jpg?1430174599",
     "https://i.pinimg.com/originals/35/41/eb/3541eb3b30f6deec6bdb1ef92d708ab8.jpg",
-    "https://media.tate.org.uk/art/images/work/N/N01/N01522_10.jpg"
+    "https://ae01.alicdn.com/kf/H219e55f7435a4f85a6368d6f3b84951dj/Picture-By-Numbers-Abstract-Hero-Doctor-Drawing-On-Canvas-HandPainted-Art-Kits-DIY-Oil-Painting-Angel.jpg"
 ];
 // Backgrounds
 books.backgrounds.name = [
