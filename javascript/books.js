@@ -8,7 +8,7 @@ books.backgrounds = {}
 books.races.name = [
     "Ratling",
     "Dhampirica Hybrids",
-    "Fet'Ri",
+    "Fey'Ri",
     "Runescale",
     "Kitsune",
     "Cecaelia",
