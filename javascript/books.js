@@ -4,6 +4,11 @@ books.races = {}
 books.classes = {}
 books.backgrounds = {}
 
+books.pdf = {}
+books.pdf.races = {}
+books.pdf.classes = {}
+books.pdf.backgrounds = {}
+
 // Races
 books.races.name = [
     "Ratling",
@@ -49,7 +54,16 @@ books.classes.name = [
     "Mage Hunter",
     "Marksman",
     "Warlock Patron: <br> The Succubus",
-    "The Doctor"
+    "The Doctor",
+    "Fighter Subclass: <br> Tech Knight",
+    "Monk Subclass: <br> Way of the Soul Knife",
+    "Paladin Subclass: <br> Oath of Sanity",
+    "Rouge Subclass: <br> Gadgeteer",
+    "Sorcerer Origin: <br> Aether Heart",
+    "Warlock Patron: <br> The Dragon",
+    "Warden 1.2",
+    "Psion",
+    "Inventor"
 ];
 books.classes.author = [
     "DS",
@@ -57,7 +71,16 @@ books.classes.author = [
     "VD",
     "S",
     "VD",
-    "SM"
+    "SM",
+    "KT",
+    "KT",
+    "KT",
+    "KT",
+    "KT",
+    "KT",
+    "KT",
+    "KT",
+    "KT"
 ];
 books.classes.url = [
     "https://homebrewery.naturalcrit.com/share/RcPEnSaJ5nrb",
@@ -65,7 +88,16 @@ books.classes.url = [
     "https://homebrewery.naturalcrit.com/share/UJKvsxEaGLuD",
     "https://www.gmbinder.com/share/-MssFRJW4q20toN8higH",
     "https://homebrewery.naturalcrit.com/share/VnHNpsYX-SGm",
-    "https://homebrewery.naturalcrit.com/share/uUc-RJ0Q88LN"
+    "https://homebrewery.naturalcrit.com/share/uUc-RJ0Q88LN",
+    "https://www.gmbinder.com/share/-M-I1FohdOA6CKSZOo4R",
+    "https://www.gmbinder.com/share/-LlNuBWzsP3xuHfyaf6A",
+    "https://www.gmbinder.com/share/-L_8ZXM2qHb7mZ8N82lX",
+    "https://www.gmbinder.com/share/-MUIadEZ8KkeYLakUYBs",
+    "https://www.gmbinder.com/share/-LZhAGxKvYOsRhEpHMiZ",
+    "https://www.gmbinder.com/share/-MjAx7CqmUwg0b1wu5Jw",
+    "https://static1.squarespace.com/static/5e7eab9fcc76e2321541f8b3/t/64389682b9f0202aaab5fb79/1681430148052/Warden+v1.2+-+compressed.pdf",
+    "https://static1.squarespace.com/static/5e7eab9fcc76e2321541f8b3/t/62d709d380489f6b1a28754b/1658259926628/Psion+1.5.3+Compressed.pdf",
+    "https://static1.squarespace.com/static/5e7eab9fcc76e2321541f8b3/t/62d708fb6a4bcc5aaf59af5d/1658259716353/Inventor2.2.3.pdf"
 ];
 books.classes.img = [
     "https://steamuserimages-a.akamaihd.net/ugc/943958354987860688/A8D0883AD68233784FB7274BB347E278FEA85E8D/?imw=5000",
@@ -73,7 +105,16 @@ books.classes.img = [
     "https://i.pinimg.com/originals/48/41/e8/4841e8adab4f2257d6ad89f296d53fd2.jpg",
     "https://cdnb.artstation.com/p/assets/images/images/000/661/881/large/james-paick-20.jpg?1430174599",
     "https://i.pinimg.com/originals/35/41/eb/3541eb3b30f6deec6bdb1ef92d708ab8.jpg",
-    "https://ae01.alicdn.com/kf/H219e55f7435a4f85a6368d6f3b84951dj/Picture-By-Numbers-Abstract-Hero-Doctor-Drawing-On-Canvas-HandPainted-Art-Kits-DIY-Oil-Painting-Angel.jpg"
+    "https://ae01.alicdn.com/kf/H219e55f7435a4f85a6368d6f3b84951dj/Picture-By-Numbers-Abstract-Hero-Doctor-Drawing-On-Canvas-HandPainted-Art-Kits-DIY-Oil-Painting-Angel.jpg",
+    "https://www.gmbinder.com/images/IfYXLDl.png",
+    "https://www.gmbinder.com/images/ClHcK1A.jpg",
+    "",
+    "https://www.gmbinder.com/images/fl7DpTd.png",
+    "",
+    "https://www.gmbinder.com/images/hgw3NiK.jpg",
+    "",
+    "",
+    ""
 ];
 // Backgrounds
 books.backgrounds.name = [
