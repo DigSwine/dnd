@@ -1442,7 +1442,6 @@
         }
     }
 
-
     // Removers
     function deleteStudent(id) {
         // Club
@@ -1923,11 +1922,6 @@
         addloc.classList = "fa fa-plus";
         createRelationship(nid, sid);
     })
-
-</script>
-
-<script>
-
     $('.control').click(function () {
         var page = this.parentNode.parentNode;
         if (this.id == "add") {
@@ -1973,7 +1967,6 @@
                 togglecurrent();
             }
         }
-
         if (this.id == "save") {
             this.disabled;
             var saveloc = this.parentElement.parentElement.id;
@@ -2144,7 +2137,6 @@
                 this.enabled;
             }, 1000);
         }
-
         if (this.id == "delete") {
             var editbtn = page.querySelector('#edit');
             var addbtn = page.querySelector('#add');
@@ -2160,35 +2152,13 @@
         }
     })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ////// Setters
-
     function saveWage() {
         var sid = document.getElementById('profile').querySelector('#pid').value;
         var newWage = this.value;
-
         _supabase.from('Job<>Student').update({ 'wage': newWage }).eq('Student', sid).then(response => {
         })
-    }
-    
+    }    
 
     // Removers
     function fireFromJob() {
@@ -2206,5 +2176,4 @@
             parent.style.display = "none";
         })
     }
-
 </script>
