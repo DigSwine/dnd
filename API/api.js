@@ -11,37 +11,37 @@ function removelocalStorage(key) {
 async function preloadStrixhavenStarPaper() {
     _supabase.from('_tblStrixhavenStar').select('*').then(response => {
         // Package Data
-        preload("newsdata", response.data);
+        preload("newsdata", response.data, 30);
     })
 }
 async function preloadStrixhavenStarJobs() {
     _supabase.from('_tblJobs').select('*').order('id', 'ascending: true').then(response => {
         // Package Data
-        preload("jobdata", response.data);
+        preload("jobdata", response.data, 30);
     })
 }
 async function preloadCulbs() {
     _supabase.from('Clubs').select('*').order('id', { ascending: true }).then(response => {
         // Package Data
-        preload("clubdata", response.data);
+        preload("clubdata", response.data, 30);
     })
 }
 async function preloadAllTeachers() {
     _supabase.from('_tblTeachers').select('*').order('id', { ascending: true }).then(response => {
             // Package Data
-            preload("teacherdata", response.data);
+            preload("teacherdata", response.data, 30);
     })
 }
 async function preloadCourses() {
     _supabase.from('class<>teacher').select('class(id, name, year, required), teacher(id, teacher_name)').then(response => {
         // Package Data
-        preload("campusClasses", response.data);
+        preload("campusClasses", response.data, 60);
     });
 }
 async function preloadColleges() {
     _supabase.from('_tblColleges').select('*').order('id', { ascending: false }).then(response => {
         // Package Data
-        preload("campusColleges", response.data);
+        preload("campusColleges", response.data, 30);
     })
 
 }
@@ -238,6 +238,7 @@ async function getTeachers() {
         sessionload("teachersData", response.data);
     });
 }
+
 async function getPlayers() {
     _supabase.from('_tblStudents').select('*').not('player', 'is', null).order('id', { ascending: true }).then(response => {
         getPlayersJobs();
@@ -249,17 +250,17 @@ async function getPlayers() {
 }
 async function getPlayersJobs() {
     _supabase.from('Job<>Student').select('Job (id, Title, Location), Student!inner(id, name), wage').not('Student.player', 'is', null).then(response => {
-        sessionload("playersJobData", response.data);
+        preload("playersJobData", response.data, 5);
     })
 }
 async function getPlayersClubs() {
     _supabase.from('Club<>Student').select('club (*), student!inner(id, name)').not('student.player', 'is', null).then(response => {
-        sessionload("playersClubData", response.data);
+        preload("playersClubData", response.data, 5);
     })
 }
 async function getPlayersClass() {
     _supabase.from('class<>student').select('class(id, year, name, required), student!inner(id, player)').not('student.player', 'is', null).then(response => {
-        sessionload("playersClassData", response.data);
+        preload("playersClassData", response.data, 5);
     })
 }
 async function getPlayersExams() {
@@ -284,6 +285,7 @@ async function getPlayersRelationships() {
 
     })
 }
+
 async function getPlayerImage(name) {
     return _supabase.storage.from('pictures').download('students/' + name);
 }

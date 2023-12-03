@@ -5,9 +5,6 @@ body {
 header .logo {
     display: none;
 }
-header .thenavigation {
-    display: none;
-}
 
 .video-container {
     position: absolute;

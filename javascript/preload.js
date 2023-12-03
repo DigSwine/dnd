@@ -2,7 +2,7 @@ $(document).ready(async function () {
     await checkExpiry();
     var tocheck = preloadCheck('preload');
     if (!tocheck) {
-        preload("preload", "default");
+        preload("preload", "default", 30);
     }
     tocheck = preloadCheck('newsdata');
     if (!tocheck) {
@@ -36,8 +36,8 @@ function preloadCheck(key) {
         return true;
     }
 }
-function preload(key, value) {
-    var ttl = 900000;
+function preload(key, value, time) {
+    var ttl = time * 60000;
     const now = new Date()
     const item = {
         value: value,

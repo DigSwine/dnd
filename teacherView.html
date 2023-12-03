@@ -681,7 +681,6 @@
             await checkloadState('teacherNotes');
             await checkloadState('teachersData');
             await checkloadState('playersData');
-            await checkloadState('playersClassData');
             await checkloadState('playersExamData'); 
             await checkloadState('playersRelationshipData');
 
@@ -706,9 +705,6 @@
             }
             if (toCheck == 'playersData') {
                 await getPlayers();
-            }
-            if (toCheck == 'playersClassData') {
-                await getPlayersClass();
             }
             if (toCheck == 'playersExamData') {
                 await getPlayersExams();
@@ -1108,7 +1104,7 @@
         details.querySelector('#backstory').value = data.backstory;
         details.querySelector('#extranotes').value = data.extranotes;
         // Courses
-        var allclasses = JSON.parse(sessionStorage.getItem('playersClassData'));
+        var allclasses = JSON.parse(localStorage.getItem('playersClassData'));
         var classes = [];
         for (var y = 0; y < allclasses.length; y++) {
             if (allclasses[y].student.id == data.id) {
@@ -1126,13 +1122,13 @@
         }
         sort_playerExams(exams);
         // Job and Extras
-        var jobs = JSON.parse(sessionStorage.getItem('playersJobData'));
+        var jobs = JSON.parse(localStorage.getItem('playersJobData'));
         for (var y = 0; y < jobs.length; y++) {
             if (jobs[y].Student.id == data.id) {
                 sort_playerJob(jobs[y]);
             }
         }
-        var allclubs = JSON.parse(sessionStorage.getItem('playersClubData'));
+        var allclubs = JSON.parse(localStorage.getItem('playersClubData'));
         var clubs = [];
         for (var y = 0; y < allclubs.length; y++) {
             if (allclubs[y].student.id == data.id) {
