@@ -11,13 +11,54 @@
 </head>
 <html>
 <body>
-    <div class="container">
-        <img src="/assets/personal/Amelia_Edison_House.png" />
-        <img src="/assets/personal/Amelia_Edison_House_2.png" />
-        <img src="/assets/personal/thelocks.png" />
-        <img src="/assets/personal/Eliza_tattoo_back.png" />
-        <img src="/assets/personal/Eliza_tattoo_front.png" />
-        <img src="/assets/personal/heart_seal.png" />
+    <form>
+        <label for="img">Select image:</label>
+        <input type="file" id="img" name="img" accept="image/*" onchange="uploadIMG(this);">
+        <input type="submit">
+    </form>
+    <div id="img_container" class="container">
+
     </div>
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="/API/api.js"></script>
+<script>
+    $(async function () {
+        getAllIMGs()
+    })
+
+    async function getAllIMGs() {
+        const { data, error } = await _supabase
+            .storage
+            .from('img_hosting')
+            .list();
+        console.log(data);
+
+        var imgs = document.getElementById('img_container');
+        // imgs.innerHTML = "";
+        for (var x = 0; x < data.length; x++) {
+            if (data[x].name != ".emptyFolderPlaceholder") {
+                var newIMG = document.createElement('img');
+                newIMG.src = "https://pdccazmnzippblnvvqdp.supabase.co/storage/v1/object/public/img_hosting/" + data[x].name;
+                imgs.appendChild(newIMG);
+            }
+        }
+    }
+
+    async function uploadIMG(i) {
+        const file = i.files[0];
+        console.log(file)
+        await _supabase
+            .storage
+            .from('img_hosting')
+            .upload(file.name, file, {
+                cacheControl: '3600',
+                upsert: false
+            }).then(response => {
+                getAllIMGs();
+            })
+    }
+</script>
