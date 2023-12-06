@@ -38,7 +38,7 @@
         console.log(data);
 
         var imgs = document.getElementById('img_container');
-        // imgs.innerHTML = "";
+        imgs.innerHTML = "";
         for (var x = 0; x < data.length; x++) {
             if (data[x].name != ".emptyFolderPlaceholder") {
                 var newIMG = document.createElement('img');
