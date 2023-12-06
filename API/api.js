@@ -223,8 +223,26 @@ async function saveStudentCourseChoices(choices) {
         }
     });
 }
-async function getstudentimg(sid) {
-    
+async function setstudentimg(i) {
+    // upload
+    const file = i.files[0];
+    await _supabase
+        .storage
+        .from('pictures')
+        .upload('students/'+file.name, file, {
+            cacheControl: '3600',
+            upsert: false
+        })
+    var src = JSON.parse(sessionStorage.getItem('studentData'))[0].picture;
+    _supabase
+        .storage
+        .from('pictures')
+        .remove(['students/'+src]);
+    //change
+    _supabase.from('_tblStudents').update({ 'picture': file.name }).eq('id', sessionStorage.getItem("Student_Id")).then(response => {
+        removeStorage('studentData');
+        reloadPage();
+    })
 }
 
 async function getNPCs() {
@@ -394,7 +412,7 @@ async function saveNPCStudentData(inputs) {
         }
     }
     _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
-        reloadPage();
+        // reloadPage();
     })
 }
 async function saveTeacherData(inputs) {
@@ -502,8 +520,6 @@ async function saveRelationship(cube) {
         getPlayersRelationships();
     })
 }
-
-
 async function setNewPass() {
     var Form = document.getElementById('newPas');
     if (Form.querySelector('#NPW').value != "") {

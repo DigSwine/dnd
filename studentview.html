@@ -84,7 +84,8 @@
                 <div class="mainbody">
                     <div class="topCollection">
                         <div class="card">
-                            <img id="profilepicture" />
+                            <img id="profilepicture" onclick="clickforNewImg()">
+                            <input type="file" name="img" id="getNewIMG" accept="image/*" onchange="setstudentimg(this);" hidden>
                         </div>
                         <div class="formContainer">
                             <form id="profileform1">
@@ -1044,7 +1045,9 @@
         var allinputs = [];
         for (var y = 0; y < inputs.length; y++) {
             if (inputs[y].id) {
-                allinputs.push(inputs[y]);
+                if (inputs[x].id != "getNewIMG") {
+                    allinputs.push(inputs[y]);
+                }
             }
         }
         for (var y = 0; y < textareas.length; y++) {
@@ -1199,6 +1202,10 @@
             profile.querySelector('#college').appendChild(newCollege);
         }
     }
+    function clickforNewImg() {
+        document.getElementById("getNewIMG").click();
+    }
+
 
     // Controls
     $('.choice').click(function () {
@@ -1291,7 +1298,9 @@
                             var allinputs = [];
                             for (var y = 0; y < inputs.length; y++) {
                                 if (inputs[y].id) {
-                                    allinputs.push(inputs[y]);
+                                    if (inputs[y].id != "getNewIMG") {
+                                        allinputs.push(inputs[y]);
+                                    }
                                 }
                             }
                             for (var y = 0; y < textareas.length; y++) {
