@@ -223,6 +223,9 @@ async function saveStudentCourseChoices(choices) {
         }
     });
 }
+async function getstudentimg(sid) {
+    
+}
 
 async function getNPCs() {
     await _supabase.from('_tblStudents').select('*').is('player', null).order('id', { ascending: true }).then(response => {

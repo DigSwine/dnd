@@ -22,42 +22,70 @@
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="/API/api.js"></script>
 <script>
     $(async function () {
-        getAllIMGs()
+        await getIP();
+
+        getAllIMGs();               
     })
+
+    var who;
 
     async function getAllIMGs() {
         const { data, error } = await _supabase
             .storage
             .from('img_hosting')
             .list();
-        console.log(data);
 
         var imgs = document.getElementById('img_container');
         imgs.innerHTML = "";
         for (var x = 0; x < data.length; x++) {
             if (data[x].name != ".emptyFolderPlaceholder") {
+                var newDIV = document.createElement('div');
                 var newIMG = document.createElement('img');
+
                 newIMG.src = "https://pdccazmnzippblnvvqdp.supabase.co/storage/v1/object/public/img_hosting/" + data[x].name;
-                imgs.appendChild(newIMG);
+
+                newDIV.appendChild(newIMG);
+                imgs.appendChild(newDIV);
             }
         }
     }
 
     async function uploadIMG(i) {
-        const file = i.files[0];
-        console.log(file)
-        await _supabase
-            .storage
-            .from('img_hosting')
-            .upload(file.name, file, {
-                cacheControl: '3600',
-                upsert: false
-            }).then(response => {
-                getAllIMGs();
-            })
+        if (who) {
+            const file = i.files[0];
+
+            await _supabase
+                .storage
+                .from('img_hosting')
+                .upload(file.name, file, {
+                    cacheControl: '3600',
+                    upsert: false
+                }).then(response => {
+                    getAllIMGs();
+                })
+
+            var insertObj = {};
+            insertObj['img_name'] = file.name;
+            insertObj['ip'] = who.ipAddress;
+            insertObj['countryName'] = who.countryName;
+            insertObj['stateProv'] = who.stateProv;
+            insertObj['city'] = who.city;
+
+            await _supabase
+                .from('imgHostingIPs')
+                .insert(insertObj)
+                .select()
+        }
+    }
+
+     async function getIP() {
+         $.getJSON('https://api.db-ip.com/v2/free/self', async function (data) {
+            who = data;
+        });
     }
 </script>

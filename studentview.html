@@ -475,20 +475,8 @@
         // Assign Profile Data
         var profile = document.getElementById('profile');
 
-        //console.log(getPlayerImage(studentData.picture));
-
-      
-        //const downloadResult = await getPlayerImage(studentData.picture)
-
-        //console.log(downloadResult.data);
-        //if (downloadResult.files.length !== 0) {
-        //    const imageUrl = window.URL.createObjectURL(downloadResult)
-        //}
-        //profile.querySelector('#profilepicture').src = imageUrl
-
-        // profile.querySelector('#profilepicture').src = getPlayerImage(studentData.picture);
-
-        profile.querySelector('#profilepicture').src = "assets/students/players/" + studentData.picture;
+       
+        profile.querySelector('#profilepicture').src = "https://pdccazmnzippblnvvqdp.supabase.co/storage/v1/object/public/pictures/students/" + studentData.picture;
         profile.querySelector('#name').value = studentData.name;
         profile.querySelector('#age').value = studentData.age;
         profile.querySelector('#gender').value = studentData.gender;

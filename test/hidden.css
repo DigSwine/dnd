@@ -4,9 +4,17 @@ body{
 .container {
     height: auto;
     width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
 }
-.container img {
+.container div {
+    flex: 1;
     padding: 10px;
     height: 150px;
-    width: 150px;
+    border: black solid 1px;
+    text-align: center;
 }
+    .container img {
+        height: 100%;
+    } 
