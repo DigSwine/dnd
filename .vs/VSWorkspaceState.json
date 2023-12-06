@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\API",
-    "\\assets"
+    "\\javascript",
+    "\\styles"
   ],
-  "SelectedNode": "\\assets\\pdfs",
+  "SelectedNode": "\\javascript\\preload.js",
   "PreviewInSolutionExplorer": false
 }

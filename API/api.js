@@ -54,6 +54,7 @@ function removeStorage(key) {
     sessionStorage.removeItem(key)
 }
 
+
 async function login(us, ps) {
     await _supabase.from('_tblLogin').select('*').match({ log_use: us, log_pas: ps }).then(response => {
         if (response.data.length > 0) {
