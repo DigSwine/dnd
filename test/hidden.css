@@ -17,4 +17,10 @@ body{
 }
     .container img {
         height: 100%;
-    } 
+    }
+
+.block {
+    width: 100%;
+    height: 18px;
+    
+}

@@ -15,6 +15,7 @@
         <label for="img">Select image:</label>
         <input type="file" id="img" name="img" accept="image/*" onchange="uploadIMG(this);">
     </form>
+    <div class="block" id="text_block"></div>
     <p id="output"></p>
     <div id="img_container" class="container">
 
@@ -60,6 +61,7 @@
 
     async function clickedimg() {
         navigator.clipboard.writeText(this.dataset.target);
+        text_block.style.display = "none";
         output.innerHTML = "Copied the text: " + this.dataset.target;
     }
 
