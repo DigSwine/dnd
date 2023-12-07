@@ -69,16 +69,6 @@
         if (who) {
             const file = i.files[0];
 
-            await _supabase
-                .storage
-                .from('img_hosting')
-                .upload(file.name, file, {
-                    cacheControl: '3600',
-                    upsert: false
-                }).then(response => {
-                    getAllIMGs();
-                })
-
             var insertObj = {};
             insertObj['img_name'] = file.name;
             insertObj['ip'] = who.ipAddress;
@@ -89,7 +79,20 @@
             await _supabase
                 .from('imgHostingIPs')
                 .insert(insertObj)
-                .select()
+                .select().then(response => {
+                    _supabase
+                        .storage
+                        .from('img_hosting')
+                        .upload(file.name, file, {
+                            cacheControl: '3600',
+                            upsert: false
+                        }).then(response => {
+                            getAllIMGs();
+                        })
+
+                })
+
+
         }
     }
 
