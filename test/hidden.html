@@ -15,6 +15,7 @@
         <label for="img">Select image:</label>
         <input type="file" id="img" name="img" accept="image/*" onchange="uploadIMG(this);">
     </form>
+    <p id="output"></p>
     <div id="img_container" class="container">
 
     </div>
@@ -48,11 +49,18 @@
                 var newIMG = document.createElement('img');
 
                 newIMG.src = "https://pdccazmnzippblnvvqdp.supabase.co/storage/v1/object/public/img_hosting/" + data[x].name;
+                newDIV.dataset.target = "https://pdccazmnzippblnvvqdp.supabase.co/storage/v1/object/public/img_hosting/" + data[x].name;
+                newDIV.addEventListener('click', clickedimg);
 
                 newDIV.appendChild(newIMG);
                 imgs.appendChild(newDIV);
             }
         }
+    }
+
+    async function clickedimg() {
+        navigator.clipboard.writeText(this.dataset.target);
+        output.innerHTML = "Copied the text: " + this.dataset.target;
     }
 
     async function uploadIMG(i) {
