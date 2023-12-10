@@ -165,9 +165,9 @@
                 <div class="choice">
                     <p>Extra Notes</p>
                 </div>
-                <div class="choice">
+                <!--<div class="choice">
                     <p>Coming Soon</p>
-                </div>
+                </div>-->
                 <div class=choice>
                     <p>Account</p>
                 </div>
@@ -561,10 +561,13 @@
                     <button id="save" class="control fa fa-floppy-o"></button>
                     <button id="delete" class="control fa fa-trash"></button>
                 </div>
-                <div class="npcProfile">
-                    <div class="student">
-                        <form id="profileform1" class="Vscrollbar">
-                            <h3>Students</h3>
+                <div class="NPCsubcontrols">
+                    <h3>Students</h3>
+                    <h3>Teachers</h3>
+                </div>
+                <div class="npcProfile2">
+                    <div class="std" id="npcStudentProfile" style="display:none">
+                        <form id="studentprofileform" class="Vscrollbar">
                             <div class="npcSelector">
                                 <select id="npcList2">
                                     <option value="0">-- Please Select a NPC --</option>
@@ -589,10 +592,15 @@
                                 <textarea id="extranotes" class="scrollbar" placeholder="Extra Notes" readonly></textarea>
                             </div>
                         </form>
+                        <form id="studentextrasform" class="Vscrollbar">
+                            <label><p>Job:</p><select id="npcJob"><option value="0">-- Job --</option></select></label>
+                            <label><p>Club 1:</p><select id="c1"><option value="0">-- Club 1 --</option></select></label>
+                            <label><p>Club 2:</p><select id="c2"><option value="0">-- Club 2 --</option></select></label>
+                            <label><p>Club 3:</p><select id="c3"><option value="0">-- Club 3 --</option></select></label>
+                        </form>
                     </div>
-                    <div class="teacher">
-                        <form id="profileform2" class="Vscrollbar">
-                            <h3>Teachers</h3>
+                    <div class="tcr" id="npcTeacherProfile" style="display:none">
+                        <form id="teacherprofileform" class="Vscrollbar">
                             <div class="npcSelector">
                                 <select id="teacherList">
                                     <option value="0">-- Please Select a NPC --</option>
@@ -620,54 +628,64 @@
                         </form>
                     </div>
                 </div>
-            </div>
 
-            <div class="page extranotes" id="extra notes" hidden>
-                <div class="controls">
-                    <button id="save" class="control fa fa-floppy-o"></button>
-                </div>
-                <h2>Notes</h2>
-                <div class="noteContainer">
-                    <div class="notearea">
-                        <h3>Year 1 Note</h3>
-                        <textarea id="note"></textarea>
+
+                <div class="npcProfile" hidden>
+                    <div class="student">
+                        
                     </div>
-                    <div class="notearea">
-                        <h3>Year 2 Note</h3>
-                        <textarea id="note"></textarea>
-                    </div>
-                    <div class="notearea">
-                        <h3>Year 3 Note</h3>
-                        <textarea id="note"></textarea>
-                    </div>
-                    <div class="notearea">
-                        <h3>Year 4 Note</h3>
-                        <textarea id="note"></textarea>
+                    <div class="teacher">
+                        
                     </div>
                 </div>
             </div>
 
-            <div class="page" id="coming soon" hidden>
-                <h2>Coming Soon</h2>
-            </div>
+                <div class="page extranotes" id="extra notes" hidden>
+                    <div class="controls">
+                        <button id="save" class="control fa fa-floppy-o"></button>
+                    </div>
+                    <h2>Notes</h2>
+                    <div class="noteContainer">
+                        <div class="notearea">
+                            <h3>Year 1 Note</h3>
+                            <textarea id="note"></textarea>
+                        </div>
+                        <div class="notearea">
+                            <h3>Year 2 Note</h3>
+                            <textarea id="note"></textarea>
+                        </div>
+                        <div class="notearea">
+                            <h3>Year 3 Note</h3>
+                            <textarea id="note"></textarea>
+                        </div>
+                        <div class="notearea">
+                            <h3>Year 4 Note</h3>
+                            <textarea id="note"></textarea>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="page" id="account" hidden>
-                <h2>Account Details</h2>
-                <form id="newPas">
-                    <label for="CPW">Current Password</label>
-                    <input id="CPW" placeholder="Current Password" type="password" />
-                    <label for="NPW">New Password</label>
-                    <input id="NPW" placeholder="New Password" type="password" />
-                    <label for="CNPW">Confirm Password</label>
-                    <input id="CNPW" placeholder="Confirm Password" type="password" />
-                </form>
-                <button id="newpas">Submit</button>
-            </div>
+                <div class="page" id="coming soon" hidden>
+                    <h2>Coming Soon</h2>
+                </div>
 
-            <div class="page" id="tea">
-                <video src="../assets/Teacher_View.mp4" autoplay muted loop></video>
+                <div class="page" id="account" hidden>
+                    <h2>Account Details</h2>
+                    <form id="newPas">
+                        <label for="CPW">Current Password</label>
+                        <input id="CPW" placeholder="Current Password" type="password" />
+                        <label for="NPW">New Password</label>
+                        <input id="NPW" placeholder="New Password" type="password" />
+                        <label for="CNPW">Confirm Password</label>
+                        <input id="CNPW" placeholder="Confirm Password" type="password" />
+                    </form>
+                    <button id="newpas">Submit</button>
+                </div>
+
+                <div class="page" id="tea">
+                    <video src="../assets/Teacher_View.mp4" autoplay muted loop></video>
+                </div>
             </div>
-        </div>
     </main>
 </body>
 </html>
@@ -744,6 +762,7 @@
                         sort_PreloadedJobData(JSON.parse(localStorage.getItem('jobdata')).value);
                         sort_ClassDropdowns(JSON.parse(localStorage.getItem('campusClasses')).value);
                         sort_CollegeDropdowns(JSON.parse(localStorage.getItem('campusColleges')).value);
+                        sort_ClubDropdowns(JSON.parse(localStorage.getItem('clubdata')).value);
                     } else {
                         setTimeout(() => {
                             getPreloadData();
@@ -926,6 +945,19 @@
 
             var page = document.querySelector(".pg3");
             page.querySelector('#joblisting').appendChild(newjob);
+        }
+        for (var x = 0; x < data.length; x++) {
+            var job = data[x];
+            var jloc = job["Location"];
+            var jpay = job["Pay"];
+            var jtit = job["Title"];
+            var jid = job["id"];
+            const newjob = document.createElement("option");
+
+            newjob.innerText = jtit + " - " + jloc;
+            newjob.value = jid;
+
+            document.getElementById('npcJob').appendChild(newjob);
         }
     }
     function sort_ClassDropdowns(data) {
@@ -1455,6 +1487,34 @@
             }
         }
     }
+    function sort_ClubDropdowns(data) {
+        var page = document.getElementById('npcs');
+        page = page.querySelector('#studentextrasform');
+        var c1 = page.querySelector('#c1');
+        var c2 = page.querySelector('#c2');
+        var c3 = page.querySelector('#c3');
+        for (var x = 0; x < data.length; x++) {
+            var newOption = document.createElement('option');
+            var newOption2 = document.createElement('option');
+            var newOption3 = document.createElement('option');
+
+            newOption.innerText = data[x].name;
+            newOption.value = data[x].id;
+
+            newOption2.innerText = data[x].name;
+            newOption2.value = data[x].id;
+
+            newOption3.innerText = data[x].name;
+            newOption3.value = data[x].id;
+
+            append_to_Dropdown(c1, newOption);
+            append_to_Dropdown(c2, newOption2);
+            append_to_Dropdown(c3, newOption3);
+        }
+    }
+    async function append_to_Dropdown(dropdown, option) {
+        await dropdown.appendChild(option);
+    }
 
     // Removers
     function deleteStudent(id) {
@@ -1578,22 +1638,14 @@
             }
         }
     }
-    function cleanNPC(toclean) {
+    function cleanNPC() {
         var mainpage = document.getElementById('pages');
         var NPCpage = mainpage.querySelector('#npcs');
-        var NPCstudent = NPCpage.querySelector('.student');
-        var NPCteacher = NPCpage.querySelector('.teacher');
 
-        if (toclean == "teacher") {
-            var inputs = NPCteacher.querySelectorAll("input");
-            var selects = NPCteacher.querySelectorAll("select");
-            var textareas = NPCteacher.querySelectorAll("textarea");
-        }
-        if (toclean == "student") {
-            var inputs = NPCstudent.querySelectorAll("input");
-            var selects = NPCstudent.querySelectorAll("select");
-            var textareas = NPCstudent.querySelectorAll("textarea");
-        }
+        var inputs = NPCpage.querySelectorAll("input");
+        var selects = NPCpage.querySelectorAll("select");
+        var textareas = NPCpage.querySelectorAll("textarea");
+
         for (var x = 0; x < inputs.length; x++) {
             inputs[x].value = "";
         }
@@ -1604,11 +1656,12 @@
             textareas[x].value = "";
         }
     }
+
     function getNPCStudentDataByID(who, data) {
         for (var x = 0; x < data.length; x++) {
             if (data[x].id == who) {
                 var page = document.getElementById('npcs');
-                var NPCprofile = page.querySelector('.student');
+                var NPCprofile = page.querySelector('#studentprofileform');
                 NPCprofile.querySelector('#nid').value = data[x].id;
                 NPCprofile.querySelector('#name').value = data[x].name;
                 NPCprofile.querySelector('#age').value = data[x].age;
@@ -1627,11 +1680,45 @@
             }
         }
     }
+    function getNPCStudentJobDataByID(who, data) {
+        for (var x = 0; x < data.length; x++) {
+            if (data[x].Student == who) {
+                var page = document.getElementById('npcs');
+                page.querySelector('#npcJob').value = data[x].Job;
+            }
+        }
+    }
+    function getNPCStudentClubDataByID(who, data) {
+        var page = document.getElementById('npcs');
+        page = page.querySelector('#studentextrasform');
+        var c1 = page.querySelector('#c1');
+        var c2 = page.querySelector('#c2');
+        var c3 = page.querySelector('#c3');
+
+        c1.value = 0;
+        c2.value = 0;
+        c3.value = 0;
+
+        for (var x = 0; x < data.length; x++) {
+            if (data[x].student == who) {
+
+                if (c1.value == 0) {
+                    c1.value = data[x].club;
+                } else if (c2.value == 0) {
+                    c2.value = data[x].club;
+                } else if (c3.value == 0) {
+                    c3.value = data[x].club;
+                } else {
+                    alert('Student has too many clubs');
+                }
+            }
+        }
+    }
     function getNPCTeacherDataByID(who, data) {
         for (var x = 0; x < data.length; x++) {
             if (data[x].id == who) {
                 var page = document.getElementById('npcs');
-                var TPCprofile = page.querySelector('.teacher');
+                var TPCprofile = page.querySelector('#teacherprofileform');
                 TPCprofile.querySelector('#tid').value = data[x].id;
                 TPCprofile.querySelector('#teacher_name').value = data[x].teacher_name;
                 TPCprofile.querySelector('#teacher_role').value = data[x].teacher_role;
@@ -1756,6 +1843,8 @@
         }
     }
 
+
+
     var showing = 0;
     var pages = ["page1", "page2", "page3"];
     function toggleshow(el) {
@@ -1836,6 +1925,50 @@
         textarea.innerText = "Teacher: " + data.split(':')[1];
     }
 
+    async function saveNPCjob(obj) {        
+        await _supabase.from('Job<>Student').delete().eq('Student', obj.Student).then(response => {
+            if (obj.Job && obj.Job != 0) {
+                _supabase.from('Job<>Student').insert(obj).select().then(response => {
+                });
+            }
+        });        
+    }
+    async function saveNPCclubs() {
+        var page = document.getElementById('npcs');
+        page = page.querySelector('#studentextrasform');
+        var c1 = page.querySelector('#c1');
+        var c2 = page.querySelector('#c2');
+        var c3 = page.querySelector('#c3');
+
+        for (var x = 0; x < 3; x++) {
+            var use;
+            if (x == 0) {
+                use = c1;
+            }
+            if (x == 1) {
+                use = c2;
+            }
+            if (x == 2) {
+                use = c3;
+            }
+
+            var insertObj = {};
+            insertObj['club'] = use.value;
+            insertObj['student'] = page.parentElement.querySelector('#nid').value;
+
+            if (x == 0) {
+                await _supabase.from('Club<>Student').delete().eq('student', insertObj.student).then(response => {
+
+                });
+            }
+
+            if (insertObj.club != 0) {
+                await _supabase.from('Club<>Student').insert(insertObj).select().then(response => {
+                });
+            }
+        }
+    }
+
     //// Controls
     // Subnav
     $('.choice').click(function () {
@@ -1911,12 +2044,33 @@
         this.parentElement.parentElement.querySelector('video').src = "../assets/star/" + this.value;
     })
     // NPCs
+    $('.NPCsubcontrols h3').click(function () {
+        cleanNPC();
+        var page = document.getElementById('npcs');
+        var titles = page.querySelector('.NPCsubcontrols').querySelectorAll('h3');
+        for (var x = 0; x < titles.length; x++) {
+            titles[x].classList = "";
+        }
+        this.classList = "selected";
+
+        var toshow;
+        if (this.innerText == 'Students') {
+            toshow = '#npcStudentProfile';
+        }
+        if (this.innerText == 'Teachers') {
+            toshow = '#npcTeacherProfile';
+        }
+
+        document.getElementById('npcs').querySelector('#npcTeacherProfile').style.display = 'none';
+        document.getElementById('npcs').querySelector('#npcStudentProfile').style.display = 'none';
+        document.getElementById('npcs').querySelector(toshow).style.display = 'flex';
+    })
     $('#npcs #npcList2').change(function () {
-        cleanNPC('teacher');
         getNPCStudentDataByID(this.value, JSON.parse(sessionStorage.getItem('NPCData')));
+        getNPCStudentJobDataByID(this.value, JSON.parse(sessionStorage.getItem('NPCJobData')));
+        getNPCStudentClubDataByID(this.value, JSON.parse(sessionStorage.getItem('NPCClubData')));
     })
     $('#npcs #teacherList').change(function () {
-        cleanNPC('student');
         getNPCTeacherDataByID(this.value, JSON.parse(sessionStorage.getItem('teachersData')));
     })
     // Relationships
@@ -2076,62 +2230,85 @@
                 }
                 // NPCs
                 if (saveloc == "npcs") {
+                    var profile;
                     var allinputs = [];
-                    var SorT = "";
                     if (this.parentElement.parentElement.querySelector('#nid').value) {
-                        page = page.querySelector('.student');
-                        SorT = "s";
+                        profile = page.querySelector('#npcStudentProfile');
                     }
                     if (this.parentElement.parentElement.querySelector('#tid').value) {
-                        page = page.querySelector('.teacher');
-                        SorT = "t";
+                        profile = page.querySelector('#npcTeacherProfile');
                     }
-
-                    if (active) {
-                        var studnetName = page.querySelector('#name').value;
-                        var teacherName = page.querySelector('#teacher_name').value;
-
-
-                        var subPage = "";
-                        if (studnetName) {
-                            subPage = page.querySelector('#profileform1');
-                        }
-                        if (teacherName) {
-                            subPage = page.querySelector('#profileform2');
-                        }
-
-                        var inputs = subPage.querySelectorAll('input');
-                        var textareas = subPage.querySelectorAll('textarea');
-
+                    if (profile) {
+                        var allProfileInputs = [];
+                        var inputs = profile.querySelectorAll('input');
+                        var textareas = profile.querySelectorAll('textarea');
                         for (var y = 0; y < inputs.length; y++) {
                             if (inputs[y].id) {
-                                allinputs.push(inputs[y]);
+                                allProfileInputs.push(inputs[y]);
                             }
                         }
                         for (var y = 0; y < textareas.length; y++) {
                             if (textareas[y].id) {
-                                allinputs.push(textareas[y]);
+                                allProfileInputs.push(textareas[y]);
                             }
                         }
+                        if (active) {
+                            if (active == "edit") {
+                                if (profile.id == 'npcStudentProfile') {
+                                    // Save NPC Profile
+                                    saveNPCStudentData(allProfileInputs);
+                                    // Save NPC Job
+                                    var insertObj = {};
+                                    insertObj['Job'] = this.parentElement.parentElement.querySelector('#npcJob').value;
+                                    insertObj['Student'] = this.parentElement.parentElement.querySelector('#nid').value;
+                                    saveNPCjob(insertObj);
 
-                        if (active == "add") {
-                            if (studnetName) {
-                                createNewStudentData(allinputs);
-                            }
-                            if (teacherName) {
-                                alert("new teachers require an image, classes ect. Send me the info for the teacher");
-                            }
-                        }
-                        if (active == "edit") {
-                            if (studnetName) {
-                                saveNPCStudentData(allinputs);
-                            }
-                            if (teacherName) {
-                                // alert("new teachers require an image, classes ect. Send me the info for the teacher");
+                                    saveNPCclubs();
+                                }
+                                if (profile.id == 'npcTeacherProfile') {
+                                    
+                                }
                             }
                         }
                     }
-                }
+
+                        
+                    //        if (active == "edit") {
+                    //        if (studnetName) {
+                    //            
+                    //        }
+                    //        if (teacherName) {
+                    ////            // alert("new teachers require an image, classes ect. Send me the info for the teacher");
+                    ////        }
+                    ////    }
+                    //    }
+                    //    console.log(allProfileInputs);
+
+                    //    var studnetName = page.querySelector('#name').value;
+                    //    var teacherName = page.querySelector('#teacher_name').value;
+
+
+                    //    var subPage = "";
+                    //    if (studnetName) {
+                    //        subPage = page.querySelector('#profileform1');
+                    //    }
+                    //    if (teacherName) {
+                    //        subPage = page.querySelector('#profileform2');
+                    //    }
+
+                  
+
+                    //    if (active == "add") {
+                    //        if (studnetName) {
+                    //            createNewStudentData(allinputs);
+                    //        }
+                    //        if (teacherName) {
+                    //            alert("new teachers require an image, classes ect. Send me the info for the teacher");
+                    //        }
+                    //    }
+
+                    }
+                
                 //Notes
                 if (saveloc == "extra notes") {
                     var textareas = page.querySelectorAll('textarea');

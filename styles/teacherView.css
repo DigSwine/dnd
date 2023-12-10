@@ -89,16 +89,6 @@ main {
 
 :root {
     --subnavWidth: 350px;
-
-
-
-
-
-
-
-
-
-
     --titleheight: 45px;
     --color1: rgb(0, 231, 255);
     --color2: rgb(255, 0, 231);
@@ -796,28 +786,42 @@ button {
 
     .mainpage #npcs {
     }
-        .mainpage #npcs .npcProfile{
+        .mainpage #npcs .NPCsubcontrols {
             display: flex;
+            justify-content: center;
+            gap: 30px;
         }
-            .mainpage #npcs .npcProfile .student, .mainpage #npcs .npcProfile .teacher {
-                flex: 1;
-                height: 100%;
+            .mainpage #npcs .NPCsubcontrols h3 {
+                padding: 0;
+                margin: 0;
+                color: white;
             }
-                .mainpage #npcs .npcProfile .student .npcSelector h3,
-                .mainpage #npcs .npcProfile .teacher .npcSelector h3,
-                .mainpage #npcs .npcProfile .student .npcSelector,
-                .mainpage #npcs .npcProfile .teacher .npcSelector {
-                    text-align: center;
-                }
+            .mainpage #npcs .NPCsubcontrols h3:hover {
+                color: darkgoldenrod;
+            }
+            .mainpage #npcs .NPCsubcontrols .selected {
+                color: darkgoldenrod;
+                text-decoration: underline;
+            }
+
         .mainpage #npcs form {
-            flex: 1;
+            padding-top: 15px;
             display: flex;
             flex-direction: column;
-            padding: 0 50px 0 20px;
         }
-            .mainpage #npcs form label {
-                display: flex;
-            }
+.main #npcs .std {
+    display: flex;
+    flex-direction: column;
+}
+        .main #npcs #studentprofileform {
+            flex: 0.7;
+        }
+        .main #npcs #studentextrasform {
+            flex: 0.3;
+        }
+        .mainpage #npcs form label {
+            display: flex;
+        }
                 .mainpage #npcs form label p, .mainpage #npcs form .note p {
                     flex: 0.5;
                 }

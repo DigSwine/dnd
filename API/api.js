@@ -249,6 +249,12 @@ async function getNPCs() {
     await _supabase.from('_tblStudents').select('*').is('player', null).order('id', { ascending: true }).then(response => {
         sessionload("NPCData", response.data);
     })
+    await _supabase.from('Job<>Student').select('*').order('id', { ascending: true }).then(response => {
+        sessionload("NPCJobData", response.data);
+    })
+    await _supabase.from('Club<>Student').select('*').order('id', { ascending: true }).then(response => {
+        sessionload("NPCClubData", response.data);
+    })
 }
 async function getTeacherNotes() {
     _supabase.from('notes').select('*').order('id', { ascending: true }).then(response => {
@@ -259,6 +265,10 @@ async function getTeachers() {
     _supabase.from('_tblTeachers').select('*').order('id', { ascending: true }).then(response => {
         sessionload("teachersData", response.data);
     });
+}
+
+async function getNPCExtras() {
+
 }
 
 async function getPlayers() {
@@ -411,6 +421,7 @@ async function saveNPCStudentData(inputs) {
             }
         }
     }
+    console.log(inputs);
     _supabase.from('_tblStudents').update(updateobject).eq('id', id).then(response => {
         // reloadPage();
     })
