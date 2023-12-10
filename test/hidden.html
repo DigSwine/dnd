@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/imports.css">
     <link rel="stylesheet" type="text/css" href="hidden.css">
 
-    <title>Hosted Imgs </title>
+    <title>Hosted Imgs</title>
     <link rel="icon" href="../assets/strix_logo.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,7 @@
     <form>
         <label for="img">Select image:</label>
         <input type="file" id="img" name="img" accept="image/*" onchange="uploadIMG(this);">
+        <p id="count"></p>
     </form>
     <div class="block" id="text_block"></div>
     <p id="output"></p>
@@ -44,6 +45,7 @@
 
         var imgs = document.getElementById('img_container');
         imgs.innerHTML = "";
+        var MB = 0;
         for (var x = 0; x < data.length; x++) {
             if (data[x].name != ".emptyFolderPlaceholder") {
                 var newDIV = document.createElement('div');
@@ -53,10 +55,17 @@
                 newDIV.dataset.target = "https://pdccazmnzippblnvvqdp.supabase.co/storage/v1/object/public/img_hosting/" + data[x].name;
                 newDIV.addEventListener('click', clickedimg);
 
+                MB = MB + (data[x].metadata.size / 1000)
+
+                console.log(data[x].name + " " + data[x].metadata.size)
+
                 newDIV.appendChild(newIMG);
                 imgs.appendChild(newDIV);
             }
         }
+        var GB = MB / 1000000;
+        GB = (Math.round(GB * 100) / 100).toFixed(2);
+        document.getElementById('count').innerHTML = GB + "GB / 1GB";
     }
 
     async function clickedimg() {
