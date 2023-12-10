@@ -808,17 +808,12 @@ button {
             padding-top: 15px;
             display: flex;
             flex-direction: column;
+            flex: 1;
         }
-.main #npcs .std {
+.main #npcs .npcProfile2 .std {
     display: flex;
     flex-direction: column;
 }
-        .main #npcs #studentprofileform {
-            flex: 0.7;
-        }
-        .main #npcs #studentextrasform {
-            flex: 0.3;
-        }
         .mainpage #npcs form label {
             display: flex;
         }
