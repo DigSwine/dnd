@@ -82,14 +82,14 @@ async function getStudentJobByStudentID(sid) {
     await _supabase.from('Job<>Student').select('Job (id, Title, Location), wage').eq('Student', sid).order('id', { ascending: true }).then(response => {
         if (response.data.length > 0) {
             sessionload("studentJob", response.data);
-            getJobCoworkers(response.data[0].Job.id);
+            getJobCoworkers(response.data[0].Job.Location);
         } else {
             sessionload("studentJob", "");
         }
     })
 }
-async function getJobCoworkers(jobid) {
-    await _supabase.from('Job<>Student').select('Student (id, name)').eq('Job', jobid).then(response => {
+async function getJobCoworkers(loc) {
+    await _supabase.from('Job<>Student').select('Job!inner(Title, Location), Student (id, name)').eq('Job.Location', loc).then(response => {
         if (response.data.length > 0) {
             sessionload("jobCoworkers", response.data);
         } else {
